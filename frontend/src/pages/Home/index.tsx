@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Banner } from './Home.styles';
 
 import logoBanner from '../../assets/images/logo.png';
-import { NavigationBar } from '../../components';
+import { Footer, NavigationBar } from '../../components';
 import { Section } from '../../components/Section';
 
 import imagePizza from '../../assets/images/imagePizza.svg';
@@ -84,6 +84,7 @@ export function Home() {
           )) }
         </div>
       </Section>
+      <Footer />
     </>
   );
 }
