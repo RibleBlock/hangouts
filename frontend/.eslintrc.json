@@ -1,6 +1,5 @@
 {
     "env": {
-        "browser": true,
         "es2021": true,
         "node": true
     },
@@ -21,18 +20,18 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "react/jsx-filename-extension": "off",
-        "import/no-unresolved": "off",
-        "import/extensions": "off",
-        "no-unused-vars": "warn",
-        "react/react-in-jsx-scope": "off",
-        "react/function-component-definition": "off",
-        "import/prefer-default-export": "off",
-        "react/self-closing-comp": "off",
-        "react/no-unused-prop-types": "off",
-        "react/jsx-no-bind": "off",
-        "react/require-default-props": "off",
-        "no-undef": "off",
-        "no-shadow": "off"
+      "react/jsx-filename-extension": "off",
+      "import/no-unresolved": "off",
+      "import/extensions": "off",
+      "no-unused-vars": "warn",
+      "react/react-in-jsx-scope": "off",
+      "react/function-component-definition": "off",
+      "import/prefer-default-export": "off",
+      "react/self-closing-comp": "off",
+      "react/no-unused-prop-types": "off",
+      "react/jsx-no-bind": "off",
+      "react/require-default-props": "off",
+      "no-undef": "off",
+      "no-shadow": "off"
     }
 }
