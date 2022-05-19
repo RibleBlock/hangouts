@@ -13,7 +13,7 @@ export function TypeFoodButton({
 }: TypeFoodButtonProps) {
   return (
     <Button
-      href="https://www.youtube.com"
+      href="/typepizza"
       type="button"
       key={title}
       onClick={() => onSelectTypeFood(title as TypeFood)}

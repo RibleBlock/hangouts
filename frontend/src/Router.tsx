@@ -3,13 +3,14 @@ import {
   Routes as Switch,
   Route,
 } from 'react-router-dom';
-import { Home } from './pages';
+import { ChooseTypePizza, Home } from './pages';
 
 export function AppRoute() {
   return (
     <Router>
       <Switch>
         <Route path="/" element={<Home />} />
+        <Route path="/typepizza" element={<ChooseTypePizza />} />
       </Switch>
     </Router>
   );

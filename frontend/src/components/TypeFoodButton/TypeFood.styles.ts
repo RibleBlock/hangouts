@@ -11,4 +11,7 @@ export const Button = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
+  > img {
+    border-radius: 100rem;
+  }
 `;
