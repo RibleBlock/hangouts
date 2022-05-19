@@ -15,5 +15,6 @@ export const FooterBox = styled.footer`
     width: 4rem;
     height: 4rem;
     margin: 0 1.3rem;
+    color: #000;
   }
 `;
