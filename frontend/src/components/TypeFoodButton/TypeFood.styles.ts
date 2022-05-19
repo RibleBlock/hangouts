@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const Button = styled.a`
+export const Linked = styled(Link)`
   width: 23rem;
   height: 23rem;
   text-align: center;
