@@ -26,7 +26,7 @@ export const SectionBox = styled.section<DarkSection>`
   }
   > p {
     font-size: 2rem;
-    width: 80rem;
+    max-width: 100rem;
     text-align: center;
     margin-top: 5rem;
   }

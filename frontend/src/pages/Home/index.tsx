@@ -46,36 +46,39 @@ export function Home() {
         </Banner>
         <NavigationBar />
       </section>
-      <Section
+      <Section // 1
         title="Hangouts"
       >
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Quisque vel diam ante. Aliquam auctor, arcu a sollicitudin
-          suscipit, ante eros luctus lacus, at semper nunc magna
-          suscipit libero. Rutrum ligula et, consequat ex.
+          Somos apaixonados por massas e nos dedicamos todos os
+          dias a preparar um dos pratos mais populares do mundo.
+          Nossa missão é levar qualidade e bons momentos para sua
+          mesa, transformando o ato de comer pizza em uma experiência deliciosa.
         </p>
       </Section>
-      <Section
+      <Section // 2
         background
-        title="Hangouts"
+        title="Valores"
       >
         <p>
-          Aliquam fermentum pellentesque mauris a convallis.
-          Mauris nisi mi, euismod at mollis nec, suscipit a nibh.
-          Sed luctus odio a felis rutrum malesuada. Integer eu nunc tincidunt,
-          sollicitudin augue sit amet, tempus erat. Aenean eu mi tellus.
-          Praesent scelerisque nunc at urna pellentesque luctus.
-          Praesent efficitur ultrices augue eget egestas.
+          Acreditamos na qualidade dos nossos produtos e serviços,
+          sempre para o melhor benefício dos nossos clientes.
+          Ser honesto, transparente e ético com nossos fornecedores,
+          parceiros, clientes e funcionários. Compramos diretamente
+          do produtor, o que economiza ainda mais para nossos clientes.
+          Estemos sempre preparados para os desafios que o ambiente
+          externo e interno nos apresenta, acreditamos sempre na
+          nossa capacidade de superação e no potencial dos nossos colaboradores.
         </p>
       </Section>
-      <Section
+      <Section // 3
         subtitle="Nossas"
         title="Pizzas"
       >
         <div className="boxLinks">
           { Object.entries(typeFoods).map(([title, value]) => (
             <TypeFoodButton
+              key={title}
               onSelectTypeFood={setTypeFood}
               title={title}
               source={value.image.source}
