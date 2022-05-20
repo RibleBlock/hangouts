@@ -5,7 +5,7 @@ export const Header = styled.header`
   height: 7rem;
   background-color: ${({ theme }) => theme.COLORS.primary};
 
-  > ul {
+  > nav ul {
     list-style: none;
     height: 100%;
 

@@ -1,23 +1,16 @@
-import { TypeFood } from '../../pages/Home';
 import { Linked } from './TypeFood.styles';
 
-interface TypeFoodButtonProps {
-  onSelectTypeFood: (type: TypeFood) => void;
+export interface TypeFoodButtonProps {
   title: string;
   source: string;
   alt: string;
 }
 
 export function TypeFoodButton({
-  onSelectTypeFood, title, source, alt,
+  title, source, alt,
 }: TypeFoodButtonProps) {
   return (
-    <Linked
-      to="/categoria/"
-      type="button"
-      key={title}
-      onClick={() => onSelectTypeFood(title as TypeFood)}
-    >
+    <Linked to="/categoria/" title={title}>
       <img src={source} alt={alt} />
     </Linked>
   );

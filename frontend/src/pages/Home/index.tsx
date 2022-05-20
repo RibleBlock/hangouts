@@ -1,34 +1,49 @@
-import { useState } from 'react';
 import { Banner } from './Home.styles';
 
 import logoBanner from '../../assets/images/logo.png';
 import { Footer, NavigationBar } from '../../components';
+import { TypeFoodButton } from '../../components/TypeFoodButton';
 import { Section } from '../../components/Section';
+
+import salgadaSvg from '../../assets/images/svgTypes/salgada.svg';
+import doceSvg from '../../assets/images/svgTypes/doce.svg';
+import calzoneSvg from '../../assets/images/svgTypes/calzone.svg';
+import bebidaSvg from '../../assets/images/svgTypes/bebida.svg';
 
 import imagePizza from '../../assets/images/imagePizza.svg';
 import imageCalzone from '../../assets/images/imageCalzone.svg';
 import imageRefrigerante from '../../assets/images/imageRefrigerante.svg';
-import { TypeFoodButton } from '../../components/TypeFoodButton';
 
-const typeFoods = {
+export const typeFoods = {
   PIZZA: {
-    title: 'Pizzas',
+    title: 'Pizzas Salgadas',
     image: {
-      source: imagePizza,
-      alt: 'Imagem de uma pizza',
+      source: salgadaSvg,
+      sourceAbs: imagePizza,
+      alt: 'Imagem de uma pizza salgada',
+    },
+  },
+  DOCE: {
+    title: 'Pizzas Doces',
+    image: {
+      source: doceSvg,
+      sourceAbs: imagePizza,
+      alt: 'Imagem de uma pizza doce',
     },
   },
   CALZONE: {
     title: 'Calzones',
     image: {
-      source: imageCalzone,
-      alt: 'Imagem de uma Calzones',
+      source: calzoneSvg,
+      sourceAbs: imageCalzone,
+      alt: 'Imagem de um Calzone',
     },
   },
   BEBIDA: {
     title: 'Bebidas',
     image: {
-      source: imageRefrigerante,
+      source: bebidaSvg,
+      sourceAbs: imageRefrigerante,
       alt: 'Imagem de uma Garrafa',
     },
   },
@@ -36,8 +51,6 @@ const typeFoods = {
 export type TypeFood = keyof typeof typeFoods;
 
 export function Home() {
-  const [typeFood, setTypeFood] = useState<TypeFood | null>(null);
-
   return (
     <>
       <section>
@@ -79,9 +92,8 @@ export function Home() {
           { Object.entries(typeFoods).map(([title, value]) => (
             <TypeFoodButton
               key={title}
-              onSelectTypeFood={setTypeFood}
               title={title}
-              source={value.image.source}
+              source={value.image.sourceAbs}
               alt={value.image.alt}
             />
           )) }
