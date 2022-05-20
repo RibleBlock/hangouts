@@ -1,9 +1,9 @@
 import { Banner } from './Home.styles';
 
 import logoBanner from '../../assets/images/logo.png';
-import { Footer, NavigationBar } from '../../components';
-import { TypeFoodButton } from '../../components/TypeFoodButton';
-import { Section } from '../../components/Section';
+import {
+  Footer, NavigationBar, Section, TypeFoodButton,
+} from '../../components';
 
 import salgadaSvg from '../../assets/images/svgTypes/salgada.svg';
 import doceSvg from '../../assets/images/svgTypes/doce.svg';

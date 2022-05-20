@@ -1,6 +1,10 @@
 import { useState } from 'react';
-import { Header, NavigationBar, TypeButtonPopover as button } from '../../components';
+import {
+  Footer,
+  Header, NavigationBar, TypeButtonPopover as button, TypeButtonPopover,
+} from '../../components';
 import { TypeFood, typeFoods } from '../Home';
+import { Main } from './ChooseTypePizza.styles';
 // import { Main } from './ChooseTypePizza.styles';
 
 export function ChooseTypePizza() {
@@ -14,16 +18,17 @@ export function ChooseTypePizza() {
         nós levamos apenas os melhores ingredientes
         para nossos clientes
       </Header>
-      <main>
+      <Main>
 
         { Object.entries(typeFoods).map(([title, value]) => (
-          <button type="button">
-            <h2>{title}</h2>
-            <img src={value.image.source} alt={value.image.source} />
-            <p>Algum textinho sobre</p>
-          </button>
+          <TypeButtonPopover
+            category={value.title}
+            source={value.image.source}
+            alt={value.image.alt}
+          />
         )) }
-      </main>
+      </Main>
+      <Footer />
     </>
   );
 }
