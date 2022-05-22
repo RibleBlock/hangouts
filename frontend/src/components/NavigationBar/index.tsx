@@ -40,7 +40,7 @@ export function NavigationBar({ elements }: NavigationBarPropss) {
           <li>
             <Link to="https://google.com">
               <div>
-                HANGOUTS
+                CARDAPIO
               </div>
             </Link>
 
@@ -48,7 +48,7 @@ export function NavigationBar({ elements }: NavigationBarPropss) {
           <li>
             <Link to="https://google.com">
               <div>
-                LOREM
+                CARRINHO
               </div>
             </Link>
 
@@ -56,26 +56,9 @@ export function NavigationBar({ elements }: NavigationBarPropss) {
           <li>
             <Link to="https://google.com">
               <div>
-                PIZZA
+                ENTRAR
               </div>
             </Link>
-
-          </li>
-          <li>
-            <Link to="https://google.com">
-              <div>
-                BLOG
-              </div>
-            </Link>
-
-          </li>
-          <li>
-            <Link to="https://google.com">
-              <div>
-                CONTATO
-              </div>
-            </Link>
-
           </li>
         </ul>
       </nav>

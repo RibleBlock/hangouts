@@ -13,12 +13,12 @@ export const Linked = styled(Link)<{title: string}>`
   justify-content: center;
   align-items: center;
 
-${(props) => props.title === 'DOCE' && css`
-  display: none !important;
-`}
-    &:hover {
-      transform: scale(1.1);
-    }
+  &:hover {
+    transform: scale(1.1);
+  }
+  ${(props) => props.title === 'DOCE' && css`
+    display: none !important;
+  `}
   > img {
     border-radius: 100rem;
 
