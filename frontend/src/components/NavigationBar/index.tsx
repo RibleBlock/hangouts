@@ -1,16 +1,72 @@
+import { Link } from 'react-router-dom';
+import { Link as Scroll } from 'react-scroll';
 import { Header } from './NavigationBar.styles';
 
-export function NavigationBar() {
+interface NavigationBarPropss {
+  elements?: string[]
+}
+export function NavigationBar({ elements }: NavigationBarPropss) {
   return (
     <Header>
       <nav>
         <ul>
-          <li><button type="button">HOME</button></li>
-          <li><button type="button">HANGOUTS</button></li>
-          <li><button type="button">LOREM</button></li>
-          <li><button type="button">PIZZA</button></li>
-          <li><button type="button">BLOG</button></li>
-          <li><button type="button">CONTATO</button></li>
+          {/** Temporario */}
+          {elements && elements.map((item) => (
+            <li key={item}>
+              <Scroll
+                activeClass="active"
+                to={item}
+                spy
+                smooth
+                duration={500}
+              >
+                <div>
+                  { item.toUpperCase() }
+                </div>
+              </Scroll>
+            </li>
+          ))}
+
+          <li>
+            <Link to="https://google.com">
+              <div>
+                HANGOUTS
+              </div>
+            </Link>
+
+          </li>
+          <li>
+            <Link to="https://google.com">
+              <div>
+                LOREM
+              </div>
+            </Link>
+
+          </li>
+          <li>
+            <Link to="https://google.com">
+              <div>
+                PIZZA
+              </div>
+            </Link>
+
+          </li>
+          <li>
+            <Link to="https://google.com">
+              <div>
+                BLOG
+              </div>
+            </Link>
+
+          </li>
+          <li>
+            <Link to="https://google.com">
+              <div>
+                CONTATO
+              </div>
+            </Link>
+
+          </li>
         </ul>
       </nav>
     </Header>

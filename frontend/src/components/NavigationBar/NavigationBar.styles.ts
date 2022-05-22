@@ -5,27 +5,36 @@ export const Header = styled.header`
   height: 7rem;
   background-color: ${({ theme }) => theme.COLORS.primary};
 
-  > nav ul {
-    list-style: none;
+  > nav {
     height: 100%;
+    ul {
+      list-style: none;
+      height: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    & button {
-      width: 13.6rem;
-      height: 7rem;
-      font-size: 1.7rem;
-      transition: 600ms;
-      cursor: pointer;
+      & a {
+        text-decoration: none;
+        font-size: 1.7rem;
+        color: ${({ theme }) => theme.COLORS.text_secondary};
+        background-color: transparent;
+        transition: 600ms;
 
-      color: ${({ theme }) => theme.COLORS.text_secondary};
-      background-color: transparent;
-      border-color: transparent;
+        > div {
+          width: 13.6rem;
+          height: 7rem;
 
-      &:hover {
-        background-color: ${({ theme }) => theme.COLORS.primary_hover};
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            background-color: ${({ theme }) => theme.COLORS.primary_hover};
+          }
+        }
+
       }
     }
   }
