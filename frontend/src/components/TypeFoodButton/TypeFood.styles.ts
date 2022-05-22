@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { TypeFoodButtonProps } from '.';
 
 export const Linked = styled(Link)<{title: string}>`
   width: 23rem;
@@ -8,7 +7,7 @@ export const Linked = styled(Link)<{title: string}>`
   text-align: center;
   background-color: ${({ theme }) => theme.COLORS.background_OP};
   border-radius: 100%;
-  cursor: pointer;
+  transition: 600ms;
 
   display: flex;
   justify-content: center;
@@ -17,7 +16,11 @@ export const Linked = styled(Link)<{title: string}>`
 ${(props) => props.title === 'DOCE' && css`
   display: none !important;
 `}
+    &:hover {
+      transform: scale(1.1);
+    }
   > img {
     border-radius: 100rem;
+
   }
 `;
