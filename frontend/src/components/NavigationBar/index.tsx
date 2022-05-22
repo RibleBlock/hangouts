@@ -10,22 +10,32 @@ export function NavigationBar({ elements }: NavigationBarPropss) {
     <Header>
       <nav>
         <ul>
-          {/** Temporario */}
-          {elements && elements.map((item) => (
-            <li key={item}>
-              <Scroll
-                activeClass="active"
-                to={item}
-                spy
-                smooth
-                duration={500}
-              >
+          {!elements ? (
+            <li>
+              <Link to="/">
                 <div>
-                  { item.toUpperCase() }
+                  HOME
                 </div>
-              </Scroll>
+              </Link>
+
             </li>
-          ))}
+          ) : (
+            elements.map((item) => (
+              <li key={item}>
+                <Scroll
+                  activeClass="active"
+                  to={item}
+                  spy
+                  smooth
+                  duration={500}
+                >
+                  <div>
+                    { item.toUpperCase() }
+                  </div>
+                </Scroll>
+              </li>
+            ))
+          )}
 
           <li>
             <Link to="https://google.com">

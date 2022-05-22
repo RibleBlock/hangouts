@@ -52,7 +52,7 @@ export const typeFoods = {
 export type TypeFood = keyof typeof typeFoods;
 
 export const ElementsNames = [
-  'Home', 'Valores', 'Pizzas',
+  'Hangouts', 'Valores', 'Pedir',
 ];
 
 export function Home() {
