@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Link as Scroll } from 'react-scroll';
 import { Header } from './NavigationBar.styles';
@@ -35,6 +34,7 @@ export function NavigationBar({ elements, fixed }: NavigationBarPropss) {
                     spy
                     smooth
                     duration={500}
+                    offset={-70}
                   >
                     <div>
                       { item.toUpperCase() }
