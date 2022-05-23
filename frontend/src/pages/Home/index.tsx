@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Element } from 'react-scroll';
 import { Banner } from './Home.styles';
 
@@ -56,14 +57,24 @@ export const ElementsNames = [
 ];
 
 export function Home() {
+  const [isFixed, setIsFixed] = useState<boolean>(false);
+
+  const eventScroll = document.addEventListener('scroll', () => {
+    setIsFixed(document.documentElement.scrollTop > window.screen.height - 200);
+  });
+
   return (
     <>
       <section>
         <Banner>
           <img src={logoBanner} alt="pizzaria" />
         </Banner>
-        <NavigationBar elements={ElementsNames} />
+        <NavigationBar
+          fixed={isFixed}
+          elements={ElementsNames}
+        />
       </section>
+
       <Element name={ElementsNames[0]}>
         <Section // 1
           title="Hangouts"
