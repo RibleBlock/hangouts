@@ -57,23 +57,16 @@ export const ElementsNames = [
 ];
 
 export function Home() {
-  const [isFixed, setIsFixed] = useState<boolean>(false);
-
-  const eventScroll = document.addEventListener('scroll', () => {
-    setIsFixed(document.documentElement.scrollTop > window.screen.height - 200);
-  });
-
   return (
     <>
       <section>
         <Banner>
           <img src={logoBanner} alt="pizzaria" />
         </Banner>
-        <NavigationBar
-          fixed={isFixed}
-          elements={ElementsNames}
-        />
       </section>
+      <NavigationBar
+        elements={ElementsNames}
+      />
 
       <Element name={ElementsNames[0]}>
         <Section // 1
