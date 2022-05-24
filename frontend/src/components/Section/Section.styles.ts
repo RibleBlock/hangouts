@@ -6,7 +6,7 @@ export const SectionBox = styled.section<DarkSection>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 6rem 0 17.6rem;
+  padding: 6rem 2.5rem 15rem;
   ${(props) => props.background && css`
     color: ${({ theme }) => theme.COLORS.text_secondary};
     background-size: cover;
@@ -33,6 +33,7 @@ export const SectionBox = styled.section<DarkSection>`
   // bolinha
   > .boxLinks {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 9rem;
     margin-top: 5rem;

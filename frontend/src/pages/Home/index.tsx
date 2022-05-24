@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Element } from 'react-scroll';
 import { Banner } from './Home.styles';
 

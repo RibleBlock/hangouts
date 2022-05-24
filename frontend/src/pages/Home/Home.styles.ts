@@ -11,6 +11,7 @@ export const Banner = styled.div`
   align-items: center;
   justify-content: center;
   > img {
-    width: 45rem;
+    width: 50%;
+    max-width: 45rem;
   }
 `;
