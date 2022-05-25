@@ -23,10 +23,4 @@ export const ButtonBox = styled.button`
   &:hover > img {
     transform: scale(1.1);
   }
-
-  /* @media (max-width: 550px) {
-    > img {
-      width: 70vw;
-    } */
-  }
 `;
