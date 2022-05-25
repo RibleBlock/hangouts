@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
+import bannerBg from '../../assets/images/banner_bg.png';
+
 export const Banner = styled.div`
+  background-color: ${({ theme }) => theme.COLORS.primary};
   background-position: center;
   background-size: cover;
-  background-image: url('https://www.oguiademilao.com/wp-content/uploads/2020/09/Pizzaria-Cocciuto-em-Milao.jpg');
+  background-attachment: fixed;
+  background-image: url(${bannerBg});
   width: 100%;
   height: calc(100vh - 7rem);
 
