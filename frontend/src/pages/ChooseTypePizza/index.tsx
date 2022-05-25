@@ -23,19 +23,26 @@ export function ChooseTypePizza() {
       </Header>
       <Main>
 
-        { Object.entries(typeFoods).map(([title, value]) => (
+        { Object.entries(typeFoods).map(([key, value]) => (
           <TypeButtonPopover
             onSelectType={setSelectedType}
-            category={value.title}
+            category={key}
+            title={value.title}
             source={value.image.source}
             alt={value.image.alt}
-            key={title}
+            key={key}
           />
         )) }
       </Main>
 
       <Dialog open={selectedType !== null} onClose={() => setSelectedType(null)} as="div">
-        <Popover />
+        { !selectedType ? (
+          <span>{/* ERROR */}</span>
+        ) : (
+          <Popover
+            selectedType={selectedType}
+          />
+        ) }
       </Dialog>
       <Footer />
     </>
