@@ -1,5 +1,6 @@
 export { NavigationBar } from './NavigationBar';
 export { Section } from './Section';
+export { Popover } from './Popover';
 export { TypeButtonPopover } from './TypeButtonPopover';
 export { TypeFoodButton } from './TypeFoodButton';
 export { Header } from './Header';
