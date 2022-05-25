@@ -11,7 +11,8 @@ export const ButtonBox = styled.button`
   > img {
     transition: 700ms;
     margin: 2.2rem 0;
-    width: 20rem;
+    width: 25rem;
+    border-radius: 1.5rem;
   }
 
   > p {

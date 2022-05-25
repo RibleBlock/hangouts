@@ -12,7 +12,6 @@ export function TypeButtonPopover({ category, source, alt }: TypeButtonPopoverPr
     >
       <h2>{category}</h2>
       <img src={source} alt={alt} />
-      <p>Algum textinho sobre</p>
     </ButtonBox>
   );
 }

@@ -7,6 +7,6 @@ export const Main = styled.main`
   grid-template-columns: 25% 25%;
   grid-template-rows: 1fr 1fr;
   justify-content: center;
-  grid-column-gap: 10rem;
+  grid-column-gap: 7rem;
   grid-row-gap: 5rem;
 `;
