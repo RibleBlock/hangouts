@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
 export const ButtonBox = styled.button`
-  cursor: pointer;
+  width: 25rem;
   background-color: transparent;
+  cursor: pointer;
   > h2 {
     font-size: 2.5rem;
     letter-spacing: .1rem;
   }
 
   > img {
+    width: 100%;
     transition: 700ms;
-    margin: 2.2rem 0;
-    width: 25rem;
-    border-radius: 1.5rem;
+    margin-top: 2.2rem;
+    border-radius: 1.3rem;
   }
 
   > p {
@@ -21,5 +22,11 @@ export const ButtonBox = styled.button`
 
   &:hover > img {
     transform: scale(1.1);
+  }
+
+  /* @media (max-width: 550px) {
+    > img {
+      width: 70vw;
+    } */
   }
 `;
