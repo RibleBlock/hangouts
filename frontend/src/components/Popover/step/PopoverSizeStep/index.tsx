@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { RadioGroup } from '@headlessui/react';
+import { SizeTypes, TypeFood, typeFoods } from '../../../../pages/Home';
 import { Formulario, ButtonSize } from './PopoverSizeStep.styles';
-import { sizesObj, sizeTypes } from '../..';
 
-export function PopoverSizeStep() {
-  const [size, setSize] = useState<sizeTypes>('BROTO');
+interface PopoverSizeStepProps {
+  chosenType: TypeFood;
+}
+export function PopoverSizeStep({ chosenType }: PopoverSizeStepProps) {
+  const [size, setSize] = useState<SizeTypes | null>(null);
 
   useEffect(() => {
     console.log(size);
@@ -12,11 +14,11 @@ export function PopoverSizeStep() {
   return (
     <Formulario>
       <h2>Escolha o tamanho:</h2>
-      { Object.entries(sizesObj).map(([key, value]) => (
+      { chosenType && Object.entries(typeFoods[chosenType].sizes).map(([key, value]) => (
         <>
           <hr />
           <ButtonSize
-            onClick={() => setSize(key as sizeTypes)}
+            onClick={() => setSize(key as SizeTypes)}
             type="button"
             key={key}
           >

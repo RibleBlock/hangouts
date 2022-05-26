@@ -18,6 +18,24 @@ import imageRefrigerante from '../../assets/images/imageRefrigerante.svg';
 export const typeFoods = {
   PIZZA: {
     title: 'Pizzas Salgadas',
+    sizes: {
+      BROTO: {
+        size: 'Broto',
+        price: 26.00,
+      },
+      MEDIA: {
+        size: 'Média',
+        price: 35.00,
+      },
+      GRANDE: {
+        size: 'Grande',
+        price: 48.00,
+      },
+      GIGA: {
+        size: 'Giga',
+        price: 62.00,
+      },
+    },
     image: {
       source: salgadaSvg,
       sourceAbs: imagePizza,
@@ -26,6 +44,16 @@ export const typeFoods = {
   },
   DOCE: {
     title: 'Pizzas Doces',
+    sizes: {
+      BROTO: {
+        size: 'Broto',
+        price: 26.00,
+      },
+      MEDIA: {
+        size: 'Média',
+        price: 35.00,
+      },
+    },
     image: {
       source: doceSvg,
       sourceAbs: imagePizza,
@@ -34,6 +62,7 @@ export const typeFoods = {
   },
   CALZONE: {
     title: 'Calzones',
+    sizes: {},
     image: {
       source: calzoneSvg,
       sourceAbs: imageCalzone,
@@ -42,6 +71,16 @@ export const typeFoods = {
   },
   BEBIDA: {
     title: 'Bebidas',
+    sizes: {
+      LATA: {
+        size: 'lata',
+        price: 4.00,
+      },
+      MEDIA: {
+        size: 'Garafa - 500mls',
+        price: 5.50,
+      },
+    },
     image: {
       source: bebidaSvg,
       sourceAbs: imageRefrigerante,
@@ -50,6 +89,7 @@ export const typeFoods = {
   },
 };
 export type TypeFood = keyof typeof typeFoods;
+export type SizeTypes = keyof typeof typeFoods.PIZZA.sizes;
 
 export const ElementsNames = [
   'Hangouts', 'Valores', 'Pedir',
