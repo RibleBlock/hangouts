@@ -2,12 +2,11 @@ import { Dialog } from '@headlessui/react';
 import styled from 'styled-components';
 
 export const PopoverBox = styled(Dialog.Panel)`
-  width: 65vw;
-  height: 80vh;
-  /* padding: ; */
+  width: 100%;
+  max-width: 60rem;
+  padding-bottom: 4rem;
   border-radius: 1rem;
   background-color: ${({ theme }) => theme.COLORS.secondary};
-  /* overflow: hidden; */
 
   display: flex;
   flex-direction: column;
@@ -19,14 +18,14 @@ export const PopoverBox = styled(Dialog.Panel)`
     font-size: 2.5rem;
     &::after {
       content: '';
-      height: .1rem;
       display: block;
+      height: .1rem;
       background-color: #00000040;
     }
   }
   > img {
-    width: 25%;
-    margin-top: 2rem;
+    width: max(35%, 15rem);
+    margin-top: 3rem;
     border-radius: 50rem;
   }
 `;
