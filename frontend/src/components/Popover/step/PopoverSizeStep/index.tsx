@@ -14,13 +14,12 @@ export function PopoverSizeStep({ chosenType }: PopoverSizeStepProps) {
   return (
     <Formulario>
       <h2>Escolha o tamanho:</h2>
-      { chosenType && Object.entries(typeFoods[chosenType].sizes).map(([key, value]) => (
-        <>
+      { Object.entries(typeFoods[chosenType].sizes).map(([key, value]) => (
+        <div key={key}>
           <hr />
           <ButtonSize
             onClick={() => setSize(key as SizeTypes)}
             type="button"
-            key={key}
           >
             <p>{ value.size }</p>
             <span>
@@ -29,7 +28,7 @@ export function PopoverSizeStep({ chosenType }: PopoverSizeStepProps) {
               {value.price.toFixed(2)}
             </span>
           </ButtonSize>
-        </>
+        </div>
       )) }
       <hr />
     </Formulario>
