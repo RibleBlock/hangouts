@@ -18,20 +18,20 @@ import imageRefrigerante from '../../assets/images/imageRefrigerante.svg';
 export const bordas = {
   NENHUMA: {
     price: 0.00,
-    nomes: ['Sem Borda Recheada'],
+    nomes: ['Sem Borda'],
   },
   SALGADA: {
     price: 7.00,
     nomes: [
-      'Borda de Cream cheddar',
-      'Borda de Cream Cheese',
+      'Cream cheddar',
+      'Cream Cheese',
     ],
   },
   DOCE: {
     price: 9.00,
     nomes: [
-      'Borda de Chocolate Preto',
-      'Borda de Chocolate Branco',
+      'Chocolate Preto',
+      'Chocolate Branco',
     ],
   },
 

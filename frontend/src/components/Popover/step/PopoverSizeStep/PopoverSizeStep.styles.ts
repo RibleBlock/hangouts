@@ -4,7 +4,6 @@ export const Content = styled.div`
   width: 100%;
   padding: 0 3rem;
   margin-top: 4rem;
-  /* background-color: red; */
 
   > h2 {
     font-size: 2rem;

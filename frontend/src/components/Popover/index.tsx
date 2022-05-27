@@ -4,6 +4,7 @@ import {
 } from '../../pages/Home';
 import { DarkBG, PopoverBox } from './Popover.styles';
 import { PopoverBorderStep } from './step/PopoverBorderStep';
+import { PopoverFlavorsStep } from './step/PopoverFlavorsStep';
 import { PopoverSizeStep } from './step/PopoverSizeStep';
 
 interface PopoverProps {
@@ -25,16 +26,13 @@ export function Popover({ selectedType }: PopoverProps) {
       <PopoverBox>
         <h2>{ chosenType.title }</h2>
         <form method="POST">
+          <input type="hidden" name="type" value={selectedType} />
+          <input type="hidden" name="size" value={size || ''} />
+          <input type="hidden" name="border" value={border || ''} />
+          {/* <input type="hidden" name="flavor" value={flavor || ''} /> */}
 
           { (flavor || selectedType === 'CALZONE') || (!flavor && (border || selectedType === 'BEBIDA') && size) ? (
-            <>
-              <input type="hidden" name="type" value={selectedType} />
-              <input type="hidden" name="size" value={size || ''} />
-              <input type="hidden" name="border" value={border || ''} />
-              {/* <input type="hidden" name="flavor" value={flavor || ''} /> */}
-
-              <p style={{ fontSize: '3rem' }}>SABores</p>
-            </>
+            <PopoverFlavorsStep />
           ) : (
             <>
               <img
