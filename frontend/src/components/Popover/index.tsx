@@ -34,7 +34,8 @@ export function Popover({ selectedType }: PopoverProps) {
           { (flavor || selectedType === 'CALZONE') || (!flavor && (border || selectedType === 'BEBIDA') && size) ? (
             <PopoverFlavorsStep
               chosenType={selectedType}
-              setSize={setFlavor}
+              size={size || 'BROTO'}
+              setFlavors={setFlavor}
             />
           ) : (
             <>

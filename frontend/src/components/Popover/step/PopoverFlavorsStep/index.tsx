@@ -1,14 +1,16 @@
 import {
-  FlavorType, IngredientType, TypeFood, typeFoods,
+  FlavorType, IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../pages/Home';
 import { PopoverListButton } from '../../PopoverListButton';
 import { Content } from '../PopoverSizeStep/PopoverSizeStep.styles';
 
 interface PopoverFlavorsStepProps {
   chosenType: TypeFood;
-  setSize: (sizeName: FlavorType) => void;
+  size: SizeType;
+  setFlavors: (sizeName: FlavorType) => void;
 }
-export function PopoverFlavorsStep({ chosenType, setSize }: PopoverFlavorsStepProps) {
+export function PopoverFlavorsStep({ chosenType, size, setFlavors }: PopoverFlavorsStepProps) {
+  // const quantidade = typeFoods.PIZZA.sizes[size].quantity;
   const objSabores = typeFoods[chosenType].flavor;
 
   return (
@@ -16,20 +18,22 @@ export function PopoverFlavorsStep({ chosenType, setSize }: PopoverFlavorsStepPr
       <h2>
         Selecione até
         {' '}
-        {/* NUM */}
+        {/* { quantidade } */}
         {' '}
         sabores
       </h2>
 
       { Object.entries(objSabores).map(([key, value]) => (
         <>
-          <h1 key={key}>{ key }</h1>
+          <h3 key={key}>{ key }</h3>
           { (value.sabor).map(({ nome, descricao }: IngredientType) => (
-            <>
-              <h1>{ nome }</h1>
-              <h1>{ descricao }</h1>
-              <h1>{ !!value.price && value.price }</h1>
-            </>
+            <PopoverListButton
+              key={key}
+              item={[nome]}
+              descricao={descricao}
+              price={value.price}
+              setStepOn={setFlavors}
+            />
           )) }
         </>
       )) }

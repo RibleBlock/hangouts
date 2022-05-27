@@ -9,6 +9,10 @@ export const Content = styled.div`
     font-size: 2rem;
     margin-bottom: 2rem;
   }
+  > h3 {
+    font-size: 1.6rem;
+    margin-top: 2rem;
+  }
   hr {
     width: 100%;
     height: .1rem;
@@ -26,6 +30,20 @@ export const ButtonSize = styled.button`
   font-size: 1.8rem;
   background-color: transparent;
   cursor: pointer;
+
+  > div {
+    overflow: hidden;
+    margin: auto 0;
+    text-align: left;
+    white-space: nowrap;
+
+    > p {
+      font-size: 1.8rem;
+    }
+    > span {
+      font-size: 1.4rem;
+    }
+  }
 
   &:hover {
     background-color: ${({ theme }) => theme.COLORS.secondary_hover};
