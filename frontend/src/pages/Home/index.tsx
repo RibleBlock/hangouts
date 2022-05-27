@@ -149,10 +149,16 @@ export const typeFoods = {
     title: 'Calzones',
     flavor: {
       TRADICIONAIS: {
-        price: 7.50,
-        sabor: [
-          'Frango',
-          'Frango com milho',
+        price: 5.00,
+        sabor: [ // price: +5.00,
+          {
+            nome: 'Frango',
+            descricao: '',
+          },
+          {
+            nome: 'Frango com milho',
+            descricao: '',
+          },
         ],
       },
     },

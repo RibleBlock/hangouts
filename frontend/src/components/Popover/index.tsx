@@ -13,7 +13,6 @@ interface PopoverProps {
 export function Popover({ selectedType }: PopoverProps) {
   const chosenType = typeFoods[selectedType];
   const [size, setSize] = useState<SizeType | null>(null);
-  const [qtd, setQtd] = useState<number>(1);
   const [border, setBorder] = useState<BordersType | null>(null);
   const [flavor, setFlavor] = useState<FlavorType | null>(null);
 
@@ -35,7 +34,6 @@ export function Popover({ selectedType }: PopoverProps) {
           { (flavor || selectedType === 'CALZONE') || (!flavor && (border || selectedType === 'BEBIDA') && size) ? (
             <PopoverFlavorsStep
               chosenType={selectedType}
-              chosenSize={qtd}
               setSize={setFlavor}
             />
           ) : (

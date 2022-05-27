@@ -4,10 +4,9 @@ import { Content } from './PopoverSizeStep.styles';
 
 interface PopoverSizeStepProps {
   chosenType: TypeFood;
-  setQtd: (sizeName: number) => void;
   setSize: (sizeName: SizeType) => void;
 }
-export function PopoverSizeStep({ setSize, setQtd, chosenType }: PopoverSizeStepProps) {
+export function PopoverSizeStep({ setSize, chosenType }: PopoverSizeStepProps) {
   return (
     <Content>
       <h2>Selecione o tamanho:</h2>

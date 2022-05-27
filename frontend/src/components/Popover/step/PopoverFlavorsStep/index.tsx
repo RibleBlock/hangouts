@@ -1,16 +1,15 @@
 import {
-  FlavorType, IngredientType, SizeType, TypeFood, typeFoods,
+  FlavorType, IngredientType, TypeFood, typeFoods,
 } from '../../../../pages/Home';
 import { PopoverListButton } from '../../PopoverListButton';
 import { Content } from '../PopoverSizeStep/PopoverSizeStep.styles';
 
 interface PopoverFlavorsStepProps {
   chosenType: TypeFood;
-  chosenSize: number;
   setSize: (sizeName: FlavorType) => void;
 }
-export function PopoverFlavorsStep({ chosenType, chosenSize, setSize }: PopoverFlavorsStepProps) {
-  const objSabores = typeFoods[chosenType || 'PIZZA'].flavor;
+export function PopoverFlavorsStep({ chosenType, setSize }: PopoverFlavorsStepProps) {
+  const objSabores = typeFoods[chosenType].flavor;
 
   return (
     <Content>
@@ -29,7 +28,7 @@ export function PopoverFlavorsStep({ chosenType, chosenSize, setSize }: PopoverF
             <>
               <h1>{ nome }</h1>
               <h1>{ descricao }</h1>
-              <h1>{ value.price }</h1>
+              <h1>{ !!value.price && value.price }</h1>
             </>
           )) }
         </>
