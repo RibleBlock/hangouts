@@ -42,29 +42,32 @@ export const typeFoods = {
   PIZZA: {
     title: 'Pizzas Salgadas',
     flavor: {
-      TRADICIONAL: {
-        price: 40.00,
+      TRADICIONAIS: {
+        price: 0.00,
         sabor: [
           {
             nome: 'Mozarela',
-            Ingredients: 'Mozarela e molho especial de tomate.',
+            descricao: 'Mozarela e molho especial de tomate.',
           },
           {
             nome: 'Mozarela',
-            Ingredients: 'Mozarela e molho especial de tomate.',
+            descricao: 'Mozarela e molho especial de tomate.',
           },
         ],
       },
-      ESPECIAL: [ // price: +5.00,
-        {
-          nome: 'Portuguesa',
-          Ingredients: 'Mozarela e molho especial de tomate.',
-        },
-        {
-          nome: 'Portuguesa',
-          Ingredients: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.',
-        },
-      ],
+      ESPECIAIS: {
+        price: 5.00,
+        sabor: [ // price: +5.00,
+          {
+            nome: 'Portuguesa',
+            descricao: 'Mozarela e molho especial de tomate.',
+          },
+          {
+            nome: 'Portuguesa',
+            descricao: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.',
+          },
+        ],
+      },
     },
     sizes: {
       BROTO: {
@@ -96,6 +99,34 @@ export const typeFoods = {
   },
   DOCE: {
     title: 'Pizzas Doces',
+    flavor: {
+      TRADICIONAIS: {
+        price: 0.00,
+        sabor: [
+          {
+            nome: 'Banana',
+            descricao: 'Mozarela e molho especial de tomate.',
+          },
+          {
+            nome: 'Dois amores',
+            descricao: 'Mozarela e molho especial de tomate.',
+          },
+        ],
+      },
+      ESPECIAIS: {
+        price: 5.00,
+        sabor: [ // price: +5.00,
+          {
+            nome: 'Super Banana',
+            descricao: 'Mozarela e molho especial de tomate.',
+          },
+          {
+            nome: 'Quatro amores',
+            descricao: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.',
+          },
+        ],
+      },
+    },
     sizes: {
       BROTO: {
         size: 'Broto',
@@ -116,6 +147,15 @@ export const typeFoods = {
   },
   CALZONE: {
     title: 'Calzones',
+    flavor: {
+      TRADICIONAIS: {
+        price: 7.50,
+        sabor: [
+          'Frango',
+          'Frango com milho',
+        ],
+      },
+    },
     sizes: {},
     image: {
       source: calzoneSvg,
@@ -125,6 +165,7 @@ export const typeFoods = {
   },
   BEBIDA: {
     title: 'Bebidas',
+    flavor: {},
     sizes: {
       LATA: {
         size: 'lata',
@@ -144,6 +185,8 @@ export const typeFoods = {
 };
 export type TypeFood = keyof typeof typeFoods;
 export type SizeType = keyof typeof typeFoods.PIZZA.sizes;
+export type FlavorType = keyof typeof typeFoods.PIZZA.flavor;
+export type IngredientType = typeof typeFoods.PIZZA.flavor.TRADICIONAIS.sabor[0];
 
 export const ElementsNames = [
   'Hangouts', 'Valores', 'Pedir',

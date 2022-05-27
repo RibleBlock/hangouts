@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  BordersType, SizeType, TypeFood, typeFoods,
+  BordersType, FlavorType, SizeType, TypeFood, typeFoods,
 } from '../../pages/Home';
 import { DarkBG, PopoverBox } from './Popover.styles';
 import { PopoverBorderStep } from './step/PopoverBorderStep';
@@ -13,8 +13,9 @@ interface PopoverProps {
 export function Popover({ selectedType }: PopoverProps) {
   const chosenType = typeFoods[selectedType];
   const [size, setSize] = useState<SizeType | null>(null);
+  const [qtd, setQtd] = useState<number>(1);
   const [border, setBorder] = useState<BordersType | null>(null);
-  const [flavor, setFlavor] = useState<BordersType | null>(null);
+  const [flavor, setFlavor] = useState<FlavorType | null>(null);
 
   useEffect(() => {
     // eslint-disable-next-line no-console
@@ -29,10 +30,14 @@ export function Popover({ selectedType }: PopoverProps) {
           <input type="hidden" name="type" value={selectedType} />
           <input type="hidden" name="size" value={size || ''} />
           <input type="hidden" name="border" value={border || ''} />
-          {/* <input type="hidden" name="flavor" value={flavor || ''} /> */}
+          <input type="hidden" name="flavor" value={flavor || ''} />
 
           { (flavor || selectedType === 'CALZONE') || (!flavor && (border || selectedType === 'BEBIDA') && size) ? (
-            <PopoverFlavorsStep />
+            <PopoverFlavorsStep
+              chosenType={selectedType}
+              chosenSize={qtd}
+              setSize={setFlavor}
+            />
           ) : (
             <>
               <img

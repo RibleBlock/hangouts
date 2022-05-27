@@ -27,7 +27,7 @@ export const PopoverBox = styled(Dialog.Panel)`
     flex-direction: column;
     align-items: center;
     > img {
-      width: max(35%, 15rem);
+      width: 30%;
       margin-top: 3rem;
       border-radius: 50rem;
     }
