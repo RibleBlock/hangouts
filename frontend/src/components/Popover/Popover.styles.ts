@@ -8,10 +8,6 @@ export const PopoverBox = styled(Dialog.Panel)`
   border-radius: 1rem;
   background-color: ${({ theme }) => theme.COLORS.secondary};
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
   > h2 {
     width: 100%;
     text-align: center;
@@ -23,10 +19,18 @@ export const PopoverBox = styled(Dialog.Panel)`
       background-color: #00000040;
     }
   }
-  > img {
-    width: max(35%, 15rem);
-    margin-top: 3rem;
-    border-radius: 50rem;
+
+  > form {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > img {
+      width: max(35%, 15rem);
+      margin-top: 3rem;
+      border-radius: 50rem;
+    }
   }
 `;
 

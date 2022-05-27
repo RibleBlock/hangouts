@@ -16,17 +16,22 @@ import imageCalzone from '../../assets/images/imageCalzone.svg';
 import imageRefrigerante from '../../assets/images/imageRefrigerante.svg';
 
 export const bordas = {
+  NENHUMA: {
+    price: 0.00,
+    nomes: ['Sem Borda Recheada'],
+  },
   SALGADA: {
     price: 7.00,
     nomes: [
-      'Sem Borda Recheada',
+      'Borda de Cream cheddar',
       'Borda de Cream Cheese',
     ],
   },
   DOCE: {
     price: 9.00,
     nomes: [
-      'Borda de Chocolate',
+      'Borda de Chocolate Preto',
+      'Borda de Chocolate Branco',
     ],
   },
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Formulario = styled.form`
+export const Content = styled.div`
   width: 100%;
   padding: 0 3rem;
   margin-top: 4rem;

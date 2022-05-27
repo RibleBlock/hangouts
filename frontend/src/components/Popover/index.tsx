@@ -24,36 +24,37 @@ export function Popover({ selectedType }: PopoverProps) {
     <DarkBG>
       <PopoverBox>
         <h2>{ chosenType.title }</h2>
+        <form method="POST">
 
-        { (flavor || selectedType === 'CALZONE') || (!flavor && (border || selectedType === 'BEBIDA') && size) ? (
-          <p style={{ fontSize: '3rem' }}>SABores</p>
-        ) : (
-          <>
-            <img
-              src={chosenType.image.source}
-              alt={chosenType.image.alt}
-            />
+          { (flavor || selectedType === 'CALZONE') || (!flavor && (border || selectedType === 'BEBIDA') && size) ? (
+            <>
+              <input type="hidden" name="type" value={selectedType} />
+              <input type="hidden" name="size" value={size || ''} />
+              <input type="hidden" name="border" value={border || ''} />
+              {/* <input type="hidden" name="flavor" value={flavor || ''} /> */}
 
-            { size && selectedType !== 'BEBIDA' ? (
-              <PopoverBorderStep
-                borda={border}
-                setBorda={setBorder}
+              <p style={{ fontSize: '3rem' }}>SABores</p>
+            </>
+          ) : (
+            <>
+              <img
+                src={chosenType.image.source}
+                alt={chosenType.image.alt}
               />
-            ) : (
-              <>
-                <input type="hidden" name="type" value={selectedType} />
-                {/* <input type="hidden" name="size" value={size} /> */}
-                {/* <input type="hidden" name="" /> */}
 
+              { size && selectedType !== 'BEBIDA' ? (
+                <PopoverBorderStep
+                  setBorda={setBorder}
+                />
+              ) : (
                 <PopoverSizeStep
-                  size={size}
                   setSize={setSize}
                   chosenType={selectedType}
                 />
-              </>
-            ) }
-          </>
-        )}
+              ) }
+            </>
+          )}
+        </form>
       </PopoverBox>
     </DarkBG>
   );

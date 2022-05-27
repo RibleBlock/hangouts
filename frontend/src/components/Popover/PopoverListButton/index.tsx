@@ -4,11 +4,10 @@ import { ButtonSize } from '../step/PopoverSizeStep/PopoverSizeStep.styles';
 interface PopoverListButtonProps {
   item: string[];
   price: number;
-  step: SizeType | BordersType | null;
   setStepOn: (sizeName: SizeType & BordersType) => void;
 }
 export function PopoverListButton({
-  item, price, step, setStepOn,
+  item, price, setStepOn,
 }: PopoverListButtonProps) {
   return (
     <>

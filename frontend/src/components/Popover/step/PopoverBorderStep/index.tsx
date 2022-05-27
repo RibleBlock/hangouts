@@ -1,25 +1,23 @@
 import { bordas, BordersType } from '../../../../pages/Home';
 import { PopoverListButton } from '../../PopoverListButton';
-import { Formulario } from '../PopoverSizeStep/PopoverSizeStep.styles';
+import { Content } from '../PopoverSizeStep/PopoverSizeStep.styles';
 
 interface PopoverBorderStepProps {
-  borda: BordersType | null;
   setBorda: (sizeName: BordersType) => void;
 }
-export function PopoverBorderStep({ borda, setBorda }: PopoverBorderStepProps) {
+export function PopoverBorderStep({ setBorda }: PopoverBorderStepProps) {
   return (
-    <Formulario method="POST">
+    <Content>
       <h2>Selecione a borda:</h2>
       { Object.entries(bordas).map(([key, value]) => (
         <PopoverListButton
           key={key}
           item={value.nomes}
           price={value.price}
-          step={borda}
           setStepOn={setBorda}
         />
       )) }
       <hr />
-    </Formulario>
+    </Content>
   );
 }
