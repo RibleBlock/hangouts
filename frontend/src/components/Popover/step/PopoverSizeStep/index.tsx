@@ -1,39 +1,28 @@
 import { useEffect } from 'react';
-import { SizeTypes, TypeFood } from '../../../../pages/Home';
-import { Formulario, ButtonSize } from './PopoverSizeStep.styles';
+import { SizeType, TypeFood, typeFoods } from '../../../../pages/Home';
+import { PopoverListButton } from '../../PopoverListButton';
+import { Formulario } from './PopoverSizeStep.styles';
 
 interface PopoverSizeStepProps {
   chosenType: TypeFood;
-  objeto: Object;
-  stepValue: SizeTypes | null;
-  setStepOn: (sizeName: SizeTypes) => void;
+  size: SizeType | null;
+  setSize: (sizeName: SizeType) => void;
 }
-export function PopoverSizeStep({
-  objeto, stepValue, setStepOn, chosenType,
-}: PopoverSizeStepProps) {
+export function PopoverSizeStep({ size, setSize, chosenType }: PopoverSizeStepProps) {
   useEffect(() => {
     // eslint-disable-next-line no-console
-    console.log(stepValue);
-  }, [stepValue]);
-
+    console.log(size);
+  }, [size]);
   return (
     <Formulario method="POST">
-      <h2>Escolha o tamanho:</h2>
-      { Object.entries(objeto).map(([key, value]) => (
-        <div key={key}>
-          <hr />
-          <ButtonSize
-            onClick={() => setStepOn(key as SizeTypes)}
-            type="button"
-          >
-            <p>{ value.size }</p>
-            <span>
-              R$
-              {' '}
-              {value.price.toFixed(2)}
-            </span>
-          </ButtonSize>
-        </div>
+      <h2>Selecione o tamanho:</h2>
+      { Object.entries(typeFoods[chosenType].sizes).map(([key, value]) => (
+        <PopoverListButton
+          key={key}
+          item={[value.size]}
+          price={value.price}
+          setStepOn={setSize}
+        />
       )) }
       <hr />
     </Formulario>

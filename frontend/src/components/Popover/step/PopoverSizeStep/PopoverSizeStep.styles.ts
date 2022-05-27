@@ -7,7 +7,7 @@ export const Formulario = styled.form`
   /* background-color: red; */
 
   > h2 {
-    font-size: 1.4rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
   }
   hr {

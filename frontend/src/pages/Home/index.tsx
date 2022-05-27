@@ -15,7 +15,23 @@ import imagePizza from '../../assets/images/imagePizza.svg';
 import imageCalzone from '../../assets/images/imageCalzone.svg';
 import imageRefrigerante from '../../assets/images/imageRefrigerante.svg';
 
-// export const typeSabores = {};
+export const bordas = {
+  SALGADA: {
+    price: 7.00,
+    nomes: [
+      'Sem Borda Recheada',
+      'Borda de Cream Cheese',
+    ],
+  },
+  DOCE: {
+    price: 9.00,
+    nomes: [
+      'Borda de Chocolate',
+    ],
+  },
+
+};
+export type BordersType = keyof typeof bordas;
 
 export const typeFoods = {
   PIZZA: {
@@ -122,7 +138,7 @@ export const typeFoods = {
   },
 };
 export type TypeFood = keyof typeof typeFoods;
-export type SizeTypes = keyof typeof typeFoods.PIZZA.sizes;
+export type SizeType = keyof typeof typeFoods.PIZZA.sizes;
 
 export const ElementsNames = [
   'Hangouts', 'Valores', 'Pedir',

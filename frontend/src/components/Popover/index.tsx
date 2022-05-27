@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { SizeTypes, TypeFood, typeFoods } from '../../pages/Home';
+import {
+  BordersType, SizeType, TypeFood, typeFoods,
+} from '../../pages/Home';
 import { DarkBG, PopoverBox } from './Popover.styles';
+import { PopoverBorderStep } from './step/PopoverBorderStep';
 import { PopoverSizeStep } from './step/PopoverSizeStep';
 
 interface PopoverProps {
@@ -8,7 +11,8 @@ interface PopoverProps {
 }
 export function Popover({ selectedType }: PopoverProps) {
   const chosenType = typeFoods[selectedType];
-  const [size, setSize] = useState<SizeTypes | null>(null);
+  const [size, setSize] = useState<SizeType | null>(null);
+  const [border, setBorder] = useState<BordersType | null>(null);
 
   return (
     <DarkBG>
@@ -20,7 +24,10 @@ export function Popover({ selectedType }: PopoverProps) {
           alt={chosenType.image.alt}
         />
         { size ? (
-          <h2>BORDAS OU OS SABORES</h2>
+          <PopoverBorderStep
+            borda={border}
+            setBorda={setBorder}
+          />
         ) : (
           <>
             <span></span>
@@ -31,10 +38,9 @@ export function Popover({ selectedType }: PopoverProps) {
                 {/* <input type="hidden" name="" /> */}
 
                 <PopoverSizeStep
+                  size={size}
+                  setSize={setSize}
                   chosenType={selectedType}
-                  objeto={typeFoods[selectedType].sizes}
-                  stepValue={size}
-                  setStepOn={setSize}
                 />
               </>
             ) : (
