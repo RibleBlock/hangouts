@@ -9,10 +9,6 @@ import { Main } from './ChooseTypePizza.styles';
 export function ChooseTypePizza() {
   const [selectedType, setSelectedType] = useState<TypeFood | null>(null);
 
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(selectedType);
-  }, [selectedType]);
   return (
     <>
       <NavigationBar />

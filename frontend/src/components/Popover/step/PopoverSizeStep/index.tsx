@@ -9,10 +9,6 @@ interface PopoverSizeStepProps {
   setSize: (sizeName: SizeType) => void;
 }
 export function PopoverSizeStep({ size, setSize, chosenType }: PopoverSizeStepProps) {
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(size);
-  }, [size]);
   return (
     <Formulario method="POST">
       <h2>Selecione o tamanho:</h2>
@@ -21,6 +17,7 @@ export function PopoverSizeStep({ size, setSize, chosenType }: PopoverSizeStepPr
           key={key}
           item={[value.size]}
           price={value.price}
+          step={size}
           setStepOn={setSize}
         />
       )) }

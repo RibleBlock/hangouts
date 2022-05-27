@@ -15,6 +15,7 @@ export function PopoverBorderStep({ borda, setBorda }: PopoverBorderStepProps) {
           key={key}
           item={value.nomes}
           price={value.price}
+          step={borda}
           setStepOn={setBorda}
         />
       )) }
