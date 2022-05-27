@@ -15,24 +15,55 @@ import imagePizza from '../../assets/images/imagePizza.svg';
 import imageCalzone from '../../assets/images/imageCalzone.svg';
 import imageRefrigerante from '../../assets/images/imageRefrigerante.svg';
 
+// export const typeSabores = {};
+
 export const typeFoods = {
   PIZZA: {
     title: 'Pizzas Salgadas',
+    flavor: {
+      TRADICIONAL: {
+        price: 40.00,
+        sabor: [
+          {
+            nome: 'Mozarela',
+            Ingredients: 'Mozarela e molho especial de tomate.',
+          },
+          {
+            nome: 'Mozarela',
+            Ingredients: 'Mozarela e molho especial de tomate.',
+          },
+        ],
+      },
+      ESPECIAL: [ // price: +5.00,
+        {
+          nome: 'Portuguesa',
+          Ingredients: 'Mozarela e molho especial de tomate.',
+        },
+        {
+          nome: 'Portuguesa',
+          Ingredients: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.',
+        },
+      ],
+    },
     sizes: {
       BROTO: {
         size: 'Broto',
+        quantity: 1,
         price: 26.00,
       },
       MEDIA: {
         size: 'Média',
+        quantity: 2,
         price: 35.00,
       },
       GRANDE: {
         size: 'Grande',
+        quantity: 3,
         price: 48.00,
       },
       GIGA: {
         size: 'Giga',
+        quantity: 4,
         price: 62.00,
       },
     },
@@ -47,10 +78,12 @@ export const typeFoods = {
     sizes: {
       BROTO: {
         size: 'Broto',
+        quantity: 1,
         price: 26.00,
       },
       MEDIA: {
         size: 'Média',
+        quantity: 2,
         price: 35.00,
       },
     },

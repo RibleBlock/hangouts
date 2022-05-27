@@ -36,12 +36,10 @@ export function ChooseTypePizza() {
       </Main>
 
       <Dialog open={selectedType !== null} onClose={() => setSelectedType(null)} as="div">
-        { !selectedType ? (
-          <span>{/* ERROR */}</span>
-        ) : (
-          <Popover
-            selectedType={selectedType}
-          />
+        { selectedType && (
+        <Popover
+          selectedType={selectedType}
+        />
         ) }
       </Dialog>
       <Footer />
