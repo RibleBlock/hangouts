@@ -50,8 +50,8 @@ export const typeFoods = {
             descricao: 'Mozarela e molho especial de tomate.',
           },
           {
-            nome: 'Mozarela',
-            descricao: 'Mozarela e molho especial de tomate.',
+            nome: 'Lombinho',
+            descricao: 'Mussarela, Lombo, Catupiry, cebola, Azeitonas',
           },
         ],
       },
@@ -63,8 +63,8 @@ export const typeFoods = {
             descricao: 'Mozarela e molho especial de tomate.',
           },
           {
-            nome: 'Portuguesa',
-            descricao: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.',
+            nome: 'Peperone',
+            descricao: 'Peperone, Mussarela, Catupiry e Azeitonas.',
           },
         ],
       },

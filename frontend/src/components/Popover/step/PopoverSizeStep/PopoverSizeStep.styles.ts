@@ -56,3 +56,44 @@ export const ButtonSize = styled.button`
     color: #038E00;
   }
 `;
+
+export const Label = styled.label`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 5.5rem;
+  font-size: 1.8rem;
+  background-color: transparent;
+  cursor: pointer;
+
+  > input[type='checkbox'] {
+    /* display: none; */
+  }
+
+  > div {
+    overflow: hidden;
+    margin: auto 0;
+    text-align: left;
+    white-space: nowrap;
+
+    > p {
+      font-size: 1.8rem;
+    }
+    > span {
+      font-size: 1.4rem;
+    }
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.COLORS.secondary_hover};
+  }
+  &:active {
+    background-color: #2fef2f22;
+  }
+
+  > span {
+    color: #038E00;
+  }
+`;

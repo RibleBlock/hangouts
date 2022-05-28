@@ -27,9 +27,9 @@ export function Popover({ selectedType }: PopoverProps) {
         <h2>{ chosenType.title }</h2>
         <form method="POST">
           <input type="hidden" name="type" value={selectedType} />
-          <input type="hidden" name="size" value={size || ''} />
-          <input type="hidden" name="border" value={border || ''} />
-          <input type="hidden" name="flavor" value={flavor || ''} />
+          <input type="hidden" name="size" value={size || 'vázio'} />
+          <input type="hidden" name="border" value={border || 'vázio'} />
+          <input type="hidden" name="flavor" value={flavor || 'vázio'} />
 
           { (selectedType === 'CALZONE') || (size && selectedType === 'BEBIDA') || (size && border) ? (
             <PopoverFlavorsStep
