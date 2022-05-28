@@ -2,7 +2,7 @@ import {
   FlavorType, IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../pages/Home';
 import { PopoverListButton } from '../../PopoverListButton';
-import { Content, Label } from './PopoverFlavorsStep.styles';
+import { Content, Div } from './PopoverFlavorsStep.styles';
 
 interface PopoverFlavorsStepProps {
   chosenType: TypeFood;
@@ -27,22 +27,22 @@ export function PopoverFlavorsStep({ chosenType, size, setFlavors }: PopoverFlav
         <>
           <h3 key={key}>{ key }</h3>
           { (value.sabor).map(({ nome, descricao }: IngredientType) => (
-            <div className="inputs">
+            <Div>
               <hr />
-              <Label htmlFor={nome}>
-                <input type="checkbox" id={nome} />
+              <input type="checkbox" id={nome} />
+              <label htmlFor={nome}>
                 <div>
                   <p>{ nome }</p>
                   <span>{ descricao }</span>
                 </div>
                 <span>
-                  R$
+                  + R$
                   {' '}
                   {value.price.toFixed(2)}
                 </span>
 
-              </Label>
-            </div>
+              </label>
+            </Div>
           )) }
         </>
       )) }
