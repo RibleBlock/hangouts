@@ -159,6 +159,14 @@ export const typeFoods = {
             nome: 'Frango com milho',
             descricao: '',
           },
+          {
+            nome: 'Frango com capupiry',
+            descricao: '',
+          },
+          {
+            nome: 'Presunto com capupiry',
+            descricao: '',
+          },
         ],
       },
     },

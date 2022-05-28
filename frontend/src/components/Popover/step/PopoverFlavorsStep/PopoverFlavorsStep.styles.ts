@@ -34,6 +34,7 @@ export const Div = styled.div`
 
   > label {
     width: 100%;
+    min-height: 5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
