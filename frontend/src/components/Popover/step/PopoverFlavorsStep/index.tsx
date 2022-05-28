@@ -35,7 +35,9 @@ export function PopoverFlavorsStep({ chosenType, size, setFlavors }: PopoverFlav
                   <span>{ descricao }</span>
                 </div>
                 <span>
-                  + R$
+                  { (chosenType !== 'BEBIDA' && chosenType !== 'CALZONE') && '+' }
+                  {' '}
+                  R$
                   {' '}
                   {value.price.toFixed(2)}
                 </span>
