@@ -7,7 +7,7 @@ import { Content } from '../PopoverSizeStep/PopoverSizeStep.styles';
 interface PopoverFlavorsStepProps {
   chosenType: TypeFood;
   size: SizeType;
-  setFlavors: (sizeName: FlavorType) => void;
+  setFlavors: (sizeName: FlavorType[]) => void;
 }
 export function PopoverFlavorsStep({ chosenType, size, setFlavors }: PopoverFlavorsStepProps) {
   // const quantidade = typeFoods.PIZZA.sizes[size].quantity;
