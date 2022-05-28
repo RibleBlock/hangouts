@@ -29,9 +29,9 @@ export function Popover({ selectedType }: PopoverProps) {
           <input type="hidden" name="type" value={selectedType} />
           <input type="hidden" name="size" value={size || 'vázio'} />
           <input type="hidden" name="border" value={border || 'vázio'} />
-          <input type="hidden" name="flavor" value={flavor || 'vázio'} />
+          <input type="hidden" name="flavor" value={flavor} />
 
-          { (selectedType === 'CALZONE') || (size && selectedType === 'BEBIDA') || (size && border) ? (
+          { (selectedType === 'BEBIDA') || (selectedType === 'CALZONE') || (size && border) ? (
             <PopoverFlavorsStep
               chosenType={selectedType}
               size={size || 'BROTO'}
@@ -44,7 +44,7 @@ export function Popover({ selectedType }: PopoverProps) {
                 alt={chosenType.image.alt}
               />
 
-              { size && selectedType !== 'BEBIDA' ? (
+              { size ? (
                 <PopoverBorderStep
                   setBorda={setBorder}
                 />

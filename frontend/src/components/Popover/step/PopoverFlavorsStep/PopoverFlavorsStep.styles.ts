@@ -21,16 +21,15 @@ export const Content = styled.div`
       background-color: #2fef2f42;
     }
   }
-`;
-
-export const Div = styled.div`
-  width: 100%;
-
   hr {
     width: 100%;
     height: .1rem;
     background-color: #00000040;
   }
+`;
+
+export const Div = styled.div`
+  width: 100%;
 
   > label {
     width: 100%;

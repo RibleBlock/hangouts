@@ -179,17 +179,48 @@ export const typeFoods = {
   },
   BEBIDA: {
     title: 'Bebidas',
-    flavor: {},
-    sizes: {
-      LATA: {
-        size: 'lata',
-        price: 4.00,
+    flavor: {
+      LATINHA: {
+        price: 0.00,
+        sabor: [
+          {
+            nome: 'Fanta Uva',
+            descricao: '',
+          },
+          {
+            nome: 'Coca cola',
+            descricao: '',
+          },
+        ],
       },
-      MEDIA: {
-        size: 'Garafa - 500mls',
-        price: 5.50,
+      '500 ML': {
+        price: 5.00,
+        sabor: [
+          {
+            nome: 'Água Mineral',
+            descricao: '',
+          },
+          {
+            nome: 'Guárana',
+            descricao: '',
+          },
+        ],
+      },
+      '1 LITRO': {
+        price: 5.00,
+        sabor: [
+          {
+            nome: 'Fanta Laranja',
+            descricao: '',
+          },
+          {
+            nome: 'Guárana',
+            descricao: '',
+          },
+        ],
       },
     },
+    sizes: {},
     image: {
       source: bebidaSvg,
       sourceAbs: imageRefrigerante,
