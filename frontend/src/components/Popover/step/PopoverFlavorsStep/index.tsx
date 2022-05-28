@@ -2,7 +2,7 @@ import {
   FlavorType, IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../pages/Home';
 import { PopoverListButton } from '../../PopoverListButton';
-import { Content, Label } from '../PopoverSizeStep/PopoverSizeStep.styles';
+import { Content, Label } from './PopoverFlavorsStep.styles';
 
 interface PopoverFlavorsStepProps {
   chosenType: TypeFood;

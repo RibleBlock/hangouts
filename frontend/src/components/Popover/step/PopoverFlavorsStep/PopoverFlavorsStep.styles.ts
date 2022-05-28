@@ -20,7 +20,7 @@ export const Content = styled.div`
   }
 `;
 
-export const ButtonSize = styled.button`
+export const Label = styled.label`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,6 +30,10 @@ export const ButtonSize = styled.button`
   font-size: 1.8rem;
   background-color: transparent;
   cursor: pointer;
+
+  > input[type='checkbox'] {
+    /* display: none; */
+  }
 
   > div {
     overflow: hidden;
