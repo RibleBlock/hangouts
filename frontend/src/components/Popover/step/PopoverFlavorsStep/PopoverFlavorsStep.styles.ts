@@ -30,6 +30,7 @@ export const Content = styled.div`
 
 export const Div = styled.div`
   width: 100%;
+  background-color: transparent;
 
   > label {
     width: 100%;

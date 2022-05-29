@@ -6,11 +6,13 @@ import { Content, Div } from './PopoverFlavorsStep.styles';
 interface PopoverFlavorsStepProps {
   chosenType: TypeFood;
   size: SizeType;
-  setFlavors: (sizeName: FlavorType[]) => void;
+  flavors: string[];
+  setFlavors: (sizeName: string[]) => void;
 }
-export function PopoverFlavorsStep({ chosenType, size, setFlavors }: PopoverFlavorsStepProps) {
+export function PopoverFlavorsStep({
+  chosenType, size, flavors, setFlavors,
+}: PopoverFlavorsStepProps) {
   const objSabores = typeFoods[chosenType].flavor;
-  // const quantidade = typeFoods.PIZZA.sizes[size.toUpperCase()].quantity;
 
   function limitar() {
     const sizeSwitch = size.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -29,12 +31,20 @@ export function PopoverFlavorsStep({ chosenType, size, setFlavors }: PopoverFlav
         limite = 4;
         break;
       default:
-        limite = 0;
+        limite = 1;
         break;
     }
     return limite;
   }
   const limiteSabor = limitar();
+
+  function checkFlavors(flavor: string) {
+    if (!flavors.includes(flavor)) {
+      setFlavors([flavor, ...flavors]);
+    } else {
+      setFlavors(flavors.filter((v) => v !== flavor));
+    }
+  }
 
   return (
     <Content>
@@ -62,8 +72,11 @@ export function PopoverFlavorsStep({ chosenType, size, setFlavors }: PopoverFlav
           { (value.sabor).map(({ nome, descricao }: IngredientType) => (
             <Div>
               <hr />
-              <input type="checkbox" id={nome + key.toLowerCase()} />
-              <label htmlFor={nome + key.toLowerCase()}>
+              <input type="checkbox" id={nome + key.toLowerCase()} onChange={() => checkFlavors(nome)} />
+              <label
+                htmlFor={nome + key.toLowerCase()}
+              >
+
                 <div>
                   <p>{ nome }</p>
                   <span>{ descricao }</span>

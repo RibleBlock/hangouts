@@ -14,7 +14,7 @@ export function Popover({ selectedType }: PopoverProps) {
   const chosenType = typeFoods[selectedType];
   const [size, setSize] = useState<SizeType | null>(null);
   const [border, setBorder] = useState<BordersType | null>(null);
-  const [flavor, setFlavor] = useState<FlavorType[]>([]);
+  const [flavor, setFlavor] = useState<string[]>([]);
 
   useEffect(() => {
     // eslint-disable-next-line no-console
@@ -36,6 +36,7 @@ export function Popover({ selectedType }: PopoverProps) {
               chosenType={selectedType}
               size={size || 'BROTO'}
               setFlavors={setFlavor}
+              flavors={flavor}
             />
           ) : (
             <>
