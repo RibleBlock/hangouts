@@ -10,7 +10,7 @@ export function AppRoute() {
     <Router>
       <Switch>
         <Route path="/" element={<Home />} />
-        <Route path="/categoria/" element={<ChooseTypePizza />} />
+        <Route path="/pedir" element={<ChooseTypePizza />} />
       </Switch>
     </Router>
   );

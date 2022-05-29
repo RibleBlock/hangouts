@@ -10,7 +10,7 @@ export function TypeFoodButton({
   title, source, alt,
 }: TypeFoodButtonProps) {
   return (
-    <Linked to="/categoria/" title={title}>
+    <Linked to="/pedir" title={title}>
       <img src={source} alt={alt} />
     </Linked>
   );

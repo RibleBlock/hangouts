@@ -10,14 +10,22 @@ export function LinksBar({ isOpen, elements }: LinksBarProps) {
   return (
     <List isOpen={isOpen}>
       {!elements ? (
-        <li>
-          <Link to="/">
-            <div>
-              HOME
-            </div>
-          </Link>
-
-        </li>
+        <>
+          <li>
+            <Link to="/">
+              <div>
+                HANGOUTS
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link to="/pedir">
+              <div>
+                PEDIR
+              </div>
+            </Link>
+          </li>
+        </>
       ) : (
         elements.map((item) => (
           <li key={item}>
@@ -38,7 +46,7 @@ export function LinksBar({ isOpen, elements }: LinksBarProps) {
       )}
 
       <li>
-        <Link to="https://google.com">
+        <Link to="/nothing">
           <div>
             CARDAPIO
           </div>
@@ -46,7 +54,7 @@ export function LinksBar({ isOpen, elements }: LinksBarProps) {
 
       </li>
       <li>
-        <Link to="https://google.com">
+        <Link to="/nothing">
           <div>
             CARRINHO
           </div>
@@ -54,7 +62,7 @@ export function LinksBar({ isOpen, elements }: LinksBarProps) {
 
       </li>
       <li>
-        <Link to="https://google.com">
+        <Link to="/nothing">
           <div>
             ENTRAR
           </div>
