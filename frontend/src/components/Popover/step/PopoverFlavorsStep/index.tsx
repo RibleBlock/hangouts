@@ -1,5 +1,5 @@
 import {
-  FlavorType, IngredientType, SizeType, TypeFood, typeFoods,
+  IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../pages/Home';
 import { InputText } from '../../../InputText';
 import { Content, Div } from './PopoverFlavorsStep.styles';
@@ -56,7 +56,7 @@ export function PopoverFlavorsStep({
           {' '}
           { limiteSabor }
           {' '}
-          sabores
+          sabores:
         </h2>
       ) : (
         <h2>
@@ -64,7 +64,7 @@ export function PopoverFlavorsStep({
           {' '}
           { limiteSabor }
           {' '}
-          sabor
+          sabor:
         </h2>
       ) }
 
@@ -98,7 +98,13 @@ export function PopoverFlavorsStep({
       )) }
       <hr />
 
-      <InputText subtitle="Observações do pedido (opcional)" setText={setComment} />
+      { chosenType !== 'BEBIDA'
+      && (
+      <InputText
+        subtitle="Observações do pedido (opcional)"
+        setText={setComment}
+      />
+      ) }
     </Content>
   );
 }
