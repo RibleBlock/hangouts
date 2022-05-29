@@ -15,11 +15,12 @@ export function Popover({ selectedType }: PopoverProps) {
   const [size, setSize] = useState<SizeType | null>(null);
   const [border, setBorder] = useState<BordersType | null>(null);
   const [flavor, setFlavor] = useState<string[]>([]);
+  const [comment, setComment] = useState<string>('');
 
   useEffect(() => {
     // eslint-disable-next-line no-console
-    console.log(selectedType, size, border, flavor);
-  }, [selectedType, size, border, flavor]);
+    console.log(selectedType, size, border, flavor, comment);
+  }, [selectedType, size, border, flavor, comment]);
 
   return (
     <DarkBG>
@@ -37,6 +38,7 @@ export function Popover({ selectedType }: PopoverProps) {
               size={size || 'BROTO'}
               setFlavors={setFlavor}
               flavors={flavor}
+              setComment={setComment}
             />
           ) : (
             <>

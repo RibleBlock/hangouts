@@ -1,6 +1,7 @@
 import {
   FlavorType, IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../pages/Home';
+import { InputText } from '../../../InputText';
 import { Content, Div } from './PopoverFlavorsStep.styles';
 
 interface PopoverFlavorsStepProps {
@@ -8,9 +9,10 @@ interface PopoverFlavorsStepProps {
   size: SizeType;
   flavors: string[];
   setFlavors: (sizeName: string[]) => void;
+  setComment: (comment: string) => void;
 }
 export function PopoverFlavorsStep({
-  chosenType, size, flavors, setFlavors,
+  chosenType, size, flavors, setFlavors, setComment,
 }: PopoverFlavorsStepProps) {
   const objSabores = typeFoods[chosenType].flavor;
 
@@ -95,6 +97,8 @@ export function PopoverFlavorsStep({
         </>
       )) }
       <hr />
+
+      <InputText subtitle="Observações do pedido (opcional)" setText={setComment} />
     </Content>
   );
 }
