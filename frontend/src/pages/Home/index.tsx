@@ -181,7 +181,7 @@ export const typeFoods = {
     title: 'Bebidas',
     flavor: {
       LATINHA: {
-        price: 0.00,
+        price: 3.70,
         sabor: [
           {
             nome: 'Fanta Uva',
@@ -207,7 +207,7 @@ export const typeFoods = {
         ],
       },
       '1 LITRO': {
-        price: 5.00,
+        price: 6.50,
         sabor: [
           {
             nome: 'Fanta Laranja',

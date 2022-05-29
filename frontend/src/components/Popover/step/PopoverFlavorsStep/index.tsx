@@ -9,18 +9,52 @@ interface PopoverFlavorsStepProps {
   setFlavors: (sizeName: FlavorType[]) => void;
 }
 export function PopoverFlavorsStep({ chosenType, size, setFlavors }: PopoverFlavorsStepProps) {
-  // const quantidade = typeFoods.PIZZA.sizes[size].quantity;
   const objSabores = typeFoods[chosenType].flavor;
+  // const quantidade = typeFoods.PIZZA.sizes[size.toUpperCase()].quantity;
+
+  function limitar() {
+    const sizeSwitch = size.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    let limite;
+    switch (sizeSwitch.toUpperCase()) {
+      case 'BROTO':
+        limite = 1;
+        break;
+      case 'MEDIA':
+        limite = 2;
+        break;
+      case 'GRANDE':
+        limite = 3;
+        break;
+      case 'GIGA':
+        limite = 4;
+        break;
+      default:
+        limite = 0;
+        break;
+    }
+    return limite;
+  }
+  const limiteSabor = limitar();
 
   return (
     <Content>
-      <h2>
-        Selecione até
-        {' '}
-        {/* { quantidade } */}
-        {' '}
-        sabores
-      </h2>
+      { limiteSabor > 1 ? (
+        <h2>
+          Selecione até
+          {' '}
+          { limiteSabor }
+          {' '}
+          sabores
+        </h2>
+      ) : (
+        <h2>
+          Selecione
+          {' '}
+          { limiteSabor }
+          {' '}
+          sabor
+        </h2>
+      ) }
 
       { Object.entries(objSabores).map(([key, value]) => (
         <>
