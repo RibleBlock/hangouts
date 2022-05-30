@@ -62,7 +62,7 @@ export function LinksBar({ isOpen, elements }: LinksBarProps) {
 
       </li>
       <li>
-        <Link to="/nothing">
+        <Link to="/login">
           <div>
             ENTRAR
           </div>
