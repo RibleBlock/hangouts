@@ -5,6 +5,12 @@ export const Content = styled.div`
   padding: 0 3rem;
   margin-top: 4rem;
 
+  > input {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 0;
+  }
   > h2 {
     font-size: 2rem;
     margin-bottom: 2rem;

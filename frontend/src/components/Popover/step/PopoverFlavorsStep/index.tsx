@@ -68,6 +68,7 @@ export function PopoverFlavorsStep({
         </h2>
       ) }
 
+      <input type="text" />
       { Object.entries(objSabores).map(([key, value]) => (
         <>
           <h3 key={key}>{ key }</h3>
