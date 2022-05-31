@@ -106,6 +106,13 @@ export function PopoverFlavorsStep({
         setText={setComment}
       />
       ) }
+
+      <button
+        type="submit"
+        style={{ fontSize: '1.8rem' }}
+      >
+        ADICIONAR
+      </button>
     </Content>
   );
 }

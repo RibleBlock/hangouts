@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import {
-  BordersType, FlavorType, SizeType, TypeFood, typeFoods,
+  BordersType, SizeType, TypeFood, typeFoods,
 } from '../../pages/Home';
 import { DarkBG, PopoverBox } from './Popover.styles';
 import { PopoverBorderStep } from './step/PopoverBorderStep';
@@ -17,6 +17,12 @@ export function Popover({ selectedType }: PopoverProps) {
   const [flavor, setFlavor] = useState<string[]>([]);
   const [comment, setComment] = useState<string>('');
 
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    // eslint-disable-next-line no-console
+    console.log(selectedType, size, border, flavor, comment);
+  }
+
   useEffect(() => {
     // eslint-disable-next-line no-console
     console.log(selectedType, size, border, flavor, comment);
@@ -26,7 +32,7 @@ export function Popover({ selectedType }: PopoverProps) {
     <DarkBG>
       <PopoverBox>
         <h2>{ chosenType.title }</h2>
-        <form method="POST">
+        <form onSubmit={(e) => handleSubmit(e)}>
           <input type="hidden" name="type" value={selectedType} />
           <input type="hidden" name="size" value={size || 'vázio'} />
           <input type="hidden" name="border" value={border || 'vázio'} />
