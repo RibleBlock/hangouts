@@ -4,7 +4,7 @@ import headerBackground from '../../assets/images/header_bg.svg';
 
 export const Box = styled.header`
   width: 100%;
-  height: 19rem;
+  padding: 2rem 0;
   color: ${({ theme }) => theme.COLORS.text_secondary};
   background-image: url(${headerBackground});
   font-size: 1.8rem;
