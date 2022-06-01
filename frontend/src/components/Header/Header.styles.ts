@@ -4,7 +4,7 @@ import headerBackground from '../../assets/images/header_bg.svg';
 
 export const Box = styled.header`
   width: 100%;
-  height: 25rem;
+  height: 19rem;
   color: ${({ theme }) => theme.COLORS.text_secondary};
   background-image: url(${headerBackground});
   font-size: 1.8rem;
@@ -15,7 +15,7 @@ export const Box = styled.header`
   justify-content: center;
 
   h1 {
-    font-size: 2.8rem;
+    font-size: 3rem;
     margin-bottom: 2.2rem;
   }
 
