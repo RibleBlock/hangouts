@@ -17,6 +17,6 @@ export const Banner = styled.div`
   > img {
     width: 50%;
     max-width: 45rem;
-    min-width: 20rem;
+    min-width: 24rem;
   }
 `;
