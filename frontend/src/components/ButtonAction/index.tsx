@@ -7,14 +7,11 @@ interface ButtonActionProps {
 }
 export function ButtonAction({ small, children }: ButtonActionProps) {
   return (
-    <>
-      <Button
-        type="submit"
-        small={small}
-      >
-        {children}
-      </Button>
-      ,
-    </>
+    <Button
+      type="submit"
+      small={small}
+    >
+      {children}
+    </Button>
   );
 }

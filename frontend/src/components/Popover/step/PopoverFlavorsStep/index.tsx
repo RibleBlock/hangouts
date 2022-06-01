@@ -1,6 +1,7 @@
 import {
   IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../pages/Home';
+import { ButtonAction } from '../../../ButtonAction';
 import { InputText } from '../../../InputText';
 import { Content, Div } from './PopoverFlavorsStep.styles';
 
@@ -50,6 +51,7 @@ export function PopoverFlavorsStep({
 
   return (
     <Content>
+      <input type="button" />
       { limiteSabor > 1 ? (
         <h2>
           Selecione até
@@ -68,7 +70,6 @@ export function PopoverFlavorsStep({
         </h2>
       ) }
 
-      <input type="button" />
       { Object.entries(objSabores).map(([key, value]) => (
         <>
           <h3 key={key}>{ key }</h3>
@@ -107,12 +108,7 @@ export function PopoverFlavorsStep({
       />
       ) }
 
-      <button
-        type="submit"
-        style={{ fontSize: '1.8rem' }}
-      >
-        ADICIONAR
-      </button>
+      <ButtonAction>Adicionar ao carrinho</ButtonAction>
     </Content>
   );
 }

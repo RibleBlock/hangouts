@@ -5,6 +5,9 @@ export const Content = styled.div`
   padding: 0 3rem;
   margin-top: 4rem;
 
+  display: flex;
+  flex-direction: column;
+
   > input {
     width: 1px;
     height: 1px;

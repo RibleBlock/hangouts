@@ -1,4 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
 import {
   BordersType, SizeType, TypeFood, typeFoods,
 } from '../../pages/Home';
@@ -11,6 +12,9 @@ interface PopoverProps {
   selectedType: TypeFood;
 }
 export function Popover({ selectedType }: PopoverProps) {
+  const location = useLocation();
+  const [wishSent, setWishSent] = useState<boolean>(false);
+
   const chosenType = typeFoods[selectedType];
   const [size, setSize] = useState<SizeType | null>(null);
   const [border, setBorder] = useState<BordersType | null>(null);
@@ -21,13 +25,19 @@ export function Popover({ selectedType }: PopoverProps) {
     e.preventDefault();
     // eslint-disable-next-line no-console
     console.log(selectedType, size, border, flavor, comment);
+    setWishSent(true);
   }
 
   useEffect(() => {
     // eslint-disable-next-line no-console
-    console.log(selectedType, size, border, flavor, comment);
-  }, [selectedType, size, border, flavor, comment]);
+    console.log(selectedType, size, border, flavor, comment, wishSent);
+  }, [selectedType, size, border, flavor, comment, wishSent]);
 
+  if (wishSent) {
+    return (
+      <Navigate to="/cart" replace state={{ prevPath: location.pathname }} />
+    );
+  }
   return (
     <DarkBG>
       <PopoverBox>
