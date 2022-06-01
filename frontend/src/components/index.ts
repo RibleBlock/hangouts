@@ -4,5 +4,6 @@ export { Popover } from './Popover';
 export { TypeButtonPopover } from './TypeButtonPopover';
 export { InputText } from './InputText';
 export { TypeFoodButton } from './TypeFoodButton';
+export { ButtonAction } from './ButtonAction';
 export { Header } from './Header';
 export { Footer } from './Footer';

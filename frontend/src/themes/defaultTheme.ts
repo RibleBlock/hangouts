@@ -11,5 +11,6 @@ export default {
 
     select_primary: '#ff0031',
     background_OP: '#DFDFDF',
+    button: '#1C2556',
   },
 };
