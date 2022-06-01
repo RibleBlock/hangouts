@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Box = styled.div`
     position: relative;
-    margin: 3.5rem 0;
+    margin-top: 3.5rem;
     font-size: 1.6rem;
     label {
       > p {
