@@ -35,6 +35,7 @@ export function ChooseTypePizza() {
         { selectedType && (
         <Popover
           selectedType={selectedType}
+          setSelectedType={setSelectedType}
         />
         ) }
       </Dialog>

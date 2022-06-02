@@ -1,6 +1,7 @@
 export { NavigationBar } from './NavigationBar';
 export { Section } from './Section';
 export { Popover } from './Popover';
+export { ButtonBC } from './ButtonBC';
 export { TypeButtonPopover } from './TypeButtonPopover';
 export { InputText } from './InputText';
 export { TypeFoodButton } from './TypeFoodButton';

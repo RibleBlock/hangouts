@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import { ButtonBC } from '..';
 import {
   BordersType, SizeType, TypeFood, typeFoods,
 } from '../../pages/Home';
@@ -10,8 +11,9 @@ import { PopoverSizeStep } from './step/PopoverSizeStep';
 
 interface PopoverProps {
   selectedType: TypeFood;
+  setSelectedType: (value: null) => void;
 }
-export function Popover({ selectedType }: PopoverProps) {
+export function Popover({ selectedType, setSelectedType }: PopoverProps) {
   const location = useLocation();
   const [wishSent, setWishSent] = useState<boolean>(false);
 
@@ -41,7 +43,13 @@ export function Popover({ selectedType }: PopoverProps) {
   return (
     <DarkBG>
       <PopoverBox>
-        <h2>{ chosenType.title }</h2>
+        <header>
+          <h2>{ chosenType.title }</h2>
+          <ButtonBC
+            right
+            action={setSelectedType}
+          />
+        </header>
         <form onSubmit={(e) => handleSubmit(e)}>
           <input type="hidden" name="type" value={selectedType} />
           <input type="hidden" name="size" value={size || 'vázio'} />

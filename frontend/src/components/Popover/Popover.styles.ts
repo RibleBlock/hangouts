@@ -8,15 +8,18 @@ export const PopoverBox = styled(Dialog.Panel)`
   border-radius: 1rem;
   background-color: ${({ theme }) => theme.COLORS.secondary};
 
-  > h2 {
-    width: 100%;
-    text-align: center;
-    font-size: 2.5rem;
-    &::after {
-      content: '';
-      display: block;
-      height: .1rem;
-      background-color: #00000040;
+  > header {
+    position: relative;
+      > h2 {
+      width: 100%;
+      text-align: center;
+      font-size: 2.5rem;
+      &::after {
+        content: '';
+        display: block;
+        height: .1rem;
+        background-color: #00000040;
+      }
     }
   }
 
