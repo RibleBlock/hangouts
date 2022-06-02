@@ -8,11 +8,11 @@ export const Div = styled.div`
   align-items: center;
 
   > div {
+    width: 100%;
+    max-width: 45rem;
     margin-bottom: 8rem;
 
     > form {
-      width: 100%;
-      max-width: 45rem;
       padding: 3.3rem;
       font-size: 1.6rem;
       font-weight: bold;
@@ -24,12 +24,23 @@ export const Div = styled.div`
         text-align: left;
         margin-bottom: .7rem;
       }
+      > p.errormsg {
+        position: relative;
+        left: .5rem;
+        margin: .3rem 0 .8rem;
+        color: #FF7E7E;
+        font-size: 1.2rem;
+        font-weight: bold;
+        &:last-of-type {
+        margin: .3rem 0 0;
+        }
+      }
       > input {
         width: 100%;
         padding: 1rem 1rem;
-        margin-bottom: 2rem;
         font-size: 1.6rem;
         border-radius: 1rem;
+        outline: none;
       }
     }
     > p {
