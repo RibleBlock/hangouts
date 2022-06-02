@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   ButtonAction, Footer, Header, NavigationBar,
 } from '../../components';
@@ -20,7 +21,7 @@ export function Login() {
           <p>
             Já possui uma conta?
             {' '}
-            <a href="/register">CLIQUE PARA ENTRAR AGORA!</a>
+            <Link to="/register">CLIQUE PARA ENTRAR AGORA!</Link>
           </p>
         </div>
       </Div>

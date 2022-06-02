@@ -12,6 +12,7 @@ export function AppRoute() {
       <Switch>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<h1>REGISTER</h1>} />
 
         <Route path="/pedir" element={<PrivateRoute />}>
           <Route path="/pedir" element={<ChooseTypePizza />} />
