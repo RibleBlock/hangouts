@@ -76,7 +76,12 @@ export function PopoverFlavorsStep({
           { (value.sabor).map(({ nome, descricao }: IngredientType) => (
             <Div>
               <hr />
-              <input type="checkbox" id={nome + key.toLowerCase()} onChange={() => checkFlavors(nome)} />
+              <input
+                key={nome + key.toLowerCase()}
+                type="checkbox"
+                id={nome + key.toLowerCase()}
+                onChange={() => checkFlavors(nome)}
+              />
               <label
                 htmlFor={nome + key.toLowerCase()}
               >

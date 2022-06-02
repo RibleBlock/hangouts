@@ -29,6 +29,10 @@ export const Content = styled.div`
     &:checked + label {
       background-color: #2fef2f42;
     }
+    &:disabled + label {
+      opacity: 0.4;
+      background-color: transparent;
+    }
   }
   hr {
     width: 100%;
