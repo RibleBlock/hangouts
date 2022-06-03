@@ -3,7 +3,9 @@ import {
   Routes as Switch,
   Route,
 } from 'react-router-dom';
-import { ChooseTypePizza, Home, Login } from '../pages';
+import {
+  ChooseTypePizza, Home, Login, Register,
+} from '../pages';
 import PrivateRoute from './PrivateRoute';
 
 export function AppRoute() {
@@ -12,7 +14,7 @@ export function AppRoute() {
       <Switch>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<h1>REGISTER</h1>} />
+        <Route path="/register" element={<Register />} />
 
         <Route path="/pedir" element={<PrivateRoute />}>
           <Route path="/pedir" element={<ChooseTypePizza />} />
