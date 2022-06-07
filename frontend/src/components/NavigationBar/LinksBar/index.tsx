@@ -54,7 +54,7 @@ export function LinksBar({ isOpen, elements }: LinksBarProps) {
 
       </li>
       <li>
-        <Link to="/nothing">
+        <Link to="/cart">
           <div>
             CARRINHO
           </div>

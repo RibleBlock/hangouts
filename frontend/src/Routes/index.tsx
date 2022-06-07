@@ -4,6 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 import {
+  Cart,
   ChooseTypePizza, Home, Login, Register,
 } from '../pages';
 import PrivateRoute from './PrivateRoute';
@@ -21,7 +22,7 @@ export function AppRoute() {
         </Route>
 
         <Route path="/cart" element={<PrivateRoute />}>
-          <Route path="/cart" element={<h1>CART</h1>} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
       </Switch>
     </Router>
