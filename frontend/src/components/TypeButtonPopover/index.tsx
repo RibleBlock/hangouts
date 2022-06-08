@@ -1,4 +1,4 @@
-import { TypeFood } from '../../pages/Home';
+import { TypeFood } from '../../assets/Foods';
 import { ButtonBox } from './TypeButtonPopover.styles';
 
 interface TypeButtonPopoverProps {

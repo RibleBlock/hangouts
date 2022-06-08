@@ -7,6 +7,7 @@ export const Button = styled.button<{small?: boolean}>`
   margin-top: 2.5rem;
   font-size: 1.6rem;
   font-weight: bold;
+  cursor: pointer;
   border-radius: .6rem;
   color: ${({ theme }) => theme.COLORS.secondary};
   background-color: ${({ theme }) => theme.COLORS.button};

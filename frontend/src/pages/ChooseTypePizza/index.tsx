@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import {
   Footer, Header, NavigationBar, Popover, TypeButtonPopover,
 } from '../../components';
-import { TypeFood, typeFoods } from '../Home';
+import { TypeFood, typeFoods } from '../../assets/Foods';
 import { Main } from './ChooseTypePizza.styles';
 
 export function ChooseTypePizza() {

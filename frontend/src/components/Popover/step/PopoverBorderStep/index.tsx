@@ -1,4 +1,4 @@
-import { bordas, BordersType } from '../../../../pages/Home';
+import { bordas, BordersType } from '../../../../assets/Foods';
 import { PopoverListButton } from '../../PopoverListButton';
 import { Content } from '../PopoverSizeStep/PopoverSizeStep.styles';
 

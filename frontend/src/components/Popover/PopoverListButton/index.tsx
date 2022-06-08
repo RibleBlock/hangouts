@@ -1,4 +1,4 @@
-import { BordersType, SizeType } from '../../../pages/Home';
+import { BordersType, SizeType } from '../../../assets/Foods';
 import { ButtonSize } from '../step/PopoverSizeStep/PopoverSizeStep.styles';
 
 interface PopoverListButtonProps {

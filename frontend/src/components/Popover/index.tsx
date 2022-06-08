@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { ButtonBC } from '..';
 import {
   BordersType, SizeType, TypeFood, typeFoods,
-} from '../../pages/Home';
+} from '../../assets/Foods';
 import { DarkBG, PopoverBox } from './Popover.styles';
 import { PopoverBorderStep } from './step/PopoverBorderStep';
 import { PopoverFlavorsStep } from './step/PopoverFlavorsStep';

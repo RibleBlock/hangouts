@@ -1,6 +1,6 @@
 import {
   IngredientType, SizeType, TypeFood, typeFoods,
-} from '../../../../pages/Home';
+} from '../../../../assets/Foods';
 import { ButtonAction } from '../../../ButtonAction';
 import { InputText } from '../../../InputText';
 import { Content, Div } from './PopoverFlavorsStep.styles';
