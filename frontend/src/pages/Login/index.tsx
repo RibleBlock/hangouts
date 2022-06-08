@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import {
   ButtonAction, Footer, Header, NavigationBar,
@@ -12,7 +13,18 @@ type InputsLogin = {
 }
 export function Login() {
   const { register, handleSubmit } = useForm<InputsLogin>();
-  const submit: SubmitHandler<InputsLogin> = (data) => console.log(data);
+
+  async function submit(data: InputsLogin) {
+    try {
+      if (!data.email || !data.senha) throw new Error('Campos vazios');
+      if (!data.email && !data.senha) throw new Error('Campos vazios');
+      if (data.senha.length < 6) throw new Error('A senha dever ter mais de 5 letras');
+      toast.success(String('Logado com sucesso'));
+      console.log(data);
+    } catch (error: any) {
+      toast.error(String(error));
+    }
+  }
 
   return (
     <>
