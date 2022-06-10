@@ -8,19 +8,19 @@ import {
 import { Div } from './Register.styles';
 
 type InputsRegister = {
-  nomeCompleto: string;
+  name: string;
   email: string;
-  senha: string;
-  ConfirmSenha: string;
+  password: string;
+  ConfirmPassword: string;
 }
 export function Register() {
   const { register, handleSubmit } = useForm<InputsRegister>();
 
   async function submit(data: InputsRegister) {
     try {
-      if (!data.email || !data.senha || !data.nomeCompleto || !data.ConfirmSenha) throw new Error('Campos vazios');
-      if (data.senha !== data.ConfirmSenha) throw new Error('As senhas não são iguais');
-      if (data.senha.length < 6) throw new Error('A senha dever ter mais de 5 letras');
+      if (!data.email || !data.password || !data.name || !data.ConfirmPassword) throw new Error('Campos vazios');
+      if (data.password !== data.ConfirmPassword) throw new Error('As senhas não são iguais');
+      if (data.password.length < 6) throw new Error('A senha dever ter mais de 5 letras');
       toast.success(String('Cadastrado com sucesso'));
       console.log(data);
     } catch (error: any) {
@@ -36,16 +36,16 @@ export function Register() {
         <div>
           <form onSubmit={handleSubmit(submit)}>
             <p>Nome Completo:</p>
-            <input {...register('nomeCompleto')} />
+            <input {...register('name')} />
 
             <p>E-mail:</p>
             <input type="email" {...register('email')} />
 
             <p>Senha:</p>
-            <input type="password" {...register('senha')} />
+            <input type="password" {...register('password')} />
 
             <p>Confirmar Senha:</p>
-            <input type="password" {...register('ConfirmSenha')} />
+            <input type="password" {...register('ConfirmPassword')} />
 
             <ButtonAction small>Criar Conta</ButtonAction>
           </form>
