@@ -3,14 +3,12 @@ import UserModels from '../models/users.model';
 
 class User {
   async create(req: Request, res: Response) {
-    console.log(req.body);
+    // console.log(req.body); //
     const { name, email, password } = req.body;
     try {
-      console.log(1);
       const { data, error } = await UserModels.create({
         name, email, password,
       });
-      console.log(2);
 
       return res.json({
         data,
