@@ -1,5 +1,10 @@
 import express from 'express';
+import usersControllers from './controllers/users.controller';
 
-const routes = express.Router();
+const route = express.Router();
 
-export default routes;
+route.get('/msg', (req, res) => res.send('alo'));
+
+route.post('/createUser', usersControllers.create);
+
+export default route;
