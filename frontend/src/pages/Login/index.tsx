@@ -2,10 +2,9 @@
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import {
-  ButtonAction, Footer, Header, NavigationBar,
-} from '../../components';
+import { ButtonAction } from '../../components';
 import { Div } from './Login.styles';
+import { Footer, Header, NavigationBar } from '../../layouts';
 
 type InputsLogin = {
   email: string;
@@ -17,12 +16,11 @@ export function Login() {
   async function submit(data: InputsLogin) {
     try {
       if (!data.email || !data.password) throw new Error('Campos vazios');
-      if (!data.email && !data.password) throw new Error('Campos vazios');
       if (data.password.length < 6) throw new Error('A senha dever ter mais de 5 letras');
       toast.success(String('Logado com sucesso'));
       console.log(data);
     } catch (error: any) {
-      toast.error(String(error));
+      toast.error(String(error).slice(7));
     }
   }
 

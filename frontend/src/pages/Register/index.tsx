@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import {
-  ButtonAction, Footer, Header, NavigationBar,
+  ButtonAction,
 } from '../../components';
 import { Div } from './Register.styles';
+import { Footer, Header, NavigationBar } from '../../layouts';
 
 type InputsRegister = {
   name: string;
@@ -24,7 +25,7 @@ export function Register() {
       toast.success(String('Cadastrado com sucesso'));
       console.log(data);
     } catch (error: any) {
-      toast.error(String(error));
+      toast.error(String(error).slice(7));
     }
   }
 

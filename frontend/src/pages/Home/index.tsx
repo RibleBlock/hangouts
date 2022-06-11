@@ -2,10 +2,9 @@ import { Element } from 'react-scroll';
 import { Banner } from './Home.styles';
 
 import logoBanner from '../../assets/images/logo.png';
-import {
-  Footer, NavigationBar, Section, TypeFoodButton,
-} from '../../components';
+import { TypeFoodButton } from '../../components';
 import { ElementsNames, typeFoods } from '../../assets/Foods';
+import { Footer, NavigationBar, Section } from '../../layouts';
 
 export function Home() {
   return (

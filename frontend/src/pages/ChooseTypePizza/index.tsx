@@ -1,10 +1,11 @@
 import { Dialog } from '@headlessui/react';
 import { useEffect, useState } from 'react';
 import {
-  Footer, Header, NavigationBar, Popover, TypeButtonPopover,
+  Popover, TypeButtonPopover,
 } from '../../components';
 import { TypeFood, typeFoods } from '../../assets/Foods';
 import { Main } from './ChooseTypePizza.styles';
+import { Footer, Header, NavigationBar } from '../../layouts';
 
 export function ChooseTypePizza() {
   const [selectedType, setSelectedType] = useState<TypeFood | null>(null);

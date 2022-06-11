@@ -1,4 +1,4 @@
-import { Header, NavigationBar } from '../../components';
+import { Header, NavigationBar } from '../../layouts';
 
 export function Cart() {
   return (
