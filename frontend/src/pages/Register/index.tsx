@@ -40,7 +40,7 @@ export function Register() {
             <input {...register('name')} />
 
             <p>E-mail:</p>
-            <input type="email" {...register('email')} />
+            <input {...register('email')} />
 
             <p>Senha:</p>
             <input type="password" {...register('password')} />

@@ -14,7 +14,6 @@ class User {
         data,
       });
     } catch (error: any) {
-      console.log(error);
       return res.status(400).json(error);
     }
   }
