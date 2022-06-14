@@ -32,6 +32,7 @@
       "react/jsx-no-bind": "off",
       "react/require-default-props": "off",
       "no-undef": "off",
-      "no-shadow": "off"
+      "no-shadow": "off",
+      "max-len": "warn"
     }
 }

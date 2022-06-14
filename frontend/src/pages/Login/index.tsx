@@ -6,7 +6,7 @@ import { ButtonAction } from '../../components';
 import { Div } from './Login.styles';
 import { Footer, Header, NavigationBar } from '../../layouts';
 
-type InputsLogin = {
+export type InputsLogin = {
   email: string;
   password: string;
 }
