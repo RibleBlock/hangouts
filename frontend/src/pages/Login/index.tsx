@@ -1,22 +1,26 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useEffect } from 'react';
 import { ButtonAction } from '../../components';
 import { Div } from './Login.styles';
 import { Footer, Header, NavigationBar } from '../../layouts';
+import { validationUser } from '../../services/utils/validations/validationUser';
 
 export type InputsLogin = {
   email: string;
   password: string;
 }
 export function Login() {
+  const location = useLocation();
   const { register, handleSubmit } = useForm<InputsLogin>();
 
   async function submit(data: InputsLogin) {
     try {
-      if (!data.email || !data.password) throw new Error('Campos vazios');
-      if (data.password.length < 6) throw new Error('A senha dever ter mais de 5 letras');
+      const inValid: string = validationUser({ ...data, location });
+      console.log(inValid || 'NADA');
+      if (inValid) throw new Error(inValid);
       toast.success(String('Logado com sucesso'));
       console.log(data);
     } catch (error: any) {
@@ -24,6 +28,12 @@ export function Login() {
     }
   }
 
+  /// //////
+
+  useEffect(() => {
+    console.log(location);
+  }, [location]);
+  /// ///////
   return (
     <>
       <NavigationBar />
