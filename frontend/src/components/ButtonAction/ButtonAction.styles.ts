@@ -11,4 +11,7 @@ export const Button = styled.button<{small?: boolean}>`
   border-radius: .6rem;
   color: ${({ theme }) => theme.COLORS.secondary};
   background-color: ${({ theme }) => theme.COLORS.button};
+  &:hover {
+    filter: brightness(1.1);
+  }
 `;
