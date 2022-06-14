@@ -14,7 +14,6 @@ export function validationUser({
 }) {
   if (!name && location.pathname !== '/login') return 'Nome é necessário';
   if (name && !validator.isLength(name, { min: 3, max: 60 })) {
-    console.log('errrrrrro');
     return 'Nome deve ter entre 3 e 60 caracteres!';
   }
 

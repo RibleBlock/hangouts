@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Link, useLocation } from 'react-router-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { ButtonAction } from '../../components';
 import { Div } from './Register.styles';
@@ -20,13 +20,11 @@ export function Register() {
   function submit(data: InputsRegister) {
     try {
       const inValid: string = validationUser({ ...data, location });
-      console.log(inValid || 'NADA');
       if (inValid) throw new Error(inValid);
 
       toast.success(String('Cadastrado com sucesso'));
       console.log(data);
     } catch (error: any) {
-      console.log(error);
       toast.error(String(error).slice(7));
     }
   }

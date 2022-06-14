@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { ButtonAction } from '../../components';
 import { Div } from './Login.styles';
 import { Footer, Header, NavigationBar } from '../../layouts';
@@ -19,7 +18,6 @@ export function Login() {
   async function submit(data: InputsLogin) {
     try {
       const inValid: string = validationUser({ ...data, location });
-      console.log(inValid || 'NADA');
       if (inValid) throw new Error(inValid);
       toast.success(String('Logado com sucesso'));
       console.log(data);
@@ -28,12 +26,6 @@ export function Login() {
     }
   }
 
-  /// //////
-
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
-  /// ///////
   return (
     <>
       <NavigationBar />
