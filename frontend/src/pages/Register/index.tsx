@@ -6,6 +6,7 @@ import { ButtonAction } from '../../components';
 import { Div } from './Register.styles';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { validationUser } from '../../services/utils/validations/validationUser';
+import { useNewUserMutation } from '../../services/api/Auth';
 
 export type InputsRegister = {
   name: string;
@@ -16,16 +17,18 @@ export type InputsRegister = {
 export function Register() {
   const location = useLocation();
   const { register, handleSubmit } = useForm<InputsRegister>();
+  const [registrar] = useNewUserMutation();
 
-  function submit(data: InputsRegister) {
+  async function submit(data: InputsRegister) {
     try {
       const inValid: string = validationUser({ ...data, location });
       if (inValid) throw new Error(inValid);
 
+      await registrar(data).unwrap();
+
       toast.success(String('Cadastrado com sucesso'));
-      console.log(data);
     } catch (error: any) {
-      toast.error(String(error).slice(7));
+      toast.error(error?.status || String(error).slice(7));
     }
   }
 

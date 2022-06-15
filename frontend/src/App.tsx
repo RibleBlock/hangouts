@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './assets/styles/GlobalStyles';
 import { AppRoute } from './Routes';
-import store from './store';
+import { store } from './store';
 import defaultTheme from './themes/defaultTheme';
 
 function App() {
@@ -12,7 +12,13 @@ function App() {
       <Provider store={store}>
         <GlobalStyles />
         <AppRoute />
-        <ToastContainer position="top-right" newestOnTop style={{ fontSize: '1.4rem' }} />
+        <ToastContainer
+          style={{ fontSize: '1.4rem' }}
+          position="bottom-center"
+          newestOnTop
+          limit={2}
+          theme="colored"
+        />
       </Provider>
     </ThemeProvider>
   );
