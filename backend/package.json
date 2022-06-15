@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
-    "build": "yarn tsc",
+    "build": "tsc",
     "start": "node dist/server.js"
   },
   "devDependencies": {
