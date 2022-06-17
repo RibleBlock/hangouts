@@ -16,7 +16,7 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     getter: builder.query({
       query: () => ({
-        url: 'msg',
+        url: 'getusers',
         method: 'GET',
       }),
     }),

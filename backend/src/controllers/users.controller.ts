@@ -23,5 +23,19 @@ class User {
       return res.status(400).json(error);
     }
   }
+
+  async selectAllUsers(req: Request, res: Response) {
+    try {
+      const { data, error } = await UserModels.readAll();
+
+      return res.json({
+        data,
+      });
+    } catch (error: any) {
+      return res.status(400).json({
+        error,
+      });
+    }
+  }
 }
 export default new User();

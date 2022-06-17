@@ -17,12 +17,16 @@ class Users {
       .from('users')
       .select(columns)
       .match(query);
+
+    return { data, error };
   }
 
   async readAll() {
     const { data, error }: { data: UserDB[] | null, error: any } = await supabase
       .from('users')
       .select('*');
+
+    return { data, error };
   }
 
   async create(newUser: User) {

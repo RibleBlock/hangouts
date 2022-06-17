@@ -5,6 +5,7 @@ const route = express.Router();
 
 route.get('/msg', (req, res) => res.send('alo'));
 
+route.get('/getusers', usersControllers.selectAllUsers);
 route.post('/createUser', usersControllers.create);
 
 export default route;
