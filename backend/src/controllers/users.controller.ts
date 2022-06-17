@@ -6,12 +6,18 @@ class User {
     // console.log(req.body); //
     const { name, email, password } = req.body;
     try {
-      const { data, error } = await UserModels.create({
-        name, email, password,
-      });
+      if (name && email && password) {
+        const { data, error } = await UserModels.create({
+          name, email, password,
+        });
+
+        return res.json({
+          data,
+        });
+      }
 
       return res.json({
-        data,
+        error: 'Credenciais inválidas',
       });
     } catch (error: any) {
       return res.status(400).json(error);

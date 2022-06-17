@@ -6,14 +6,27 @@ interface User {
   password?: string,
 }
 
-interface UserBD extends User {
+interface UserDB extends User {
   id: number,
   created_at: string,
 }
 
 class Users {
+  async read(columns: string, query: Partial<UserDB>) {
+    const { data, error }: { data: UserDB[] | null, error: any } = await supabase
+      .from('users')
+      .select(columns)
+      .match(query);
+  }
+
+  async readAll() {
+    const { data, error }: { data: UserDB[] | null, error: any } = await supabase
+      .from('users')
+      .select('*');
+  }
+
   async create(newUser: User) {
-    const { data, error }: { data: UserBD[] | null, error: any } = await supabase
+    const { data, error }: { data: UserDB[] | null, error: any } = await supabase
       .from('users')
       .insert([
         {
