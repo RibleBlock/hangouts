@@ -14,12 +14,6 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
-    getter: builder.query({
-      query: () => ({
-        url: 'getusers',
-        method: 'GET',
-      }),
-    }),
     newUser: builder.mutation({
       query: (user: User) => ({
         url: 'createUser',
@@ -30,4 +24,4 @@ export const authApi = createApi({
   }),
 });
 
-export const { useNewUserMutation, useGetterQuery } = authApi;
+export const { useNewUserMutation } = authApi;
