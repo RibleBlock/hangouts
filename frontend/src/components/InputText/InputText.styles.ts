@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Box = styled.div`
+export const Box = styled.div<{valid: boolean}>`
     position: relative;
     margin-top: 3.5rem;
     font-size: 1.6rem;
@@ -12,6 +12,10 @@ export const Box = styled.div`
         transition: 700ms;
         position: absolute;
         top: .5rem;
+        ${(props) => props.valid && css`
+          top: -1.2rem;
+          font-size: 1.3rem;
+        `}
       }
       > input {
         width: 100%;

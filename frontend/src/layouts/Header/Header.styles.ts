@@ -7,7 +7,7 @@ export const Box = styled.header`
   padding: 2rem 0;
   color: ${({ theme }) => theme.COLORS.text_secondary};
   background-image: url(${headerBackground});
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 
   display: flex;
   flex-direction: column;
