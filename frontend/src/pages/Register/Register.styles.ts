@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Div = styled.div`
   height: 60rem;
+  height: calc(100vh - 300px);
+  min-height: 60rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,29 +19,19 @@ export const Div = styled.div`
       font-size: 1.6rem;
       font-weight: bold;
       border-radius: 1.3rem;
-      background-color: #E8E8E8;
       text-align: center;
 
       > p {
         text-align: left;
         margin-bottom: .7rem;
       }
-      > p.errormsg {
-        position: relative;
-        left: .5rem;
-        margin: .3rem 0 .8rem;
-        color: #FF7E7E;
-        font-size: 1.2rem;
-        font-weight: bold;
-        &:last-of-type {
-        margin: .3rem 0 0;
-        }
-      }
+
       > input {
         width: 100%;
         padding: 1rem 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         font-size: 1.6rem;
+        border: 3px solid ${({ theme }) => theme.COLORS.text_tertiary};
         border-radius: 1rem;
         outline: none;
       }
@@ -48,6 +40,9 @@ export const Div = styled.div`
       margin-top: 2rem;
       font-size : 1.4rem;
       text-align: center;
+      > a {
+        color: #5671FF;
+      }
     }
   }
 `;
