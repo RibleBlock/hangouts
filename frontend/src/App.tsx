@@ -13,8 +13,9 @@ function App() {
         <GlobalStyles />
         <AppRoute />
         <ToastContainer
-          style={{ fontSize: '1.4rem' }}
+          style={{ fontSize: '1.5rem' }}
           position="bottom-center"
+          autoClose={3000}
           newestOnTop
           limit={2}
           theme="colored"
