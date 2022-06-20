@@ -4,6 +4,7 @@ export const Button = styled.button<{small?: boolean}>`
   width: ${(props) => (props.small ? '18rem' : '38rem')};
   height: 5rem;
   align-self: center;
+  align-items: center;
   margin-top: 2.5rem;
   font-size: 1.6rem;
   font-weight: bold;
@@ -12,6 +13,9 @@ export const Button = styled.button<{small?: boolean}>`
   color: ${({ theme }) => theme.COLORS.secondary};
   background-color: ${({ theme }) => theme.COLORS.button};
   &:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.2);
+  }
+  &:disabled {
+    opacity: .7;
   }
 `;

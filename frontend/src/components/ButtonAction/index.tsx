@@ -1,17 +1,20 @@
 import { ReactNode } from 'react';
+import { Loading } from '../Loading';
 import { Button } from './ButtonAction.styles';
 
 interface ButtonActionProps {
   small?: boolean;
   children: ReactNode;
+  isLoading?: boolean;
 }
-export function ButtonAction({ small, children }: ButtonActionProps) {
+export function ButtonAction({ small, isLoading, children }: ButtonActionProps) {
   return (
     <Button
       type="submit"
       small={small}
+      disabled={isLoading}
     >
-      {children}
+      { isLoading ? <Loading color="white" /> : children }
     </Button>
   );
 }

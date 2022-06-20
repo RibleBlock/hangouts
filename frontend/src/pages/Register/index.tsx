@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Link, useLocation } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 import { ButtonAction } from '../../components';
 import { Div } from './Register.styles';
 import { Footer, Header, NavigationBar } from '../../layouts';
@@ -18,17 +19,25 @@ export function Register() {
   const location = useLocation();
   const { register, handleSubmit } = useForm<InputsRegister>();
   const [registrar] = useNewUserMutation();
+  const [isLoadindRegister, setIsLoadingRegister] = useState<boolean>(false);
 
-  async function submit(data: InputsRegister) {
+  async function submit(data: InputsRegister): Promise<any> {
+    setIsLoadingRegister(true);
+
     try {
       const inValid: string = validationUser({ ...data, location });
-      if (inValid) throw new Error(inValid);
+      if (inValid) return toast.error(inValid);
 
       await registrar(data).unwrap();
 
-      toast.success(String('Cadastrado com sucesso'));
+      return toast.success(String('Cadastrado com sucesso'));
     } catch (error: any) {
-      toast.error(error?.status || String(error).slice(7));
+      if (error?.data.error) {
+        return toast.error(error.data.error);
+      }
+      return toast.error(error?.status || String(error).slice(7));
+    } finally {
+      setIsLoadingRegister(false);
     }
   }
 
@@ -51,7 +60,9 @@ export function Register() {
             <p>Confirmar Senha:</p>
             <input type="password" {...register('confirmPassword')} />
 
-            <ButtonAction small>Criar Conta</ButtonAction>
+            <ButtonAction small isLoading={isLoadindRegister}>
+              Criar Conta
+            </ButtonAction>
           </form>
           <p>
             Já possui uma conta?
