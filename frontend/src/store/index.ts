@@ -4,14 +4,15 @@ import storage from 'redux-persist/lib/storage';
 import { State } from './module';
 
 import pedidoState from './Pedido/reducer';
-import userState from './User/reducer';
+import tokenState from './Auth/reducer';
 
 import { authApi } from '../services/api/Auth';
 
+// aqui vai os reducers/estados que vao percistir //
 const reducersToPersist = combineReducers<State>({
-  user: userState,
-  cart: pedidoState,
+  token: tokenState,
 });
+// //
 
 const persistConfig = {
   key: 'root',
@@ -20,10 +21,13 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, reducersToPersist);
 
+// aqui vai os reducers/estados que nao vao percistir //
 const reducer = {
   reducer: persistedReducer,
+  cart: pedidoState,
   [authApi.reducerPath]: authApi.reducer,
 };
+// //
 
 const store = configureStore({
   reducer,

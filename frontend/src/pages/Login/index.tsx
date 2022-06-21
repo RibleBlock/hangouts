@@ -1,11 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ButtonAction } from '../../components';
 import { Div } from './Login.styles';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { validationUser } from '../../services/utils/validations/validationUser';
+import { useLoginUserMutation } from '../../services/api/Auth';
+import { addToken, getToken } from '../../store/Auth/reducer';
 
 export type InputsLogin = {
   email: string;
@@ -13,16 +17,34 @@ export type InputsLogin = {
 }
 export function Login() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm<InputsLogin>();
+  const [isLoadindLogin, setIsLoadingLogin] = useState<boolean>(false);
+  const [userLogin] = useLoginUserMutation();
+  const dispatch = useDispatch();
+  const token = useSelector(getToken);
 
-  async function submit(data: InputsLogin) {
+  async function submit(data: InputsLogin): Promise<any> {
+    setIsLoadingLogin(true);
+
     try {
       const inValid: string = validationUser({ ...data, location });
-      if (inValid) throw new Error(inValid);
-      toast.success(String('Logado com sucesso'));
-      console.log(data);
+      if (inValid) return toast.error(inValid);
+
+      const { email, password } = data;
+      const { token, user } = await userLogin({ email, password }).unwrap();
+      dispatch(addToken(token));
+
+      console.log(user);
+      navigate('/', { replace: true, state: { prevPath: location.pathname } });
+      return toast.success(String('Logado com sucesso'));
     } catch (error: any) {
-      toast.error(String(error).slice(7));
+      if (error?.data.error) {
+        return toast.error(error.data.error);
+      }
+      return toast.error(error);
+    } finally {
+      setIsLoadingLogin(false);
     }
   }
 
@@ -39,7 +61,12 @@ export function Login() {
             <p>Senha:</p>
             <input type="password" {...register('password')} />
 
-            <ButtonAction small>Entrar</ButtonAction>
+            <ButtonAction
+              isLoading={isLoadindLogin}
+              small
+            >
+              Entrar
+            </ButtonAction>
           </form>
           <p>
             Ainda não tem uma conta?

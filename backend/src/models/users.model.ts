@@ -1,9 +1,9 @@
 import supabase from '../config/supabase';
 
 interface User {
-  name?: string,
-  email?: string,
-  password?: string,
+  name: string,
+  email: string,
+  password: string,
 }
 
 interface UserDB extends User {
