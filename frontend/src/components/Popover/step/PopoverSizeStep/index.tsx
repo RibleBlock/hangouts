@@ -1,5 +1,4 @@
 import { SizeType, TypeFood, typeFoods } from '../../../../assets/Foods';
-import { ButtonBC } from '../../../ButtonBC';
 import { PopoverListButton } from '../../PopoverListButton';
 import { Content } from './PopoverSizeStep.styles';
 

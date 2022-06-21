@@ -1,12 +1,28 @@
 import { Element } from 'react-scroll';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { Banner } from './Home.styles';
 
 import logoBanner from '../../assets/images/logo.png';
 import { TypeFoodButton } from '../../components';
 import { ElementsNames, typeFoods } from '../../assets/Foods';
 import { Footer, NavigationBar, Section } from '../../layouts';
+import { getToken, removeToken } from '../../store/Auth/reducer';
 
 export function Home() {
+  const token = useSelector(getToken);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (token !== 'vazio') {
+      // eslint-disable-next-line no-restricted-globals
+      const user = confirm(`voce está logado! \n${token}`);
+      if (!user) {
+        dispatch(removeToken());
+      }
+    }
+  }, [token]);
+
   return (
     <>
       <section>

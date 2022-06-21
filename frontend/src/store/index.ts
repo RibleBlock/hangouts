@@ -1,7 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { State } from './module';
 
 import pedidoState from './Pedido/reducer';
 import tokenState from './Auth/reducer';
@@ -9,8 +8,8 @@ import tokenState from './Auth/reducer';
 import { authApi } from '../services/api/Auth';
 
 // aqui vai os reducers/estados que vao percistir //
-const reducersToPersist = combineReducers<State>({
-  token: tokenState,
+const reducersToPersist = combineReducers({
+  user: tokenState,
 });
 // //
 

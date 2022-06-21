@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { Cart } from './Pedido/reducer';
-import { User } from './Auth/reducer';
+import { Token } from './Auth/reducer';
 
 interface State {
-  cart?: Cart;
-  token: User;
+    reducer: {
+      user: Token,
+    }
 }

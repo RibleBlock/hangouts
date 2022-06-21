@@ -22,7 +22,7 @@ export function Login() {
   const [isLoadindLogin, setIsLoadingLogin] = useState<boolean>(false);
   const [userLogin] = useLoginUserMutation();
   const dispatch = useDispatch();
-  const token = useSelector(getToken);
+  // const token = useSelector(getToken);
 
   async function submit(data: InputsLogin): Promise<any> {
     setIsLoadingLogin(true);

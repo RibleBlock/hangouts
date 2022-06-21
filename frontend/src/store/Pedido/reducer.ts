@@ -30,6 +30,6 @@ const { actions, reducer } = createSlice({
   reducers: {},
 });
 
-export const getCart = (state: State) => state.cart?.cart;
-export const getPedido = (state: State) => state.cart?.pedido;
+// export const getCart = (state: State) => state.cart.cart;
+// export const getPedido = (state: State) => state.cart.pedido;
 export default reducer;
