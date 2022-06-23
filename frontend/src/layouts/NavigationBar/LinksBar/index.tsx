@@ -71,7 +71,7 @@ export function LinksBar({ isOpen, elements }: LinksBarProps) {
         { currentUser ? (
           <Link to="/user">
             <div>
-              { currentUser.name.toUpperCase() }
+              { currentUser.name.split(' ')[0].toUpperCase() }
             </div>
           </Link>
         ) : (

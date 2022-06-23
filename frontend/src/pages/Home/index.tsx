@@ -1,29 +1,12 @@
 import { Element } from 'react-scroll';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { Banner } from './Home.styles';
 
 import logoBanner from '../../assets/images/logo.png';
 import { TypeFoodButton } from '../../components';
 import { ElementsNames, typeFoods } from '../../assets/Foods';
 import { Footer, NavigationBar, Section } from '../../layouts';
-import { getToken, removeToken } from '../../store/Auth/reducer';
-import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 
 export function Home() {
-  const token = useSelector(getToken);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (token !== 'vazio') {
-      // eslint-disable-next-line no-restricted-globals
-      const user = confirm(`Seja bem-vindo ${decodeJWT<User>(token).name}`);
-      if (!user) {
-        dispatch(removeToken());
-      }
-    }
-  }, []);
-
   return (
     <>
       <section>
