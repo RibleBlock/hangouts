@@ -11,7 +11,7 @@ export interface LinksBarProps {
 }
 export function LinksBar({ isOpen, elements }: LinksBarProps) {
   const token = useSelector(getToken);
-  const currentUser: User | false = token === 'vazio' ? false : decodeJWT<User>(token);
+  const currentUser: User | false = token === 'empty' ? false : decodeJWT<User>(token);
 
   return (
     <List isOpen={isOpen}>

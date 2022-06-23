@@ -7,7 +7,7 @@ export interface Token {
 }
 
 const initialState = {
-  token: 'vazio',
+  token: 'empty',
 } as Token;
 
 const { actions, reducer } = createSlice({
@@ -18,7 +18,7 @@ const { actions, reducer } = createSlice({
       state.token = action.payload;
     },
     removeToken(state) {
-      state.token = 'vazio';
+      state.token = 'empty';
     },
   },
 });

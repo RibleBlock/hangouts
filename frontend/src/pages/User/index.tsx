@@ -12,7 +12,7 @@ export function User() {
       <NavigationBar />
       <Header title="Meu Perfil" />
       <br />
-      <h1 style={{ textAlign: 'center' }}>
+      <h1 style={{ fontSize: 18, textAlign: 'center' }}>
         { currentUser.name }
       </h1>
     </>
