@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Loading } from '..';
+import { Loading } from '../..';
 import { Button } from './ButtonAction.styles';
 
 interface ButtonActionProps {

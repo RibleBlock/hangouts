@@ -1,8 +1,8 @@
 import {
   IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../assets/Foods';
-import { ButtonAction } from '../../../ButtonAction';
-import { InputText } from '../../../InputText';
+import { ButtonAction } from '../../../form/ButtonAction';
+import { InputText } from '../../../form/InputText';
 import { Content, Div } from './PopoverFlavorsStep.styles';
 
 interface PopoverFlavorsStepProps {
