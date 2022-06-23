@@ -2,14 +2,14 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { ButtonAction } from '../../components';
 import { Div } from './Login.styles';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { validationUser } from '../../services/utils/validations/validationUser';
 import { useLoginUserMutation } from '../../services/api/Auth';
-import { addToken, getToken } from '../../store/Auth/reducer';
+import { addToken } from '../../store/Auth/reducer';
 
 export type InputsLogin = {
   email: string;
@@ -22,7 +22,6 @@ export function Login() {
   const [isLoadindLogin, setIsLoadingLogin] = useState<boolean>(false);
   const [userLogin] = useLoginUserMutation();
   const dispatch = useDispatch();
-  // const token = useSelector(getToken);
 
   async function submit(data: InputsLogin): Promise<any> {
     setIsLoadingLogin(true);

@@ -26,7 +26,7 @@ class User {
         }
 
         const {
-          id, name, email: emailBD, password: passwordHash,
+          id, name, password: passwordHash,
         } = user[0];
 
         if (!(await passwordIsValid(password, passwordHash))) {
@@ -35,11 +35,11 @@ class User {
           });
         }
 
-        const token = jwt.sign({ id, name, emailBD }, 'ola_banana');
+        const token = jwt.sign({ id, name, email }, 'ola_banana');
 
         return res.json({
           token,
-          user: { id, name, emailBD },
+          user: { id, name, email },
         });
       }
       return res.status(409).json({

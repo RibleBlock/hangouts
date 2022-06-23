@@ -8,6 +8,7 @@ import { TypeFoodButton } from '../../components';
 import { ElementsNames, typeFoods } from '../../assets/Foods';
 import { Footer, NavigationBar, Section } from '../../layouts';
 import { getToken, removeToken } from '../../store/Auth/reducer';
+import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 
 export function Home() {
   const token = useSelector(getToken);
@@ -16,12 +17,12 @@ export function Home() {
   useEffect(() => {
     if (token !== 'vazio') {
       // eslint-disable-next-line no-restricted-globals
-      const user = confirm(`voce está logado! \n${token}`);
+      const user = confirm(`Seja bem-vindo ${decodeJWT<User>(token).name}`);
       if (!user) {
         dispatch(removeToken());
       }
     }
-  }, [token]);
+  }, []);
 
   return (
     <>
