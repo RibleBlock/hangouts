@@ -13,11 +13,6 @@ export const Content = styled.div`
     font-size: 1.6rem;
     margin-top: 2rem;
   }
-  hr {
-    width: 100%;
-    height: .1rem;
-    background-color: #00000040;
-  }
 `;
 
 export const ButtonSize = styled.button`

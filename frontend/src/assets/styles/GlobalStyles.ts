@@ -31,4 +31,9 @@ body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+hr {
+    width: 100%;
+    height: .1rem;
+    background-color: #00000040;
+  }
 `;
