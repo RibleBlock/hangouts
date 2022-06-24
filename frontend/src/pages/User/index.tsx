@@ -1,14 +1,15 @@
 import {
-  ClockCounterClockwise, Columns, CreditCard, MapPin,
+  ClockCounterClockwise, CreditCard, MapPin,
 } from 'phosphor-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { ChangeOption } from '../../components';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken, removeToken } from '../../store/Auth/reducer';
 import {
-  Box, Button, SignOutIcon, UserCircleIcon,
+  Box, SignOutIcon, UserCircleIcon,
 } from './User.styles';
 
 export function User() {
@@ -20,9 +21,7 @@ export function User() {
   const dispatch = useDispatch();
 
   function logOut() {
-    toast.info(`${currentUser.name} saiu`, {
-      style: { backgroundColor: '#fff' },
-    });
+    toast.info(`${currentUser.name} saiu`);
     dispatch(removeToken());
     navigate('/', { replace: true, state: { prevPath: location.pathname } });
   }
@@ -54,49 +53,37 @@ export function User() {
         {/* Dados */}
         <section style={{ marginTop: '1.7rem', flexDirection: 'column' }}>
           {/*  */}
-          <Button
-            className="logout"
-            type="button"
+          <ChangeOption
+            optionTitle="Meus dados"
+            optionDescription="Altere seus dados pessoais"
           >
             <UserCircleIcon weight="thin" />
-            <div className="option">
-              <p className="optionTitle">Meus Dados</p>
-              <p className="optionDescription">Altere seus dados pessoais</p>
-            </div>
-          </Button>
+          </ChangeOption>
           <hr /** */ />
-          <Button
-            className="logout"
-            type="button"
+
+          <ChangeOption
+            optionTitle="Formas de pagamentos"
+            optionDescription="Adicione/Remova formas de pagamentos"
           >
             <CreditCard weight="thin" />
-            <div className="option">
-              <p className="optionTitle">Meus Dados</p>
-              <p className="optionDescription">Altere seus dados pessoais</p>
-            </div>
-          </Button>
+          </ChangeOption>
           <hr /** */ />
-          <Button
-            className="logout"
-            type="button"
+
+          <ChangeOption
+            optionTitle="Histórico de compras"
+            optionDescription="Acompanhar pedidos e ver historico"
           >
             <ClockCounterClockwise weight="thin" />
-            <div className="option">
-              <p className="optionTitle">Meus Dados</p>
-              <p className="optionDescription">Altere seus dados pessoais</p>
-            </div>
-          </Button>
+          </ChangeOption>
           <hr /** */ />
-          <Button
-            className="logout"
-            type="button"
+
+          <ChangeOption
+            optionTitle="Endereco"
+            optionDescription="Altere o endereco de entraga"
           >
             <MapPin weight="thin" />
-            <div className="option">
-              <p className="optionTitle">Meus Dados</p>
-              <p className="optionDescription">Altere seus dados pessoais</p>
-            </div>
-          </Button>
+          </ChangeOption>
+
         </section>
       </Box>
       <Footer />

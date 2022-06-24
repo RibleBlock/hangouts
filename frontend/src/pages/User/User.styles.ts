@@ -1,37 +1,18 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { UserCircle, SignOut } from 'phosphor-react';
 
-const svgCss = css`
+export const UserCircleIcon = styled(UserCircle)`
   width: 6rem;
   height: 6rem;
 `;
-
-export const UserCircleIcon = styled(UserCircle)`${svgCss}`;
 export const SignOutIcon = styled(SignOut)`
   min-width: 2.5rem;
   min-height: 2.5rem;
 `;
 
-export const Button = styled.button`
-  width: 100%;
-  text-decoration: none !important;
-  > svg {
-    width: 4.5rem;
-    height: 4.5rem;
-    color: ${({ theme }) => theme.COLORS.primary};
-  }
-  > div.option {
-    text-align: left;
-
-    display: flex;
-    flex-direction: column;
-    gap: .1rem;
-  }
-`;
-
 export const Box = styled.div`
   height: calc(100vh - 300px);
-  min-height: 55rem;
+  min-height: 52rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -77,6 +58,9 @@ export const Box = styled.div`
 
       &:hover {
         font-weight: bold;
+         //////////////////////////
+        transform: rotate(720deg);
+         //////////////////////////
       }
     }
   }
