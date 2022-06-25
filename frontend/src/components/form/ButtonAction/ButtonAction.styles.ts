@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
 export const Button = styled.button<{small?: boolean}>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: ${(props) => (props.small ? '18rem' : '38rem')};
   height: 5rem;
-  align-self: center;
-  align-items: center;
+  margin: 0 auto;
   margin-top: 2.5rem;
   font-size: 1.6rem;
   font-weight: bold;
+  letter-spacing: .1rem;
   cursor: pointer;
   border-radius: .6rem;
   color: ${({ theme }) => theme.COLORS.secondary};

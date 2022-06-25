@@ -15,8 +15,12 @@ export const Box = styled.header`
   justify-content: center;
 
   h1 {
-    font-size: 3rem;
-    margin-bottom: 2.2rem;
+    font-size: 2.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  svg {
+    width: 10rem;
   }
 
   p {
