@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable no-restricted-syntax */
 import {
   IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../assets/Foods';
@@ -41,12 +43,30 @@ export function PopoverFlavorsStep({
   }
   const limiteSabor = limitar();
 
+  function desabilitar() {
+    const inputs = document.querySelectorAll('.input') as any;
+
+    for (let input of inputs) {
+      if (flavors.length === limiteSabor && !flavors.includes(input.getAttribute('id'))) {
+        input.disabled = true;
+      } else {
+        input.disabled = false;
+      }
+      if (flavors.length === limiteSabor && !flavors.includes(input.getAttribute('id'))) {
+        input.disabled = true;
+      } else {
+        input.disabled = false;
+      }
+    }
+  }
+
   function checkFlavors(flavor: string) {
     if (!flavors.includes(flavor)) {
       setFlavors([flavor, ...flavors]);
     } else {
       setFlavors(flavors.filter((v) => v !== flavor));
     }
+    desabilitar();
   }
 
   return (
@@ -79,11 +99,12 @@ export function PopoverFlavorsStep({
               <input
                 key={nome + key.toLowerCase()}
                 type="checkbox"
-                id={nome + key.toLowerCase()}
+                id={chosenType === 'BEBIDA' ? nome + key.toLowerCase() : nome}
                 onChange={() => checkFlavors(nome)}
+                className="input"
               />
               <label
-                htmlFor={nome + key.toLowerCase()}
+                htmlFor={chosenType === 'BEBIDA' ? nome + key.toLowerCase() : nome}
               >
 
                 <div>
