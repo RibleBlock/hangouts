@@ -32,7 +32,7 @@ export function Register() {
       const inValid: string = validationUser({ ...data, location });
       if (inValid) return toast.error(inValid);
 
-      const { user } = await registrar(data).unwrap();
+      await registrar(data).unwrap();
       // dispatch(addToken(user.token));
 
       navigate('/login', { replace: true, state: { prevPath: location.pathname } });

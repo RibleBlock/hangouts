@@ -1,5 +1,5 @@
 import { Dialog } from '@headlessui/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Popover, TypeButtonPopover,
 } from '../../components';

@@ -31,10 +31,9 @@ export function Login() {
       if (inValid) return toast.error(inValid);
 
       const { email, password } = data;
-      const { token, user } = await userLogin({ email, password }).unwrap();
+      const { token } = await userLogin({ email, password }).unwrap();
       dispatch(addToken(token));
 
-      console.log(user);
       navigate('/', { replace: true, state: { prevPath: location.pathname } });
       return toast.success(String('Logado com sucesso'));
     } catch (error: any) {

@@ -1,28 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { State } from '../module';
 
-export interface Pedido {
-  category: string | null;
-  type: string | null;
-  size: string | null;
-  borda: string | null;
-  sabores: string[];
-}
-export interface Cart {
-  pedido: Pedido;
-  cart: Pedido[];
-}
-
 const initialState = {
-  pedido: {
-    category: null,
-    type: null,
-    size: null,
-    borda: null,
-    sabores: [],
-  },
-  cart: [],
-} as Cart;
+  category: null,
+  size: null,
+  border: null,
+  flavors: [],
+  comment: '',
+  id_user: null,
+} as Pedido;
 
 const { actions, reducer } = createSlice({
   name: 'PEDIDOS',

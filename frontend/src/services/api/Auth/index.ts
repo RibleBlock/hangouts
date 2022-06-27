@@ -26,7 +26,18 @@ export const authApi = createApi({
         body: user,
       }),
     }),
+    addToCart: builder.mutation({
+      query: (wish: Pedido) => ({
+        url: 'makeWish',
+        method: 'POST',
+        body: wish,
+      }),
+    }),
   }),
 });
 
-export const { useLoginUserMutation, useNewUserMutation } = authApi;
+export const {
+  useLoginUserMutation,
+  useNewUserMutation,
+  useAddToCartMutation,
+} = authApi;
