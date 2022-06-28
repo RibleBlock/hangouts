@@ -1,5 +1,6 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-restricted-syntax */
+import { useEffect } from 'react';
 import {
   IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../assets/Foods';
@@ -43,31 +44,35 @@ export function PopoverFlavorsStep({
   }
   const limiteSabor = limitar();
 
-  function desabilitar() {
-    const inputs = document.querySelectorAll('.input') as any;
-
-    for (let input of inputs) {
-      if (flavors.length === limiteSabor && !flavors.includes(input.getAttribute('id'))) {
-        input.disabled = true;
-      } else {
-        input.disabled = false;
-      }
-      if (flavors.length === limiteSabor && !flavors.includes(input.getAttribute('id'))) {
-        input.disabled = true;
-      } else {
-        input.disabled = false;
-      }
-    }
-  }
-
+  // funcao de desativar checkbox //
   function checkFlavors(flavor: string) {
     if (!flavors.includes(flavor)) {
       setFlavors([flavor, ...flavors]);
     } else {
       setFlavors(flavors.filter((v) => v !== flavor));
     }
-    desabilitar();
   }
+
+  // function desabilitar(flavor: string) {
+
+  // }
+
+  useEffect(() => {
+    const inputs = document.querySelectorAll('.input') as any;
+
+    if (flavors.length === limiteSabor) {
+      // bloquear //
+      for (let input of inputs) {
+        input.disabled = !input.checked;
+      }
+    } else {
+      // desbloquear //
+      for (let input of inputs) {
+        input.disabled = false;
+      }
+    }
+    console.log(`${flavors.length} === ${limiteSabor}`);
+  }, [flavors]);
 
   return (
     <Content>
