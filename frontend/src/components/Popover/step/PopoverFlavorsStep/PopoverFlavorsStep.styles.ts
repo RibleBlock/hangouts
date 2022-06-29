@@ -51,6 +51,7 @@ export const Div = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    user-select: none;
 
     width: 100%;
     height: max(auto, 5.5rem);

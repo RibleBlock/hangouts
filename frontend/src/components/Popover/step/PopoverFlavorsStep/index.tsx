@@ -53,10 +53,6 @@ export function PopoverFlavorsStep({
     }
   }
 
-  // function desabilitar(flavor: string) {
-
-  // }
-
   useEffect(() => {
     const inputs = document.querySelectorAll('.input') as any;
 
@@ -71,7 +67,6 @@ export function PopoverFlavorsStep({
         input.disabled = false;
       }
     }
-    console.log(`${flavors.length} === ${limiteSabor}`);
   }, [flavors]);
 
   return (

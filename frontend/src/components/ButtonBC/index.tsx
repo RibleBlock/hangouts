@@ -13,6 +13,7 @@ export function ButtonBC({ action, right, arrow }: ButtonBCProps) {
     <Button
       right={right}
       type="button"
+      arrow={arrow}
       onClick={() => action(null)}
     >
       { arrow ? <ArrowLeft weight="bold" /> : <X weight="bold" /> }

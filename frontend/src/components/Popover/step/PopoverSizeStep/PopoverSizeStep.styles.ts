@@ -20,6 +20,7 @@ export const ButtonSize = styled.button`
   justify-content: space-between;
   align-items: center;
 
+  user-select: none;
   width: 100%;
   height: 5.5rem;
   font-size: 1.8rem;
