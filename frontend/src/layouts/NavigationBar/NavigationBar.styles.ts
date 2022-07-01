@@ -15,10 +15,20 @@ export const Nav = styled.nav`
   position: sticky;
   top: 0;
 
-  > button {
+  > button, > img {
     background-color: transparent;
     cursor: pointer;
     display: none;
+  }
+
+  > a > img {
+    cursor: pointer;
+    display: none;
+    height: 5.5rem;
+    transition: transform 500ms;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   ul {
@@ -33,8 +43,10 @@ export const Nav = styled.nav`
     flex-wrap: wrap;
   }
 
-  @media (max-width: 860px) {
-  & > button {
+  @media (max-width: 856px) {
+  justify-content: space-between;
+  & > button, & > a > img {
+    margin: 0 .8rem;
     display: block;
   }
   & > ul {

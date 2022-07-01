@@ -31,7 +31,7 @@ export const List = styled.ul<LinksBarProps>`
         background-color: ${({ theme }) => theme.COLORS.primary_hover};
       }
     }
-    @media (max-width: 860px){
+    @media (max-width: 856px){
       > div {
         width: 100vw;
       }

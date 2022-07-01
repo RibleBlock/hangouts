@@ -39,7 +39,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
     try {
       await addToCart({
         category: selectedType, size, border, flavors: flavor, comment, id_user: currentUser.id,
-      });
+      }).unwrap();
       // eslint-disable-next-line no-console
       console.info('Enviado', selectedType, size, border, flavor, comment);
       navigate('/cart', { replace: true, state: { prevPath: location.pathname } });
