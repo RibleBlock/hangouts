@@ -11,10 +11,12 @@ export const SignOutIcon = styled(SignOut)`
 `;
 
 export const Section = styled.div`
-box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.30);
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.30);
+  position: relative;
   width: 100%;
   max-width: 40em;
   padding: 2rem;
+  border-radius: .5rem;
 
   display: flex;
   justify-content: space-between;

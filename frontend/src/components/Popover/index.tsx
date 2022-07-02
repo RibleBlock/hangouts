@@ -56,6 +56,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
           <h2>{ chosenType.title }</h2>
           <ButtonBC
             right
+            absolute
             action={setSelectedType}
           />
         </header>

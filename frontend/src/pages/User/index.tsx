@@ -1,23 +1,21 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { ChangeOption } from '../../components';
+import { useSelector } from 'react-redux';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
-import { getToken, removeToken } from '../../store/Auth/reducer';
-import { BeginUser } from './BeginUser';
+import { getToken } from '../../store/Auth/reducer';
+import { BeginUser } from './steps/BeginUser';
+import { MyData } from './steps/MyData';
 import { Box } from './User.styles';
 
 export function User() {
   const token = useSelector(getToken);
   const currentUser = decodeJWT<User>(token);
-  const [optionClicked, setOptionClicked] = useState('');
+  const [optionClicked, setOptionClicked] = useState<string>('');
 
   function sowComponentsUsers(optionClicked: string) {
     switch (optionClicked) {
       case 'Meus dados':
-        return (<h1>Meus dados</h1>);
+        return (<MyData setOption={setOptionClicked} />);
       case 'Formas de pagamentos':
         return (<h1>Formas de pagamentos</h1>);
       case 'Histórico de compras':
@@ -28,14 +26,19 @@ export function User() {
         return (<h1>Admin</h1>);
 
       default:
-        return (<BeginUser currentUser={currentUser} setOption={setOptionClicked} />);
+        return (
+          <BeginUser
+            currentUser={currentUser}
+            setOption={setOptionClicked}
+          />
+        );
     }
   }
 
   return (
     <>
       <NavigationBar />
-      <Header title="Meu Perfil" />
+      <Header title={optionClicked || 'Meu Perfil'} />
 
       <Box>
         { sowComponentsUsers(optionClicked) }

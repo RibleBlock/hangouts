@@ -4,8 +4,8 @@ import {
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { ChangeOption } from '../../../components';
-import { removeToken } from '../../../store/Auth/reducer';
+import { ChangeOption } from '../../../../components';
+import { removeToken } from '../../../../store/Auth/reducer';
 import { Section, SignOutIcon, UserCircleIcon } from './BeginUser.styles';
 
 interface BeginUserProps {

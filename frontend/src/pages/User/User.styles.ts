@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
-  height: calc(100vh - 200px);
+  height: calc(100vh - 250px);
   min-height: 58rem;
   display: flex;
   flex-direction: column;
