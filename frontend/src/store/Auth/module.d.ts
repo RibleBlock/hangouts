@@ -3,6 +3,7 @@ declare interface User {
   id: number,
   name: string,
   email: string,
+  admin: boolean,
 }
 
 declare interface Pedido {

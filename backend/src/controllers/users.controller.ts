@@ -12,7 +12,7 @@ class User {
     let errors: string = '';
     try {
       if (email && password) {
-        const { data: user, error } = await UserModels.read('id, name, email, password', { email });
+        const { data: user, error } = await UserModels.read('id, name, email, password, admin', { email });
 
         if (checkErrorInDB(error)) {
           errors = 'Email já existe';
@@ -26,7 +26,7 @@ class User {
         }
 
         const {
-          id, name, password: passwordHash,
+          id, name, password: passwordHash, admin,
         } = user[0];
 
         if (!(await passwordIsValid(password, passwordHash))) {
@@ -35,11 +35,15 @@ class User {
           });
         }
 
-        const token = jwt.sign({ id, name, email }, 'ola_banana');
+        const token = jwt.sign({
+          id, name, email, admin,
+        }, 'código_do_serviço_secreto');
 
         return res.json({
           token,
-          user: { id, name, email },
+          user: {
+            id, name, email, admin,
+          },
         });
       }
       return res.status(409).json({

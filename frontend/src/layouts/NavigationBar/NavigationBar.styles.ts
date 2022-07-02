@@ -10,7 +10,7 @@ export const Nav = styled.nav`
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 
   position: sticky;
   top: 0;

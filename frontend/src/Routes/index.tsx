@@ -4,8 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 import {
-  Cart,
-  ChooseTypePizza, Home, Login, Register, User,
+  Home, Login, Register, ChooseTypePizza, User, Cart,
 } from '../pages';
 import PrivateRoute from './PrivateRoute';
 
