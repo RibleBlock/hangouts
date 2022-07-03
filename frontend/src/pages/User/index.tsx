@@ -15,7 +15,12 @@ export function User() {
   function sowComponentsUsers(optionClicked: string) {
     switch (optionClicked) {
       case 'Meus dados':
-        return (<MyData setOption={setOptionClicked} />);
+        return (
+          <MyData
+            user={currentUser}
+            setOption={setOptionClicked}
+          />
+        );
       case 'Formas de pagamentos':
         return (<h1>Formas de pagamentos</h1>);
       case 'Histórico de compras':

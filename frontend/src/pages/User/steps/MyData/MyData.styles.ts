@@ -1,13 +1,10 @@
+import { CaretRight } from 'phosphor-react';
 import styled from 'styled-components';
-import { UserCircle, SignOut } from 'phosphor-react';
 
-export const UserCircleIcon = styled(UserCircle)`
-  width: 6rem;
-  height: 6rem;
-`;
-export const SignOutIcon = styled(SignOut)`
-  min-width: 2.5rem;
-  min-height: 2.5rem;
+export const TaillessArrow = styled(CaretRight)`
+  width: 2rem;
+  height: 2rem;
+  color: red;
 `;
 
 export const Div = styled.div`
@@ -26,13 +23,13 @@ export const Section = styled.div`
   position: relative;
   width: 100%;
   max-width: 40em;
-  padding: 2rem;
+  padding: 1.2rem 1.9rem;
   border-radius: .5rem;
 
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
 
   > div {
     display: flex;
@@ -44,17 +41,25 @@ export const Section = styled.div`
   }
 
   > button {
-    display: flex;
+    width: 100%;
+    height: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr 3rem;
+    grid-template-rows: 1fr;
     align-items: center;
-    gap: 1rem;
 
     cursor: pointer;
     font-size: 1.6rem;
-    text-align: right;
-    text-decoration: underline;
     background-color: transparent;
 
-    &:hover {
+    > span {
+      width: 3rem;
+      white-space: nowrap;
+      &:first-of-type {
+        justify-self: flex-start;
+      }
+    }
+    &:not(:disabled):hover {
       font-weight: bold;
     }
   }

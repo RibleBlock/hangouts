@@ -1,16 +1,41 @@
 import { ButtonBC } from '../../../../components';
-import { Section } from '../BeginUser/BeginUser.styles';
+import { Div, Section, TaillessArrow } from './MyData.styles';
 
 interface MyDataProps {
+  user: User;
   setOption: (value: string) => void;
 }
-export function MyData({ setOption }: MyDataProps) {
+export function MyData({ user, setOption }: MyDataProps) {
   return (
-    <Section>
-      <header style={{ display: 'flex' }}>
+    <>
+      <Div>
         <ButtonBC arrow action={setOption} />
         <p>Meus dados</p>
-      </header>
-    </Section>
+      </Div>
+      <Section>
+        <button type="button" disabled>
+          <span>E-mail</span>
+          <span>{user.email}</span>
+        </button>
+        <hr />
+        <button type="button">
+          <span>Nome</span>
+          <span>{user.name}</span>
+          <TaillessArrow weight="bold" />
+        </button>
+        <hr />
+        <button type="button">
+          <span>Telefone</span>
+          <span>{user.phone || 'Não definido'}</span>
+          <TaillessArrow weight="bold" />
+        </button>
+        <hr />
+        <button type="button">
+          <span>Senha</span>
+          <span>**********</span>
+          <TaillessArrow weight="bold" />
+        </button>
+      </Section>
+    </>
   );
 }
