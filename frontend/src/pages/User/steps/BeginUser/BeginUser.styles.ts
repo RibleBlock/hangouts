@@ -30,9 +30,9 @@ export const Section = styled.div`
   border-radius: .5rem;
 
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
 
   > div {
     display: flex;

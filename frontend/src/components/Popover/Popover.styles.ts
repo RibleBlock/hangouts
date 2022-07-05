@@ -44,6 +44,7 @@ export const DarkBG = styled.div`
   top: 0;
   left: 0;
   background-color: #00000085;
+  user-select: none;
   z-index: 5;
 
   display: flex;

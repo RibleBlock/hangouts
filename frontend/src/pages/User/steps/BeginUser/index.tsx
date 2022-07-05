@@ -25,7 +25,7 @@ export function BeginUser({ currentUser, setOption } : BeginUserProps) {
 
   return (
     <>
-      <Section>
+      <Section style={{ flexDirection: 'row' }}>
         <div>
           <UserCircleIcon weight="thin" />
           <p>

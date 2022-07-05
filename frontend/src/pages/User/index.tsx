@@ -5,6 +5,7 @@ import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken } from '../../store/Auth/reducer';
 import { BeginUser } from './steps/BeginUser';
 import { MyData } from './steps/MyData';
+import { OrderHistory } from './steps/OrderHistory';
 import { Box } from './User.styles';
 
 export function User() {
@@ -24,7 +25,12 @@ export function User() {
       case 'Formas de pagamentos':
         return (<h1>Formas de pagamentos</h1>);
       case 'Histórico de compras':
-        return (<h1>Histórico de compras</h1>);
+        return (
+          <OrderHistory
+            user={currentUser}
+            setOption={setOptionClicked}
+          />
+        );
       case 'Endereço':
         return (<h1>Endereço</h1>);
       case 'Admin':

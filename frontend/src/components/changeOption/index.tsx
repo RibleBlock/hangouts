@@ -1,14 +1,18 @@
 import { ReactNode } from 'react';
+import { TaillessArrow } from '../../pages/User/steps/MyData/MyData.styles';
 import { Button } from './ChangeOption.styles';
 
-interface ChangeOptionProps {
-  children: ReactNode;
+export type ChangeOptionStyles = {
+  showArrow?: boolean,
+}
+interface ChangeOptionProps extends ChangeOptionStyles {
+  children?: ReactNode;
   optionTitle: string;
   optionDescription: string;
   setOption: (value: string) => void;
 }
 export function ChangeOption({
-  children, optionTitle, optionDescription, setOption,
+  showArrow, children, optionTitle, optionDescription, setOption,
 }: ChangeOptionProps) {
   return (
     <Button
@@ -25,6 +29,9 @@ export function ChangeOption({
           {optionDescription}
         </p>
       </div>
+      { showArrow && (
+        <TaillessArrow weight="bold" className="arrowsvg" />
+      ) }
     </Button>
   );
 }

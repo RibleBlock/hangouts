@@ -4,13 +4,17 @@ import { Button } from './ButtonAction.styles';
 
 interface ButtonActionProps {
   small?: boolean;
+  round?: boolean;
   children: ReactNode;
   isLoading?: boolean;
 }
-export function ButtonAction({ small, isLoading, children }: ButtonActionProps) {
+export function ButtonAction({
+  small, round, isLoading, children,
+}: ButtonActionProps) {
   return (
     <Button
       type="submit"
+      round={!round}
       small={small}
       disabled={isLoading}
     >
