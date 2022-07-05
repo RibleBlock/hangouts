@@ -46,6 +46,7 @@ export const Div = styled.div`
   width: 100%;
   max-width: 40em;
   margin-bottom: 2.5rem;
+  padding-left: 2rem;
   display: flex;
   gap: 1rem;
   > p {

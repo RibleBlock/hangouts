@@ -7,7 +7,7 @@ interface OrderHistoryProps {
   user: User;
   setOption: (value: string) => void;
 }
-interface Baba {
+interface TypeObjetoDeExemplo {
   id: number,
   name: string,
 }
@@ -29,51 +29,51 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
       id: 11, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 12, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 13, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 14, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 15, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 16, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 17, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 18, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 19, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 20, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 21, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 22, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 23, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 24, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 25, name: 'RIquelme',
     },
     {
-      id: 11, name: 'RIquelme',
+      id: 26, name: 'RIquelme',
     },
-  ] as Baba[];
+  ] as TypeObjetoDeExemplo[];
 
   return (
     <>
@@ -83,11 +83,12 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
       </Div>
       <Section>
 
-        { objetoDeExemplo.map(({ id }: Baba, indice, array) => (
+        { objetoDeExemplo.map(({ id }: TypeObjetoDeExemplo, indice, array) => (
           <>
             <ChangeOption
+              key={id}
               setOption={setPopoverOrderIsOpen}
-              optionTitle={`Pedido  N${id}`}
+              optionTitle={`Pedido N${id}`}
               optionDescription="Ver informacoes sobre este pedido"
               showArrow
             />
