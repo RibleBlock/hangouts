@@ -28,6 +28,51 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
     {
       id: 11, name: 'RIquelme',
     },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
+    {
+      id: 11, name: 'RIquelme',
+    },
   ] as Baba[];
 
   return (

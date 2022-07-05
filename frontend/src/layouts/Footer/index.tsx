@@ -1,9 +1,12 @@
 import { FacebookLogo, InstagramLogo, TwitterLogo } from 'phosphor-react';
 import { FooterBox } from './Footer.styles';
 
-export function Footer() {
+export interface FooterProps {
+  relative?: boolean,
+}
+export function Footer({ relative }: FooterProps) {
   return (
-    <FooterBox>
+    <FooterBox relative={relative}>
       <p>© 2022 Copyright - Riquelme, George e Victor</p>
       <div>
         <a href="https://twitter.com/Hangouts_pizza" target="_blank" rel="noopener noreferrer">

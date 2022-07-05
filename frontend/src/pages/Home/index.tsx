@@ -66,7 +66,7 @@ export function Home() {
           </div>
         </Section>
       </Element>
-      <Footer />
+      <Footer relative />
     </>
   );
 }
