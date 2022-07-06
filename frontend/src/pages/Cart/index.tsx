@@ -18,6 +18,7 @@ export function Cart() {
           <CartItem title="PIZZA GIGA" />
           <CartItem title="PIZZA BROTO" />
           <CartItem title="PIZZA BROTO" />
+
         </div>
         <div className="flex_itens">
           <div>

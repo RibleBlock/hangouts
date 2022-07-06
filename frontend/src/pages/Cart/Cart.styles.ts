@@ -14,7 +14,8 @@ export const Box = styled.div`
 
     > div.flex_itens {
     width: 47rem;
-    /* height: 5rem; // altura do bloco // */
+    /* height: 35rem; // altura do bloco // */
+    height: 35rem;
     padding: 2.2rem 2rem;
     border-radius: 1rem;
     box-shadow: 0px 0px 15px #BABABA;
@@ -22,6 +23,7 @@ export const Box = styled.div`
 
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 2.5rem;
 
     > div {
@@ -48,6 +50,6 @@ export const Box = styled.div`
     box-sizing: content-box;
     border-radius: 0;
     box-shadow: none;
-    overflow-y: scroll;
+    overflow: hidden scroll;
 }
 `;
