@@ -18,15 +18,15 @@ export default createGlobalStyle`
     background-color: ${({ theme }) => theme.COLORS.secondary};
   }
 
-  body::-webkit-scrollbar {
-  width: calc(1em / 2);
-}
+  *::-webkit-scrollbar {
+    width: .2rem;
+  }
 
-body::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   border-radius: 100rem;
   background-color: darkgrey;
   outline: 1px solid slategrey;

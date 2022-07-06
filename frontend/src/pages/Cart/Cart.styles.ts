@@ -9,8 +9,10 @@ export const Box = styled.div`
   /* flex-wrap: wrap; */
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 6rem;
-  > div {
+
+    > div.flex_itens {
     width: 47rem;
     /* height: 5rem; // altura do bloco // */
     padding: 2.2rem 2rem;
@@ -25,6 +27,7 @@ export const Box = styled.div`
     > div {
       display: flex;
       justify-content: space-between;
+      gap: 2rem;
       > div p:last-of-type {  // Alterar
         text-align: right;
         color: #0085FF;
@@ -38,4 +41,13 @@ export const Box = styled.div`
       }
     }
   }
+
+  > div.order_list {
+    height: 35rem;
+    padding: 1rem;
+    box-sizing: content-box;
+    border-radius: 0;
+    box-shadow: none;
+    overflow-y: scroll;
+}
 `;

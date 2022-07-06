@@ -5,15 +5,18 @@ import { Button } from './ButtonAction.styles';
 interface ButtonActionProps {
   small?: boolean;
   round?: boolean;
+  noMargin?: boolean;
   children: ReactNode;
   isLoading?: boolean;
+  type: 'submit' | 'button';
 }
 export function ButtonAction({
-  small, round, isLoading, children,
+  small, round, noMargin, isLoading, children, type,
 }: ButtonActionProps) {
   return (
     <Button
-      type="submit"
+      type={type}
+      noMargin={noMargin}
       round={!round}
       small={small}
       disabled={isLoading}

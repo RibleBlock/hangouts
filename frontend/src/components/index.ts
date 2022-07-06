@@ -5,4 +5,5 @@ export { InputText } from './form/InputText';
 export { TypeFoodButton } from './TypeFoodButton';
 export { Loading } from './Loading';
 export { ChangeOption } from './changeOption';
+export { CartItem } from './CartItem';
 export { ButtonAction } from './form/ButtonAction';

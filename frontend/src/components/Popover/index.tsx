@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { ButtonBC } from '..';
 import {
   BordersType, SizeType, TypeFood, typeFoods,
@@ -38,14 +39,19 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
     e.preventDefault();
     try {
       await addToCart({
-        category: selectedType, size, border, flavors: flavor, comment, id_user: currentUser.id,
-      }).unwrap();
+        category: selectedType,
+        size,
+        border,
+        flavors: flavor,
+        comment,
+        id_user: currentUser.id,
+      });
       // eslint-disable-next-line no-console
-      console.info('Enviado', selectedType, size, border, flavor, comment);
+      toast.success(`Enviado ${selectedType}, ${size}, ${border}, ${flavor}, ${comment}`);
       navigate('/cart', { replace: true, state: { prevPath: location.pathname } });
     } catch (error: any) {
       // eslint-disable-next-line no-console
-      console.error(error);
+      toast.error('Algo deu errado');
     }
   }
 

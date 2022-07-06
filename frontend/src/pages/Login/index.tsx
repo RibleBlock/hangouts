@@ -60,6 +60,7 @@ export function Login() {
             <input type="password" {...register('password')} />
 
             <ButtonAction
+              type="submit"
               isLoading={isLoadindLogin}
               small
             >

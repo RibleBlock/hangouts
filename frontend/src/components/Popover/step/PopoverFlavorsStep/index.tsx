@@ -135,7 +135,11 @@ export function PopoverFlavorsStep({
       />
       ) }
 
-      <ButtonAction>Adicionar ao carrinho</ButtonAction>
+      <ButtonAction
+        type="submit"
+      >
+        Adicionar ao carrinho
+      </ButtonAction>
     </Content>
   );
 }

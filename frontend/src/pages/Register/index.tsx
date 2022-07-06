@@ -66,7 +66,11 @@ export function Register() {
             <p>Confirmar Senha:</p>
             <input type="password" {...register('confirmPassword')} />
 
-            <ButtonAction small isLoading={isLoadindRegister}>
+            <ButtonAction
+              type="submit"
+              isLoading={isLoadindRegister}
+              small
+            >
               Criar Conta
             </ButtonAction>
           </form>

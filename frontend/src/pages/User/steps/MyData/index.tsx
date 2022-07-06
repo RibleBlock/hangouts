@@ -92,6 +92,7 @@ export function MyData({ user, setOption }: MyDataProps) {
               ) }
               <input type="text" placeholder="Confirme sua senha atual" />
               <ButtonAction
+                type="submit"
                 isLoading={false}
                 small
               >
