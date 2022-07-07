@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { Box } from './InputText.styles';
 
 interface InputTextProps {
   subtitle: string
   setText: (text: string) => void;
 }
-export function InputText({ subtitle, setText }: InputTextProps) {
+function InputTextComponent({ subtitle, setText }: InputTextProps) {
   const [isValid, setIsvalid] = useState<boolean>(false);
 
   function validateInput(text: string) {
@@ -31,3 +31,4 @@ export function InputText({ subtitle, setText }: InputTextProps) {
     </Box>
   );
 }
+export const InputText = memo(InputTextComponent);

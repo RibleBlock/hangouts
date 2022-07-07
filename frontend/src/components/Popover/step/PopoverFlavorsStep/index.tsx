@@ -15,9 +15,10 @@ interface PopoverFlavorsStepProps {
   flavors: string[];
   setFlavors: (sizeName: string[]) => void;
   setComment: (comment: string) => void;
+  isLoadingSubmit: boolean;
 }
 export function PopoverFlavorsStep({
-  chosenType, size, flavors, setFlavors, setComment,
+  chosenType, size, flavors, setFlavors, setComment, isLoadingSubmit,
 }: PopoverFlavorsStepProps) {
   const objSabores = typeFoods[chosenType].flavor;
 
@@ -137,6 +138,7 @@ export function PopoverFlavorsStep({
 
       <ButtonAction
         type="submit"
+        isLoading={isLoadingSubmit}
       >
         Adicionar ao carrinho
       </ButtonAction>

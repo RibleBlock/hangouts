@@ -29,6 +29,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
   const [border, setBorder] = useState<BordersType | null>(null);
   const [flavor, setFlavor] = useState<string[]>([]);
   const [comment, setComment] = useState<string>('');
+  const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line no-console
@@ -37,7 +38,16 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setIsLoadingSubmit(true);
+
     try {
+      if ((selectedType === 'PIZZA') && !(selectedType && size && border && currentUser.id)) {
+        return toast.error('Algo não está certo.');
+      }
+      if (!flavor.length) {
+        return toast.error('Selecione pelo menos 1 sabor.');
+      }
+
       await addToCart({
         category: selectedType,
         size,
@@ -46,12 +56,17 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
         comment,
         id_user: currentUser.id,
       });
-      // eslint-disable-next-line no-console
-      toast.success(`Enviado ${selectedType}, ${size}, ${border}, ${flavor}, ${comment}`);
-      navigate('/cart', { replace: true, state: { prevPath: location.pathname } });
+
+      // TEMPORÁRIO //
+      toast.success(`Enviado ${selectedType}, ${size}, ${border}, ${flavor}, ${comment}, ${currentUser.id}`);
+      // //
+      toast.success('Adicionado ao carrinho');
+      return navigate('/cart', { replace: true, state: { prevPath: location.pathname } });
     } catch (error: any) {
-      // eslint-disable-next-line no-console
-      toast.error('Algo deu errado');
+      // //
+      return toast.error(error);
+    } finally {
+      setIsLoadingSubmit(false);
     }
   }
 
@@ -79,6 +94,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
               setFlavors={setFlavor}
               flavors={flavor}
               setComment={setComment}
+              isLoadingSubmit={isLoadingSubmit}
             />
           ) : (
             <>
