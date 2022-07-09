@@ -86,7 +86,7 @@ export function Cart() {
             <p>Total:</p>
             <p>R$ 0,00</p>
           </div>
-          <div>
+          <div className="botoes">
             <ButtonAction
               type="button"
               noMargin

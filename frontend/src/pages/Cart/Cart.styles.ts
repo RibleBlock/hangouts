@@ -6,15 +6,13 @@ export const Box = styled.div`
   margin: 5rem auto 0 auto;
 
   display: flex;
-  /* flex-wrap: wrap; */
   justify-content: center;
   flex-wrap: wrap;
   gap: 6rem;
 
-    > div.flex_itens {
-    width: 47rem;
-    /* height: 35rem; // altura do bloco // */
-    height: 35rem;
+  > div.flex_itens {
+    width: 100%;
+    max-width: 47rem;
     padding: 2.2rem 2rem;
     border-radius: 1rem;
     box-shadow: 0px 0px 15px #BABABA;
@@ -24,23 +22,33 @@ export const Box = styled.div`
     flex-direction: column;
     justify-content: space-between;
     gap: 2.5rem;
-
+    > .botoes {
+      flex-direction: row;
+    }
     > div {
+      text-align: right;
       display: flex;
       justify-content: space-between;
       gap: 2rem;
+
       > div p:last-of-type {  // Alterar
-        text-align: right;
         color: #0085FF;
         font-size: 1.3rem;
         text-decoration: underline;
       }
       > p {
+
         &:first-of-type {
+          text-align: left;
           font-weight: bold;
         }
       }
     }
+  @media screen and (max-width: 455px) {
+    > .botoes {
+      flex-direction: column;
+    }
+  }
   }
 
   > div.order_list {

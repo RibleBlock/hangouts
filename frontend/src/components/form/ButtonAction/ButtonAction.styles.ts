@@ -5,7 +5,8 @@ export const Button = styled.button<{small?: boolean, round?: boolean, noMargin?
   justify-content: center;
   align-items: center;
 
-  width: ${(props) => (props.small ? '18rem' : '38rem')};
+  width: 100%;
+  max-width: ${(props) => (props.small ? '18rem' : '38rem')};
   height: 5rem;
   margin: 0 auto;
   ${(props) => !props.noMargin && css`margin-top: 2.5rem;`}

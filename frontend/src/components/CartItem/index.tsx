@@ -27,7 +27,7 @@ export function CartItem({
           isOpen={buttonIsOpen}
           weight="bold"
         />
-        <p>{title || 'Sem Titulo'}</p>
+        <p>{(title || 'Sem Titulo').toUpperCase()}</p>
       </div>
       <div id="flavors">
         <p>{`• ${border}`}</p>
