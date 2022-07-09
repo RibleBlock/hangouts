@@ -5,7 +5,7 @@ import { LoadingStyles } from '.';
 export const Circle = styled(CircleNotch)<LoadingStyles>`
   width: 2rem;
   height: 2rem;
-  color: ${(props) => props.color};
+  color: ${(props) => (props.color !== 'grey' ? props.color : '#bcbcbc')};
   animation: rodar 2s linear infinite;
 
   @keyframes rodar {

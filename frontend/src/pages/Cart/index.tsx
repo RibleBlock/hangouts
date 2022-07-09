@@ -1,12 +1,13 @@
 /* eslint-disable react/no-array-index-key */
-import { useState } from 'react';
-import { ButtonAction, CartItem } from '../../components';
+import { useEffect, useState } from 'react';
+import { ButtonAction, CartItem, Loading } from '../../components';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { Pedido } from '../../store/module';
 import { Box } from './Cart.styles';
 
 export function Cart() {
-  const objetoTeste = [
+  const [isFetchingCart, setIsFetchingCart] = useState<boolean>(false);
+  const [objetoPedidoTeste] = useState<Pedido[]>([
     {
       category: 'PiZZA',
       size: 'média',
@@ -43,7 +44,16 @@ export function Cart() {
       comment: 'Nao coloca trigo na massa',
       idUser: 4,
     },
-  ] as Pedido[];
+  ]);
+
+  useEffect(() => {
+    async function getCartUser() {
+      // setIsFetchingCart(true);
+      // alert('Buscando Carrinho do usuario');
+      // setIsFetchingCart(false);
+    }
+    getCartUser();
+  }, []);
 
   return (
     <>
@@ -51,21 +61,27 @@ export function Cart() {
       <Header title="Carrinho" />
 
       <Box>
-        <div className="flex_itens order_list">
-          { objetoTeste.map(({
-            category, size, border, flavors, comment, value, idUser,
-          }: Pedido, i) => (
-            <CartItem
-              key={i}
-              title={size ? `PIZZA ${size}` : category!}
-              border={border}
-              sabores={flavors}
-              value={value}
-              isOpen={false}
-            />
-          )) }
+        { isFetchingCart ? (
+          <div className="flex_itens loading">
+            <Loading color="grey" />
+          </div>
+        ) : (
+          <div className="flex_itens order_list">
+            { objetoPedidoTeste.map(({
+              category, size, border, flavors, comment, value, idUser,
+            }: Pedido, i) => (
+              <CartItem
+                key={i}
+                title={size ? `PIZZA ${size}` : category!}
+                border={border}
+                sabores={flavors}
+                value={value}
+                isOpen={false}
+              />
+            )) }
+          </div>
+        ) }
 
-        </div>
         <div className="flex_itens">
           <div>
             <p>Formas de Entrega:</p>
@@ -88,7 +104,8 @@ export function Cart() {
           </div>
           <div className="botoes">
             <ButtonAction
-              type="button"
+              link
+              to="/pedir"
               noMargin
             >
               Continuar comprando

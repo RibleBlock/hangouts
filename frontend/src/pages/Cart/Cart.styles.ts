@@ -61,4 +61,16 @@ export const Box = styled.div`
     box-shadow: none;
     overflow: hidden scroll;
   }
+
+  > div.loading {
+    height: 30rem;
+    display: grid;
+    place-content: center;
+    z-index: -1;
+
+    > svg {
+      width: 4rem;
+      height: 4rem
+    }
+  }
 `;

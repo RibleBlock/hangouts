@@ -1,7 +1,7 @@
 import { Circle } from './Loading.styles';
 
 export type LoadingStyles = {
-  color: 'black' | 'white';
+  color: 'black' | 'white' | 'grey';
 }
 interface LoadingProps extends LoadingStyles {}
 
