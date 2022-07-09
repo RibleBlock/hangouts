@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { State } from '../module';
+import { Pedido, State } from '../module';
 
 const initialState = {
   category: null,
   size: null,
-  border: null,
+  border: '',
   flavors: [],
   comment: '',
-  id_user: null,
+  value: 0,
+  idUser: null,
 } as Pedido;
 
 const { actions, reducer } = createSlice({

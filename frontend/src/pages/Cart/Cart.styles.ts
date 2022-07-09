@@ -8,7 +8,6 @@ export const Box = styled.div`
   display: flex;
   /* flex-wrap: wrap; */
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   gap: 6rem;
 
@@ -45,11 +44,13 @@ export const Box = styled.div`
   }
 
   > div.order_list {
-    height: 35rem;
+    justify-content: start;
+    height: 100%;
+    max-height: 35rem;
     padding: 1rem;
     box-sizing: content-box;
     border-radius: 0;
     box-shadow: none;
     overflow: hidden scroll;
-}
+  }
 `;

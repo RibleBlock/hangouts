@@ -26,7 +26,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
 
   const chosenType = typeFoods[selectedType];
   const [size, setSize] = useState<SizeType | null>(null);
-  const [border, setBorder] = useState<BordersType | null>(null);
+  const [border, setBorder] = useState<string>('');
   const [flavor, setFlavor] = useState<string[]>([]);
   const [comment, setComment] = useState<string>('');
   const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
@@ -41,7 +41,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
     setIsLoadingSubmit(true);
 
     try {
-      if ((selectedType === 'PIZZA') && !(selectedType && size && border && currentUser.id)) {
+      if ((selectedType === 'PIZZA') && (!selectedType || !size || !border || !currentUser.id)) {
         return toast.error('Algo não está certo.');
       }
       if (!flavor.length) {
@@ -54,7 +54,8 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
         border,
         flavors: flavor,
         comment,
-        id_user: currentUser.id,
+        value: 0,
+        idUser: currentUser.id,
       });
 
       // TEMPORÁRIO //

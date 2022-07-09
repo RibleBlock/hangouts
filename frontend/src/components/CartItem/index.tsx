@@ -1,16 +1,42 @@
-import { ArrowCart, Section } from './CartItem.styles';
+/* eslint-disable no-restricted-syntax */
+import { useState } from 'react';
+import { ArrowCart, Button } from './CartItem.styles';
 
-interface CartItemProps {
-  title: string,
+export type CartItemStyle = {
+  isOpen: boolean,
 }
-export function CartItem({ title }: CartItemProps) {
+interface CartItemProps extends CartItemStyle {
+  title: string,
+  border: string,
+  sabores: string[],
+  value: number,
+}
+export function CartItem({
+  title, border, sabores, value, isOpen,
+}: CartItemProps) {
+  const [buttonIsOpen, setButtonIsOpen] = useState(false);
+
   return (
-    <Section>
-      <div>
-        <ArrowCart weight="bold" />
+    <Button
+      type="button"
+      isOpen={buttonIsOpen}
+      onClick={() => setButtonIsOpen(!buttonIsOpen)}
+    >
+      <div id="title">
+        <ArrowCart
+          isOpen={buttonIsOpen}
+          weight="bold"
+        />
         <p>{title || 'Sem Titulo'}</p>
       </div>
-      <p>R$ 0,00</p>
-    </Section>
+      <div id="flavors">
+        <p>{`• ${border}`}</p>
+        <p>
+          {'• '}
+          { sabores.map((value, index) => `${value}${index + 1 < sabores.length ? ',' : ''} `) }
+        </p>
+      </div>
+      <p id="value">{`R$ ${value.toFixed(2)}`}</p>
+    </Button>
   );
 }
