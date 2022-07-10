@@ -3,9 +3,11 @@ import { PopoverListButton } from '../../PopoverListButton';
 import { Content } from '../PopoverSizeStep/PopoverSizeStep.styles';
 
 interface PopoverBorderStepProps {
-  setBorda: (sizeName: BordersType) => void;
+  setBorda: (sizeName: BordersType) => void,
+  setValue: (value: number) => void,
+  valueWish: number,
 }
-export function PopoverBorderStep({ setBorda }: PopoverBorderStepProps) {
+export function PopoverBorderStep({ setBorda, setValue, valueWish }: PopoverBorderStepProps) {
   return (
     <Content>
       <h2>Selecione a borda:</h2>
@@ -15,6 +17,8 @@ export function PopoverBorderStep({ setBorda }: PopoverBorderStepProps) {
           item={value.nomes}
           price={value.price}
           setStepOn={setBorda}
+          setValue={setValue}
+          valueWish={valueWish}
         />
       )) }
       <hr />

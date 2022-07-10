@@ -8,7 +8,7 @@ const initialState = {
   flavors: [],
   comment: '',
   value: 0,
-  idUser: null,
+  idUser: 0,
 } as Pedido;
 
 const { actions, reducer } = createSlice({

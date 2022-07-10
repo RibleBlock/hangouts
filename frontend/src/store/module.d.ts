@@ -15,5 +15,5 @@ declare interface Pedido {
   flavors: string[],
   comment?: string,
   value: number,
-  idUser: number | null,
+  idUser: number,
 }

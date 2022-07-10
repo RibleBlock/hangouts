@@ -14,11 +14,13 @@ interface PopoverFlavorsStepProps {
   size: SizeType;
   flavors: string[];
   setFlavors: (sizeName: string[]) => void;
+  value: number;
+  setValue: (value: number) => void;
   setComment: (comment: string) => void;
   isLoadingSubmit: boolean;
 }
 export function PopoverFlavorsStep({
-  chosenType, size, flavors, setFlavors, setComment, isLoadingSubmit,
+  chosenType, size, flavors, setFlavors, value, setValue, setComment, isLoadingSubmit,
 }: PopoverFlavorsStepProps) {
   const objSabores = typeFoods[chosenType].flavor;
 
@@ -47,10 +49,16 @@ export function PopoverFlavorsStep({
   const limiteSabor = limitar();
 
   // funcao de desativar checkbox //
-  function checkFlavors(flavor: string) {
+  function checkFlavors(e: MouseEvent) {
+    const el = e.target as EventType & EventTarget;
+    const flavor = el.labels[0].getAttribute('for');
+    const price = Number((el.labels[0].lastChild.innerText).slice(5));
+
     if (!flavors.includes(flavor)) {
+      setValue(Number(value + price));
       setFlavors([flavor, ...flavors]);
     } else {
+      setValue(Number(value - price));
       setFlavors(flavors.filter((v) => v !== flavor));
     }
   }
@@ -91,42 +99,82 @@ export function PopoverFlavorsStep({
           sabor:
         </h2>
       ) }
-
-      { Object.entries(objSabores).map(([key, value]) => (
+      { chosenType !== 'CALZONE' ? (
         <>
-          <h3 key={key}>{ key }</h3>
-          { (value.sabor).map(({ nome, descricao }: IngredientType) => (
-            <Div>
-              <hr />
-              <input
-                key={nome + key.toLowerCase()}
-                type="checkbox"
-                id={chosenType === 'BEBIDA' ? nome + key.toLowerCase() : nome}
-                onChange={() => checkFlavors(nome)}
-                className="input"
-              />
-              <label
-                htmlFor={chosenType === 'BEBIDA' ? nome + key.toLowerCase() : nome}
-              >
+          { Object.entries(objSabores).map(([key, value]) => (
+            <>
+              <h3 key={key}>{ key }</h3>
+              { (value.sabor).map(({ nome, descricao }: IngredientType) => (
+                <Div>
+                  <hr />
+                  <input
+                    key={nome + key.toLowerCase()}
+                    type="checkbox"
+                    id={chosenType === 'BEBIDA' ? nome + key.toLowerCase() : nome}
+                    onChange={(e) => checkFlavors(e as any)}
+                    className="input"
+                  />
+                  <label
+                    htmlFor={chosenType === 'BEBIDA' ? nome + key.toLowerCase() : nome}
+                  >
+                    <div>
+                      <p>{ nome }</p>
+                      <span>{ descricao }</span>
+                    </div>
+                    <span>
+                      { chosenType !== 'BEBIDA' && '+ ' }
+                      R$
+                      {' '}
+                      {value.price.toFixed(2)}
+                    </span>
 
-                <div>
-                  <p>{ nome }</p>
-                  <span>{ descricao }</span>
-                </div>
-                <span>
-                  { (chosenType !== 'BEBIDA' && chosenType !== 'CALZONE') && '+' }
-                  {' '}
-                  R$
-                  {' '}
-                  {value.price.toFixed(2)}
-                </span>
-
-              </label>
-            </Div>
+                  </label>
+                </Div>
+              )) }
+            </>
           )) }
+          <hr />
         </>
-      )) }
-      <hr />
+      ) : (
+        <>
+          { Object.entries(objSabores).map(([key, value]) => (
+            <>
+              <h3>CALZONES</h3>
+              { (value.sabor).map(({
+                nome, descricao, price,
+              }: {
+                nome: string, descricao: string, price: number
+              }) => (
+                <Div>
+                  <hr />
+                  <input
+                    key={nome}
+                    type="checkbox"
+                    id={nome}
+                    onChange={(e) => checkFlavors(e as any)}
+                    className="input"
+                  />
+                  <label
+                    htmlFor={nome}
+                  >
+                    <div>
+                      <p>{ nome }</p>
+                      <span>{ descricao }</span>
+                    </div>
+                    <span>
+                      R$
+                      {' '}
+                      {price.toFixed(2)}
+                    </span>
+
+                  </label>
+                </Div>
+              )) }
+            </>
+          )) }
+          <hr />
+        </>
+      ) }
 
       { chosenType !== 'BEBIDA'
       && (

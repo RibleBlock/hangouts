@@ -32,6 +32,7 @@ export const Content = styled.div`
     &:disabled + label {
       opacity: 0.4;
       background-color: transparent;
+      cursor: not-allowed;
     }
   }
   hr {

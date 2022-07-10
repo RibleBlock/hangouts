@@ -29,12 +29,12 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
   const [border, setBorder] = useState<string>('');
   const [flavor, setFlavor] = useState<string[]>([]);
   const [comment, setComment] = useState<string>('');
+  const [value, setValue] = useState<number>(0);
   const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(selectedType, size, border, flavor, comment);
-  }, [selectedType, size, border, flavor, comment]);
+    console.log(selectedType, size, border, flavor, value, comment);
+  }, [selectedType, size, border, flavor, comment, value]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -54,12 +54,12 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
         border,
         flavors: flavor,
         comment,
-        value: 0,
+        value,
         idUser: currentUser.id,
       });
 
       // TEMPORÁRIO //
-      toast.success(`Enviado ${selectedType}, ${size}, ${border}, ${flavor}, ${comment}, ${currentUser.id}`);
+      toast.info(`Enviado ${selectedType}, ${size}, ${border}, ${flavor}, ${value}, ${comment}, ${currentUser.id}`);
       // //
       toast.success('Adicionado ao carrinho');
       return navigate('/cart', { replace: true, state: { prevPath: location.pathname } });
@@ -83,10 +83,13 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
           />
         </header>
         <form onSubmit={(e) => handleSubmit(e)}>
+          {/* Pedido */}
           <input type="hidden" name="type" value={selectedType} />
           <input type="hidden" name="size" value={size || 'vazio'} />
           <input type="hidden" name="border" value={border || 'vazio'} />
           <input type="hidden" name="flavor" value={flavor} />
+          <input type="hidden" name="value" value={value} />
+          {/*  */}
 
           { (selectedType === 'BEBIDA') || (selectedType === 'CALZONE') || (size && border) ? (
             <PopoverFlavorsStep
@@ -94,6 +97,8 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
               size={size || 'BROTO'}
               setFlavors={setFlavor}
               flavors={flavor}
+              value={value}
+              setValue={setValue}
               setComment={setComment}
               isLoadingSubmit={isLoadingSubmit}
             />
@@ -107,11 +112,15 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
               { size ? (
                 <PopoverBorderStep
                   setBorda={setBorder}
+                  setValue={setValue}
+                  valueWish={value}
                 />
               ) : (
                 <PopoverSizeStep
                   setSize={setSize}
                   chosenType={selectedType}
+                  setValue={setValue}
+                  valueWish={value}
                 />
               ) }
             </>

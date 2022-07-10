@@ -5,8 +5,12 @@ import { Content } from './PopoverSizeStep.styles';
 interface PopoverSizeStepProps {
   chosenType: TypeFood;
   setSize: (sizeName: SizeType) => void;
+  setValue: (value: number) => void;
+  valueWish: number,
 }
-export function PopoverSizeStep({ setSize, chosenType }: PopoverSizeStepProps) {
+export function PopoverSizeStep({
+  setSize, chosenType, setValue, valueWish,
+}: PopoverSizeStepProps) {
   return (
     <Content>
       <h2>Selecione o tamanho:</h2>
@@ -16,6 +20,8 @@ export function PopoverSizeStep({ setSize, chosenType }: PopoverSizeStepProps) {
           item={[value.size]}
           price={value.price}
           setStepOn={setSize}
+          setValue={setValue}
+          valueWish={valueWish}
         />
       )) }
       <hr />
