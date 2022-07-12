@@ -19,6 +19,7 @@ export function PopoverBorderStep({ setBorda, setValue, valueWish }: PopoverBord
           setStepOn={setBorda}
           setValue={setValue}
           valueWish={valueWish}
+          plusIcon
         />
       )) }
       <hr />

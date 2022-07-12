@@ -3,23 +3,20 @@ import { BordersType, SizeType } from '../../../assets/Foods';
 import { ButtonSize } from '../step/PopoverSizeStep/PopoverSizeStep.styles';
 
 interface PopoverListButtonProps {
-  item: string[];
-  price: number;
-  descricao?: string;
-  setStepOn: (sizeName: SizeType & BordersType) => void;
-  setValue: (value: number) => void;
-  valueWish: number;
+  item: string[],
+  price: number,
+  descricao?: string,
+  plusIcon?: boolean,
+  setStepOn: (sizeName: SizeType & BordersType) => void,
+  setValue: (value: number) => void,
+  valueWish: number,
 }
 export function PopoverListButton({
-  item, descricao, price, setStepOn, setValue, valueWish,
+  item, descricao, price, plusIcon, setStepOn, setValue, valueWish,
 }: PopoverListButtonProps) {
-  function setarValores(e: MouseEvent) {
-    const el = e.target as EventType & EventTarget;
-    const size = el!.firstChild.innerText;
-    const price = Number((el!.lastChild.innerText).slice(3));
-
+  function setarValores(size: string, price: number) {
+    setValue(Number(valueWish) + price);
     setStepOn(size as SizeType & BordersType);
-    setValue(Number(valueWish + price));
   }
 
   return (
@@ -28,7 +25,7 @@ export function PopoverListButton({
         <div key={nameKey}>
           <hr />
           <ButtonSize
-            onClick={(e) => setarValores(e as any)}
+            onClick={() => setarValores(nameKey, price)}
             type="button"
           >
             <div>
@@ -36,9 +33,10 @@ export function PopoverListButton({
               <span>{ descricao }</span>
             </div>
             <span>
+              { plusIcon && '+ ' }
               R$
               {' '}
-              {price.toFixed(2)}
+              <span id="preco">{price.toFixed(2)}</span>
             </span>
           </ButtonSize>
         </div>

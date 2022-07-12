@@ -34,6 +34,12 @@ export const authApi = createApi({
         body: wish,
       }),
     }),
+    getFlavors: builder.query({
+      query: () => ({
+        url: 'flavors',
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -41,4 +47,5 @@ export const {
   useLoginUserMutation,
   useNewUserMutation,
   useAddToCartMutation,
+  useLazyGetFlavorsQuery,
 } = authApi;

@@ -17,3 +17,16 @@ declare interface Pedido {
   value: number,
   idUser: number,
 }
+
+declare interface Flavor {
+  name: string,
+  created_at: string,
+  flavor_category: {
+    name: string,
+    price: number,
+  },
+  flavor_type: {
+    name: string,
+    create_at: string,
+  },
+}

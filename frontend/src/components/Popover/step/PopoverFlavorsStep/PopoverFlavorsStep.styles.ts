@@ -18,6 +18,19 @@ export const Content = styled.div`
     font-size: 2rem;
     margin-bottom: 2rem;
   }
+
+  > .load_box {
+    width: 100%;
+    height: 20rem;
+    display: grid;
+    place-content: center;
+    > svg {
+      width: 3rem;
+      height: 3rem;
+    }
+
+  }
+
   > h3 {
     font-size: 1.6rem;
     margin-top: 2rem;

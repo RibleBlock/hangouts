@@ -1,10 +1,13 @@
 /* eslint-disable no-unused-vars */
 declare interface EventType {
+  innerText?: string,
   firstChild: {
-    innerText: string,
+    innerText?: string,
   },
   lastChild: {
-    innerText: string,
+    lastChild: EventType,
+    innerText?: string,
+    querySelector: (value: string) => any,
   },
   labels: [
     key: {
@@ -12,6 +15,7 @@ declare interface EventType {
       lastChild: {
         innerText: string,
       },
-    }
+    },
   ],
+  parentElement: EventType,
 }

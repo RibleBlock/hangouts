@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ButtonBC } from '..';
 import {
-  BordersType, SizeType, TypeFood, typeFoods,
+  SizeType, TypeFood, typeFoods,
 } from '../../assets/Foods';
 import { useAddToCartMutation } from '../../services/api/Auth';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';

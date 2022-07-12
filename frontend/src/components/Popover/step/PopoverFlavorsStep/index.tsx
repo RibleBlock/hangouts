@@ -1,13 +1,18 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 /* eslint-disable prefer-const */
 /* eslint-disable no-restricted-syntax */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../assets/Foods';
+import { useLazyGetFlavorsQuery } from '../../../../services/api/Auth';
+import { Flavor } from '../../../../store/module';
 import { ButtonAction } from '../../../form/ButtonAction';
 import { InputText } from '../../../form/InputText';
-import { Content, Div } from './PopoverFlavorsStep.styles';
+import { Loading } from '../../../Loading';
+import { Content } from './PopoverFlavorsStep.styles';
+import { PizzaType } from './step/PizzaType';
 
 interface PopoverFlavorsStepProps {
   chosenType: TypeFood;
@@ -22,7 +27,22 @@ interface PopoverFlavorsStepProps {
 export function PopoverFlavorsStep({
   chosenType, size, flavors, setFlavors, value, setValue, setComment, isLoadingSubmit,
 }: PopoverFlavorsStepProps) {
-  const objSabores = typeFoods[chosenType].flavor;
+  const [getFlavors] = useLazyGetFlavorsQuery() as any;
+  const [isLoadingFlavors, setIsLoadingFlavors] = useState<boolean>(false);
+
+  const [objSabores, setObjSabores] = useState<Flavor[]>();
+
+  // DB SABORES
+  useEffect(() => {
+    setIsLoadingFlavors(true);
+    async function getFlavorsEffect() {
+      const data = await getFlavors();
+      setObjSabores(data.data);
+      console.log(data.data);
+      setIsLoadingFlavors(false);
+    }
+    getFlavorsEffect();
+  }, []);
 
   function limitar() {
     const sizeSwitch = size.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -49,11 +69,7 @@ export function PopoverFlavorsStep({
   const limiteSabor = limitar();
 
   // funcao de desativar checkbox //
-  function checkFlavors(e: MouseEvent) {
-    const el = e.target as EventType & EventTarget;
-    const flavor = el.labels[0].getAttribute('for');
-    const price = Number((el.labels[0].lastChild.innerText).slice(5));
-
+  function checkFlavors(flavor: string, price: number) {
     if (!flavors.includes(flavor)) {
       setValue(Number(value + price));
       setFlavors([flavor, ...flavors]);
@@ -79,117 +95,75 @@ export function PopoverFlavorsStep({
     }
   }, [flavors]);
 
+  function popoverSteps() {
+    switch (chosenType) {
+      case 'PIZZA':
+        return (
+          <PizzaType
+            type="Salgada"
+            checkFlavors={checkFlavors}
+            objSabores={objSabores}
+          />
+        );
+      case 'DOCE':
+        return (
+          <PizzaType
+            type="Doce"
+            checkFlavors={checkFlavors}
+            objSabores={objSabores}
+          />
+        );
+      default:
+        return 'BEBIDA';
+    }
+  }
+
   return (
     <Content>
       <input type="button" />
-      { limiteSabor > 1 ? (
-        <h2>
-          Selecione até
-          {' '}
-          { limiteSabor }
-          {' '}
-          sabores:
-        </h2>
-      ) : (
-        <h2>
-          Selecione
-          {' '}
-          { limiteSabor }
-          {' '}
-          sabor:
-        </h2>
-      ) }
-      { chosenType !== 'CALZONE' ? (
+      { !isLoadingFlavors ? (
         <>
-          { Object.entries(objSabores).map(([key, value]) => (
-            <>
-              <h3 key={key}>{ key }</h3>
-              { (value.sabor).map(({ nome, descricao }: IngredientType) => (
-                <Div>
-                  <hr />
-                  <input
-                    key={nome + key.toLowerCase()}
-                    type="checkbox"
-                    id={chosenType === 'BEBIDA' ? nome + key.toLowerCase() : nome}
-                    onChange={(e) => checkFlavors(e as any)}
-                    className="input"
-                  />
-                  <label
-                    htmlFor={chosenType === 'BEBIDA' ? nome + key.toLowerCase() : nome}
-                  >
-                    <div>
-                      <p>{ nome }</p>
-                      <span>{ descricao }</span>
-                    </div>
-                    <span>
-                      { chosenType !== 'BEBIDA' && '+ ' }
-                      R$
-                      {' '}
-                      {value.price.toFixed(2)}
-                    </span>
+          { limiteSabor > 1 ? (
+            <h2>
+              Selecione até
+              {' '}
+              { limiteSabor }
+              {' '}
+              sabores:
+            </h2>
+          ) : (
+            <h2>
+              Selecione
+              {' '}
+              { limiteSabor }
+              {' '}
+              sabor:
+            </h2>
+          ) }
 
-                  </label>
-                </Div>
-              )) }
-            </>
-          )) }
-          <hr />
+          { popoverSteps() }
+
+          { chosenType !== 'BEBIDA'
+          && (
+          <InputText
+            subtitle="Observações do pedido (opcional)"
+            setText={setComment}
+          />
+          ) }
+
+          <ButtonAction
+            type="submit"
+            isLoading={isLoadingSubmit}
+          >
+            Adicionar ao carrinho
+          </ButtonAction>
         </>
       ) : (
-        <>
-          { Object.entries(objSabores).map(([key, value]) => (
-            <>
-              <h3>CALZONES</h3>
-              { (value.sabor).map(({
-                nome, descricao, price,
-              }: {
-                nome: string, descricao: string, price: number
-              }) => (
-                <Div>
-                  <hr />
-                  <input
-                    key={nome}
-                    type="checkbox"
-                    id={nome}
-                    onChange={(e) => checkFlavors(e as any)}
-                    className="input"
-                  />
-                  <label
-                    htmlFor={nome}
-                  >
-                    <div>
-                      <p>{ nome }</p>
-                      <span>{ descricao }</span>
-                    </div>
-                    <span>
-                      R$
-                      {' '}
-                      {price.toFixed(2)}
-                    </span>
-
-                  </label>
-                </Div>
-              )) }
-            </>
-          )) }
-          <hr />
-        </>
+        <div className="load_box">
+          <Loading color="grey" />
+        </div>
       ) }
 
-      { chosenType !== 'BEBIDA'
-      && (
-      <InputText
-        subtitle="Observações do pedido (opcional)"
-        setText={setComment}
-      />
-      ) }
-
-      <ButtonAction
-        type="submit"
-        isLoading={isLoadingSubmit}
-      >
-        Adicionar ao carrinho
-      </ButtonAction>
     </Content>
   );
 }
