@@ -2,7 +2,7 @@
 declare interface EventType {
   innerText?: string,
   firstChild: {
-    innerText?: string,
+    innerText: string,
   },
   lastChild: {
     lastChild: EventType,
