@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 export const Content = styled.div`
   width: 100%;
+  max-height: 45vh;
   padding: 0 3rem;
   margin-top: 4rem;
+  overflow: hidden scroll;
   position: relative;
 
   > h2 {
@@ -17,13 +19,10 @@ export const Content = styled.div`
 
   > .load_box {
     background-color: ${({ theme }) => theme.COLORS.secondary};
-    /* background-color: red; */
-    position: absolute;
     top: -27rem;
     left: 0rem;
     width: 100%;
-    height: 30rem;
-    border-radius: 50rem;
+    height: 10rem;
     display: grid;
     place-content: center;
     > svg {

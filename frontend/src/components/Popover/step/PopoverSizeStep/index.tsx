@@ -38,6 +38,7 @@ export function PopoverSizeStep({
     <Content>
       { !isLoadingSize ? (
         <>
+          <h2>Selecione o Tamanho:</h2>
           { sizeObject && sizeObject.map(({
             pizza_size: {
               name, price, quantidade_flavors,

@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const Box = styled.div<{valid: boolean}>`
     position: relative;
+    overflow: visible !important;
     margin-top: 3.5rem;
     font-size: 1.6rem;
     label {

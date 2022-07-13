@@ -140,7 +140,9 @@ export function PopoverFlavorsStep({
             </h2>
           ) }
 
-          { popoverSteps() }
+          <div>
+            { popoverSteps() }
+          </div>
 
           { chosenType !== 'BEBIDA'
           && (

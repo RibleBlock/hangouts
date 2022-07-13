@@ -8,6 +8,11 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
 
+  > div {
+    max-height: 33rem;
+    overflow: hidden scroll;
+  }
+
   > input {
     width: 1px;
     height: 1px;

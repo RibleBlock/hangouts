@@ -8,7 +8,9 @@ class Flavors {
       const { data, error } = await flavorsModel.store();
 
       if (error) {
-        throw new Error(`${error?.code} Algo deu errado`);
+        return res.status(400).json(
+          error,
+        );
       }
       return res.json(
         data,

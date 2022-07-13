@@ -35,6 +35,11 @@ export const PopoverBox = styled(Dialog.Panel)`
       border-radius: 50rem;
     }
   }
+  @media (max-height: 600px) {
+    > form > img {
+      display: none;
+    }
+  }
 `;
 
 export const DarkBG = styled.div`
