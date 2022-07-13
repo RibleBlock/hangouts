@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { useEffect, useState } from 'react';
-import { SizeType, TypeFood } from '../../../../assets/Foods';
+import { BordersType, SizeType, TypeFood } from '../../../../assets/Foods';
 import { FlavorTypePizzaSize } from '../../../../constants/module';
 import { useGetDataTableMutation } from '../../../../services/api/Auth';
 import { Loading } from '../../../Loading';
@@ -10,11 +10,12 @@ import { Content } from './PopoverSizeStep.styles';
 interface PopoverSizeStepProps {
   chosenType: TypeFood;
   setSize: (sizeName: SizeType) => void;
+  setQtdFlavors: (value: number) => void;
   setValue: (value: number) => void;
   valueWish: number,
 }
 export function PopoverSizeStep({
-  setSize, chosenType, setValue, valueWish,
+  setSize, chosenType, setValue, setQtdFlavors, valueWish,
 }: PopoverSizeStepProps) {
   const [isLoadingSize, setIsLoadingSize] = useState<boolean>(false);
   const [sizeObject, setSizeObject] = useState<FlavorTypePizzaSize[]>();
@@ -34,6 +35,12 @@ export function PopoverSizeStep({
     loadData();
   }, []);
 
+  function setarValores(size: string, price: number, qtd: number) {
+    setValue(Number(valueWish) + price);
+    setQtdFlavors(qtd);
+    setSize(size as SizeType & BordersType);
+  }
+
   return (
     <Content>
       { !isLoadingSize ? (
@@ -48,9 +55,7 @@ export function PopoverSizeStep({
               key={name}
               item={name}
               price={price}
-              setStepOn={setSize}
-              setValue={setValue}
-              valueWish={valueWish}
+              setStepOn={() => setarValores(name, price, quantidade_flavors)}
             />
           )) }
           <hr />

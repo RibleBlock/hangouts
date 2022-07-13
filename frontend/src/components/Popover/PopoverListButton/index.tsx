@@ -1,5 +1,3 @@
-import { MouseEvent } from 'react';
-import { BordersType, SizeType } from '../../../assets/Foods';
 import { ButtonSize } from '../step/PopoverSizeStep/PopoverSizeStep.styles';
 
 interface PopoverListButtonProps {
@@ -7,23 +5,16 @@ interface PopoverListButtonProps {
   price: number,
   descricao?: string,
   plusIcon?: boolean,
-  setStepOn: (sizeName: SizeType & BordersType) => void,
-  setValue: (value: number) => void,
-  valueWish: number,
+  setStepOn: () => void,
 }
 export function PopoverListButton({
-  item, descricao, price, plusIcon, setStepOn, setValue, valueWish,
+  item, descricao, price, plusIcon, setStepOn,
 }: PopoverListButtonProps) {
-  function setarValores(size: string, price: number) {
-    setValue(Number(valueWish) + price);
-    setStepOn(size as SizeType & BordersType);
-  }
-
   return (
     <div>
       <hr />
       <ButtonSize
-        onClick={() => setarValores(item, price)}
+        onClick={setStepOn}
         type="button"
       >
         <div>

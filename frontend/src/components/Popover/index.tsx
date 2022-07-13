@@ -25,7 +25,8 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
   const currentUser = decodeJWT<User>(useSelector(getToken));
 
   const chosenType = typeFoods[selectedType];
-  const [size, setSize] = useState<SizeType | null>(null);
+  const [size, setSize] = useState<string>('');
+  const [qtdFlavors, setQtdFlavors] = useState<number>(1);
   const [border, setBorder] = useState<string>('');
   const [flavor, setFlavor] = useState<string[]>([]);
   const [comment, setComment] = useState<string>('');
@@ -85,8 +86,8 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
         <form onSubmit={(e) => handleSubmit(e)}>
           {/* Pedido */}
           <input type="hidden" name="type" value={selectedType} />
-          <input type="hidden" name="size" value={size || 'vazio'} />
-          <input type="hidden" name="border" value={border || 'vazio'} />
+          <input type="hidden" name="size" value={size} />
+          <input type="hidden" name="border" value={border} />
           <input type="hidden" name="flavor" value={flavor} />
           <input type="hidden" name="value" value={value} />
           {/*  */}
@@ -94,7 +95,8 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
           { (selectedType === 'BEBIDA') || (selectedType === 'CALZONE') || (size && border) ? (
             <PopoverFlavorsStep
               chosenType={selectedType}
-              size={size || 'BROTO'}
+              size={size}
+              qtdFlavors={qtdFlavors}
               setFlavors={setFlavor}
               flavors={flavor}
               value={value}
@@ -120,6 +122,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
                   setSize={setSize}
                   chosenType={selectedType}
                   setValue={setValue}
+                  setQtdFlavors={setQtdFlavors}
                   valueWish={value}
                 />
               ) }

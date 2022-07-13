@@ -15,17 +15,18 @@ import { Content } from './PopoverFlavorsStep.styles';
 import { PizzaType } from './step/PizzaType';
 
 interface PopoverFlavorsStepProps {
-  chosenType: TypeFood;
-  size: SizeType;
-  flavors: string[];
-  setFlavors: (sizeName: string[]) => void;
-  value: number;
-  setValue: (value: number) => void;
-  setComment: (comment: string) => void;
-  isLoadingSubmit: boolean;
+  chosenType: TypeFood,
+  size: string,
+  qtdFlavors: number,
+  flavors: string[],
+  setFlavors: (sizeName: string[]) => void,
+  value: number,
+  setValue: (value: number) => void,
+  setComment: (comment: string) => void,
+  isLoadingSubmit: boolean,
 }
 export function PopoverFlavorsStep({
-  chosenType, size, flavors, setFlavors, value, setValue, setComment, isLoadingSubmit,
+  chosenType, size, qtdFlavors, flavors, setFlavors, value, setValue, setComment, isLoadingSubmit,
 }: PopoverFlavorsStepProps) {
   const [getFlavors] = useLazyGetFlavorsQuery() as any;
   const [isLoadingFlavors, setIsLoadingFlavors] = useState<boolean>(false);
@@ -43,29 +44,7 @@ export function PopoverFlavorsStep({
     getFlavorsEffect();
   }, []);
 
-  function limitar() {
-    const sizeSwitch = size.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    let limite;
-    switch (sizeSwitch.toUpperCase()) {
-      case 'BROTO':
-        limite = 1;
-        break;
-      case 'MEDIA':
-        limite = 2;
-        break;
-      case 'GRANDE':
-        limite = 3;
-        break;
-      case 'GIGA':
-        limite = 4;
-        break;
-      default:
-        limite = 1;
-        break;
-    }
-    return limite;
-  }
-  const limiteSabor = limitar();
+  const limiteSabor = qtdFlavors;
 
   // funcao de desativar checkbox //
   function checkFlavors(flavor: string, price: number) {
