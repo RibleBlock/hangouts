@@ -5,14 +5,14 @@ import { ArrowCart, Button } from './CartItem.styles';
 export type CartItemStyle = {
   isOpen: boolean,
 }
-interface CartItemProps extends CartItemStyle {
+interface CartItemProps {
   title: string,
   border: string,
   sabores: string[],
   value: number,
 }
 export function CartItem({
-  title, border, sabores, value, isOpen,
+  title, border, sabores, value,
 }: CartItemProps) {
   const [buttonIsOpen, setButtonIsOpen] = useState(false);
 

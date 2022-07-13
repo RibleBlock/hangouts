@@ -10,7 +10,9 @@ interface PizzaTypeProps {
 export function PizzaType({ type, objSabores, checkFlavors }: PizzaTypeProps) {
   return (
     <>
-      { objSabores && objSabores.map(({ name, flavor_category, flavor_type }) => (
+      { objSabores && objSabores.map(({
+        name, flavor_category, flavor_type, flavor_ingredient,
+      }) => (
         <>
           {/** */}
           { flavor_type.name === type && (
@@ -28,8 +30,9 @@ export function PizzaType({ type, objSabores, checkFlavors }: PizzaTypeProps) {
             >
               <div>
                 <p>{ name }</p>
-                <span>nao definido</span>
-                {/* NAO DEFINIDO */}
+                { flavor_ingredient.map(({ ingredient: { name } }, index, array) => (
+                  <span>{`${name}${array.length > index + 1 ? ', ' : ''}`}</span>
+                )) }
               </div>
               <span>
                 + R$

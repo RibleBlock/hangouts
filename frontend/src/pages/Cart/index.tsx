@@ -76,7 +76,6 @@ export function Cart() {
                 border={border}
                 sabores={flavors}
                 value={value}
-                isOpen={false}
               />
             )) }
           </div>

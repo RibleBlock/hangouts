@@ -4,6 +4,7 @@ export const Content = styled.div`
   width: 100%;
   padding: 0 3rem;
   margin-top: 4rem;
+  position: relative;
 
   > h2 {
     font-size: 2rem;
@@ -12,6 +13,22 @@ export const Content = styled.div`
   > h3 {
     font-size: 1.6rem;
     margin-top: 2rem;
+  }
+
+  > .load_box {
+    background-color: ${({ theme }) => theme.COLORS.secondary};
+    /* background-color: red; */
+    position: absolute;
+    top: calc(-99vh / 3);
+    left: 0rem;
+    width: 100%;
+    height: 30rem;
+    display: grid;
+    place-content: center;
+    > svg {
+      width: 3rem;
+      height: 3rem;
+    }
   }
 `;
 

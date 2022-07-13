@@ -7,7 +7,7 @@ import {
   IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../assets/Foods';
 import { useLazyGetFlavorsQuery } from '../../../../services/api/Auth';
-import { Flavor } from '../../../../store/module';
+import { FlavorDB } from '../../../../store/module';
 import { ButtonAction } from '../../../form/ButtonAction';
 import { InputText } from '../../../form/InputText';
 import { Loading } from '../../../Loading';
@@ -30,7 +30,7 @@ export function PopoverFlavorsStep({
   const [getFlavors] = useLazyGetFlavorsQuery() as any;
   const [isLoadingFlavors, setIsLoadingFlavors] = useState<boolean>(false);
 
-  const [objSabores, setObjSabores] = useState<Flavor[]>();
+  const [objSabores, setObjSabores] = useState<FlavorDB[]>();
 
   // DB SABORES
   useEffect(() => {
@@ -38,7 +38,6 @@ export function PopoverFlavorsStep({
     async function getFlavorsEffect() {
       const data = await getFlavors();
       setObjSabores(data.data);
-      console.log(data.data);
       setIsLoadingFlavors(false);
     }
     getFlavorsEffect();

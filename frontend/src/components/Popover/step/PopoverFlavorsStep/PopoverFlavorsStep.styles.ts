@@ -28,7 +28,6 @@ export const Content = styled.div`
       width: 3rem;
       height: 3rem;
     }
-
   }
 
   > h3 {

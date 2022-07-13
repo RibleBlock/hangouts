@@ -40,6 +40,13 @@ export const authApi = createApi({
         method: 'GET',
       }),
     }),
+    getSizes: builder.mutation({
+      query: (body: { filter: string }) => ({
+        url: 'sizes',
+        body,
+        method: 'POST',
+      }),
+    }),
   }),
 });
 
@@ -48,4 +55,5 @@ export const {
   useNewUserMutation,
   useAddToCartMutation,
   useLazyGetFlavorsQuery,
+  useGetSizesMutation,
 } = authApi;

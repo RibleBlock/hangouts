@@ -12,6 +12,7 @@ route.post('/createUser', usersControllers.create);
 
 route.post('/makewish', wishControllers.create);
 
-route.get('/flavors', flavorController.read);
+route.get('/flavors', flavorController.readFlavors);
+route.post('/sizes', flavorController.getSizes);
 
 export default route;
