@@ -14,5 +14,6 @@ route.post('/makewish', wishControllers.create);
 
 route.get('/flavors', flavorController.readFlavors);
 route.post('/sizes', flavorController.getSizes);
+route.post('/borders', flavorController.getBorders);
 
 export default route;

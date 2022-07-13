@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react';
 import {
   IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../assets/Foods';
+import { FlavorDB } from '../../../../constants/module';
 import { useLazyGetFlavorsQuery } from '../../../../services/api/Auth';
-import { FlavorDB } from '../../../../store/module';
 import { ButtonAction } from '../../../form/ButtonAction';
 import { InputText } from '../../../form/InputText';
 import { Loading } from '../../../Loading';

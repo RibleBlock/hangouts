@@ -21,10 +21,17 @@ class Flavors {
   }
 
   async selectTable({ table, filter, columns }: SelectTable) {
+    if (filter) {
+      const { data, error } = await supabase
+        .from(table)
+        .select(columns)
+        .eq('name', filter);
+      return { data, error };
+    }
     const { data, error } = await supabase
       .from(table)
       .select(columns)
-      .eq('name', filter);
+      .order('price', { ascending: true });
     return { data, error };
   }
 }

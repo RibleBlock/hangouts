@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { State } from '../module';
+import { State } from '../../constants/module';
 
 export interface Token {
   token: string;

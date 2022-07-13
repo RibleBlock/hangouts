@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Pedido } from '../../../store/module';
+import { Pedido } from '../../../constants/module';
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
@@ -40,9 +40,9 @@ export const authApi = createApi({
         method: 'GET',
       }),
     }),
-    getSizes: builder.mutation({
-      query: (body: { filter: string }) => ({
-        url: 'sizes',
+    getDataTable: builder.mutation({
+      query: (body: { filter: string, route: string }) => ({
+        url: body.route,
         body,
         method: 'POST',
       }),
@@ -55,5 +55,5 @@ export const {
   useNewUserMutation,
   useAddToCartMutation,
   useLazyGetFlavorsQuery,
-  useGetSizesMutation,
+  useGetDataTableMutation,
 } = authApi;

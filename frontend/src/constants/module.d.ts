@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { Cart } from './Pedido/reducer';
-import { Token } from './Auth/reducer';
+import { Cart } from '../../store/Pedido/reducer';
+import { Token } from '../../store/Auth/reducer';
 
 declare interface State {
   reducer: {
@@ -39,7 +39,7 @@ declare interface FlavorDB {
   ];
 }
 
-declare interface flavorTypePizzaSize {
+declare interface FlavorTypePizzaSize {
   pizza_size: {
     idPizzaSize: number,
     createdAt: string,
@@ -47,4 +47,11 @@ declare interface flavorTypePizzaSize {
     price: number,
     quantidade_flavors: number,
   },
+}
+
+declare interface BorderDB {
+  id_pizza_border: number,
+  created_at: string,
+  name: string,
+  price: number,
 }

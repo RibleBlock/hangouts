@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
-import { Flavor } from '../../../../../store/module';
+import { FlavorDB } from '../../../../../constants/module';
 import { Div } from '../PopoverFlavorsStep.styles';
 
 interface PizzaTypeProps {
   type: string,
-  objSabores?: Flavor[],
+  objSabores?: FlavorDB[],
   checkFlavors: (flavor: string, price: number) => void,
 }
 export function PizzaType({ type, objSabores, checkFlavors }: PizzaTypeProps) {

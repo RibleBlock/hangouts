@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import { useEffect, useState } from 'react';
 import { ButtonAction, CartItem, Loading } from '../../components';
+import { Pedido } from '../../constants/module';
 import { Footer, Header, NavigationBar } from '../../layouts';
-import { Pedido } from '../../store/module';
 import { Box } from './Cart.styles';
 
 export function Cart() {

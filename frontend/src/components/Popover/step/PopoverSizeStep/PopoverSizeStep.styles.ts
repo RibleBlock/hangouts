@@ -19,10 +19,11 @@ export const Content = styled.div`
     background-color: ${({ theme }) => theme.COLORS.secondary};
     /* background-color: red; */
     position: absolute;
-    top: calc(-99vh / 3);
+    top: -27rem;
     left: 0rem;
     width: 100%;
     height: 30rem;
+    border-radius: 50rem;
     display: grid;
     place-content: center;
     > svg {
