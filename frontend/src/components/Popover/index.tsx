@@ -25,10 +25,10 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
   const currentUser = decodeJWT<User>(useSelector(getToken));
 
   const chosenType = typeFoods[selectedType];
-  const [size, setSize] = useState<string>('');
+  const [size, setSize] = useState<number>(0);
   const [qtdFlavors, setQtdFlavors] = useState<number>(1);
-  const [border, setBorder] = useState<string>('');
-  const [flavor, setFlavor] = useState<string[]>([]);
+  const [border, setBorder] = useState<number>(0);
+  const [flavor, setFlavor] = useState<number[]>([]);
   const [comment, setComment] = useState<string>('');
   const [value, setValue] = useState<number>(0);
   const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
@@ -88,7 +88,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
           <input type="hidden" name="type" value={selectedType} />
           <input type="hidden" name="size" value={size} />
           <input type="hidden" name="border" value={border} />
-          <input type="hidden" name="flavor" value={flavor} />
+          {/* <input type="hidden" name="flavor" value={flavor} /> */}
           <input type="hidden" name="value" value={value} />
           {/*  */}
 

@@ -17,10 +17,10 @@ import { PizzaType } from './step/PizzaType';
 
 interface PopoverFlavorsStepProps {
   chosenType: TypeFood,
-  size: string,
+  size: number,
   qtdFlavors: number,
-  flavors: string[],
-  setFlavors: (sizeName: string[]) => void,
+  flavors: number[],
+  setFlavors: (sizeName: number[]) => void,
   value: number,
   setValue: (value: number) => void,
   setComment: (comment: string) => void,
@@ -41,8 +41,6 @@ export function PopoverFlavorsStep({
     async function getFlavorsEffect() {
       const data = await getFlavors({ table });
       setObjSabores(data.data);
-      console.log(data.data);
-      console.log(objSabores);
       setIsLoadingFlavors(false);
     }
     getFlavorsEffect();
@@ -51,7 +49,7 @@ export function PopoverFlavorsStep({
   const limiteSabor = qtdFlavors;
 
   // funcao de desativar checkbox //
-  function checkFlavors(flavor: string, price: number) {
+  function checkFlavors(flavor: number, price: number) {
     if (!flavors.includes(flavor)) {
       setValue(Number(value + price));
       setFlavors([flavor, ...flavors]);

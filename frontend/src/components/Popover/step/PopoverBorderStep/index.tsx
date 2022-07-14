@@ -8,7 +8,7 @@ import { PopoverListButton } from '../../PopoverListButton';
 import { Content } from '../PopoverSizeStep/PopoverSizeStep.styles';
 
 interface PopoverBorderStepProps {
-  setBorda: (sizeName: string) => void,
+  setBorda: (sizeName: number) => void,
   setValue: (value: number) => void,
   valueWish: number,
 }
@@ -30,7 +30,7 @@ export function PopoverBorderStep({ setBorda, setValue, valueWish }: PopoverBord
     getFuckinBorders();
   }, []);
 
-  function setarValores(border: string, price: number) {
+  function setarValores(border: number, price: number) {
     setValue(Number(valueWish) + price);
     setBorda(border);
   }
@@ -45,7 +45,7 @@ export function PopoverBorderStep({ setBorda, setValue, valueWish }: PopoverBord
               key={id_pizza_border}
               item={name}
               price={price}
-              setStepOn={() => setarValores(name, price)}
+              setStepOn={() => setarValores(id_pizza_border, price)}
               plusIcon
             />
           )) }

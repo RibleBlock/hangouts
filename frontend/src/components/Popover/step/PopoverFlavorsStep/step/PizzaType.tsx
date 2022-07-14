@@ -5,13 +5,13 @@ import { Div } from '../PopoverFlavorsStep.styles';
 interface PizzaTypeProps {
   type: string,
   objSabores?: FlavorDB[],
-  checkFlavors: (flavor: string, price: number) => void,
+  checkFlavors: (flavor: number, price: number) => void,
 }
 export function PizzaType({ type, objSabores, checkFlavors }: PizzaTypeProps) {
   return (
     <>
       { objSabores && objSabores.map(({
-        name, flavor_category, flavor_type, flavor_ingredient,
+        name, flavor_category, flavor_type, flavor_ingredient, id_flavor,
       }) => (
         <>
           {/** */}
@@ -22,7 +22,7 @@ export function PizzaType({ type, objSabores, checkFlavors }: PizzaTypeProps) {
               key={name}
               type="checkbox"
               id={name}
-              onChange={() => checkFlavors(name, flavor_category.price)}
+              onChange={() => checkFlavors(id_flavor, flavor_category.price)}
               className="input"
             />
             <label

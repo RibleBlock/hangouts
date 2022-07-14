@@ -9,16 +9,17 @@ declare interface State {
 }
 
 declare interface Pedido {
-  category: string | null;
-  size: string | null;
-  border: string;
-  flavors: string[];
+  category: string | null,
+  size: number | null,
+  border: number;
+  flavors: number[];
   comment?: string;
   value: number;
   idUser: number;
 }
 
 declare interface FlavorDB {
+  id_flavor: number,
   name: string,
   created_at: string,
   flavor_category: {
@@ -49,7 +50,7 @@ declare interface CalzoneDB {
 
 declare interface FlavorTypePizzaSize {
   pizza_size: {
-    idPizzaSize: number,
+    id_pizza_size: number,
     createdAt: string,
     name: string,
     price: number,

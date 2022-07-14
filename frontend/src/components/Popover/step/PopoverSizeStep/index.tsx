@@ -9,7 +9,7 @@ import { Content } from './PopoverSizeStep.styles';
 
 interface PopoverSizeStepProps {
   chosenType: TypeFood;
-  setSize: (sizeName: SizeType) => void;
+  setSize: (value: number) => void;
   setQtdFlavors: (value: number) => void;
   setValue: (value: number) => void;
   valueWish: number,
@@ -35,10 +35,10 @@ export function PopoverSizeStep({
     loadData();
   }, []);
 
-  function setarValores(size: string, price: number, qtd: number) {
+  function setarValores(size: number, price: number, qtd: number) {
     setValue(Number(valueWish) + price);
     setQtdFlavors(qtd);
-    setSize(size as SizeType & BordersType);
+    setSize(size);
   }
 
   return (
@@ -48,14 +48,14 @@ export function PopoverSizeStep({
           <h2>Selecione o Tamanho:</h2>
           { sizeObject && sizeObject.map(({
             pizza_size: {
-              name, price, quantidade_flavors,
+              id_pizza_size, name, price, quantidade_flavors,
             },
           }) => (
             <PopoverListButton
               key={name}
               item={name}
               price={price}
-              setStepOn={() => setarValores(name, price, quantidade_flavors)}
+              setStepOn={() => setarValores(id_pizza_size, price, quantidade_flavors)}
             />
           )) }
           <hr />

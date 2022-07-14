@@ -4,12 +4,12 @@ import { Div } from '../PopoverFlavorsStep.styles';
 
 interface AdditionalsProps {
   objSabores?: CalzoneDB[],
-  checkFlavors: (flavor: string, price: number) => void,
+  checkFlavors: (flavor: number, price: number) => void,
 }
 export function Additionals({ objSabores, checkFlavors }: AdditionalsProps) {
   return (
     <>
-      { objSabores && objSabores.map(({ name, price }) => (
+      { objSabores && objSabores.map(({ name, price, id_calzone }) => (
         <>
           {/** */}
           <Div key={name}>
@@ -17,7 +17,7 @@ export function Additionals({ objSabores, checkFlavors }: AdditionalsProps) {
             <input
               type="checkbox"
               id={name}
-              onChange={() => checkFlavors(name, price)}
+              onChange={() => checkFlavors(id_calzone, price)}
               className="input"
             />
             <label
