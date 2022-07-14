@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { ButtonActionStyles } from '.';
 
-export const MyLink = styled(Link)<{small?: boolean, round?: boolean, noMargin?: boolean}>`
+export const MyLink = styled(Link)<ButtonActionStyles>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,12 +11,10 @@ export const MyLink = styled(Link)<{small?: boolean, round?: boolean, noMargin?:
   max-width: ${(props) => (props.small ? '18rem' : '38rem')};
   height: 5rem;
   margin: 0 auto;
-  ${(props) => !props.noMargin && css`margin-top: 2.5rem;`}
   font-size: 1.6rem;
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
-  border-radius: ${(props) => (props.round ? '.6rem' : '5rem')};
   color: ${({ theme }) => theme.COLORS.secondary};
   background-color: ${({ theme }) => theme.COLORS.button};
   &:hover {
@@ -26,7 +25,7 @@ export const MyLink = styled(Link)<{small?: boolean, round?: boolean, noMargin?:
   }
 `;
 
-export const Button = styled.button<{small?: boolean, round?: boolean, noMargin?: boolean}>`
+export const Button = styled.button<ButtonActionStyles>`
   display: flex;
   justify-content: center;
   align-items: center;

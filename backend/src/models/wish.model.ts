@@ -1,4 +1,3 @@
-import { User } from '@supabase/supabase-js';
 import supabase from '../config/supabase';
 
 interface Pedido {

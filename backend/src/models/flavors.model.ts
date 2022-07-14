@@ -7,7 +7,13 @@ export interface SelectTable {
 }
 
 class Flavors {
-  async store() {
+  async store({ table }: {table: string}) {
+    if (table) {
+      const { data, error } = await supabase
+        .from(table)
+        .select('*');
+      return { data, error };
+    }
     const { data, error } = await supabase
       .from('flavor')
       .select(`

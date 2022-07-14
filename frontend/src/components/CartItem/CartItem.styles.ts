@@ -1,13 +1,14 @@
 import styled, { css } from 'styled-components';
 import { CaretRight } from 'phosphor-react';
-import { CartItemStyle } from '.';
 
-export const ArrowCart = styled(CaretRight)<CartItemStyle>`
+interface CartItemStyle {
+  isOpen?: boolean,
+}
+export const ArrowCart = styled(CaretRight)`
   width: 2rem;
   height: 2rem;
   color: ${({ theme }) => theme.COLORS.select_primary};
   transition: transform 200ms;
-  transform: rotate(${(props) => (!props.isOpen ? '0' : '90deg')});
   z-index: -1;
   `;
 
@@ -17,6 +18,7 @@ export const Button = styled.button<CartItemStyle>`
   min-height: ${(props) => (!props.isOpen ? '4.5rem' : 'max(10.6rem, auto)')};
   padding: 1.4rem 1.5rem;
   font-size: 1.5rem;
+  user-select: none;
   background-color: transparent;
   ${(props) => !props.isOpen && css`
     overflow: hidden;

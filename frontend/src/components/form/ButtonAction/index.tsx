@@ -2,10 +2,12 @@ import { ReactNode } from 'react';
 import { Loading } from '../..';
 import { Button, MyLink as Link } from './ButtonAction.styles';
 
-interface ButtonActionProps {
+export type ButtonActionStyles = {
   small?: boolean,
   round?: boolean,
   noMargin?: boolean,
+}
+interface ButtonActionProps extends ButtonActionStyles {
   children: ReactNode,
   isLoading?: boolean,
   type?: 'submit' | 'button',
@@ -19,9 +21,11 @@ export function ButtonAction({
     return (
       <Link
         to={to}
-        noMargin={noMargin}
-        round={!round}
         small={small}
+        style={{
+          marginTop: !noMargin ? '2.5rem' : '0',
+          borderRadius: round ? '5rem' : '.6rem',
+        }}
       >
         {children}
       </Link>

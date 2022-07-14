@@ -5,7 +5,15 @@ import flavorsModel, { SelectTable } from '../models/flavors.model';
 class Flavors {
   async readFlavors(req: Request, res: Response) {
     try {
-      const { data, error } = await flavorsModel.store();
+      const { table } = req.body;
+
+      if (Object.keys(req.body).length !== 1 || !Object.keys(req.body).includes('table')) {
+        return res.status(400).json({
+          error: 'Credenciais invalidas',
+        });
+      }
+
+      const { data, error } = await flavorsModel.store({ table });
 
       if (error) {
         return res.status(400).json(

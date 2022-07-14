@@ -19,24 +19,32 @@ declare interface Pedido {
 }
 
 declare interface FlavorDB {
-  name: string;
-  created_at: string;
+  name: string,
+  created_at: string,
   flavor_category: {
-    name: string;
-    price: number;
-  };
+    name: string,
+    price: number,
+  },
   flavor_type: {
-    name: string;
-    create_at: string;
-  };
+    name: string,
+    create_at: string,
+  },
   flavor_ingredient: [
     {
       ingredient: {
-        name: string;
-        created_at: string;
-      };
+        name: string,
+        created_at: string,
+      },
     }
-  ];
+  ],
+}
+
+declare interface CalzoneDB {
+  id_calzone: number,
+  created_at: string,
+  name: string,
+  id_comment: string | null,
+  price: number,
 }
 
 declare interface FlavorTypePizzaSize {

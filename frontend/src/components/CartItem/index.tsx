@@ -2,9 +2,6 @@
 import { useState } from 'react';
 import { ArrowCart, Button } from './CartItem.styles';
 
-export type CartItemStyle = {
-  isOpen: boolean,
-}
 interface CartItemProps {
   title: string,
   border: string,
@@ -14,17 +11,17 @@ interface CartItemProps {
 export function CartItem({
   title, border, sabores, value,
 }: CartItemProps) {
-  const [buttonIsOpen, setButtonIsOpen] = useState(false);
+  const [buttonIsOpen, setButtonIsOpen] = useState<boolean>(false);
 
   return (
     <Button
       type="button"
-      isOpen={buttonIsOpen}
       onClick={() => setButtonIsOpen(!buttonIsOpen)}
+      isOpen={buttonIsOpen}
     >
       <div id="title">
         <ArrowCart
-          isOpen={buttonIsOpen}
+          style={{ transform: `rotate(${buttonIsOpen ? '90deg' : '0'})` }}
           weight="bold"
         />
         <p>{(title || 'Sem Titulo').toUpperCase()}</p>

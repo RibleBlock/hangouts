@@ -34,10 +34,11 @@ export const authApi = createApi({
         body: wish,
       }),
     }),
-    getFlavors: builder.query({
-      query: () => ({
+    getFlavors: builder.mutation({
+      query: (body: { table: string }) => ({
         url: 'flavors',
-        method: 'GET',
+        body,
+        method: 'POST',
       }),
     }),
     getDataTable: builder.mutation({
@@ -54,6 +55,6 @@ export const {
   useLoginUserMutation,
   useNewUserMutation,
   useAddToCartMutation,
-  useLazyGetFlavorsQuery,
+  useGetFlavorsMutation,
   useGetDataTableMutation,
 } = authApi;
