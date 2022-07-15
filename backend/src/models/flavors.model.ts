@@ -20,17 +20,19 @@ class Flavors {
     if (table) {
       const { data, error } = await supabase
         .from(table)
-        .select('*');
+        .select('*')
+        .order('price', { ascending: true });
       return { data, error };
     }
     const { data, error } = await supabase
       .from('flavor')
       .select(`
         *,
-        flavor_category:id_flavor_category ( name, price ),
+        flavor_category!id_flavor_category ( name, price ),
         flavor_type:id_flavor_type ( name, created_at ),
         flavor_ingredient!id_flavor(ingredient (*))
-      `);
+      `)
+      .order('price', { foreignTable: 'flavor_category', ascending: true });
     return { data, error };
   }
 

@@ -30,13 +30,9 @@ export function Drink({ objSabores, checkFlavors }: DrinkProps) {
                   <p>{ name_drink }</p>
                 </div>
                 <span>
-                  + R$
-                  {' '}
-                  {price.toFixed(2)}
+                  {`R$ ${price.toFixed(2)}`}
                 </span>
-
               </label>
-
             </Div>
           )) }
         </>

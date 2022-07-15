@@ -35,14 +35,12 @@ export function PizzaType({ type, objSabores, checkFlavors }: PizzaTypeProps) {
                   </span>
                 )) }
               </div>
-              <span>
-                + R$
-                {' '}
-                {flavor_category.price.toFixed(2)}
-              </span>
-
+              { flavor_category.price !== 0 && (
+                <span>
+                  {`+ R$ ${flavor_category.price.toFixed(2)}`}
+                </span>
+              ) }
             </label>
-
           </Div>
           ) }
         </>

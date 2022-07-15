@@ -9,7 +9,7 @@ export const Content = styled.div`
   flex-direction: column;
 
   > div {
-    max-height: 33rem;
+    max-height: 33.1rem;
     overflow: hidden scroll;
   }
 
@@ -62,6 +62,7 @@ export const Content = styled.div`
 export const Div = styled.div`
   width: 100%;
   background-color: transparent;
+  overflow: hidden;
 
   > label {
     width: 100%;

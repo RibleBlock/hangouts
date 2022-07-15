@@ -49,8 +49,6 @@ export function PopoverFlavorsStep({
       }
       const data = await getFlavors({ table });
       setObjSabores(data.data);
-      console.log(data.data);
-      console.log(objSabores);
       setIsLoadingFlavors(false);
     }
     getFlavorsEffect();

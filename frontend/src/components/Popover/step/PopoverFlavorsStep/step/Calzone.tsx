@@ -27,13 +27,9 @@ export function Additionals({ objSabores, checkFlavors }: AdditionalsProps) {
                 <p>{ name }</p>
               </div>
               <span>
-                + R$
-                {' '}
-                {price.toFixed(2)}
+                {`R$ ${price.toFixed(2)}`}
               </span>
-
             </label>
-
           </Div>
         </>
       )) }
