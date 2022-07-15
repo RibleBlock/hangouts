@@ -6,13 +6,14 @@ import { useEffect, useState } from 'react';
 import {
   IngredientType, SizeType, TypeFood, typeFoods,
 } from '../../../../assets/Foods';
-import { CalzoneDB, FlavorDB } from '../../../../constants/module';
+import { CalzoneDB, DrinkDB, FlavorDB } from '../../../../constants/module';
 import { useGetFlavorsMutation } from '../../../../services/api/Auth';
 import { ButtonAction } from '../../../form/ButtonAction';
 import { InputText } from '../../../form/InputText';
 import { Loading } from '../../../Loading';
 import { Content } from './PopoverFlavorsStep.styles';
-import { Additionals } from './step/additionals';
+import { Additionals } from './step/Calzone';
+import { Drink } from './step/Drink';
 import { PizzaType } from './step/PizzaType';
 
 interface PopoverFlavorsStepProps {
@@ -32,15 +33,24 @@ export function PopoverFlavorsStep({
   const [getFlavors] = useGetFlavorsMutation() as any;
   const [isLoadingFlavors, setIsLoadingFlavors] = useState<boolean>(false);
 
-  const [objSabores, setObjSabores] = useState<FlavorDB[] & CalzoneDB[]>();
+  const [objSabores, setObjSabores] = useState<FlavorDB[] & CalzoneDB[] & DrinkDB[]>();
 
   // DB SABORES
   useEffect(() => {
     setIsLoadingFlavors(true);
-    const table = chosenType !== 'PIZZA' && chosenType !== 'DOCE' ? chosenType.toLowerCase() : '';
     async function getFlavorsEffect() {
+      let table = '';
+      if (chosenType === 'BEBIDA') {
+        table = 'drink_size';
+      } else if (chosenType !== 'PIZZA' && chosenType !== 'DOCE') {
+        table = chosenType.toLowerCase();
+      } else {
+        table = '';
+      }
       const data = await getFlavors({ table });
       setObjSabores(data.data);
+      console.log(data.data);
+      console.log(objSabores);
       setIsLoadingFlavors(false);
     }
     getFlavorsEffect();
@@ -101,7 +111,12 @@ export function PopoverFlavorsStep({
           />
         );
       default:
-        return 'BEBIDA';
+        return (
+          <Drink
+            checkFlavors={checkFlavors}
+            objSabores={objSabores}
+          />
+        );
     }
   }
 
@@ -152,7 +167,6 @@ export function PopoverFlavorsStep({
           <Loading color="grey" />
         </div>
       ) }
-
     </Content>
   );
 }

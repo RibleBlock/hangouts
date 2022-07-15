@@ -4,18 +4,18 @@ import { Token } from '../../store/Auth/reducer';
 
 declare interface State {
   reducer: {
-    user: Token;
-  };
+    user: Token,
+  },
 }
 
 declare interface Pedido {
   category: string | null,
   size: number | null,
-  border: number;
-  flavors: number[];
-  comment?: string;
-  value: number;
-  idUser: number;
+  border: number,
+  flavors: number[],
+  comment?: string,
+  value: number,
+  idUser: number,
 }
 
 declare interface FlavorDB {
@@ -33,6 +33,7 @@ declare interface FlavorDB {
   flavor_ingredient: [
     {
       ingredient: {
+        id_ingredient: number,
         name: string,
         created_at: string,
       },
@@ -46,6 +47,22 @@ declare interface CalzoneDB {
   name: string,
   id_comment: string | null,
   price: number,
+}
+
+declare interface DrinkDB {
+  id_drink_size: number,
+  created_at: string,
+  name_drink_size: string,
+  price: number,
+  drink_size_drink: [
+    {
+      drink: {
+        id_drink: number,
+        created_at: string,
+        name_drink: string,
+      }
+    }
+  ]
 }
 
 declare interface FlavorTypePizzaSize {

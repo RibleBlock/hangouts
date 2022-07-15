@@ -8,6 +8,15 @@ export interface SelectTable {
 
 class Flavors {
   async store({ table }: {table: string}) {
+    if (table === 'drink_size') {
+      const { data, error } = await supabase
+        .from(table)
+        .select(`
+          *,
+          drink_size_drink!id_drink_size ( drink (*) )
+        `);
+      return { data, error };
+    }
     if (table) {
       const { data, error } = await supabase
         .from(table)

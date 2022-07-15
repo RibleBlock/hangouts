@@ -35,7 +35,7 @@ export const Content = styled.div`
     }
   }
 
-  > h3 {
+  h3 {
     font-size: 1.6rem;
     margin-top: 2rem;
   }

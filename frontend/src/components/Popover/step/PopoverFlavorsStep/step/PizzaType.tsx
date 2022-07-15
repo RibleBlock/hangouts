@@ -14,12 +14,11 @@ export function PizzaType({ type, objSabores, checkFlavors }: PizzaTypeProps) {
         name, flavor_category, flavor_type, flavor_ingredient, id_flavor,
       }) => (
         <>
-          {/** */}
+          {/**/}
           { flavor_type.name === type && (
-          <Div>
+          <Div key={id_flavor}>
             <hr />
             <input
-              key={name}
               type="checkbox"
               id={name}
               onChange={() => checkFlavors(id_flavor, flavor_category.price)}
@@ -30,8 +29,10 @@ export function PizzaType({ type, objSabores, checkFlavors }: PizzaTypeProps) {
             >
               <div>
                 <p>{ name }</p>
-                { flavor_ingredient.map(({ ingredient: { name } }, index, array) => (
-                  <span>{`${name}${array.length > index + 1 ? ', ' : ''}`}</span>
+                { flavor_ingredient.map(({ ingredient: { name, id_ingredient } }, index, array) => (
+                  <span key={id_ingredient}>
+                    {`${name}${array.length > index + 1 ? ', ' : ''}`}
+                  </span>
                 )) }
               </div>
               <span>

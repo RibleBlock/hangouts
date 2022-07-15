@@ -28,7 +28,7 @@ export function PopoverSizeStep({
       const data = await getSizesInDB({
         route: 'sizes',
         filter: tipoEslhido[0].toUpperCase() + tipoEslhido.slice(1),
-      }).unwrap();
+      }).unwrap() as any;
       setSizeObject(data[0].flavor_type_pizza_size);
       setIsLoadingSize(false);
     }

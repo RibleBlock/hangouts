@@ -12,7 +12,7 @@ export function Additionals({ objSabores, checkFlavors }: AdditionalsProps) {
       { objSabores && objSabores.map(({ name, price, id_calzone }) => (
         <>
           {/** */}
-          <Div key={name}>
+          <Div key={id_calzone}>
             <hr />
             <input
               type="checkbox"
