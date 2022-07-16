@@ -4,8 +4,8 @@ import { ArrowCart, Button } from './CartItem.styles';
 
 interface CartItemProps {
   title: string,
-  border: string,
-  sabores: string[],
+  border: number,
+  sabores: number[],
   value: number,
 }
 export function CartItem({

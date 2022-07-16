@@ -81,6 +81,7 @@ export const Div = styled.div`
     > span {
       white-space: nowrap;
       text-align: right;
+      margin-right: .5rem;
     }
     > div {
       overflow: hidden;

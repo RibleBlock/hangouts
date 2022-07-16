@@ -18,7 +18,6 @@ import { PizzaType } from './step/PizzaType';
 
 interface PopoverFlavorsStepProps {
   chosenType: TypeFood,
-  size: number,
   qtdFlavors: number,
   flavors: number[],
   setFlavors: (sizeName: number[]) => void,
@@ -28,7 +27,7 @@ interface PopoverFlavorsStepProps {
   isLoadingSubmit: boolean,
 }
 export function PopoverFlavorsStep({
-  chosenType, size, qtdFlavors, flavors, setFlavors, value, setValue, setComment, isLoadingSubmit,
+  chosenType, qtdFlavors, flavors, setFlavors, value, setValue, setComment, isLoadingSubmit,
 }: PopoverFlavorsStepProps) {
   const [getFlavors] = useGetFlavorsMutation() as any;
   const [isLoadingFlavors, setIsLoadingFlavors] = useState<boolean>(false);

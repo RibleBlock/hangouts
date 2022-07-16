@@ -95,7 +95,6 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
           { (selectedType === 'BEBIDA') || (selectedType === 'CALZONE') || (size && border) ? (
             <PopoverFlavorsStep
               chosenType={selectedType}
-              size={size}
               qtdFlavors={qtdFlavors}
               setFlavors={setFlavor}
               flavors={flavor}

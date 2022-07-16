@@ -19,26 +19,33 @@ declare interface Pedido {
 }
 
 declare interface FlavorDB {
-  id_flavor: number,
-  name: string,
+  id_flavor_category: number,
   created_at: string,
-  flavor_category: {
-    name: string,
-    price: number,
-  },
-  flavor_type: {
-    name: string,
-    create_at: string,
-  },
-  flavor_ingredient: [
+  name: string,
+  price: number,
+  flavor: [
     {
-      ingredient: {
-        id_ingredient: number,
+      id_flavor: number,
+      created_at: string,
+      name: string,
+      id_flavor_type: number,
+      id_flavor_category: number,
+      flavor_type: {
         name: string,
         created_at: string,
       },
-    }
-  ],
+      flavor_ingredient: [
+        {
+          ingredient: {
+            id_ingredient: number,
+            created_at: string,
+            name: string,
+            quantidade: number
+          }
+        },
+      ]
+    },
+  ]
 }
 
 declare interface CalzoneDB {

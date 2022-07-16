@@ -7,44 +7,7 @@ import { Box } from './Cart.styles';
 
 export function Cart() {
   const [isFetchingCart, setIsFetchingCart] = useState<boolean>(false);
-  const [objetoPedidoTeste] = useState<Pedido[]>([
-    {
-      category: 'PiZZA',
-      size: 'média',
-      border: 'Borda de Chocolate Preto',
-      flavors: ['Banana', 'Mel', 'mussarela', 'lombo com abacaxi'],
-      value: 34.23,
-      comment: 'Nao coloca fermento',
-      idUser: 1,
-    },
-    {
-      category: 'PiZZA',
-      size: 'média',
-      border: 'Borda de Chocolate Branco',
-      flavors: ['Banana', 'Mel'],
-      value: 34.23,
-      comment: 'Nao coloca a massa',
-      idUser: 2,
-    },
-    {
-      category: 'PiZZA',
-      size: 'média',
-      border: 'Borda de Catupiry',
-      flavors: ['Banana', 'Mel'],
-      value: 67.563,
-      comment: 'Nao coloca trigo na massa',
-      idUser: 4,
-    },
-    {
-      category: 'CALZONE',
-      size: '',
-      border: 'Borda de Catupiry',
-      flavors: ['Frango'],
-      value: 67.563,
-      comment: 'Nao coloca trigo na massa',
-      idUser: 4,
-    },
-  ]);
+  const [objetoPedidoTeste] = useState<Pedido[]>([]);
 
   useEffect(() => {
     async function getCartUser() {

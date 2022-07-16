@@ -25,14 +25,16 @@ class Flavors {
       return { data, error };
     }
     const { data, error } = await supabase
-      .from('flavor')
+      .from('flavor_category')
       .select(`
         *,
-        flavor_category!id_flavor_category ( name, price ),
-        flavor_type:id_flavor_type ( name, created_at ),
-        flavor_ingredient!id_flavor(ingredient (*))
+        flavor!id_flavor_category (
+          *,
+          flavor_type:id_flavor_type ( name, created_at ),
+          flavor_ingredient!id_flavor(ingredient (*))
+        )
       `)
-      .order('price', { foreignTable: 'flavor_category', ascending: true });
+      .order('price', { ascending: true });
     return { data, error };
   }
 
