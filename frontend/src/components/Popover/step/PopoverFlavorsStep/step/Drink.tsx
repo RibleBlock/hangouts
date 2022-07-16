@@ -9,6 +9,7 @@ interface DrinkProps {
 export function Drink({ objSabores, checkFlavors }: DrinkProps) {
   return (
     <>
+      {/**/}
       { objSabores && objSabores.map(({
         name_drink_size, price, id_drink_size, drink_size_drink,
       }) => (
@@ -35,9 +36,9 @@ export function Drink({ objSabores, checkFlavors }: DrinkProps) {
               </label>
             </Div>
           )) }
+          <hr />
         </>
       )) }
-      <hr />
     </>
   );
 }

@@ -22,7 +22,7 @@ export function NavigationBar({ elements }: LinksBarProps) {
         </button>
         <LinksBar elements={elements} />
       </Nav>
-      <nav style={{ position: 'sticky', top: '7rem' }}>
+      <nav style={{ position: 'sticky', top: '7rem', zIndex: 99 }}>
         <LinksBar isOpen={isOpen} elements={elements} />
       </nav>
     </>
