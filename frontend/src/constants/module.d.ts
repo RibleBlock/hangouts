@@ -30,6 +30,8 @@ declare interface FlavorDB {
       name: string,
       id_flavor_type: number,
       id_flavor_category: number,
+      id_image: number,
+      image: string,
       flavor_type: {
         name: string,
         created_at: string,

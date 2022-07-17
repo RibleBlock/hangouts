@@ -13,6 +13,7 @@ route.post('/createUser', usersControllers.create);
 route.post('/makewish', wishControllers.create);
 
 route.post('/flavors', flavorController.readFlavors);
+route.post('/flavorsfilter', flavorController.flavorFilter);
 route.post('/sizes', flavorController.getSizes);
 route.post('/borders', flavorController.getBorders);
 

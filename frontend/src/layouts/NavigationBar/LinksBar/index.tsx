@@ -52,9 +52,9 @@ export function LinksBar({ isOpen, elements }: LinksBarProps) {
       )}
 
       <li>
-        <Link to="/nothing">
+        <Link to="/menu">
           <div>
-            CARDAPIO
+            CARDÁPIO
           </div>
         </Link>
 

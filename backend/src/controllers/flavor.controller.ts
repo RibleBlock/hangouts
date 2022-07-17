@@ -94,5 +94,32 @@ class Flavors {
       });
     }
   }
+
+  async flavorFilter(req: Request, res: Response) {
+    const { filter } = req.body;
+
+    try {
+      if (Object.keys(req.body).includes('filter')) {
+        const { data, error } = await flavorsModel.filterFlavor(filter);
+        if (error) {
+          return res.status(400).json({
+            error,
+          });
+        }
+
+        return res.json(
+          data,
+        );
+      }
+
+      return res.status(400).json({
+        error: 'Credenciais invalidas',
+      });
+    } catch (error: any) {
+      return res.status(400).json({
+        error,
+      });
+    }
+  }
 }
 export default new Flavors();

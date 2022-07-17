@@ -41,6 +41,13 @@ export const authApi = createApi({
         method: 'POST',
       }),
     }),
+    getFlavorsFilter: builder.mutation({
+      query: (body: { filter: string }) => ({
+        url: 'flavorsfilter',
+        body,
+        method: 'POST',
+      }),
+    }),
     getDataTable: builder.mutation({
       query: (body: { filter: string, route: string }) => ({
         url: body.route,
@@ -56,5 +63,6 @@ export const {
   useNewUserMutation,
   useAddToCartMutation,
   useGetFlavorsMutation,
+  useGetFlavorsFilterMutation,
   useGetDataTableMutation,
 } = authApi;

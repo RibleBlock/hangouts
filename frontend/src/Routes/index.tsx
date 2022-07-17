@@ -4,7 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 import {
-  Home, Login, Register, ChooseTypePizza, User, Cart,
+  Home, Login, Register, ChooseTypePizza, User, Cart, Menu,
 } from '../pages';
 import PrivateRoute from './PrivateRoute';
 
@@ -15,6 +15,7 @@ export function AppRoute() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/menu" element={<Menu />} />
 
         <Route path="/pedir" element={<PrivateRoute />}>
           <Route path="/pedir" element={<ChooseTypePizza />} />

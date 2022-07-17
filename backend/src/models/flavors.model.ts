@@ -30,11 +30,28 @@ class Flavors {
         *,
         flavor!id_flavor_category (
           *,
+          image (*),
           flavor_type:id_flavor_type ( name, created_at ),
           flavor_ingredient!id_flavor(ingredient (*))
         )
       `)
       .order('price', { ascending: true });
+    return { data, error };
+  }
+
+  async filterFlavor(filter: string) {
+    const { data, error } = await supabase
+      .from('flavor_category')
+      .select(`
+        *,
+        flavor!inner(
+          *,
+          flavor_type:id_flavor_type ( name, created_at ),
+          flavor_ingredient!id_flavor(ingredient (*))
+        )
+      `)
+      .ilike('flavor.name', `%${filter}%`);
+
     return { data, error };
   }
 
