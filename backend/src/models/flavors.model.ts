@@ -39,7 +39,16 @@ class Flavors {
     return { data, error };
   }
 
-  async filterFlavor(filter: string) {
+  async filterFlavor({ table, filter }: {table?: string, filter: string}) {
+    if (table) {
+      const { data, error } = await supabase
+        .from(table)
+        .select('*')
+        .ilike('name', `%${filter}%`); // <-- isso é loucura
+
+      return { data, error };
+    }
+
     const { data, error } = await supabase
       .from('flavor_type')
       .select(`
@@ -49,7 +58,7 @@ class Flavors {
           flavor_ingredient!id_flavor(ingredient (*))
         )
       `)
-      .ilike('flavor.name', `%${filter}%`);
+      .ilike('flavor.name', `%${filter}%`); // <-- isso é loucura
 
     return { data, error };
   }

@@ -78,7 +78,7 @@ declare interface CalzoneDB {
   id_calzone: number,
   created_at: string,
   name: string,
-  id_comment: string | null,
+  id_comment: number | null,
   price: number,
 }
 

@@ -96,11 +96,11 @@ class Flavors {
   }
 
   async flavorFilter(req: Request, res: Response) {
-    const { filter } = req.body;
+    const { table, filter } = req.body;
 
     try {
       if (Object.keys(req.body).includes('filter')) {
-        const { data, error } = await flavorsModel.filterFlavor(filter);
+        const { data, error } = await flavorsModel.filterFlavor({ table, filter });
         if (error) {
           return res.status(400).json({
             error,

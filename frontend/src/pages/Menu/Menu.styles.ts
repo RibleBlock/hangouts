@@ -30,13 +30,12 @@ export const Div = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  font-size: 2rem;
+  font-size: 2.2rem;
   background-color: #ff00ff;
 
   > h2 {
     background-color: red;
     width: 100%;
     text-align: center;
-
   }
 `;

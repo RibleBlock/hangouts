@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { useEffect, useState } from 'react';
-import { Menu as MenuDB } from '../../constants/module';
+import { CalzoneDB, Menu as MenuDB } from '../../constants/module';
 import { Header, NavigationBar } from '../../layouts';
 import { useGetFlavorsFilterMutation } from '../../services/api/Auth';
 import { Section, Div } from './Menu.styles';
@@ -9,6 +9,7 @@ export function Menu() {
   const [isLoadingFlavors, setIsLoadingFlavors] = useState<boolean>(false);
   const [flavorFilter, setFlavorFilter] = useState<string>('');
   const [objSabores, setObjSabores] = useState<MenuDB[]>();
+  const [objSaboresCalzone, setObjSaboresCalzone] = useState<CalzoneDB[]>();
   const [getFlavors] = useGetFlavorsFilterMutation();
 
   // DB SABORES
@@ -16,7 +17,9 @@ export function Menu() {
     setIsLoadingFlavors(true);
     async function getFlavorsEffect() {
       const data = await getFlavors({ filter: flavorFilter }) as any;
+      const dataCalz = await getFlavors({ table: 'calzone', filter: flavorFilter }) as any;
       setObjSabores(data.data);
+      setObjSaboresCalzone(dataCalz.data);
       console.log(objSabores);
       setIsLoadingFlavors(false);
     }
@@ -39,10 +42,9 @@ export function Menu() {
 
       { !isLoadingFlavors ? (
         <Div>
-          { objSabores && objSabores?.map(({ id_flavor_type, name, flavor }) => (
+          { (objSabores && objSaboresCalzone) && objSabores?.map(({ id_flavor_type, name, flavor }) => (
             <>
               <h2 key={id_flavor_type}>{name}</h2>
-              <br />
               { flavor.map(({
                 id_flavor, name, id_image, flavor_ingredient,
               }) => (
@@ -55,11 +57,18 @@ export function Menu() {
                   }) => (
                     <span>{`${name}, `}</span>
                   ))} */}
-                  <br />
                 </>
               )) }
             </>
           )) }
+          { (objSabores && !!objSaboresCalzone?.length) && (
+            <>
+              <h2>Calzone</h2>
+              { objSaboresCalzone?.map(({ id_calzone, name }) => (
+                <p key={id_calzone}>{name}</p>
+              )) }
+            </>
+          ) }
         </Div>
       ) : (
         <h1>CARREGANDO</h1>

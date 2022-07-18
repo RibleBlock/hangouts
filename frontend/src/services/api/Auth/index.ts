@@ -42,7 +42,7 @@ export const authApi = createApi({
       }),
     }),
     getFlavorsFilter: builder.mutation({
-      query: (body: { filter: string }) => ({
+      query: (body: { table?: string, filter: string }) => ({
         url: 'flavorsfilter',
         body,
         method: 'POST',
