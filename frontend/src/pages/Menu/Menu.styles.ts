@@ -4,7 +4,7 @@ export const Section = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 2.3rem;
   > input {
     background-color: #E8E8E8;
     color: #000;
@@ -26,6 +26,7 @@ export const Section = styled.section`
 
 export const Div = styled.div`
   display: flex;
+  flex-direction: column; // REMOVER //
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;

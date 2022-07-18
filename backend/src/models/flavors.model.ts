@@ -41,12 +41,11 @@ class Flavors {
 
   async filterFlavor(filter: string) {
     const { data, error } = await supabase
-      .from('flavor_category')
+      .from('flavor_type')
       .select(`
         *,
         flavor!inner(
           *,
-          flavor_type:id_flavor_type ( name, created_at ),
           flavor_ingredient!id_flavor(ingredient (*))
         )
       `)

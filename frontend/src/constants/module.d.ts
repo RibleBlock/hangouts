@@ -18,6 +18,30 @@ declare interface Pedido {
   idUser: number,
 }
 
+declare interface Menu {
+  id_flavor_type: number,
+  created_at: string,
+  name: string,
+  flavor: [
+    {
+      id_flavor: number,
+      created_at: string,
+      name: string,
+      id_image: null | number,
+      flavor_ingredient: [
+        {
+          ingredient: {
+            id_ingredient: number,
+            created_at: string,
+            name: string,
+            quantidade: number,
+          }
+        },
+      ]
+    }
+  ]
+}
+
 declare interface FlavorDB {
   id_flavor_category: number,
   created_at: string,

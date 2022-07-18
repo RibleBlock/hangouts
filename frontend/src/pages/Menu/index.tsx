@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { useEffect, useState } from 'react';
-import { FlavorDB } from '../../constants/module';
+import { Menu as MenuDB } from '../../constants/module';
 import { Header, NavigationBar } from '../../layouts';
 import { useGetFlavorsFilterMutation } from '../../services/api/Auth';
 import { Section, Div } from './Menu.styles';
@@ -8,7 +8,7 @@ import { Section, Div } from './Menu.styles';
 export function Menu() {
   const [isLoadingFlavors, setIsLoadingFlavors] = useState<boolean>(false);
   const [flavorFilter, setFlavorFilter] = useState<string>('');
-  const [objSabores, setObjSabores] = useState<FlavorDB[]>();
+  const [objSabores, setObjSabores] = useState<MenuDB[]>();
   const [getFlavors] = useGetFlavorsFilterMutation();
 
   // DB SABORES
@@ -39,11 +39,13 @@ export function Menu() {
 
       { !isLoadingFlavors ? (
         <Div>
-          { objSabores && objSabores?.map(({ id_flavor_category, name, flavor }) => (
+          { objSabores && objSabores?.map(({ id_flavor_type, name, flavor }) => (
             <>
-              <h2 key={id_flavor_category}>{name}</h2>
+              <h2 key={id_flavor_type}>{name}</h2>
               <br />
-              { flavor.map(({ id_flavor, name, flavor_ingredient }) => (
+              { flavor.map(({
+                id_flavor, name, id_image, flavor_ingredient,
+              }) => (
                 <>
                   <p key={id_flavor}>{name}</p>
                   {/* {flavor_ingredient.map(({
