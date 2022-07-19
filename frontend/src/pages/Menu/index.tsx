@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import { useEffect, useState } from 'react';
+import { MenuItem } from '../../components';
 import { CalzoneDB, Menu as MenuDB } from '../../constants/module';
 import { Header, NavigationBar } from '../../layouts';
 import { useGetFlavorsFilterMutation } from '../../services/api/Auth';
@@ -42,22 +43,19 @@ export function Menu() {
 
       { !isLoadingFlavors ? (
         <Div>
-          { (objSabores && objSaboresCalzone) && objSabores?.map(({ id_flavor_type, name, flavor }) => (
+          { (objSabores && objSaboresCalzone) && objSabores?.map(({
+            id_flavor_type, name, flavor,
+          }) => (
             <>
               <h2 key={id_flavor_type}>{name}</h2>
               { flavor.map(({
                 id_flavor, name, id_image, flavor_ingredient,
               }) => (
-                <>
-                  <p key={id_flavor}>{name}</p>
-                  {/* {flavor_ingredient.map(({
-                    ingredient: {
-                      id_ingredient, name, quantidade,
-                    },
-                  }) => (
-                    <span>{`${name}, `}</span>
-                  ))} */}
-                </>
+                <MenuItem
+                  key={id_flavor}
+                  nameItem={name}
+                  ingredients={flavor_ingredient}
+                />
               )) }
             </>
           )) }
@@ -65,7 +63,10 @@ export function Menu() {
             <>
               <h2>Calzone</h2>
               { objSaboresCalzone?.map(({ id_calzone, name }) => (
-                <p key={id_calzone}>{name}</p>
+                <MenuItem
+                  key={id_calzone}
+                  nameItem={name}
+                />
               )) }
             </>
           ) }

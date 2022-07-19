@@ -66,7 +66,6 @@ declare interface FlavorDB {
             id_ingredient: number,
             created_at: string,
             name: string,
-            quantidade: number
           }
         },
       ]

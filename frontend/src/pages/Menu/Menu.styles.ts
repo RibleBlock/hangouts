@@ -25,13 +25,16 @@ export const Section = styled.section`
 `;
 
 export const Div = styled.div`
+max-width: 75rem;
+width: 100%;
+margin: 0 auto;
+
   display: flex;
-  flex-direction: column; // REMOVER //
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
+  gap: 7rem;
   font-size: 2.2rem;
-  background-color: #ff00ff;
 
   > h2 {
     background-color: red;
