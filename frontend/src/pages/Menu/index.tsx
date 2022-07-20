@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { MenuItem } from '../../components';
 import { CalzoneDB, Menu as MenuDB } from '../../constants/module';
-import { Header, NavigationBar } from '../../layouts';
+import { Footer, Header, NavigationBar } from '../../layouts';
 import { useGetFlavorsFilterMutation } from '../../services/api/Auth';
 import { Section, Div } from './Menu.styles';
 
@@ -42,35 +42,40 @@ export function Menu() {
       </Section>
 
       { !isLoadingFlavors ? (
-        <Div>
-          { (objSabores && objSaboresCalzone) && objSabores?.map(({
-            id_flavor_type, name, flavor,
-          }) => (
-            <>
-              <h2 key={id_flavor_type}>{name}</h2>
-              { flavor.map(({
-                id_flavor, name, id_image, flavor_ingredient,
-              }) => (
-                <MenuItem
-                  key={id_flavor}
-                  nameItem={name}
-                  ingredients={flavor_ingredient}
-                />
-              )) }
-            </>
-          )) }
-          { (objSabores && !!objSaboresCalzone?.length) && (
+        <>
+          <Div>
+            { (objSabores && objSaboresCalzone) && objSabores?.map(({
+              id_flavor_type, name, flavor,
+            }) => (
+              <>
+                <h2 key={id_flavor_type}>{name}</h2>
+                { flavor.map(({
+                  id_flavor, name, flavor_ingredient, image,
+                }) => (
+                  <MenuItem
+                    key={id_flavor}
+                    image={image}
+                    nameItem={name}
+                    ingredients={flavor_ingredient}
+                  />
+                )) }
+              </>
+            )) }
+            { (objSabores && !!objSaboresCalzone?.length) && (
             <>
               <h2>Calzone</h2>
-              { objSaboresCalzone?.map(({ id_calzone, name }) => (
-                <MenuItem
+              { objSaboresCalzone?.map(({ id_calzone, name, image }) => (
+                <MenuItem // agora tem imagem
                   key={id_calzone}
+                  image={image}
                   nameItem={name}
                 />
               )) }
             </>
-          ) }
-        </Div>
+            ) }
+          </Div>
+          <Footer />
+        </>
       ) : (
         <h1>CARREGANDO</h1>
       ) }

@@ -27,7 +27,10 @@ declare interface Menu {
       id_flavor: number,
       created_at: string,
       name: string,
-      id_image: null | number,
+      image: {
+        url_image: string,
+        alt: string,
+      },
       flavor_ingredient: [
         {
           ingredient: {
@@ -54,8 +57,10 @@ declare interface FlavorDB {
       name: string,
       id_flavor_type: number,
       id_flavor_category: number,
-      id_image: number,
-      image: string,
+      image: {
+        url_image: string,
+        alt: string,
+      },
       flavor_type: {
         name: string,
         created_at: string,
@@ -79,6 +84,10 @@ declare interface CalzoneDB {
   name: string,
   id_comment: number | null,
   price: number,
+  image: {
+    url_image: string,
+    alt: string,
+  },
 }
 
 declare interface DrinkDB {

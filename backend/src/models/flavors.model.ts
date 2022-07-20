@@ -43,7 +43,10 @@ class Flavors {
     if (table) {
       const { data, error } = await supabase
         .from(table)
-        .select('*')
+        .select(`
+          *,
+          image (*)
+        `)
         .ilike('name', `%${filter}%`); // <-- isso é loucura
 
       return { data, error };
@@ -55,6 +58,7 @@ class Flavors {
         *,
         flavor!inner(
           *,
+          image!id_image (*),
           flavor_ingredient!id_flavor(ingredient (*))
         )
       `)

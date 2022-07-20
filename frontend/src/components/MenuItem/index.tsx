@@ -3,7 +3,7 @@ import { BoxItem } from './MenuItem.styles';
 
 /* eslint-disable jsx-a11y/img-redundant-alt */
 interface MenuItemProps {
-  image?: {
+  image: {
     url_image: string,
     alt: string,
   },
@@ -20,7 +20,10 @@ interface MenuItemProps {
 export function MenuItem({ image, nameItem, ingredients }: MenuItemProps) {
   return (
     <BoxItem>
-      <img src={image?.url_image || 'https://qawerk.com/wp-content/uploads/2021/07/no-image-available-icon-6.png'} alt={image?.alt} />
+      <img
+        src={image?.url_image || 'https://qawerk.com/wp-content/uploads/2021/07/no-image-available-icon-6.png'}
+        alt={image?.alt || 'Empty'}
+      />
       <h3>{nameItem}</h3>
       <p>
         { ingredients?.map(({
