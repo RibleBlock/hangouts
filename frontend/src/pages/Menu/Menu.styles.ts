@@ -14,7 +14,7 @@ export const Section = styled.section`
     height: 3.3rem;
     padding: 0 1.7rem;
     margin-top: 6rem;
-    margin-bottom: 4.5rem;
+    margin-bottom: 3rem;
     border-radius: 2rem;
     letter-spacing: .1rem;
     &:placeholder-shown {
@@ -25,20 +25,30 @@ export const Section = styled.section`
 `;
 
 export const Div = styled.div`
-max-width: 75rem;
-width: 100%;
-margin: 0 auto;
+  max-width: 80rem;
+  margin: 0 auto;
 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  gap: 7rem;
-  font-size: 2.2rem;
+  gap: 8rem;
+  font-size: 2rem;
 
-  > h2 {
-    background-color: red;
-    width: 100%;
+  .noPizza {
     text-align: center;
+    margin: calc(100vh / 4) 0;
+  }
+`;
+
+export const LoadBox = styled.div`
+  width: 100%;
+  margin: calc(100vh / 4) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > svg {
+    width: 5rem;
+    height: 5rem;
   }
 `;

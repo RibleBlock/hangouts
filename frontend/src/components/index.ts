@@ -6,5 +6,6 @@ export { TypeFoodButton } from './TypeFoodButton';
 export { Loading } from './Loading';
 export { ChangeOption } from './changeOption';
 export { CartItem } from './CartItem';
-export { MenuItem } from './MenuItem';
+export { MenuItem } from './Menu/MenuItem';
+export { MenuTitle } from './Menu/MenuTitle';
 export { ButtonAction } from './form/ButtonAction';
