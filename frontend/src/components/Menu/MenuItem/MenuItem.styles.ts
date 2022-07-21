@@ -8,7 +8,7 @@ export const BoxItem = styled.div`
 
   > img {
     width: 100%;
-    height: 21rem;
+    height: 28  rem;
     border-bottom: .3rem solid ${({ theme }) => theme.COLORS.text_tertiary};
   }
 
@@ -17,10 +17,13 @@ export const BoxItem = styled.div`
     font-size: 2.4rem;
     text-align: center;
     margin-bottom: .5rem;
+    letter-spacing: .1rem;
   }
   > p {
-    padding: 0 2rem;
+    letter-spacing: .1rem;
+    padding: 0 1rem;
     font-size: 1.6rem;
+    text-align: center;
     display: flex;
     justify-content: center;
     margin-bottom: .5rem;

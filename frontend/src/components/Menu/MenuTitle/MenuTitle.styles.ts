@@ -8,4 +8,5 @@ export const Tudo = styled.div`
   flex-direction: column;
   align-items: center;
   gap: .5rem;
+  letter-spacing: .3rem;
 `;
