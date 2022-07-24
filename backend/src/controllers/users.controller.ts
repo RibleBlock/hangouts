@@ -89,12 +89,58 @@ class User {
     }
   }
 
-  async selectAllUsers(req: Request, res: Response) {
-    try {
-      const { data, error } = await UserModels.readAll();
+  async selectUser(req: Request, res: Response) {
+    const {
+      id, field, value, password,
+    } = req.body;
 
-      return res.json({
-        data,
+    try {
+      if ((!Number(id) || !String(field)) || (field !== 'name' && field !== 'password' && field !== 'phone')) {
+        return res.status(400).json({
+          error: 'Credenciais inválidas',
+        });
+      }
+
+      const { data: user } = await UserModels.read('*', { id });
+
+      if (!user || user?.length === 0) {
+        return res.status(406).json({
+          error: 'Usuário não existe',
+        });
+      }
+
+      if (!(await passwordIsValid(password, user[0].password))) {
+        return res.status(400).json({
+          error: 'Senha invalida.',
+        });
+      }
+
+      let passwordHash: string = '';
+      if (field === 'password') {
+        const salt = await bcryptjs.genSalt();
+        passwordHash = bcryptjs.hashSync(value, salt);
+      }
+
+      const { data, error } = await UserModels.updateOneUser({
+        id, field, value: passwordHash || value,
+      });
+
+      if (error) { // caso erro no supabase
+        return res.status(400).json({
+          error,
+        });
+      }
+      const {
+        id: idUser, name, email, phone, admin,
+      } = data![0];
+
+      const token = jwt.sign({
+        id: idUser, name, email, phone, admin,
+      }, 'código_do_serviço_secreto');
+
+      return res.json({ // sucesso
+        // data, //
+        token,
       });
     } catch (error: any) {
       return res.status(400).json({

@@ -55,6 +55,13 @@ export const authApi = createApi({
         method: 'POST',
       }),
     }),
+    updateDataUser: builder.mutation({
+      query: (body: { id: number, field: string, value: string, password: string }) => ({
+        url: 'updateuserdata',
+        body,
+        method: 'PATCH',
+      }),
+    }),
   }),
 });
 
@@ -65,4 +72,5 @@ export const {
   useGetFlavorsMutation,
   useGetFlavorsFilterMutation,
   useGetDataTableMutation,
+  useUpdateDataUserMutation,
 } = authApi;

@@ -12,6 +12,11 @@ interface UserDB extends User {
   id: number,
   created_at: string,
 }
+export interface UpdateFields {
+  id: any,
+  field: string,
+  value: string,
+}
 
 class Users {
   async read(columns: string, query: Partial<UserDB>) {
@@ -19,14 +24,6 @@ class Users {
       .from('users')
       .select(columns)
       .match(query);
-
-    return { data, error };
-  }
-
-  async readAll() {
-    const { data, error }: { data: UserDB[] | null, error: any } = await supabase
-      .from('users')
-      .select('*');
 
     return { data, error };
   }
@@ -41,7 +38,15 @@ class Users {
           password: newUser.password,
         },
       ]);
-    console.log({ data, error });
+    return { data, error };
+  }
+
+  async updateOneUser({ id, field, value }: UpdateFields) {
+    const { data, error }: { data: UserDB[] | null, error: any } = await supabase
+      .from('users')
+      .update({ [field]: value })
+      .match({ id });
+
     return { data, error };
   }
 }

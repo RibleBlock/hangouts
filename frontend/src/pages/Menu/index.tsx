@@ -48,7 +48,7 @@ export function Menu() {
             { (!objSabores?.length && !objSaboresCalzone?.length) ? (
               <div className="noPizza">
                 <Pizza size={96} color="#5e5e5e" weight="light" />
-                <h3>Esse sabor não existe.</h3>
+                <h3>Esse sabor ainda não existe.</h3>
               </div>
             ) : (
               <>

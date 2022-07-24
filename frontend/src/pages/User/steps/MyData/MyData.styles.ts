@@ -25,14 +25,24 @@ export const BoxPopOver = styled(Dialog.Panel)`
     margin-bottom: .9rem;
   }
 
-  form> input {
-    width: 100%;
-    padding: 1rem 1rem;
-    margin-bottom: 1.5rem;
-    font-size: 1.6rem;
-    border: 3px solid ${({ theme }) => theme.COLORS.text_tertiary} ;
-    border-radius: 1rem;
-    outline: none;
+  form {
+    position: relative;
+    > button:first-child {
+      position: absolute;
+      right: 1.3rem;
+      top: 1.5rem;
+      cursor: pointer;
+      background-color: ${({ theme }) => theme.COLORS.secondary} ;
+    }
+    > input {
+      width: 100%;
+      padding: 1rem 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      border: 3px solid ${({ theme }) => theme.COLORS.text_tertiary} ;
+      border-radius: 1rem;
+      outline: none;
+    }
   }
 `;
 
@@ -78,7 +88,7 @@ export const Section = styled.div`
 
   > button {
     width: 100%;
-    height: 4rem;
+    height: 5rem;
     display: grid;
     grid-template-columns: 1fr 3fr 3rem;
     grid-template-rows: 1fr;
@@ -95,6 +105,7 @@ export const Section = styled.div`
     }
     &:not(:disabled):hover {
       font-weight: bold;
+      background-color: #cacaca44;
     }
   }
 `;

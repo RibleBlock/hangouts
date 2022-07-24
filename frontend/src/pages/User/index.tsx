@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
@@ -10,7 +10,19 @@ import { Box } from './User.styles';
 
 export function User() {
   const token = useSelector(getToken);
-  const currentUser = decodeJWT<User>(token);
+  const [currentUser, setCurrentUser] = useState<User>();
+  const [loadingUserToken, setloadingUserToken] = useState<boolean>(true);
+
+  // Para alterar o token //
+  useEffect(() => {
+    setloadingUserToken(true);
+    async function loadingUserPage() {
+      setCurrentUser(decodeJWT<User>(token));
+      setloadingUserToken(false);
+    }
+    loadingUserPage();
+  }, [token]);
+
   const [optionClicked, setOptionClicked] = useState<string>('');
 
   function sowComponentsUsers(optionClicked: string) {
@@ -18,8 +30,9 @@ export function User() {
       case 'Meus dados':
         return (
           <MyData
-            user={currentUser}
+            user={currentUser!}
             setOption={setOptionClicked}
+            loadingToken={setloadingUserToken}
           />
         );
       case 'Formas de pagamentos':
@@ -27,7 +40,7 @@ export function User() {
       case 'Histórico de compras':
         return (
           <OrderHistory
-            user={currentUser}
+            user={currentUser!}
             setOption={setOptionClicked}
           />
         );
@@ -39,7 +52,7 @@ export function User() {
       default:
         return (
           <BeginUser
-            currentUser={currentUser}
+            currentUser={currentUser!}
             setOption={setOptionClicked}
           />
         );
@@ -51,9 +64,13 @@ export function User() {
       <NavigationBar />
       <Header title={optionClicked || 'Meu Perfil'} />
 
-      <Box>
-        { sowComponentsUsers(optionClicked) }
-      </Box>
+      { !loadingUserToken ? (
+        <Box>
+          { sowComponentsUsers(optionClicked) }
+        </Box>
+      ) : (
+        <h2>CARREGANDO</h2>
+      ) }
       <Footer />
     </>
   );
