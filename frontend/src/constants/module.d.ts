@@ -79,7 +79,7 @@ declare interface FlavorDB {
 }
 
 declare interface CalzoneDB {
-  id_calzone: number,
+  id_calzone_flavor: number,
   created_at: string,
   name: string,
   id_comment: number | null,

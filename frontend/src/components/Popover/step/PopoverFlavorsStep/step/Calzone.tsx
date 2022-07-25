@@ -9,15 +9,15 @@ interface AdditionalsProps {
 export function Additionals({ objSabores, checkFlavors }: AdditionalsProps) {
   return (
     <>
-      { objSabores && objSabores.map(({ name, price, id_calzone }) => (
+      { objSabores && objSabores.map(({ name, price, id_calzone_flavor }) => (
         <>
           {/** */}
-          <Div key={id_calzone}>
+          <Div key={id_calzone_flavor}>
             <hr />
             <input
               type="checkbox"
               id={name}
-              onChange={() => checkFlavors(id_calzone, price)}
+              onChange={() => checkFlavors(id_calzone_flavor, price)}
               className="input"
             />
             <label

@@ -73,7 +73,7 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
     } finally {
       setLoadingSubmit(false);
       setPopoverEditData(false);
-      setVisible(true);
+      setVisible(false);
     }
   }
 

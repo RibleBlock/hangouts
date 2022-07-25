@@ -3,9 +3,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-restricted-syntax */
 import { useEffect, useState } from 'react';
-import {
-  IngredientType, SizeType, TypeFood, typeFoods,
-} from '../../../../assets/Foods';
+import { TypeFood } from '../../../../assets/Foods';
 import { CalzoneDB, DrinkDB, FlavorDB } from '../../../../constants/module';
 import { useGetFlavorsMutation } from '../../../../services/api/Auth';
 import { ButtonAction } from '../../../form/ButtonAction';
@@ -41,8 +39,8 @@ export function PopoverFlavorsStep({
       let table = '';
       if (chosenType === 'BEBIDA') {
         table = 'drink_size';
-      } else if (chosenType !== 'PIZZA' && chosenType !== 'DOCE') {
-        table = chosenType.toLowerCase();
+      } else if (chosenType === 'CALZONE') {
+        table = 'calzone_flavor';
       } else {
         table = '';
       }
@@ -65,7 +63,6 @@ export function PopoverFlavorsStep({
       setFlavors(flavors.filter((v) => v !== flavor));
     }
   }
-
   useEffect(() => {
     const inputs = document.querySelectorAll('.input') as any;
 
