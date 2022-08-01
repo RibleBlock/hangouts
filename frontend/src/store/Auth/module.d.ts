@@ -5,4 +5,10 @@ declare interface User {
   phone: string,
   email: string,
   admin: boolean,
+  cart: [
+    {
+      id_cart: number,
+      status: string | null,
+    }
+  ],
 }

@@ -6,6 +6,14 @@ interface User {
   password: string,
   phone?: string,
   admin?: boolean,
+  cart?: [
+    {
+      id_cart: number,
+      created_at: string,
+      id_user: number,
+      status: number,
+    }
+  ]
 }
 
 interface UserDB extends User {

@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import tokenState from './Auth/reducer';
 
 import { authApi } from '../services/api/Auth';
+import { wishApi } from '../services/api/wish';
 
 // aqui vai os reducers/estados que vao percistir //
 const reducersToPersist = combineReducers({
@@ -23,6 +24,7 @@ const persistedReducer = persistReducer(persistConfig, reducersToPersist);
 const reducer = {
   reducer: persistedReducer,
   [authApi.reducerPath]: authApi.reducer,
+  [wishApi.reducerPath]: wishApi.reducer,
 };
 // //
 

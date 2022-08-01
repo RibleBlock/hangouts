@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Loading } from '../../..';
 import { BordersType } from '../../../../assets/Foods';
-import { BorderDB } from '../../../../constants/module';
+import { BorderDB } from '../../../../interfaces/module';
 import { useGetDataTableMutation } from '../../../../services/api/Auth';
 import { PopoverListButton } from '../../PopoverListButton';
 import { Content } from '../PopoverSizeStep/PopoverSizeStep.styles';

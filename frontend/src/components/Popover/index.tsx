@@ -3,10 +3,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ButtonBC } from '..';
-import {
-  SizeType, TypeFood, typeFoods,
-} from '../../assets/Foods';
-import { useAddToCartMutation } from '../../services/api/Auth';
+import { TypeFood, typeFoods } from '../../assets/Foods';
+import { useAddToCartMutation } from '../../services/api/wish';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken } from '../../store/Auth/reducer';
 import { DarkBG, PopoverBox } from './Popover.styles';
@@ -33,9 +31,11 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
   const [value, setValue] = useState<number>(0);
   const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
 
+  // TEMPORÁRIO //
   useEffect(() => {
     console.log(selectedType, size, border, flavor, value, comment);
   }, [selectedType, size, border, flavor, comment, value]);
+  // //
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -49,23 +49,29 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
         return toast.error('Selecione pelo menos 1 sabor.');
       }
 
-      await addToCart({
-        category: selectedType,
+      const { data }: any = await addToCart({
         size,
         border,
         flavors: flavor,
         comment,
-        value,
-        idUser: currentUser.id,
+        id_cart: currentUser.cart[0].id_cart,
+        table: (selectedType === 'DOCE' ? 'pizza' : selectedType).toLowerCase(),
       });
 
+      console.log(data);
+
+      // if (!response) {
+      //   return toast.error('Selecione pelo menos 1 sabor.');
+      // }
       // TEMPORÁRIO //
       toast.info(`Enviado ${selectedType}, ${size}, ${border}, ${flavor}, ${value}, ${comment}, ${currentUser.id}`);
       // //
       toast.success('Adicionado ao carrinho');
       return navigate('/cart', { replace: true, state: { prevPath: location.pathname } });
     } catch (error: any) {
-      // //
+      if (error?.data.data.error) {
+        return toast.error(error.data.error);
+      }
       return toast.error(error);
     } finally {
       setIsLoadingSubmit(false);

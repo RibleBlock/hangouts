@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { CalzoneDB } from '../../../../../constants/module';
+import { CalzoneDB } from '../../../../../interfaces/module';
 import { Div } from '../PopoverFlavorsStep.styles';
 
 interface AdditionalsProps {

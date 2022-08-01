@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { FlavorDB } from '../../../../../constants/module';
+import { FlavorDB } from '../../../../../interfaces/module';
 import { Div } from '../PopoverFlavorsStep.styles';
 
 interface PizzaTypeProps {

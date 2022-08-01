@@ -4,12 +4,14 @@ export const BoxItem = styled.div`
   width: 33.5rem;
   border-radius: 1rem;
   transition: 500ms;
-  border: .3rem solid ${({ theme }) => theme.COLORS.text_tertiary};
+  border: .2rem solid ${({ theme }) => theme.COLORS.text_tertiary};
 
   > img {
     width: 100%;
-    height: 28  rem;
-    border-bottom: .3rem solid ${({ theme }) => theme.COLORS.text_tertiary};
+    height: 20rem;
+    border-top-left-radius: .8rem;
+    border-top-right-radius: .8rem;
+    border-bottom: .2rem solid ${({ theme }) => theme.COLORS.text_tertiary};
   }
 
   > h3 {

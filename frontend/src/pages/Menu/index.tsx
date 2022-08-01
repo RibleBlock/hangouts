@@ -2,7 +2,7 @@
 import { Pizza } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { Loading, MenuItem, MenuTitle } from '../../components';
-import { CalzoneDB, Menu as MenuDB } from '../../constants/module';
+import { CalzoneDB, Menu as MenuDB } from '../../interfaces/module';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { useGetFlavorsFilterMutation } from '../../services/api/Auth';
 import { Section, Div, LoadBox } from './Menu.styles';
@@ -43,33 +43,32 @@ export function Menu() {
       </Section>
 
       { !isLoadingFlavors ? (
-        <>
-          <Div>
-            { (!objSabores?.length && !objSaboresCalzone?.length) ? (
-              <div className="noPizza">
-                <Pizza size={96} color="#5e5e5e" weight="light" />
-                <h3>Esse sabor ainda não existe.</h3>
-              </div>
-            ) : (
-              <>
-                { (objSabores && objSaboresCalzone) && objSabores?.map(({
-                  id_flavor_type, name, flavor,
-                }) => (
-                  <>
-                    <MenuTitle key={id_flavor_type} title={name} />
-                    { flavor.map(({
-                      id_flavor, name, flavor_ingredient, image,
-                    }) => (
-                      <MenuItem
-                        key={id_flavor}
-                        image={image}
-                        nameItem={name}
-                        ingredients={flavor_ingredient}
-                      />
-                    )) }
-                  </>
-                )) }
-                { (objSabores && !!objSaboresCalzone?.length) && (
+        <Div>
+          { (!objSabores?.length && !objSaboresCalzone?.length) ? (
+            <div className="noPizza">
+              <Pizza size={96} color="#5e5e5e" weight="light" />
+              <h3>Esse sabor ainda não existe.</h3>
+            </div>
+          ) : (
+            <>
+              { (objSabores && objSaboresCalzone) && objSabores?.map(({
+                id_flavor_type, name, flavor,
+              }) => (
+                <>
+                  <MenuTitle key={id_flavor_type} title={name} />
+                  { flavor.map(({
+                    id_flavor, name, flavor_ingredient, image,
+                  }) => (
+                    <MenuItem
+                      key={id_flavor}
+                      image={image}
+                      nameItem={name}
+                      ingredients={flavor_ingredient}
+                    />
+                  )) }
+                </>
+              )) }
+              { (objSabores && !!objSaboresCalzone?.length) && (
                 <>
                   <MenuTitle title="Calzone" />
                   { objSaboresCalzone?.map(({ id_calzone_flavor, name, image }) => (
@@ -80,20 +79,16 @@ export function Menu() {
                     />
                   )) }
                 </>
-                ) }
-              </>
-            ) }
-          </Div>
-          {/* <Footer /> */}
-        </>
+              ) }
+            </>
+          ) }
+        </Div>
       ) : (
-        <>
-          <LoadBox>
-            <Loading color="grey" />
-          </LoadBox>
-          {/* <Footer /> */}
-        </>
+        <LoadBox>
+          <Loading color="grey" />
+        </LoadBox>
       ) }
+      {/* <Footer /> */}
       <Footer />
     </>
   );

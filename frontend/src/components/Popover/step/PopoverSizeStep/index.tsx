@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { useEffect, useState } from 'react';
 import { BordersType, SizeType, TypeFood } from '../../../../assets/Foods';
-import { FlavorTypePizzaSize } from '../../../../constants/module';
+import { FlavorTypePizzaSize } from '../../../../interfaces/module';
 import { useGetDataTableMutation } from '../../../../services/api/Auth';
 import { Loading } from '../../../Loading';
 import { PopoverListButton } from '../../PopoverListButton';

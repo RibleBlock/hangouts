@@ -9,13 +9,12 @@ declare interface State {
 }
 
 declare interface Pedido {
-  category: string | null,
+  category?: string | null,
   size: number | null,
   border: number,
   flavors: number[],
   comment?: string,
-  value: number,
-  idUser: number,
+  id_cart: number,
 }
 
 declare interface Menu {

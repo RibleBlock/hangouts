@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import UserModels from '../models/users.model';
 import { checkErrorInDB } from '../utils/errorDB.utils';
 import { passwordIsValid } from '../utils/checkPassword.util';
+import wishModel from '../models/wish.model';
 
 class User {
   async store(req: Request, res: Response): Promise<any> {
@@ -12,7 +13,10 @@ class User {
     let errors: string = '';
     try {
       if (email && password) {
-        const { data: user, error } = await UserModels.read('id, name, email, password, phone, admin', { email });
+        const { data: user, error } = await UserModels.read(
+          'id, name, email, password, phone, cart!inner(id_cart, status), admin',
+          { email },
+        );
 
         if (checkErrorInDB(error)) {
           errors = 'Email já existe';
@@ -24,9 +28,9 @@ class User {
             error: 'Usuário não existe',
           });
         }
-
+        console.log(user[0]);
         const {
-          id, name, password: passwordHash, phone, admin,
+          id, name, password: passwordHash, phone, admin, cart,
         } = user[0];
 
         if (!(await passwordIsValid(password, passwordHash))) {
@@ -36,13 +40,13 @@ class User {
         }
 
         const token = jwt.sign({
-          id, name, email, phone, admin,
+          id, name, email, phone, admin, cart,
         }, 'código_do_serviço_secreto');
 
         return res.json({
           token,
           user: {
-            id, name, email, phone, admin,
+            id, name, email, phone, admin, cart,
           },
         });
       }
@@ -73,9 +77,19 @@ class User {
           errors = 'Email já existe';
           throw new Error();
         }
+        const { data: cart, error: errorCart } = await wishModel.createCart({
+          idUser: data![0].id,
+        });
+
+        if (errorCart) {
+          return res.status(400).json({
+            error: errorCart,
+          });
+        }
 
         return res.json({
           data,
+          cart,
         });
       }
 

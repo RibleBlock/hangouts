@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { DrinkDB } from '../../../../../constants/module';
+import { DrinkDB } from '../../../../../interfaces/module';
 import { Div } from '../PopoverFlavorsStep.styles';
 
 interface DrinkProps {

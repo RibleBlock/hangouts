@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { useEffect, useState } from 'react';
 import { ButtonAction, CartItem, Loading } from '../../components';
-import { Pedido } from '../../constants/module';
+import { Pedido } from '../../interfaces/module';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { Box } from './Cart.styles';
 
@@ -31,14 +31,14 @@ export function Cart() {
         ) : (
           <div className="flex_itens order_list">
             { objetoPedidoTeste.map(({
-              category, size, border, flavors, comment, value, idUser,
+              category, size, border, flavors, comment, id_cart,
             }: Pedido, i) => (
               <CartItem
                 key={i}
                 title={size ? `PIZZA ${size}` : category!}
                 border={border}
                 sabores={flavors}
-                value={value}
+                value={73573} // teste
               />
             )) }
           </div>

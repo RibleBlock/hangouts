@@ -4,7 +4,7 @@
 /* eslint-disable no-restricted-syntax */
 import { useEffect, useState } from 'react';
 import { TypeFood } from '../../../../assets/Foods';
-import { CalzoneDB, DrinkDB, FlavorDB } from '../../../../constants/module';
+import { CalzoneDB, DrinkDB, FlavorDB } from '../../../../interfaces/module';
 import { useGetFlavorsMutation } from '../../../../services/api/Auth';
 import { ButtonAction } from '../../../form/ButtonAction';
 import { InputText } from '../../../form/InputText';
@@ -37,12 +37,17 @@ export function PopoverFlavorsStep({
     setIsLoadingFlavors(true);
     async function getFlavorsEffect() {
       let table = '';
-      if (chosenType === 'BEBIDA') {
-        table = 'drink_size';
-      } else if (chosenType === 'CALZONE') {
-        table = 'calzone_flavor';
-      } else {
-        table = '';
+      switch (chosenType) {
+        case 'BEBIDA':
+          table = 'drink_size';
+          break;
+        case 'CALZONE':
+          table = 'calzone_flavor';
+          break;
+
+        default:
+          table = '';
+          break;
       }
       const data = await getFlavors({ table });
       setObjSabores(data.data);
