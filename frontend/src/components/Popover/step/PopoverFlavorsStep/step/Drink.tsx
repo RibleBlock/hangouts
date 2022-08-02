@@ -4,9 +4,15 @@ import { Div } from '../PopoverFlavorsStep.styles';
 
 interface DrinkProps {
   objSabores?: DrinkDB[],
+  setSizeDrink: (idSize: number) => void,
   checkFlavors: (drink: number, price: number) => void,
 }
-export function Drink({ objSabores, checkFlavors }: DrinkProps) {
+export function Drink({ objSabores, checkFlavors, setSizeDrink }: DrinkProps) {
+  function setarValores({ drink, size, price }: {drink: number, size: number, price: number}) {
+    checkFlavors(drink, price);
+    setSizeDrink(size);
+  }
+
   return (
     <>
       {/**/}
@@ -21,7 +27,7 @@ export function Drink({ objSabores, checkFlavors }: DrinkProps) {
               <input
                 type="checkbox"
                 id={name_drink + name_drink_size}
-                onChange={() => checkFlavors(id_drink, price)}
+                onChange={() => setarValores({ drink: id_drink, size: id_drink_size, price })}
                 className="input"
               />
               <label

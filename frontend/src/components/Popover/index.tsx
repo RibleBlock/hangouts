@@ -37,6 +37,18 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
   }, [selectedType, size, border, flavor, comment, value]);
   // //
 
+  function currentTable(): string {
+    switch (selectedType) {
+      case 'BEBIDA':
+        return 'drink_cart';
+      case 'CALZONE':
+        return 'calzone';
+
+      default:
+        return 'pizza';
+    }
+  }
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setIsLoadingSubmit(true);
@@ -48,6 +60,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
       if (!flavor.length) {
         return toast.error('Selecione pelo menos 1 sabor.');
       }
+      const table = currentTable();
 
       const { data }: any = await addToCart({
         size,
@@ -55,7 +68,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
         flavors: flavor,
         comment,
         id_cart: currentUser.cart[0].id_cart,
-        table: (selectedType === 'DOCE' ? 'pizza' : selectedType).toLowerCase(),
+        table,
       });
 
       console.log(data);
@@ -102,6 +115,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
             <PopoverFlavorsStep
               chosenType={selectedType}
               qtdFlavors={qtdFlavors}
+              setSizeDrink={setSize}
               setFlavors={setFlavor}
               flavors={flavor}
               value={value}

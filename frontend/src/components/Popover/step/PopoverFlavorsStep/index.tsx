@@ -18,14 +18,23 @@ interface PopoverFlavorsStepProps {
   chosenType: TypeFood,
   qtdFlavors: number,
   flavors: number[],
-  setFlavors: (sizeName: number[]) => void,
+  setFlavors: (idFlavor: number[]) => void,
+  setSizeDrink: (size: number) => void,
   value: number,
   setValue: (value: number) => void,
   setComment: (comment: string) => void,
   isLoadingSubmit: boolean,
 }
 export function PopoverFlavorsStep({
-  chosenType, qtdFlavors, flavors, setFlavors, value, setValue, setComment, isLoadingSubmit,
+  chosenType,
+  qtdFlavors,
+  flavors,
+  setFlavors,
+  setSizeDrink,
+  value,
+  setValue,
+  setComment,
+  isLoadingSubmit,
 }: PopoverFlavorsStepProps) {
   const [getFlavors] = useGetFlavorsMutation() as any;
   const [isLoadingFlavors, setIsLoadingFlavors] = useState<boolean>(false);
@@ -112,6 +121,7 @@ export function PopoverFlavorsStep({
       default:
         return (
           <Drink
+            setSizeDrink={setSizeDrink}
             checkFlavors={checkFlavors}
             objSabores={objSabores}
           />

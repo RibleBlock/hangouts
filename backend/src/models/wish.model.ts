@@ -22,7 +22,7 @@ class Wish {
   async addToCart({
     table, size, border, comment, id_cart, flavors,
   }: Pedido & {table: string}) {
-    console.log(table);
+    // console.log('table'); //
     if (table === 'pizza') {
       const { data, error }: { data: Pedido[] | null, error: any } = await supabase
         .from(table)
@@ -43,12 +43,13 @@ class Wish {
         }]);
       return { data, error };
     }
-    console.log('bebida');
+    // console.log('bebida'); //
     const { data, error }: { data: Pedido[] | null, error: any } = await supabase
       .from(table)
       .insert([{
         id_cart,
-        id_drink: 99,
+        id_drink: flavors![0],
+        id_drink_size: size,
       }]);
     return { data, error };
   }
