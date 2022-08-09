@@ -1,15 +1,25 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
 import { useState } from 'react';
 import { ArrowCart, Button } from './CartItem.styles';
 
 interface CartItemProps {
   title: string,
-  border: number,
-  sabores: number[],
+  border?: string,
+  comment?: string,
+  sabores: {
+    flavor: {
+      name: string,
+      flavor_category: {
+        name: string,
+        price: number,
+      }
+    }
+  }[] | any,
   value: number,
 }
 export function CartItem({
-  title, border, sabores, value,
+  title, border, sabores, comment, value,
 }: CartItemProps) {
   const [buttonIsOpen, setButtonIsOpen] = useState<boolean>(false);
 
@@ -27,11 +37,19 @@ export function CartItem({
         <p>{(title || 'Sem Titulo').toUpperCase()}</p>
       </div>
       <div id="flavors">
-        <p>{`• ${border}`}</p>
         <p>
           {'• '}
-          { sabores.map((value, index) => `${value}${index + 1 < sabores.length ? ',' : ''} `) }
+          { Array.isArray(sabores)
+            ? sabores.map(({
+              flavor: { name: name_flavor, flavor_category: { price } },
+            }, index) => (
+              `${name_flavor}${index + 1 < sabores.length ? ', ' : ''}`
+            ))
+            : sabores}
         </p>
+        { border && (<p>{`• ${border}`}</p>) }
+
+        { comment && (<p>{`• OBS: ${comment}`}</p>) }
       </div>
       <p id="value">{`R$ ${value.toFixed(2)}`}</p>
     </Button>

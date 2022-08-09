@@ -19,7 +19,17 @@ export const wishApi = createApi({
         },
       }),
     }),
+    getCart: builder.mutation({
+      query: (body: { id_cart: number }) => ({
+        url: 'getCart',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useAddToCartMutation } = wishApi;
+export const {
+  useAddToCartMutation,
+  useGetCartMutation,
+} = wishApi;

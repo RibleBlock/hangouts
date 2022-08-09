@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import { Cart } from '../../store/Pedido/reducer';
 import { Token } from '../../store/Auth/reducer';
 
 declare interface State {
@@ -15,6 +14,81 @@ declare interface Pedido {
   flavors: number[],
   comment?: string,
   id_cart: number,
+}
+
+declare interface CartPizza {
+  id: number,
+  id_pizza_size: number,
+  id_pizza_border: number,
+  comment: string,
+  pizza_size: {
+    id_pizza_size: number,
+    name: string,
+    price: number,
+    quantidade_flavors: number
+  },
+  pizza_border: {
+    id_pizza_border: number,
+    name: string,
+    price: number,
+  },
+  pizza_flavor: [
+    {
+      flavor: {
+        id_flavor: number,
+        name: string,
+        id_flavor_type: number,
+        id_flavor_category: number,
+        id_image: number | null
+      }
+    },
+    {
+      flavor: {
+        id_flavor: number,
+        name: string,
+        id_flavor_type: number,
+        id_flavor_category: number,
+        id_image: number | null,
+        flavor_category: {
+          name: string,
+          price: number,
+        }
+      }
+    }
+  ]
+}
+
+declare interface CartCalzone {
+  id_calzone: number,
+  created_at: string,
+  comment: string,
+  id_calzone_flavor: number,
+  calzone_flavor: {
+    id_calzone_flavor: number,
+    name: string,
+    price: number,
+    id_image: number | null,
+  }
+}
+declare interface CartDrink {
+  id_drink_cart: number,
+  id_drink: number,
+  id_drink_size: number,
+  drink: {
+    id_drink: number,
+    name_drink: string,
+  },
+  drink_size: {
+    id_drink_size: number,
+    name_drink_size: string,
+    price: number,
+  }
+}
+
+declare interface Cart {
+  pizza: CartPizza[],
+  calzone: CartCalzone[],
+  drink_cart: CartDrink[],
 }
 
 declare interface Menu {
