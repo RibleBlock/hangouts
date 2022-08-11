@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Navigate, useLocation } from 'react-router-dom';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken } from '../../store/Auth/reducer';
@@ -12,6 +13,7 @@ export function User() {
   const token = useSelector(getToken);
   const [currentUser, setCurrentUser] = useState<User>();
   const [loadingUserToken, setloadingUserToken] = useState<boolean>(true);
+  const location = useLocation();
 
   // Para alterar o token //
   useEffect(() => {
@@ -47,7 +49,7 @@ export function User() {
       case 'Endereço':
         return (<h1>Endereço</h1>);
       case 'Admin':
-        return (<h1>Admin</h1>);
+        return (<Navigate to="/admin" replace state={{ prevPath: location.pathname }} />);
 
       default:
         return (
