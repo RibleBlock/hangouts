@@ -1,4 +1,4 @@
-import { CaretLeft, List } from 'phosphor-react';
+import { CaretLeft, CaretRight } from 'phosphor-react';
 import styled, { css } from 'styled-components';
 
 const svg = css`
@@ -7,14 +7,19 @@ const svg = css`
   background-color: transparent;
 `;
 
-export const Caret = styled(CaretLeft)`${svg}`;
-export const ListIcon = styled(List)`${svg}`;
+export const CaretL = styled(CaretLeft)`${svg}`;
+export const CaretR = styled(CaretRight)`${svg}`;
 
 export const ButtonList = styled.button`
   background-color: transparent;
+  border-radius: .5rem;
   cursor: pointer;
   margin: 1rem;
-  `;
+
+  &:hover > svg {
+    color: #00000088;
+  }
+`;
 
 export const Logo = styled.img`
     height: 8.5rem;
@@ -29,9 +34,10 @@ export const Menu = styled.header`
   padding: 0 1.5rem;
 `;
 
-export const Main = styled.main<{isOpen: boolean}>`
+export const Main = styled.main<{isOpen?: boolean}>`
   background-color: #1f1f1f;
   height: 100vh;
+  font-size: 2.5rem;
   display: grid;
   grid-template-columns: ${(props) => (props.isOpen ? '25rem' : '0')} 1fr;
   transition: 400ms;

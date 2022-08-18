@@ -5,10 +5,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   ButtonList,
-  Caret,
-  InfoBox,
-  ListIcon,
-  Logo, Main, Menu, NavTables,
+  CaretL, CaretR, InfoBox, Logo, Main, Menu, NavTables,
 } from './AdminPage.styles';
 
 import logo from '../../assets/images/logo.png';
@@ -16,10 +13,11 @@ import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken } from '../../store/Auth/reducer';
 
 export function AdminPage() {
+  const { admin } = decodeJWT<User>(useSelector(getToken));
+  const [tableSelected, setTableSelected] = useState<string>('users');
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const { admin } = decodeJWT<User>(useSelector(getToken));
 
   useEffect(() => {
     // fazer um login para ver se é admin
@@ -46,13 +44,12 @@ export function AdminPage() {
         </NavTables>
         <InfoBox>
           <ButtonList
-            style={{ backgroundColor: 'transparent' }}
             onClick={() => setMenuIsOpen(!menuIsOpen)}
             type="button"
           >
             { !menuIsOpen
-              ? <ListIcon weight="fill" />
-              : <Caret weight="duotone" /> }
+              ? <CaretR weight="duotone" />
+              : <CaretL weight="duotone" /> }
           </ButtonList>
           {/**/}
           <Link to="/user" style={{ fontSize: 30, textAlign: 'center', fontWeight: 'bold' }}>VOLTAR</Link>
