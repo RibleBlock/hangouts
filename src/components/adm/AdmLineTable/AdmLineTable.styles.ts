@@ -1,13 +1,28 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const TD = styled.td`
+const styleColumn = css`
   white-space: nowrap;
   padding: .5rem .8rem;
+  text-align: left;
+`;
+export const TD = styled.td`${styleColumn}`;
+export const TH = styled.th`
+  ${styleColumn}
+  background-color: #fff;
 `;
 
 export const TR = styled.tr`
   width: 100%;
-  background-color: aqua;
+  height: 4rem;
+  font-size: 1.5rem;
+  border-top: 2px solid #a5a5a5;
+  border-bottom: 2px solid #a5a5a5;
+  &:nth-of-type(2n + 1) {
+    background-color: #dfdfdf;
+  }
+  &:first-of-type {
+    border: none;
+  }
 
   > ${TD} {
     width: max(auto, 1rem);

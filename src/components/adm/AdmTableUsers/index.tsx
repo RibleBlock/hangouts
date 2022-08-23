@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useGetAllUsersMutation } from '../../../services/api/Auth';
+import { Loading } from '../../Loading';
 import { AdmLineTable } from '../AdmLineTable';
 import {
-  Table, THead, TBody, Th,
-} from './AdmTable.styles';
+  Table, THead, TBody, BoxLoading,
+} from './AdmTableUsers.styles';
 
 export function AdmTableUsers() {
   const [getUsers] = useGetAllUsersMutation();
@@ -14,9 +15,7 @@ export function AdmTableUsers() {
     setIsloadingData(true);
     async function adminFunction() {
       const { data } = await getUsers('') as any;
-      console.log(data);
       setAllUsers([...data]);
-      console.log(allUsers);
       setIsloadingData(false);
     }
     adminFunction();
@@ -25,7 +24,9 @@ export function AdmTableUsers() {
   return (
     <>
       { isloadingData ? (
-        <h1>Carregando</h1>
+        <BoxLoading>
+          <Loading big color="black" />
+        </BoxLoading>
       ) : (
         <Table>
           <THead>

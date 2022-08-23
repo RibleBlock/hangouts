@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { TR, TD } from './AdmLineTable.styles';
+import { TR, TD, TH } from './AdmLineTable.styles';
 
 interface AdmLineTableProps {
   fields: Array<any> | User[],
@@ -9,11 +9,10 @@ export function AdmLineTable({ fields, head }: AdmLineTableProps) {
   return (
     <>
       { head ? (
-        <TR style={{ fontWeight: 'bold' }}>
+        <TR>
           { fields && fields.map((value) => (
-            <TD key={value}>{value}</TD>
+            <TH key={value}>{value}</TH>
           )) }
-          {/**/}
         </TR>
       ) : (
         <>

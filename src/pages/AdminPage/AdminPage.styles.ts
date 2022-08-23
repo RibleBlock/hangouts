@@ -49,7 +49,11 @@ width: 15rem;
 color: #fff;
 font-weight: bold;
 border-radius: 1rem;
-background-color: ${(props) => (props.isSelected ? '#525252' : 'transparent')};
+cursor: pointer;
+background-color: ${(props) => (props.isSelected ? '#3E3E3E' : 'transparent')};
+&:hover {
+  background-color: #525252;
+}
 `;
 
 export const NavTables = styled.nav`
@@ -71,5 +75,5 @@ export const NavTables = styled.nav`
 
 export const InfoBox = styled.div`
   width: 100%;
-  background-color: coral;
+  background-color: #fff;
 `;
