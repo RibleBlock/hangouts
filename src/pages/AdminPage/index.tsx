@@ -5,12 +5,13 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   ButtonList,
-  CaretL, CaretR, InfoBox, Logo, Main, Menu, NavTables,
+  CaretL, CaretR, InfoBox, Logo, Main, Menu, NavButton, NavTables,
 } from './AdminPage.styles';
 
 import logo from '../../assets/images/logo.png';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken } from '../../store/Auth/reducer';
+import { AdmTableUsers } from '../../components';
 
 export function AdminPage() {
   const { admin } = decodeJWT<User>(useSelector(getToken));
@@ -31,16 +32,30 @@ export function AdminPage() {
       <Menu>
         <Link to="/">
           <Logo src={logo} alt="logo hangouts" />
+          <Link
+            to="/user"
+            style={{ fontSize: 12, verticalAlign: 'top', color: '#0030f1' }}
+          >
+            VOLTAR
+          </Link>
         </Link>
       </Menu>
       <Main isOpen={menuIsOpen}>
         <NavTables>
-          <h1>ALO</h1>
-          <h1>OLA</h1>
-          <h1>ALO</h1>
-          <h1>OLA</h1>
-          <h1>ALO</h1>
-          <h1>OLA</h1>
+          <NavButton
+            type="button"
+            isSelected={tableSelected === 'users'}
+            onClick={() => setTableSelected('users')}
+          >
+            USERS
+          </NavButton>
+          <NavButton
+            type="button"
+            isSelected={tableSelected === 'item2'}
+            onClick={() => setTableSelected('item2')}
+          >
+            ITEM_2
+          </NavButton>
         </NavTables>
         <InfoBox>
           <ButtonList
@@ -52,8 +67,7 @@ export function AdminPage() {
               : <CaretL weight="duotone" /> }
           </ButtonList>
           {/**/}
-          <Link to="/user" style={{ fontSize: 30, textAlign: 'center', fontWeight: 'bold' }}>VOLTAR</Link>
-          <h2 style={{ fontSize: 30, textAlign: 'center', fontWeight: 'bold' }}>AdminPage</h2>
+          <AdmTableUsers />
         </InfoBox>
       </Main>
     </>

@@ -12,6 +12,12 @@ export const authApi = createApi({ //
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
+    getAllUsers: builder.mutation({
+      query: () => ({
+        url: 'allusers',
+        method: 'GET',
+      }),
+    }),
     loginUser: builder.mutation({
       query: (userLogin: Pick<User, 'email' | 'password'>) => ({
         url: 'login',
@@ -58,6 +64,7 @@ export const authApi = createApi({ //
 });
 
 export const {
+  useGetAllUsersMutation,
   useLoginUserMutation,
   useNewUserMutation,
   useGetFlavorsMutation,
