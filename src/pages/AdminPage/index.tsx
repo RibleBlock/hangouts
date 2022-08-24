@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   ButtonList,
-  CaretL, CaretR, InfoBox, Logo, Main, Menu, NavButton, NavTables,
+  CaretL, CaretR, InfoBox, Logo, Main, Menu, NavButton, NavTables, H1,
 } from './AdminPage.styles';
 
 import logo from '../../assets/images/logo.png';
@@ -27,18 +27,23 @@ export function AdminPage() {
     }
   }, []);
 
+  function alterarTabela(): any {
+    switch (tableSelected) {
+      case 'item2':
+        return (<h1>ITEM_2</h1>);
+
+      default:
+        return (<AdmTableUsers />);
+    }
+  }
+
   return (
     <>
-      <Menu>
+      <Menu menuIsOpen={menuIsOpen}>
         <Link to="/">
           <Logo src={logo} alt="logo hangouts" />
-          <Link
-            to="/user"
-            style={{ fontSize: 12, verticalAlign: 'top', color: '#0030f1' }}
-          >
-            VOLTAR
-          </Link>
         </Link>
+        <H1>{`Gerenciar ${tableSelected}`}</H1>
       </Menu>
       <Main isOpen={menuIsOpen}>
         <NavTables>
@@ -66,8 +71,9 @@ export function AdminPage() {
               ? <CaretR weight="duotone" />
               : <CaretL weight="duotone" /> }
           </ButtonList>
-          {/**/}
-          <AdmTableUsers />
+          {/* fimMENU */}
+
+          { alterarTabela() }
         </InfoBox>
       </Main>
     </>

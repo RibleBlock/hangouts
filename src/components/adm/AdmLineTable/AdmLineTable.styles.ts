@@ -13,7 +13,7 @@ export const TH = styled.th`
 
 export const TR = styled.tr`
   width: 100%;
-  height: 4rem;
+  height: 4.5rem;
   font-size: 1.5rem;
   border-top: 2px solid #a5a5a5;
   border-bottom: 2px solid #a5a5a5;

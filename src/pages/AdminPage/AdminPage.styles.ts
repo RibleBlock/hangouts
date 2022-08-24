@@ -25,13 +25,27 @@ export const Logo = styled.img`
     height: 8.5rem;
 `;
 
-export const Menu = styled.header`
+export const H1 = styled.h1``;
+
+export const Menu = styled.header<{menuIsOpen: boolean}>`
   background-color: #2A2C2E;
   width: 100vw;
   height: 10rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 1.5rem;
+  > ${H1} {
+    font-size: 2.5rem;
+    color: #fff;
+    text-align: center;
+    width: calc(100% - 21rem);
+    ${(props) => !props.menuIsOpen && css`
+      width: 100vw;
+      position: absolute;
+      left: 0;
+    `}
+  }
 `;
 
 export const Main = styled.main<{isOpen?: boolean}>`
@@ -41,19 +55,18 @@ export const Main = styled.main<{isOpen?: boolean}>`
   font-size: 2.5rem;
   display: grid;
   grid-template-columns: ${(props) => (props.isOpen ? '21.7rem' : '0')} 1fr;
-  overflow: scroll;
 `;
 
 export const NavButton = styled.button<{isSelected: boolean}>`
-width: 15rem;
-color: #fff;
-font-weight: bold;
-border-radius: 1rem;
-cursor: pointer;
-background-color: ${(props) => (props.isSelected ? '#3E3E3E' : 'transparent')};
-&:hover {
-  background-color: #525252;
-}
+  width: 15rem;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: ${(props) => (props.isSelected ? '#3E3E3E' : 'transparent')};
+  &:hover {
+    background-color: #525252;
+  }
 `;
 
 export const NavTables = styled.nav`
@@ -75,5 +88,8 @@ export const NavTables = styled.nav`
 
 export const InfoBox = styled.div`
   width: 100%;
+  max-height: 90%;
   background-color: #fff;
+  overflow-y: scroll;
+
 `;
