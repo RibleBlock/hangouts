@@ -41,47 +41,43 @@ export function AdminPage() {
   }
 
   return (
-    <>
-      <Menu menuIsOpen={menuIsOpen}>
+    <Main isOpen={menuIsOpen}>
+      <NavTables>
         <Link to="/">
           <Logo src={logo} alt="logo hangouts" />
         </Link>
+        <NavButton
+          type="button"
+          isSelected={tableSelected.table === 'users'}
+          onClick={() => setTableSelected({ table: 'users', title: 'Usuários' })}
+        >
+          <Icon icon="akar-icons:person" className="icon" />
+          USERS
+        </NavButton>
+        <NavButton
+          type="button"
+          isSelected={tableSelected.table === 'item2'}
+          onClick={() => setTableSelected({ table: 'item2', title: 'Item 2' })}
+        >
+          <Icon icon="akar-icons:book" className="icon" />
+          ITEM_2
+        </NavButton>
+      </NavTables>
+      <Menu menuIsOpen={menuIsOpen}>
         <H1>{`Gerenciar ${tableSelected.title}`}</H1>
       </Menu>
+      <InfoBox>
+        <ButtonList
+          onClick={() => setMenuIsOpen(!menuIsOpen)}
+          type="button"
+        >
+          { !menuIsOpen
+            ? <CaretR weight="duotone" />
+            : <CaretL weight="duotone" /> }
+        </ButtonList>
 
-      <Main isOpen={menuIsOpen}>
-        <NavTables>
-          <NavButton
-            type="button"
-            isSelected={tableSelected.table === 'users'}
-            onClick={() => setTableSelected({ table: 'users', title: 'Usuários' })}
-          >
-            <Icon icon="akar-icons:person" className="icon" />
-            USERS
-          </NavButton>
-          <NavButton
-            type="button"
-            isSelected={tableSelected.table === 'item2'}
-            onClick={() => setTableSelected({ table: 'item2', title: 'Item 2' })}
-          >
-            <Icon icon="akar-icons:book" className="icon" />
-            ITEM_2
-          </NavButton>
-        </NavTables>
-        <InfoBox>
-          <ButtonList
-            onClick={() => setMenuIsOpen(!menuIsOpen)}
-            type="button"
-          >
-            { !menuIsOpen
-              ? <CaretR weight="duotone" />
-              : <CaretL weight="duotone" /> }
-          </ButtonList>
-          {/* fimMENU */}
-
-          { alterarTabela() }
-        </InfoBox>
-      </Main>
-    </>
+        { alterarTabela() }
+      </InfoBox>
+    </Main>
   );
 }

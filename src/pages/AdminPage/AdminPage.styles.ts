@@ -11,11 +11,10 @@ export const CaretL = styled(CaretLeft)`${svg}`;
 export const CaretR = styled(CaretRight)`${svg}`;
 
 export const ButtonList = styled.button`
+  padding: .2rem;
   background-color: transparent;
   border-radius: .5rem;
   cursor: pointer;
-  position: absolute;
-  top: .4rem;
 
   &:hover > svg {
     color: #00000088;
@@ -29,12 +28,13 @@ export const Logo = styled.img`
 export const H1 = styled.h1``;
 
 export const Menu = styled.header<{menuIsOpen: boolean}>`
+  grid-area: menu;
   background-color: #2A2C2E;
   width: 100vw;
   height: 10rem;
+  z-index: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0 1.5rem;
   > ${H1} {
     font-size: 2.5rem;
@@ -53,10 +53,14 @@ export const Menu = styled.header<{menuIsOpen: boolean}>`
 export const Main = styled.main<{isOpen?: boolean}>`
   background-color: #1f1f1f;
   width: 100vw;
-  height: calc(100vh - 10rem);
+  height: 100vh;
   font-size: 2.5rem;
   display: grid;
+  grid-template-rows: 10rem 1fr;
   grid-template-columns: ${(props) => (props.isOpen ? '21.7rem' : '0')} 1fr;
+  grid-template-areas:
+    "aside menu"
+    "aside view";
 `;
 
 export const NavButton = styled.button<{isSelected: boolean}>`
@@ -81,10 +85,11 @@ export const NavButton = styled.button<{isSelected: boolean}>`
 `;
 
 export const NavTables = styled.nav`
+  grid-area: aside;
   background-color: #2D3033;
   width: 100%;
   height: 100%;
-  padding: 2rem 0;
+  padding: 1rem 0;
   display: flex;
   gap: 1rem;
   flex-direction: column;
@@ -97,8 +102,8 @@ export const NavTables = styled.nav`
 `;
 
 export const InfoBox = styled.div`
+  grid-area: view;
   width: 100%;
   background-color: #fff;
   overflow-y: scroll;
-  position: relative;
 `;
