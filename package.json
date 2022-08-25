@@ -10,6 +10,7 @@
   "dependencies": {
     "@headlessui/react": "^1.6.1",
     "@hookform/resolvers": "^2.8.10",
+    "@iconify/react": "^3.2.2",
     "@reduxjs/toolkit": "^1.8.2",
     "phosphor-react": "^1.4.1",
     "react": "^18.0.0",

@@ -11,8 +11,8 @@ export const Th = styled.th`
 `;
 
 export const Table = styled.table`
-  width: calc(100% - 8rem);
-  margin: 2rem auto;
+  width: calc(100% - 10rem);
+  margin: 4.5rem auto;
   border-radius: 1rem;
   border-collapse: collapse;
 `;

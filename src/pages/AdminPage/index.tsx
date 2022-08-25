@@ -3,6 +3,7 @@ import {
 } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Icon } from '@iconify/react';
 import {
   ButtonList,
   CaretL, CaretR, InfoBox, Logo, Main, Menu, NavButton, NavTables, H1,
@@ -15,10 +16,12 @@ import { AdmTableUsers } from '../../components';
 
 export function AdminPage() {
   const { admin } = decodeJWT<User>(useSelector(getToken));
-  const [tableSelected, setTableSelected] = useState<string>('users');
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(true);
   const location = useLocation();
   const navigate = useNavigate();
+  const [tableSelected, setTableSelected] = useState<{title: string, table: string}>({
+    table: 'users', title: 'Usuários',
+  });
 
   useEffect(() => {
     // fazer um login para ver se é admin
@@ -28,7 +31,7 @@ export function AdminPage() {
   }, []);
 
   function alterarTabela(): any {
-    switch (tableSelected) {
+    switch (tableSelected.table) {
       case 'item2':
         return (<h1>ITEM_2</h1>);
 
@@ -43,22 +46,25 @@ export function AdminPage() {
         <Link to="/">
           <Logo src={logo} alt="logo hangouts" />
         </Link>
-        <H1>{`Gerenciar ${tableSelected}`}</H1>
+        <H1>{`Gerenciar ${tableSelected.title}`}</H1>
       </Menu>
+
       <Main isOpen={menuIsOpen}>
         <NavTables>
           <NavButton
             type="button"
-            isSelected={tableSelected === 'users'}
-            onClick={() => setTableSelected('users')}
+            isSelected={tableSelected.table === 'users'}
+            onClick={() => setTableSelected({ table: 'users', title: 'Usuários' })}
           >
+            <Icon icon="akar-icons:person" className="icon" />
             USERS
           </NavButton>
           <NavButton
             type="button"
-            isSelected={tableSelected === 'item2'}
-            onClick={() => setTableSelected('item2')}
+            isSelected={tableSelected.table === 'item2'}
+            onClick={() => setTableSelected({ table: 'item2', title: 'Item 2' })}
           >
+            <Icon icon="akar-icons:book" className="icon" />
             ITEM_2
           </NavButton>
         </NavTables>

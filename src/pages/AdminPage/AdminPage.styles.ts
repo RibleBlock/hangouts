@@ -14,7 +14,8 @@ export const ButtonList = styled.button`
   background-color: transparent;
   border-radius: .5rem;
   cursor: pointer;
-  margin: 1rem;
+  position: absolute;
+  top: .4rem;
 
   &:hover > svg {
     color: #00000088;
@@ -40,6 +41,7 @@ export const Menu = styled.header<{menuIsOpen: boolean}>`
     color: #fff;
     text-align: center;
     width: calc(100% - 21rem);
+    letter-spacing: .1rem;
     ${(props) => !props.menuIsOpen && css`
       width: 100vw;
       position: absolute;
@@ -64,17 +66,25 @@ export const NavButton = styled.button<{isSelected: boolean}>`
   border-radius: 1rem;
   cursor: pointer;
   background-color: ${(props) => (props.isSelected ? '#3E3E3E' : 'transparent')};
+  letter-spacing: .1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .6rem;
+  > .icon {
+    width: 2rem;
+    height: 2rem;
+  }
   &:hover {
     background-color: #525252;
   }
 `;
 
 export const NavTables = styled.nav`
-  background-color: #2A2C2E;
+  background-color: #2D3033;
   width: 100%;
   height: 100%;
   padding: 2rem 0;
-  letter-spacing: .1rem;
   display: flex;
   gap: 1rem;
   flex-direction: column;
@@ -88,8 +98,7 @@ export const NavTables = styled.nav`
 
 export const InfoBox = styled.div`
   width: 100%;
-  max-height: 90%;
   background-color: #fff;
   overflow-y: scroll;
-
+  position: relative;
 `;
