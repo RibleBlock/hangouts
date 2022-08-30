@@ -25,7 +25,6 @@ export function AdmFlavors() {
     async function getFlavorsPizza() {
       const { data } = await getFlavors({ filter: flavorFilter, table: 'flavor' }) as any;
       setFlavors(data);
-      console.log(flavors);
       setIsLoadingData(false);
     }
     getFlavorsPizza();
@@ -55,20 +54,20 @@ export function AdmFlavors() {
             autoComplete="off"
           />
           <div>
-            <Table>
-              { isLoadingData || !flavors ? (
-                <BoxLoadind>
-                  <Loading color="grey" big />
-                </BoxLoadind>
-              ) : (
+            { isLoadingData || !flavors ? (
+              <BoxLoadind>
+                <Loading color="grey" big />
+              </BoxLoadind>
+            ) : (
+              <Table>
                 <tbody>
                   <AdmLineFlavors currentFlavor={null} action={action} />
                   { flavors.map((sabor) => (
-                    <AdmLineFlavors currentFlavor={sabor} action={action} />
+                    <AdmLineFlavors key={sabor.id_flavor} currentFlavor={sabor} action={action} />
                   )) }
                 </tbody>
-              ) }
-            </Table>
+              </Table>
+            ) }
           </div>
         </BoxList>
       </Infos>

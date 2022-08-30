@@ -20,11 +20,10 @@ export function Menu() {
   useEffect(() => {
     setIsLoadingFlavors(true);
     async function getFlavorsEffect() {
-      const data = await getFlavors({ filter: flavorFilter }) as any;
+      const data = await getFlavors({ table: '', filter: flavorFilter }) as any;
       const dataCalz = await getFlavors({ table: 'calzone_flavor', filter: flavorFilter }) as any;
       setObjSabores(data.data);
       setObjSaboresCalzone(dataCalz.data);
-      console.log(objSabores);
       setIsLoadingFlavors(false);
     }
     getFlavorsEffect();
@@ -59,13 +58,13 @@ export function Menu() {
                 <>
                   <MenuTitle key={id_flavor_type} title={name} />
                   { flavor.map(({
-                    id_flavor, name, flavor_ingredient, image,
+                    id_flavor, name, image, ingredient,
                   }) => (
                     <MenuItem
                       key={id_flavor}
                       image={image}
                       nameItem={name}
-                      ingredients={flavor_ingredient}
+                      ingredients={ingredient}
                     />
                   )) }
                 </>

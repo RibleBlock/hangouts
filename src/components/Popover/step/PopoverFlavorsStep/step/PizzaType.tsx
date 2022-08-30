@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable camelcase */
 import { FlavorDB } from '../../../../../interfaces/module';
 import { Div } from '../PopoverFlavorsStep.styles';
@@ -17,7 +18,7 @@ export function PizzaType({ type, objSabores, checkFlavors }: PizzaTypeProps) {
         <>
           <h3 key={id_flavor_category}>{name}</h3>
           { flavor.map(({
-            id_flavor, name, flavor_ingredient, flavor_type,
+            id_flavor, name, ingredients, flavor_type,
           }) => (
             <>
               {/**/}
@@ -35,11 +36,9 @@ export function PizzaType({ type, objSabores, checkFlavors }: PizzaTypeProps) {
                   >
                     <div>
                       <p>{ name }</p>
-                      { flavor_ingredient.map(({
-                        ingredient: { name, id_ingredient },
-                      }, index, array) => (
-                        <span key={id_ingredient}>
-                          {`${name}${array.length > index + 1 ? ', ' : ''}`}
+                      { ingredients && ingredients.map((value, index, array) => (
+                        <span key={index}>
+                          {`${value}${array.length > index + 1 ? ', ' : ''}`}
                         </span>
                       )) }
                     </div>

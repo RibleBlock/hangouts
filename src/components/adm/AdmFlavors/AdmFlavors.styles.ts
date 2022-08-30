@@ -39,7 +39,6 @@ export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   background-color: #fff;
-  max-height: 2rem;
   td {
     padding: 1rem 2.5rem;
   }

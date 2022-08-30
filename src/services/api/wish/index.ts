@@ -21,7 +21,7 @@ export const wishApi = createApi({
     }),
     getCart: builder.mutation({
       query: ({ id_cart }: { id_cart: number }) => ({
-        url: `/getCart/${id_cart}`,
+        url: `getcart/${id_cart}`,
         method: 'GET',
       }),
     }),

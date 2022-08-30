@@ -100,20 +100,11 @@ declare interface Menu {
       id_flavor: number,
       created_at: string,
       name: string,
+      ingredient: string[],
       image: {
         url_image: string,
         alt: string,
       },
-      flavor_ingredient: [
-        {
-          ingredient: {
-            id_ingredient: number,
-            created_at: string,
-            name: string,
-            quantidade: number,
-          }
-        },
-      ]
     }
   ]
 }
@@ -150,6 +141,7 @@ declare interface FlavorDB {
       name: string,
       id_flavor_type: number,
       id_flavor_category: number,
+      ingredients: string[],
       image: {
         url_image: string,
         alt: string,
@@ -158,15 +150,6 @@ declare interface FlavorDB {
         name: string,
         created_at: string,
       },
-      flavor_ingredient: [
-        {
-          ingredient: {
-            id_ingredient: number,
-            created_at: string,
-            name: string,
-          }
-        },
-      ]
     },
   ]
 }

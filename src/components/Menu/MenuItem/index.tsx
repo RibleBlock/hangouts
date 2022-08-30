@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable camelcase */
 import { BoxItem } from './MenuItem.styles';
 
@@ -8,14 +9,7 @@ interface MenuItemProps {
     alt: string,
   },
   nameItem: string,
-  ingredients?: Array<{
-    ingredient: {
-      id_ingredient: number,
-      created_at: string,
-      name: string,
-      quantidade: number
-    },
-  }>,
+  ingredients?: string[],
 }
 export function MenuItem({ image, nameItem, ingredients }: MenuItemProps) {
   return (
@@ -26,13 +20,9 @@ export function MenuItem({ image, nameItem, ingredients }: MenuItemProps) {
       />
       <h3>{nameItem}</h3>
       <p>
-        { ingredients?.map(({
-          ingredient: {
-            id_ingredient, name,
-          },
-        }, index, array) => (
-          <span key={id_ingredient}>
-            {array.length > index + 1 ? `${name}, ` : name }
+        { ingredients?.map((value, index, array) => (
+          <span key={index}>
+            {array.length > index + 1 ? `${value}, ` : value }
           </span>
         )) }
       </p>

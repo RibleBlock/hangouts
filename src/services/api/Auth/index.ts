@@ -33,14 +33,14 @@ export const authApi = createApi({ //
       }),
     }),
     getFlavors: builder.mutation({
-      query: (body: { table: string }) => ({
-        url: `flavors?table=${body.table || ''}`,
+      query: ({ table }: { table: string }) => ({
+        url: `flavors?table=${table}`,
         method: 'GET',
       }),
     }),
     getFlavorsFilter: builder.mutation({
       query: ({ table, filter }: { table?: string, filter: string }) => ({
-        url: `flavorsfilter?table=${table || ''}&filter=${filter}`,
+        url: `flavorsfilter?table=${table}&filter=${filter}`,
         method: 'GET',
       }),
     }),
