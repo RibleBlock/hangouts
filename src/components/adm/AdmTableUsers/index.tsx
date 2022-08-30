@@ -3,7 +3,7 @@ import { useGetAllUsersMutation } from '../../../services/api/Auth';
 import { Loading } from '../../Loading';
 import { AdmLineTable } from '../AdmLineTable';
 import {
-  Table, THead, TBody, BoxLoading,
+  Table, THead, TBody, BoxLoadind,
 } from './AdmTableUsers.styles';
 
 export function AdmTableUsers() {
@@ -24,9 +24,9 @@ export function AdmTableUsers() {
   return (
     <>
       { isloadingData ? (
-        <BoxLoading>
-          <Loading big color="black" />
-        </BoxLoading>
+        <BoxLoadind>
+          <Loading big color="grey" />
+        </BoxLoadind>
       ) : (
         <Table>
           <THead>

@@ -12,7 +12,7 @@ import {
 import logo from '../../assets/images/logo.png';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken } from '../../store/Auth/reducer';
-import { AdmTableUsers } from '../../components';
+import { AdmFlavors, AdmTableUsers } from '../../components';
 
 export function AdminPage() {
   const { admin } = decodeJWT<User>(useSelector(getToken));
@@ -32,8 +32,8 @@ export function AdminPage() {
 
   function alterarTabela(): any {
     switch (tableSelected.table) {
-      case 'item2':
-        return (<h1>ITEM_2</h1>);
+      case 'pizza':
+        return (<AdmFlavors />);
 
       default:
         return (<AdmTableUsers />);
@@ -52,15 +52,15 @@ export function AdminPage() {
           onClick={() => setTableSelected({ table: 'users', title: 'Usuários' })}
         >
           <Icon icon="akar-icons:person" className="icon" />
-          USERS
+          USUÁRIO
         </NavButton>
         <NavButton
           type="button"
-          isSelected={tableSelected.table === 'item2'}
-          onClick={() => setTableSelected({ table: 'item2', title: 'Item 2' })}
+          isSelected={tableSelected.table === 'pizza'}
+          onClick={() => setTableSelected({ table: 'pizza', title: 'Sabores de Pizza' })}
         >
-          <Icon icon="akar-icons:book" className="icon" />
-          ITEM_2
+          <Icon icon="la:pizza-slice" className="icon" />
+          SABORES
         </NavButton>
       </NavTables>
       <Menu menuIsOpen={menuIsOpen}>
@@ -75,7 +75,6 @@ export function AdminPage() {
             ? <CaretR weight="duotone" />
             : <CaretL weight="duotone" /> }
         </ButtonList>
-
         { alterarTabela() }
       </InfoBox>
     </Main>

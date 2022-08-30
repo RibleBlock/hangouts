@@ -5,7 +5,9 @@ import { Loading, MenuItem, MenuTitle } from '../../components';
 import { CalzoneDB, Menu as MenuDB } from '../../interfaces/module';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { useGetFlavorsFilterMutation } from '../../services/api/Auth';
-import { Section, Div, LoadBox } from './Menu.styles';
+import {
+  Section, Div, LoadBox, InputFilter,
+} from './Menu.styles';
 
 export function Menu() {
   const [isLoadingFlavors, setIsLoadingFlavors] = useState<boolean>(false);
@@ -34,10 +36,10 @@ export function Menu() {
       <Header title="Cardápio" />
 
       <Section>
-        <input
+        <InputFilter
           type="text"
           name="filtro"
-          placeholder="Digite o sabor que deseja"
+          placeholder="Procurar sabores"
           onChange={(e) => setFlavorFilter(e.target.value)}
         />
       </Section>

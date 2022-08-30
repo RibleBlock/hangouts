@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const BoxLoading = styled.div`
+export const BoxLoadind = styled.div`
   width: 100%;
-  height: 80%;
+  height: 90%;
   display: grid;
   place-items: center;
 `;
@@ -12,7 +12,7 @@ export const Th = styled.th`
 
 export const Table = styled.table`
   width: calc(100% - 5rem);
-  margin: 2rem auto;
+  margin: 5rem auto;
   border-radius: 1rem;
   border-collapse: collapse;
 `;

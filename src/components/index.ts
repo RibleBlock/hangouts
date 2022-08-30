@@ -9,4 +9,6 @@ export { CartItem } from './CartItem';
 export { MenuItem } from './Menu/MenuItem';
 export { MenuTitle } from './Menu/MenuTitle';
 export { ButtonAction } from './form/ButtonAction';
+export { Graphic } from './adm/Graphic';
 export { AdmTableUsers } from './adm/AdmTableUsers';
+export { AdmFlavors } from './adm/AdmFlavors';

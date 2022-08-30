@@ -118,6 +118,26 @@ declare interface Menu {
   ]
 }
 
+declare interface Flavor {
+  id_flavor: number,
+  created_at: string,
+  name: string,
+  id_flavor_type: number,
+  id_flavor_category: number,
+  report: {
+    id_report: number,
+    created_at: string,
+    date: string,
+    times_ordered: number,
+    id_flavor: number | null,
+    id_calzone_flavor: number | null,
+  }[],
+  image: {
+    url_image: string,
+    alt: string,
+  }
+}
+
 declare interface FlavorDB {
   id_flavor_category: number,
   created_at: string,

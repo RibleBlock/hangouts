@@ -14,6 +14,7 @@ export const ButtonList = styled.button`
   padding: .2rem;
   background-color: transparent;
   border-radius: .5rem;
+  position: absolute;
   cursor: pointer;
 
   &:hover > svg {
@@ -25,28 +26,24 @@ export const Logo = styled.img`
     height: 8.5rem;
 `;
 
-export const H1 = styled.h1``;
+export const H1 = styled.h1`
+  font-size: 2.5rem;
+  text-align: center;
+`;
 
 export const Menu = styled.header<{menuIsOpen: boolean}>`
   grid-area: menu;
   background-color: #2A2C2E;
-  width: 100vw;
+  width: 100%;
   height: 10rem;
   z-index: 1;
   display: flex;
   align-items: center;
   padding: 0 1.5rem;
   > ${H1} {
-    font-size: 2.5rem;
     color: #fff;
-    text-align: center;
-    width: calc(100% - 21rem);
+    width: 100%;
     letter-spacing: .1rem;
-    ${(props) => !props.menuIsOpen && css`
-      width: 100vw;
-      position: absolute;
-      left: 0;
-    `}
   }
 `;
 
@@ -55,6 +52,7 @@ export const Main = styled.main<{isOpen?: boolean}>`
   width: 100vw;
   height: 100vh;
   font-size: 2.5rem;
+  overflow-y: hidden;
   display: grid;
   grid-template-rows: 10rem 1fr;
   grid-template-columns: ${(props) => (props.isOpen ? '21.7rem' : '0')} 1fr;
