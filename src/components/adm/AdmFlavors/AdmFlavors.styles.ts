@@ -61,7 +61,7 @@ export const BoxList = styled.div`
 
 export const BoxLoadind = styled.div`
   width: 100%;
-  height: 30rem;
+  height: 25rem;
   display: grid;
   place-items: center;
 `;

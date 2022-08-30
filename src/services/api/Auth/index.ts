@@ -34,23 +34,20 @@ export const authApi = createApi({ //
     }),
     getFlavors: builder.mutation({
       query: (body: { table: string }) => ({
-        url: 'flavors',
-        body,
-        method: 'POST',
+        url: `flavors?table=${body.table || ''}`,
+        method: 'GET',
       }),
     }),
     getFlavorsFilter: builder.mutation({
-      query: (body: { table?: string, filter: string }) => ({
-        url: 'flavorsfilter',
-        body,
-        method: 'POST',
+      query: ({ table, filter }: { table?: string, filter: string }) => ({
+        url: `flavorsfilter?table=${table || ''}&filter=${filter}`,
+        method: 'GET',
       }),
     }),
     getDataTable: builder.mutation({
-      query: (body: { filter: string, route: string }) => ({
-        url: body.route,
-        body,
-        method: 'POST',
+      query: ({ filter, route }: { filter: string, route: string }) => ({
+        url: `${route}?filter=${filter}`,
+        method: 'GET',
       }),
     }),
     updateDataUser: builder.mutation({

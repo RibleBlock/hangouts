@@ -39,7 +39,7 @@ export function Graphic({ label, labels, data }: GraphicProps) {
           plugins: {
             title: {
               display: true,
-              text: label ? `QUANTIDADE DE VEZES QUE ${label?.toUpperCase()} FOI PEDIDO` : 'SELECIONE UM SABOR',
+              text: label ? `QUANTIDADE DE VEZES QUE ${label?.toUpperCase()} FOI PEDIDO` : 'SELECIONE UM SABOR:',
             },
             legend: {
               display: false,
