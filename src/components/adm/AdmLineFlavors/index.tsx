@@ -10,7 +10,7 @@ interface AdmLineFlavorsProps {
 export function AdmLineFlavors({ currentFlavor, action }: AdmLineFlavorsProps) {
   if (!currentFlavor) {
     return (
-      <TR onClick={() => console.log('Adicionar novo sabor de pizza')}>
+      <TR onClick={action}>
         <TD>
           <p>Adicionar novo sabor de pizza</p>
           <PlusIcon weight="bold" />

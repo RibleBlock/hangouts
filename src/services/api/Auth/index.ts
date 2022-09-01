@@ -13,8 +13,8 @@ export const authApi = createApi({ //
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getAllUsers: builder.mutation({
-      query: () => ({
-        url: 'allusers',
+      query: ({ filter }: {filter: string}) => ({
+        url: `allusers?filter=${filter}`,
         method: 'GET',
       }),
     }),

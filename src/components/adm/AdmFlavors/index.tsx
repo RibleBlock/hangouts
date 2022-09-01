@@ -2,7 +2,7 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 import { useEffect, useState } from 'react';
-import { Flavor, FlavorDB } from '../../../interfaces/module';
+import { Flavor } from '../../../interfaces/module';
 import { useGetFlavorsFilterMutation } from '../../../services/api/Auth';
 import { Graphic } from '../Graphic';
 import { Loading } from '../../Loading';
@@ -30,10 +30,9 @@ export function AdmFlavors() {
     getFlavorsPizza();
   }, [flavorFilter]);
 
-  // AO CLICAR //
+  // AO CLICAR NO SABOR //
   function action(flavor: Flavor) {
-    setFlavorSelected(flavor);
-    console.log(flavorSelected?.name);
+    console.log('adicionar');
   }
 
   return (
@@ -61,9 +60,13 @@ export function AdmFlavors() {
             ) : (
               <Table>
                 <tbody>
-                  <AdmLineFlavors currentFlavor={null} action={action} />
+                  <AdmLineFlavors currentFlavor={null} action={() => console.log('Adicionar um novo Sabor')} />
                   { flavors.map((sabor) => (
-                    <AdmLineFlavors key={sabor.id_flavor} currentFlavor={sabor} action={action} />
+                    <AdmLineFlavors
+                      key={sabor.id_flavor}
+                      currentFlavor={sabor}
+                      action={setFlavorSelected}
+                    />
                   )) }
                 </tbody>
               </Table>

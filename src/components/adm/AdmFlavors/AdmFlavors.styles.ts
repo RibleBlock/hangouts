@@ -11,7 +11,7 @@ export const MainBox = styled.main`
 export const EditBox = styled.div`
   background-color: #fff;
   width: 60rem;
-  height: 60rem;
+  max-height: 90%;
   padding: 2rem 2.5rem;
   border-radius: .7rem;
   font-size: 1.7rem;

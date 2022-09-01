@@ -151,6 +151,7 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
                     type={!visible ? 'text' : 'password'}
                     placeholder={dataChenger}
                     onChange={(e) => setField(e.target.value)}
+                    autoComplete="off"
                   />
                 </>
               ) : (
