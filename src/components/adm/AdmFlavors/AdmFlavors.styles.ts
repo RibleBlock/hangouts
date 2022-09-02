@@ -8,15 +8,6 @@ export const MainBox = styled.main`
   flex-direction: row;
 `;
 
-export const EditBox = styled.div`
-  background-color: #fff;
-  width: 60rem;
-  max-height: 90%;
-  padding: 2rem 2.5rem;
-  border-radius: .7rem;
-  font-size: 1.7rem;
-`;
-
 export const EditSecti = styled.div`
   grid-area: edit;
   width: 55%;

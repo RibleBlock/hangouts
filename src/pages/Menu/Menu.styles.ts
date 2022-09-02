@@ -6,8 +6,8 @@ export const InputFilter = styled.input`
   background-color: #E8E8E8;
   color: #000;
   font-weight: bold;
-  max-width: 45rem;
-  width: 100%;
+  width: 45rem;
+  max-width: 100%;
   height: 3.5rem;
   padding: 0 1.7rem;
   border-radius: 2rem;

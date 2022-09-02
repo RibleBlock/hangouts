@@ -8,9 +8,10 @@ import { Graphic } from '../Graphic';
 import { Loading } from '../../Loading';
 import { AdmLineFlavors } from '../AdmLineFlavors';
 import {
-  Infos, BoxList, Table, MainBox, EditSecti, EditBox, BoxLoadind,
+  Infos, BoxList, Table, MainBox, EditSecti, BoxLoadind,
 } from './AdmFlavors.styles';
 import { InputFilter } from '../../../pages/Menu/Menu.styles';
+import { AdmEditData } from '../AdmEditData';
 
 export function AdmFlavors() {
   const [getFlavors] = useGetFlavorsFilterMutation();
@@ -75,9 +76,7 @@ export function AdmFlavors() {
         </BoxList>
       </Infos>
       <EditSecti>
-        <EditBox>
-          OLAaaaaaaaaaaaa
-        </EditBox>
+        <AdmEditData />
       </EditSecti>
     </MainBox>
   );
