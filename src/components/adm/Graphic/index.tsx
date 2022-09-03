@@ -32,7 +32,7 @@ export function Graphic({ label, labels, data }: GraphicProps) {
   };
 
   return (
-    <div style={{ backgroundColor: '#fff', marginBottom: '2rem' }}>
+    <div style={{ backgroundColor: '#fff', marginBottom: '.5rem' }}>
       <Bar
         data={chartData}
         options={{

@@ -76,7 +76,7 @@ export function AdmFlavors() {
         </BoxList>
       </Infos>
       <EditSecti>
-        <AdmEditData />
+        <AdmEditData selectedFlavor={flavorSelected} />
       </EditSecti>
     </MainBox>
   );

@@ -1,5 +1,5 @@
 import { Camera } from 'phosphor-react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const CameraIcon = styled(Camera)`
   color: #444;
@@ -31,7 +31,29 @@ export const H2 = styled.h2`
   font-size: 2rem;
 `;
 
-export const Box = styled.div`
+export const InputEdit = styled.input`
+  width: 20rem;
+  padding: .8rem;
+  font-size: 1.4rem;
+  border-radius: .6rem;
+  box-shadow: 0px 0px 8px #00000039;
+`;
+
+export const GridBox = styled.div`
+  width: 100%;
+  margin: 3rem 0;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  row-gap: 2.5rem;
+
+  > div p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.3rem;
+  }
+`;
+
+export const Form = styled.form`
 background-color: #fff;
 width: 50rem;
 max-height: 90%;
