@@ -41,7 +41,7 @@ export const InputEdit = styled.input`
 
 export const GridBox = styled.div`
   width: 100%;
-  margin: 3rem 0;
+  margin-top: 3rem;
   display: grid;
   grid-template: 1fr 1fr / 1fr 1fr;
   row-gap: 2.5rem;
@@ -51,12 +51,24 @@ export const GridBox = styled.div`
     font-weight: 600;
     margin-bottom: 1.3rem;
   }
+  @media (max-width: 950px) {
+    grid-template: 1fr / 1fr;
+    margin-top: 1rem;
+    row-gap: 1rem;
+    > div:has(+ div) {
+      margin-bottom: .3rem;
+    }
+    ${InputEdit} {
+      width: 100% ;
+    }
+  }
 `;
 
 export const Form = styled.form`
 background-color: #fff;
-width: 50rem;
-max-height: 90%;
+width: 100%;
+max-width: 50rem;
+max-height: max(90%, auto);
 padding: 2rem 2.5rem;
 border-radius: .7rem;
 font-size: 1.7rem;

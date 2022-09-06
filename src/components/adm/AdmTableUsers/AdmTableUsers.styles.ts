@@ -3,9 +3,10 @@ import { InputFilter } from '../../../pages/Menu/Menu.styles';
 
 export const BoxLoadind = styled.div`
   width: 100%;
-  height: 90%;
-  display: grid;
-  place-items: center;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Th = styled.th`

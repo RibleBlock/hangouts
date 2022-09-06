@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Flavor } from '../../../interfaces/module';
 import {
   Form, CameraIcon, H2, Label, GridBox, InputEdit,
 } from './AdmEditData.styles';
+
+import imgteste from '../../../assets/images/logo.png';
 
 interface AdmEditDataProps {
   selectedFlavor: Flavor | null,
@@ -24,7 +26,11 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
       setImage('');
     }
   }
-  // console.log(ingredients);
+
+  useEffect(() => {
+    const imageLink = selectedFlavor?.image?.url_image;
+    setImage(imageLink || '');
+  }, [selectedFlavor]);
 
   return (
     <Form>

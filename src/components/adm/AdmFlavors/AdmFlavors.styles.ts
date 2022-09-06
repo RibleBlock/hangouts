@@ -3,16 +3,15 @@ import { InputFilter } from '../../../pages/Menu/Menu.styles';
 
 export const MainBox = styled.main`
   width: 100%;
-  height: calc(100vh - 10rem);
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 export const EditSecti = styled.div`
   grid-area: edit;
   width: 55%;
-  /**/
-  padding: 3rem 5rem;
+  height: calc(100vh - 10rem);
+  padding: 3rem;
   background-color: #d9d9d9;
   display: flex;
   justify-content: center;
@@ -23,7 +22,7 @@ export const Infos = styled.div`
   grid-area: info;
   width: 45%;
   /**/
-  padding: 3rem 5.5rem;
+  padding: 3rem 5.5rem 0;
 `;
 
 export const Table = styled.table`
@@ -31,7 +30,7 @@ export const Table = styled.table`
   border-collapse: collapse;
   background-color: #fff;
   td {
-    padding: 1rem 2.5rem;
+    padding: 1rem 2rem;
   }
 `;
 
@@ -39,7 +38,7 @@ export const BoxList = styled.div`
   width: 100%;
   > div {
     max-height: 28rem;
-    overflow: scroll;
+    overflow: hidden scroll;
   }
   > ${InputFilter} {
     width: 35rem;
