@@ -116,6 +116,13 @@ declare interface Flavor {
   id_flavor_type: number,
   id_flavor_category: number,
   ingredients: string[],
+  flavor_type: {
+    name: string,
+  },
+  flavor_category: {
+    name: string,
+    price: number,
+  },
   report: {
     id_report: number,
     created_at: string,

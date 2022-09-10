@@ -32,8 +32,9 @@ export function AdmFlavors() {
   }, [flavorFilter]);
 
   // AO CLICAR NO SABOR //
-  function action(flavor: Flavor) {
+  function action() {
     console.log('adicionar');
+    setFlavorSelected(null);
   }
 
   return (
@@ -61,7 +62,7 @@ export function AdmFlavors() {
             ) : (
               <Table>
                 <tbody>
-                  <AdmLineFlavors currentFlavor={null} action={() => console.log('Adicionar um novo Sabor')} />
+                  <AdmLineFlavors currentFlavor={null} action={action} />
                   { flavors.map((sabor) => (
                     <AdmLineFlavors
                       key={sabor.id_flavor}

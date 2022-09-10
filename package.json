@@ -8,9 +8,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@headlessui/react": "^1.6.1",
     "@hookform/resolvers": "^2.8.10",
     "@iconify/react": "^3.2.2",
+    "@mui/material": "^5.10.4",
     "@reduxjs/toolkit": "^1.8.2",
     "chart.js": "^3.9.1",
     "phosphor-react": "^1.4.1",

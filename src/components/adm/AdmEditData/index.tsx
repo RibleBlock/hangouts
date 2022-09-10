@@ -5,6 +5,7 @@ import {
 } from './AdmEditData.styles';
 
 import imgteste from '../../../assets/images/logo.png';
+import { RadioButtonsGroup } from '../../form/RadioButtonsGroup';
 
 interface AdmEditDataProps {
   selectedFlavor: Flavor | null,
@@ -54,8 +55,11 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
           />
         </div>
         <div>
-          <p>Tipo</p>
-          <InputEdit type="text" placeholder="Tipo" autoComplete="off" />
+          <RadioButtonsGroup
+            title="Tipo"
+            checked={selectedFlavor?.flavor_type.name}
+            fields={['Salgada', 'Doce']}
+          />
         </div>
         <div>
           <p>Ingredientes</p>
@@ -67,8 +71,11 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
           />
         </div>
         <div>
-          <p>Categoria</p>
-          <InputEdit type="text" placeholder="Categoria" autoComplete="off" />
+          <RadioButtonsGroup
+            title="Categoria"
+            checked={selectedFlavor?.flavor_category.name}
+            fields={['Tradicional', 'Especial']}
+          />
         </div>
       </GridBox>
     </Form>
