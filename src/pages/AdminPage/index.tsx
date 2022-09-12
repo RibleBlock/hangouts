@@ -60,7 +60,7 @@ export function AdminPage() {
           onClick={() => setTableSelected({ table: 'pizza', title: 'Sabores de Pizza' })}
         >
           <Icon icon="la:pizza-slice" className="icon" />
-          SABORES
+          PIZZAS
         </NavButton>
       </NavTables>
       <Menu menuIsOpen={menuIsOpen}>
