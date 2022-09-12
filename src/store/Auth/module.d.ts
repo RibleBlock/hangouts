@@ -5,6 +5,7 @@ declare interface User {
   phone: string,
   email: string,
   admin: boolean,
+  is_active: boolean,
   created_at?: string,
   cart: [
     {

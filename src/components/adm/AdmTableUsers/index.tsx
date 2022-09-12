@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { InputFilter } from '../../../pages/Menu/Menu.styles';
 import { useGetAllUsersMutation } from '../../../services/api/Auth';
+import { decodeJWT } from '../../../services/utils/Decode/DecodeJWT';
+import { getToken } from '../../../store/Auth/reducer';
 import { Loading } from '../../Loading';
 import { AdmLineTable } from '../AdmLineTable';
 import {
@@ -8,6 +11,8 @@ import {
 } from './AdmTableUsers.styles';
 
 export function AdmTableUsers() {
+  const { admin } = decodeJWT<User>(useSelector(getToken));
+
   const [getUsers] = useGetAllUsersMutation();
   const [isloadingData, setIsloadingData] = useState<boolean>(false);
   const [allUsers, setAllUsers] = useState<User[]>([]);
@@ -39,10 +44,10 @@ export function AdmTableUsers() {
       ) : (
         <Table>
           <THead>
-            <AdmLineTable head fields={['ID', 'Criado em', 'Nome', 'E-mail', 'Telefone', 'isAdmin']} />
+            <AdmLineTable head fields={['ID', 'Criado em', 'Nome', 'E-mail', 'Telefone', 'isAdmin', 'isActive']} />
           </THead>
           <TBody>
-            <AdmLineTable fields={allUsers!} />
+            <AdmLineTable fields={allUsers!} isAdmin={admin} />
           </TBody>
         </Table>
       ) }

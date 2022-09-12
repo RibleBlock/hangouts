@@ -4,8 +4,19 @@ const styleColumn = css`
   white-space: nowrap;
   padding: .5rem .8rem;
   text-align: left;
+  `;
+export const TD = styled.td`
+  ${styleColumn}
+  > button {
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: .5rem .8rem;
+    border-radius: .3rem;
+    &:not(:hover) {
+      background-color: transparent;
+    }
+  }
 `;
-export const TD = styled.td`${styleColumn}`;
 export const TH = styled.th`
   ${styleColumn}
   background-color: #fff;

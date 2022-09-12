@@ -51,7 +51,13 @@ export const authApi = createApi({ //
       }),
     }),
     updateDataUser: builder.mutation({
-      query: (body: { id: number, field: string, value: string, password: string }) => ({
+      query: (body: {
+        id: number,
+        field: string,
+        value: string | number | boolean,
+        password?: string,
+        isAdmin?: boolean,
+       }) => ({
         url: 'updateuserdata',
         body,
         method: 'PATCH',
