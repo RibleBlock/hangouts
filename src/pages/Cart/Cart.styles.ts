@@ -13,22 +13,98 @@ export const Box = styled.div`
   > div.flex_itens {
     width: 100%;
     max-width: 47rem;
-    padding: 2.2rem 2rem;
-    border-radius: 1rem;
-    box-shadow: 0px 0px 15px #BABABA;
+    padding: 1rem 2rem 2.8rem;
     font-size: 1.6rem;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 2.5rem;
+    gap: 2rem;
     > .botoes {
       flex-direction: row;
+      box-shadow: none;
+      padding: 0;
     }
     > div {
+      padding: 2.2rem 2rem;
+      border-radius: 2rem;
+      box-shadow: 0px 0px 15px #BABABA;
       text-align: right;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+
+      > div p:last-of-type {  // Alterar
+        color: #0085FF;
+        font-size: 1.3rem;
+        text-decoration: underline;
+      }
+      > p {
+
+        &:first-of-type {
+          text-align: left;
+          font-weight: bold;
+        }
+      }
+    }
+  @media screen and (max-width: 455px) {
+    > .botoes {
+      flex-direction: column;
+    }
+  }
+  }
+
+  > div.grid {
+    width: 100%;
+    max-width: 40rem;
+    font-size: 1.6rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      'address address'
+      'troco troco'
+      'frete total'
+      'botoes botoes';
+    justify-content: space-between;
+    column-gap: 2rem;
+    > .botoes {
+      grid-area: botoes;
+      align-self: start;
+      height: auto;
+      flex-direction: row;
+      box-shadow: none;
+      padding: 0;
+    }
+      #address {
+        grid-area: address;
+      }
+      #troco {
+        grid-area: troco;
+      }
+      #frete {
+        grid-area: frete;
+        flex-direction: column;
+        padding: 1.5rem 0;
+        gap: .5rem
+      }
+      #total {
+        grid-area: total;
+        flex-direction: column;
+        padding: 1.5rem 0;
+        gap: .5rem
+     }
+    > div {
+      height: 8rem;
+      padding: 0 2rem;
+      border-radius: 2rem;
+      box-shadow: 0px 0px 15px #BABABA;
+      text-align: right;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       gap: 2rem;
 
       > div p:last-of-type {  // Alterar

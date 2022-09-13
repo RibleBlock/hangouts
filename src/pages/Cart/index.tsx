@@ -81,24 +81,24 @@ export function Cart() {
           </div>
         ) }
 
-        <div className="flex_itens">
-          <div>
-            <p>Formas de Entrega:</p>
-            <p>Botoes aqui</p>
-          </div>
-          <div>
-            <p>Endereço:</p>
+        <div className="grid">
+          <div id="address">
+            <p>Endereço</p>
             <div>
               <p>Rua Pedro jose filia da massa</p>
               <p>Alterar</p>
             </div>
           </div>
-          <div>
-            <p>Entrega:</p>
+          <div id="troco">
+            <p>Troco para</p>
             <p>R$ 0,00</p>
           </div>
-          <div>
-            <p>Total:</p>
+          <div id="frete">
+            <p>Frete:</p>
+            <p>R$ 0,00</p>
+          </div>
+          <div id="total">
+            <p>Total do pedido:</p>
             <p>R$ 0,00</p>
           </div>
           <div className="botoes">
