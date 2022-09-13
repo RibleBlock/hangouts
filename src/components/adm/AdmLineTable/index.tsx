@@ -39,8 +39,6 @@ export function AdmLineTable({ fields, head, isAdmin }: AdmLineTableProps) {
               <TD>{name}</TD>
               <TD>{email}</TD>
               <TD>{phone || 'Não definido'}</TD>
-              {/* <TD>{admin ? 'True' : 'False'}</TD> */}
-              {/* <TD>{is_active ? ('True') : ('False')}</TD> */}
               <TD>
                 <button
                   type="button"

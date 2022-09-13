@@ -1,9 +1,12 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const BoxItem = styled.div`
+export const BoxItem = styled(Link)`
   width: 33.5rem;
   border-radius: 1rem;
   transition: 500ms;
+  color: #000;
+  text-decoration: none;
   border: .2rem solid ${({ theme }) => theme.COLORS.text_tertiary};
 
   > img {

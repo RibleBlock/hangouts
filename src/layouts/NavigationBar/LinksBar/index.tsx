@@ -57,16 +57,16 @@ export function LinksBar({ isOpen, elements }: LinksBarProps) {
             CARDAPIO
           </div>
         </Link>
-
       </li>
+      { currentUser && (
       <li>
         <Link to="/cart">
           <div>
             CARRINHO
           </div>
         </Link>
-
       </li>
+      ) }
       <li>
         { currentUser ? (
           <Link to="/user">
@@ -77,7 +77,7 @@ export function LinksBar({ isOpen, elements }: LinksBarProps) {
         ) : (
           <Link to="/login">
             <div>
-              ENTRAR
+              CADASTRO
             </div>
           </Link>
         ) }
