@@ -53,7 +53,7 @@ export function Cart() {
   const valorCompra = {
     troco: Number(troco),
     frete: 0,
-    total: valorTotalPizza! + valorTotalCalzone! + valorTotalBebida!,
+    total: valorTotalPizza! + valorTotalCalzone! + valorTotalBebida!, // MAIS O FRETE //
   };
   console.log(valorCompra);
 
@@ -119,7 +119,7 @@ export function Cart() {
             <p>Troco para</p>
             <InputText
               small
-              subtitle="Troco"
+              title="Troco"
               setText={setTroco}
               type="number"
             />

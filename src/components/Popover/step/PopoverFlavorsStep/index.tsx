@@ -160,7 +160,7 @@ export function PopoverFlavorsStep({
           && (
           <InputText
             type="text"
-            subtitle="Observações do pedido (opcional)"
+            title="Observações do pedido (opcional)"
             setText={setComment}
           />
           ) }

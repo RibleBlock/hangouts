@@ -37,8 +37,6 @@ export function User() {
             loadingToken={setloadingUserToken}
           />
         );
-      case 'Formas de pagamentos':
-        return (<h1>Formas de pagamentos</h1>);
       case 'Histórico de compras':
         return (
           <OrderHistory

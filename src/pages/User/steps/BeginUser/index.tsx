@@ -56,15 +56,6 @@ export function BeginUser({ currentUser, setOption } : BeginUserProps) {
         <hr /** */ />
 
         <ChangeOption
-          optionTitle="Formas de pagamentos"
-          optionDescription="Adicione/Remova formas de pagamentos"
-          setOption={setOption}
-        >
-          <CreditCard weight="thin" />
-        </ChangeOption>
-        <hr /** */ />
-
-        <ChangeOption
           optionTitle="Histórico de compras"
           optionDescription="Acompanhar pedidos e ver historico"
           setOption={setOption}

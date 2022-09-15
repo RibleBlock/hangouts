@@ -2,13 +2,13 @@ import { useState, memo } from 'react';
 import { Box } from './InputText.styles';
 
 interface InputTextProps {
-  subtitle: string
+  title: string
   setText: (value: any) => void;
   type?: 'text' | 'number',
   small?: boolean,
 }
 function InputTextComponent({
-  subtitle, setText, type, small,
+  title, setText, type, small,
 }: InputTextProps) {
   const [isValid, setIsvalid] = useState<boolean>(false);
 
@@ -28,9 +28,10 @@ function InputTextComponent({
           type={type}
           id="comment"
           name="observacoes"
+          autoComplete="off"
           onChange={(e) => validateInput(e.target.value)}
         />
-        <p>{ subtitle }</p>
+        <p>{ title }</p>
       </label>
     </Box>
   );
