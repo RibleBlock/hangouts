@@ -69,7 +69,7 @@ export const Box = styled.div`
       'frete total'
       'botoes botoes';
     justify-content: space-between;
-    column-gap: 2rem;
+    gap: 2rem;
     > .botoes {
       grid-area: botoes;
       align-self: start;
@@ -83,6 +83,9 @@ export const Box = styled.div`
       }
       #troco {
         grid-area: troco;
+        input {
+          text-align: right;
+        }
       }
       #frete {
         grid-area: frete;
@@ -107,17 +110,19 @@ export const Box = styled.div`
       align-items: center;
       gap: 2rem;
 
-      > div p:last-of-type {  // Alterar
-        color: #0085FF;
+      > div > a {  // Alterar
+        color: blue;
         font-size: 1.3rem;
         text-decoration: underline;
       }
-      > p {
-
-        &:first-of-type {
-          text-align: left;
-          font-weight: bold;
-        }
+      > div p {
+        text-align: right;
+        font-size: 1.4rem;
+        right: 0;
+      }
+      > p:first-of-type {
+        text-align: left;
+        font-weight: bold;
       }
     }
   @media screen and (max-width: 455px) {
@@ -139,7 +144,7 @@ export const Box = styled.div`
   }
 
   > div.loading {
-    height: 30rem;
+    height: 36rem;
     display: grid;
     place-content: center;
     z-index: -1;

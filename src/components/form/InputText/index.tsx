@@ -3,25 +3,29 @@ import { Box } from './InputText.styles';
 
 interface InputTextProps {
   subtitle: string
-  setText: (text: string) => void;
+  setText: (value: any) => void;
+  type?: 'text' | 'number',
+  small?: boolean,
 }
-function InputTextComponent({ subtitle, setText }: InputTextProps) {
+function InputTextComponent({
+  subtitle, setText, type, small,
+}: InputTextProps) {
   const [isValid, setIsvalid] = useState<boolean>(false);
 
-  function validateInput(text: string) {
-    if (text) {
+  function validateInput(value: any) {
+    if (value) {
       setIsvalid(true);
-      setText(text);
+      setText(value);
     } else {
       setIsvalid(false);
     }
   }
 
   return (
-    <Box valid={isValid}>
+    <Box valid={isValid} small={small}>
       <label htmlFor="comment">
         <input
-          type="text"
+          type={type}
           id="comment"
           name="observacoes"
           onChange={(e) => validateInput(e.target.value)}

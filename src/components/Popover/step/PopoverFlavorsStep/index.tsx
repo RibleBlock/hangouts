@@ -159,6 +159,7 @@ export function PopoverFlavorsStep({
           { chosenType !== 'BEBIDA'
           && (
           <InputText
+            type="text"
             subtitle="Observações do pedido (opcional)"
             setText={setComment}
           />

@@ -1,9 +1,14 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable camelcase */
 /* eslint-disable react/no-array-index-key */
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { ButtonAction, CartItem, Loading } from '../../components';
+import { Link } from 'react-router-dom';
+import {
+  ButtonAction, CartItem, InputText, Loading,
+} from '../../components';
 import { Cart as CartInterface } from '../../interfaces/module';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { useGetCartMutation } from '../../services/api/wish';
@@ -31,6 +36,27 @@ export function Cart() {
     getCartUser();
   }, []);
 
+  const valorTotalPizza = itemsCart?.pizza.reduce((ac, {
+    pizza_border: { price: price_border },
+    pizza_size: { price: price_size },
+  }) => ac += price_border + price_size, 0);
+
+  const valorTotalCalzone = itemsCart?.calzone.reduce((ac, {
+    calzone_flavor: { price },
+  }) => ac += price, 0);
+
+  const valorTotalBebida = itemsCart?.drink_cart.reduce((ac, {
+    drink_size: { price },
+  }) => ac += price, 0);
+
+  const [troco, setTroco] = useState<any>(0);
+  const valorCompra = {
+    troco: Number(troco),
+    frete: 0,
+    total: valorTotalPizza! + valorTotalCalzone! + valorTotalBebida!,
+  };
+  console.log(valorCompra);
+
   return (
     <>
       <NavigationBar />
@@ -39,7 +65,7 @@ export function Cart() {
       <Box>
         { isFetchingCart ? (
           <div className="flex_itens loading">
-            <Loading color="grey" />
+            <Loading color="grey" big />
           </div>
         ) : (
           <div className="flex_itens order_list">
@@ -47,9 +73,9 @@ export function Cart() {
               id, comment, pizza_flavor,
               pizza_border: { name: name_border, price: price_border },
               pizza_size: { name: name_size, price: price_size },
-            }) => (
+            }, i) => (
               <CartItem
-                key={id}
+                key={`${id}${i}`}
                 title={`PIZZA ${name_size}`}
                 border={name_border}
                 comment={comment}
@@ -59,9 +85,9 @@ export function Cart() {
             )) }
             {itemsCart && itemsCart.calzone.map(({
               id_calzone, comment, calzone_flavor: { name, price },
-            }) => (
+            }, i) => (
               <CartItem
-                key={id_calzone}
+                key={`${id_calzone}${i}`}
                 title={`CALZONE DE ${name}`}
                 comment={comment}
                 sabores={name}
@@ -70,9 +96,9 @@ export function Cart() {
             )) }
             {itemsCart && itemsCart.drink_cart.map(({
               drink: { id_drink, name_drink }, drink_size: { name_drink_size, price },
-            }) => (
+            }, i) => (
               <CartItem
-                key={`${id_drink}${name_drink_size}`}
+                key={`${id_drink}${name_drink_size}${i}`}
                 title={`${name_drink} - ${name_drink_size}`}
                 sabores={name_drink}
                 value={price}
@@ -86,12 +112,17 @@ export function Cart() {
             <p>Endereço</p>
             <div>
               <p>Rua Pedro jose filia da massa</p>
-              <p>Alterar</p>
+              <Link to="/">Alterar</Link>
             </div>
           </div>
           <div id="troco">
             <p>Troco para</p>
-            <p>R$ 0,00</p>
+            <InputText
+              small
+              subtitle="Troco"
+              setText={setTroco}
+              type="number"
+            />
           </div>
           <div id="frete">
             <p>Frete:</p>
@@ -99,7 +130,11 @@ export function Cart() {
           </div>
           <div id="total">
             <p>Total do pedido:</p>
-            <p>R$ 0,00</p>
+            <p>
+              R$
+              {' '}
+              { valorCompra.total?.toFixed(2) || '0.00' }
+            </p>
           </div>
           <div className="botoes">
             <ButtonAction

@@ -49,7 +49,9 @@ export function Login() {
   return (
     <>
       <NavigationBar />
-      <Header title="Login" />
+      <Header title="Login">
+        Voce deve se cadastrar para fazer um pedido
+      </Header>
       <Div>
         <div>
           <form onSubmit={handleSubmit(submit)}>
