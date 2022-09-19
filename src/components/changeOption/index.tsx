@@ -8,7 +8,7 @@ export type ChangeOptionStyles = {
 interface ChangeOptionProps extends ChangeOptionStyles {
   children?: ReactNode;
   optionTitle: string;
-  optionDescription: string;
+  optionDescription?: string;
   setOption: (value: string) => void;
 }
 export function ChangeOption({

@@ -56,20 +56,20 @@ export function BeginUser({ currentUser, setOption } : BeginUserProps) {
         <hr /** */ />
 
         <ChangeOption
-          optionTitle="Histórico de compras"
-          optionDescription="Acompanhar pedidos e ver historico"
-          setOption={setOption}
-        >
-          <ClockCounterClockwise weight="thin" />
-        </ChangeOption>
-        <hr /** */ />
-
-        <ChangeOption
           optionTitle="Endereço"
           optionDescription="Altere o endereco de entraga"
           setOption={setOption}
         >
           <MapPin weight="thin" />
+        </ChangeOption>
+        <hr /** */ />
+
+        <ChangeOption
+          optionTitle="Histórico de compras"
+          optionDescription="Acompanhar pedidos e ver historico"
+          setOption={setOption}
+        >
+          <ClockCounterClockwise weight="thin" />
         </ChangeOption>
 
         { currentUser.admin && (

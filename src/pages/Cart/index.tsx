@@ -53,7 +53,7 @@ export function Cart() {
   const valorCompra = {
     troco: Number(troco),
     frete: 0,
-    total: valorTotalPizza! + valorTotalCalzone! + valorTotalBebida!, // MAIS O FRETE //
+    total: valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! || 0, // MAIS O FRETE //
   };
   console.log(valorCompra);
 
@@ -133,7 +133,7 @@ export function Cart() {
             <p>
               R$
               {' '}
-              { valorCompra.total?.toFixed(2) || '0.00' }
+              { valorCompra.total?.toFixed(2) }
             </p>
           </div>
           <div className="botoes">

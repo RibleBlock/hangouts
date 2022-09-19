@@ -18,6 +18,12 @@ export const authApi = createApi({ //
         method: 'GET',
       }),
     }),
+    getAddress: builder.mutation({
+      query: ({ id }: {id: number}) => ({
+        url: `getaddress?id=${id}`,
+        method: 'GET',
+      }),
+    }),
     loginUser: builder.mutation({
       query: (userLogin: Pick<User, 'email' | 'password'>) => ({
         url: 'login',
@@ -67,6 +73,7 @@ export const authApi = createApi({ //
 });
 
 export const {
+  useGetAddressMutation,
   useGetAllUsersMutation,
   useLoginUserMutation,
   useNewUserMutation,

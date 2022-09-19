@@ -3,7 +3,6 @@ import { Dialog } from '@headlessui/react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { Eye, EyeClosed } from 'phosphor-react';
-import { useLocation } from 'react-router-dom';
 import { ButtonAction, ButtonBC } from '../../../../components';
 import { DarkBG } from '../../../../components/Popover/Popover.styles';
 import {

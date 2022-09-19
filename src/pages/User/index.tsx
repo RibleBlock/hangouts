@@ -4,6 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken } from '../../store/Auth/reducer';
+import { AddressUser } from './steps/AddressUser';
 import { BeginUser } from './steps/BeginUser';
 import { MyData } from './steps/MyData';
 import { OrderHistory } from './steps/OrderHistory';
@@ -45,7 +46,12 @@ export function User() {
           />
         );
       case 'Endereço':
-        return (<h1>Endereço</h1>);
+        return (
+          <AddressUser
+            user={currentUser!}
+            setOption={setOptionClicked}
+          />
+        );
       case 'Admin':
         return (<Navigate to="/admin" replace state={{ prevPath: location.pathname }} />);
 
