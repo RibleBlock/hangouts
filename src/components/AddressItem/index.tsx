@@ -4,10 +4,13 @@ import { BoxItem } from './AddressItem.styles';
 interface AddressItemProps {
   title: string,
   subTitle?: string,
-  action: (value: any) => void,
+  config: {
+    option: string,
+    action: (value?: string | number | boolean) => void;
+  }[],
 }
 
-export function AddressItem({ title, subTitle, action }: AddressItemProps) {
+export function AddressItem({ title, subTitle, config }: AddressItemProps) {
   return (
     <BoxItem>
       <div>
@@ -15,7 +18,7 @@ export function AddressItem({ title, subTitle, action }: AddressItemProps) {
         <span>{subTitle}</span>
       </div>
 
-      <MenuDropdown options={['Editar', 'Excluir']} />
+      <MenuDropdown config={config} />
     </BoxItem>
   );
 }

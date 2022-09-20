@@ -61,7 +61,7 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
       if (inValid) return toast.error(inValid);
 
       const { token } = await updateData({
-        id: user.id, field, value: fieldValue, password: passwordField,
+        id: user.id_user, field, value: fieldValue, password: passwordField,
       }).unwrap() as any;
       dispatch(addToken(token));
 

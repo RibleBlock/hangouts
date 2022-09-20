@@ -12,6 +12,10 @@ export const BoxMenu = styled(Menu)``;
 
 export const MenuButton = styled(Menu.Button)`
   cursor: pointer;
+  border-radius: .4rem;
+  &:not(:hover) {
+    background-color: transparent;
+  }
 `;
 
 export const MenuItems = styled(Menu.Items)`
@@ -24,6 +28,7 @@ export const MenuItems = styled(Menu.Items)`
 export const MenuItem = styled(Menu.Item)`
   cursor: pointer;
   padding: .5rem 1rem;
+  user-select: none;
   &:hover {
     background-color: #F0F0F0;
   }

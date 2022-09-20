@@ -31,10 +31,10 @@ export function AdmLineTable({ fields, head, isAdmin }: AdmLineTableProps) {
       ) : (
         <>
           { fields && fields.map(({
-            name, id, email, phone, admin, created_at, is_active,
+            name, id_user, email, phone, admin, created_at, is_active,
           }: User) => (
-            <TR key={id} style={{ backgroundColor: !is_active ? '#ffc7c7' : '' }}>
-              <TD>{id}</TD>
+            <TR key={id_user} style={{ backgroundColor: !is_active ? '#ffc7c7' : '' }}>
+              <TD>{id_user}</TD>
               <TD>{created_at?.slice(0, 10)}</TD>
               <TD>{name}</TD>
               <TD>{email}</TD>
@@ -43,7 +43,7 @@ export function AdmLineTable({ fields, head, isAdmin }: AdmLineTableProps) {
                 <button
                   type="button"
                   onClick={() => updateFunction({
-                    id, field: 'admin', value: !admin, isAdmin,
+                    id: id_user, field: 'admin', value: !admin, isAdmin,
                   })}
                 >
                   {admin ? ('True') : ('False')}
@@ -53,7 +53,7 @@ export function AdmLineTable({ fields, head, isAdmin }: AdmLineTableProps) {
                 <button
                   type="button"
                   onClick={() => updateFunction({
-                    id, field: 'is_active', value: !is_active, isAdmin,
+                    id: id_user, field: 'is_active', value: !is_active, isAdmin,
                   })}
                 >
                   {is_active ? ('True') : ('False')}

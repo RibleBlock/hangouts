@@ -54,7 +54,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
     setIsLoadingSubmit(true);
 
     try {
-      if ((selectedType === 'PIZZA') && (!selectedType || !size || !border || !currentUser.id)) {
+      if ((selectedType !== 'CALZONE' && selectedType !== 'BEBIDA') && (!selectedType || !size || !border)) {
         return toast.error('Algo não está certo.');
       }
       if (!flavor.length) {
@@ -71,14 +71,6 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
         table,
       });
 
-      console.log(data);
-
-      // if (!response) {
-      //   return toast.error('Selecione pelo menos 1 sabor.');
-      // }
-      // TEMPORÁRIO //
-      toast.info(`Enviado ${selectedType}, ${size}, ${border}, ${flavor}, ${value}, ${comment}, ${currentUser.id}`);
-      // //
       toast.success('Adicionado ao carrinho');
       return navigate('/cart', { replace: true, state: { prevPath: location.pathname } });
     } catch (error: any) {

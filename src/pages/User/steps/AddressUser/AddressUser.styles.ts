@@ -11,13 +11,7 @@ export const addressSection = styled(Section)`
   > button {
     padding: 3.3rem 4rem;
     display: flex;
-    justify-content: space-between;
-    > div {
-      text-align: left;
-      flex-direction: column;
-      > p {font-size: 1.6rem;}
-      > span {font-size: 1.4rem;}
-    }
+    gap: 1rem;
     h3 {
       font-size: 1.6rem;
     }
