@@ -25,10 +25,17 @@ export const wishApi = createApi({
         method: 'GET',
       }),
     }),
+    deleteItem: builder.mutation({
+      query: ({ id, table }: { id: number, table?: string }) => ({
+        url: `cartitem?id_cart=${id}&table=${table}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
 export const {
   useAddToCartMutation,
   useGetCartMutation,
+  useDeleteItemMutation,
 } = wishApi;

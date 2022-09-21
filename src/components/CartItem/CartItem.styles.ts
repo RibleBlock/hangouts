@@ -3,6 +3,7 @@ import { CaretRight } from 'phosphor-react';
 
 interface CartItemStyle {
   isOpen?: boolean,
+  show: boolean,
 }
 export const ArrowCart = styled(CaretRight)`
   width: 2rem;
@@ -14,8 +15,7 @@ export const ArrowCart = styled(CaretRight)`
 
 export const Button = styled.button<CartItemStyle>`
   width: 100%;
-  height: ${(props) => (!props.isOpen ? '4.8rem' : 'max(10.6rem, auto)')};
-  min-height: ${(props) => (!props.isOpen ? '4.4rem' : 'max(10.6rem, auto)')};
+  height: ${(props) => (!props.isOpen ? '4.4rem' : 'max(10.6rem, auto)')};
   padding: 1.4rem 1.5rem;
   font-size: 1.5rem;
   user-select: none;
@@ -25,6 +25,7 @@ export const Button = styled.button<CartItemStyle>`
   `}
 
   display: grid;
+  ${(props) => !props.show && css`display: none;`}
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
   grid-template-areas:

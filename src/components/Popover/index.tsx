@@ -31,11 +31,11 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
   const [value, setValue] = useState<number>(0);
   const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
 
-  // TEMPORÁRIO //
+  /**
   useEffect(() => {
-    console.log(selectedType, size, border, flavor, value, comment);
+     console.log(selectedType, size, border, flavor, value, comment);
   }, [selectedType, size, border, flavor, comment, value]);
-  // //
+  */
 
   function currentTable(): string {
     switch (selectedType) {
