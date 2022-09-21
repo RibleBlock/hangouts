@@ -1,5 +1,8 @@
 import { Dialog } from '@headlessui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getToken } from '../../store/Auth/reducer';
 import {
   Popover, TypeButtonPopover,
 } from '../../components';
@@ -9,6 +12,17 @@ import { Footer, Header, NavigationBar } from '../../layouts';
 
 export function ChooseTypePizza() {
   const [selectedType, setSelectedType] = useState<TypeFood | null>(null);
+  const token = useSelector(getToken);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleButton = (category: TypeFood) => {
+    if (token === 'empty') {
+      navigate('/login', { replace: true, state: { prevPath: location.pathname } });
+    } else {
+      setSelectedType(category);
+    }
+  };
 
   return (
     <>
@@ -22,7 +36,7 @@ export function ChooseTypePizza() {
 
         { Object.entries(typeFoods).map(([key, value]) => (
           <TypeButtonPopover
-            onSelectType={setSelectedType}
+            onSelectType={handleButton}
             category={key}
             title={value.title}
             source={value.image.source}

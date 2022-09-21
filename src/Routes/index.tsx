@@ -16,10 +16,7 @@ export function AppRoute() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/menu" element={<Menu />} />
-
-        <Route path="/pedir" element={<PrivateRoute />}>
-          <Route path="/pedir" element={<ChooseTypePizza />} />
-        </Route>
+        <Route path="/pedir" element={<ChooseTypePizza />} />
 
         <Route path="/user" element={<PrivateRoute />}>
           <Route path="/user" element={<User />} />
