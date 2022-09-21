@@ -55,7 +55,6 @@ export function Cart() {
     frete: 0,
     total: valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! || 0, // MAIS O FRETE //
   };
-  console.log(valorCompra);
 
   return (
     <>
@@ -70,12 +69,13 @@ export function Cart() {
         ) : (
           <div className="flex_itens order_list">
             {itemsCart && itemsCart.pizza.map(({
-              id, comment, pizza_flavor,
+              id_pizza, comment, pizza_flavor,
               pizza_border: { name: name_border, price: price_border },
               pizza_size: { name: name_size, price: price_size },
             }, i) => (
               <CartItem
-                key={`${id}${i}`}
+                key={`${id_pizza}${i}`}
+                idPedido={id_pizza}
                 title={`PIZZA ${name_size}`}
                 border={name_border}
                 comment={comment}
@@ -88,6 +88,7 @@ export function Cart() {
             }, i) => (
               <CartItem
                 key={`${id_calzone}${i}`}
+                idPedido={id_calzone}
                 title={`CALZONE DE ${name}`}
                 comment={comment}
                 sabores={name}
@@ -95,10 +96,12 @@ export function Cart() {
               />
             )) }
             {itemsCart && itemsCart.drink_cart.map(({
-              drink: { id_drink, name_drink }, drink_size: { name_drink_size, price },
-            }, i) => (
+              id_drink_cart,
+              drink: { name_drink }, drink_size: { name_drink_size, price },
+            }) => (
               <CartItem
-                key={`${id_drink}${name_drink_size}${i}`}
+                key={id_drink_cart}
+                idPedido={id_drink_cart}
                 title={`${name_drink} - ${name_drink_size}`}
                 sabores={name_drink}
                 value={price}

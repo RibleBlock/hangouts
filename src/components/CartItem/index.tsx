@@ -1,9 +1,11 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
+import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import { ArrowCart, Button } from './CartItem.styles';
 
 interface CartItemProps {
+  idPedido: number,
   title: string,
   border?: string,
   comment?: string,
@@ -41,7 +43,7 @@ export function CartItem({
           {'• '}
           { Array.isArray(sabores)
             ? sabores.map(({
-              flavor: { name: name_flavor, flavor_category: { price } },
+              flavor: { name: name_flavor },
             }, index) => (
               `${name_flavor}${index + 1 < sabores.length ? ', ' : ''}`
             ))
@@ -52,6 +54,12 @@ export function CartItem({
         { comment && (<p>{`• OBS: ${comment}`}</p>) }
       </div>
       <p id="value">{`R$ ${value.toFixed(2)}`}</p>
+      <Icon
+        id="trash"
+        icon="akar-icons:trash-can"
+        color="#ff0000"
+        onClick={() => console.log('clicado')}
+      />
     </Button>
   );
 }

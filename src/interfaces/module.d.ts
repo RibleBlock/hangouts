@@ -17,7 +17,7 @@ declare interface Pedido {
 }
 
 declare interface CartPizza {
-  id: number,
+  id_pizza: number,
   id_pizza_size: number,
   id_pizza_border: number,
   comment: string,
