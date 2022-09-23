@@ -1,23 +1,31 @@
 /* eslint-disable camelcase */
 import { Dialog } from '@headlessui/react';
 import { useEffect, useState } from 'react';
-import { ButtonBC } from '../../../../components';
+import { useForm } from 'react-hook-form';
+import { ButtonAction, ButtonBC } from '../../../../components';
 import { AddressItem } from '../../../../components/AddressItem';
 import { PlusIcon } from '../../../../components/adm/AdmLineFlavors/AdmLineFlavors.styles';
 import { DarkBG } from '../../../../components/Popover/Popover.styles';
 import { useGetAddressMutation } from '../../../../services/api/Auth';
-import { BoxPopOver } from '../MyData/MyData.styles';
-import { addressDiv as Div, addressSection as Section } from './AddressUser.styles';
+import { addressDiv as Div, AddressField, addressSection as Section, BoxPopOverAddress, DialogTitle, FormAddress } from './AddressUser.styles';
 
 interface AddressUserProps {
   user: User,
   setOption: (value: string) => void,
+}
+interface InputsAddress {
+  cep: string,
+  street: string,
+  number: number,
+  district: string,
+  obs: string,
 }
 
 export function AddressUser({ user, setOption }: AddressUserProps) {
   const [getAddress] = useGetAddressMutation();
   const [address, setAddress] = useState<Address[] | null>(null);
   const [dialogIsOpen, setDialogIsOpen] = useState<'edit' | 'delete' | null>(null);
+  const { register, handleSubmit } = useForm<InputsAddress>();
 
   useEffect(() => {
     async function searchAddress() {
@@ -43,6 +51,10 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
       },
     },
   ];
+
+  async function submit(data: InputsAddress) {
+    alert('DADOS ENVIADOS');
+  }
 
   return (
     <>
@@ -74,11 +86,39 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
       {/* POPOVER */}
       <Dialog open={!!dialogIsOpen} onClose={() => setDialogIsOpen(null)} as="div">
         <DarkBG>
-          <BoxPopOver>
-            <h1>alA TESTENDO</h1>
-            <button type="button">Botao para focar</button>
+          <BoxPopOverAddress>
+            <DialogTitle>Adicionar Endereço</DialogTitle>
+            <FormAddress onSubmit={handleSubmit(submit)}>
+              <AddressField id="cep">
+                <p>CEP</p>
+                <input {...register('cep')} />
+              </AddressField>
+              <AddressField id="bairro">
+                <p>Bairro</p>
+                <input {...register('district')} />
+              </AddressField>
+              <AddressField id="rua">
+                <p>Rua/Avenida</p>
+                <input {...register('street')} />
+              </AddressField>
+              <AddressField id="numero">
+                <p>Número</p>
+                <input {...register('number')} />
+              </AddressField>
+              <AddressField id="complemento">
+              <p>Complemento</p>
+              <input {...register('obs')} />
+              </AddressField>
 
-          </BoxPopOver>
+              <ButtonAction
+                noMargin
+                isLoading={!true}
+              >Salvar</ButtonAction>
+              <ButtonAction
+                noMargin
+              >Cancelar</ButtonAction>
+            </FormAddress>
+          </BoxPopOverAddress>
         </DarkBG>
       </Dialog>
     </>
