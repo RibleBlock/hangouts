@@ -44,6 +44,15 @@ export const Button = styled.button<ButtonActionStyles>`
   &:hover {
     filter: brightness(1.2);
   }
+  ${(props) => props.secundary && css`
+  font-weight: normal;
+  color: ${({ theme }) => theme.COLORS.button};
+  background-color: transparent;
+  &:hover {
+    filter: none;
+    border: .3rem solid #1C2556;
+  }
+  `}
   &:disabled {
     opacity: .7;
   }

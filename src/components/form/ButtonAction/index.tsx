@@ -6,6 +6,7 @@ export type ButtonActionStyles = {
   small?: boolean,
   round?: boolean,
   noMargin?: boolean,
+  secundary?: boolean,
 }
 interface ButtonActionProps extends ButtonActionStyles {
   children: ReactNode,
@@ -15,13 +16,14 @@ interface ButtonActionProps extends ButtonActionStyles {
   to?: string,
 }
 export function ButtonAction({
-  small, round, noMargin, isLoading, children, type, link, to,
+  small, secundary, round, noMargin, isLoading, children, type, link, to,
 }: ButtonActionProps) {
   if (link && to) {
     return (
       <Link
         to={to}
         small={small}
+        secundary={secundary}
         style={{
           marginTop: !noMargin ? '2.5rem' : '0',
           borderRadius: round ? '5rem' : '.6rem',
@@ -38,6 +40,7 @@ export function ButtonAction({
       noMargin={noMargin}
       round={!round}
       small={small}
+      secundary={secundary}
       disabled={isLoading}
     >
       { isLoading ? <Loading color="white" /> : children }

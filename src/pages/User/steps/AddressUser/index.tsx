@@ -116,6 +116,7 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
               >Salvar</ButtonAction>
               <ButtonAction
                 noMargin
+                secundary
               >Cancelar</ButtonAction>
             </FormAddress>
           </BoxPopOverAddress>
