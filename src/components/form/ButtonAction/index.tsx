@@ -5,18 +5,20 @@ import { Button, MyLink as Link } from './ButtonAction.styles';
 export type ButtonActionStyles = {
   small?: boolean,
   round?: boolean,
+  color?: string,
   noMargin?: boolean,
   secundary?: boolean,
 }
 interface ButtonActionProps extends ButtonActionStyles {
   children: ReactNode,
   isLoading?: boolean,
+  action?: (value?: any) => void,
   type?: 'submit' | 'button',
   link?: boolean,
   to?: string,
 }
 export function ButtonAction({
-  small, secundary, round, noMargin, isLoading, children, type, link, to,
+  color, small, secundary, round, noMargin, isLoading, children, type, link, to, action,
 }: ButtonActionProps) {
   if (link && to) {
     return (
@@ -24,6 +26,7 @@ export function ButtonAction({
         to={to}
         small={small}
         secundary={secundary}
+        color={color}
         style={{
           marginTop: !noMargin ? '2.5rem' : '0',
           borderRadius: round ? '5rem' : '.6rem',
@@ -41,6 +44,8 @@ export function ButtonAction({
       round={!round}
       small={small}
       secundary={secundary}
+      color={color}
+      onClick={action}
       disabled={isLoading}
     >
       { isLoading ? <Loading color="white" /> : children }

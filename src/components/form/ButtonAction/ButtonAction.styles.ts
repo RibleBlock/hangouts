@@ -17,6 +17,7 @@ export const MyLink = styled(Link)<ButtonActionStyles>`
   text-decoration: none;
   color: ${({ theme }) => theme.COLORS.secondary};
   background-color: ${({ theme }) => theme.COLORS.button};
+  ${({ color }) => color && css`background-color: ${color}`};
   &:hover {
     filter: brightness(1.2);
   }
@@ -41,16 +42,18 @@ export const Button = styled.button<ButtonActionStyles>`
   border-radius: ${(props) => (props.round ? '.6rem' : '5rem')};
   color: ${({ theme }) => theme.COLORS.secondary};
   background-color: ${({ theme }) => theme.COLORS.button};
+  ${({ color }) => color && css`background-color: ${color}`};
   &:hover {
     filter: brightness(1.2);
   }
   ${(props) => props.secundary && css`
-  font-weight: normal;
-  color: ${({ theme }) => theme.COLORS.button};
+  font-weight: bold;
+  color: #1c25569f;
+  border: .3rem solid #1C25569f;
   background-color: transparent;
   &:hover {
-    filter: none;
-    border: .3rem solid #1C2556;
+    color: ${({ theme }) => theme.COLORS.button};
+    border: .3rem solid ${({ theme }) => theme.COLORS.button};
   }
   `}
   &:disabled {

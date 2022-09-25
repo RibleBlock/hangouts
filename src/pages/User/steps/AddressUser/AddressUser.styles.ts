@@ -1,8 +1,7 @@
+import styled, { css } from 'styled-components';
 import { Dialog } from '@headlessui/react';
-import styled from 'styled-components';
-import { Div, Section, BoxPopOver } from '../MyData/MyData.styles';
-
-export const addressDiv = styled(Div)``;
+import { ReactNode } from 'react';
+import { Section, BoxPopOver } from '../MyData/MyData.styles';
 
 export const addressSection = styled(Section)`
   width: 100%;
@@ -19,15 +18,30 @@ export const addressSection = styled(Section)`
   }
 `;
 
-export const BoxPopOverAddress = styled(BoxPopOver)`
+export const BoxPopOverAddress = styled(BoxPopOver)<{hasWidth?: number}>`
+  ${(props) => props.hasWidth && css`
+    width: ${props.hasWidth}rem;
+  `}
   padding: 0;
+  > div {
+    padding: 1rem 3rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
 `;
 
-export const DialogTitle = styled(Dialog.Title)`
+export const DialogTitle = styled(Dialog.Title)<{noBorder?: boolean, padding?: number, children: ReactNode}>`
   padding: .8rem;
+  ${(props) => props.padding && css`
+    padding: ${props.padding}rem;
+  `}
   text-align: center;
   font-size: 1.8rem;
-  border-bottom: 1px solid #000;
+  ${(props) => !props.noBorder && css`
+    border-bottom: 1px solid #000;
+  `}
 `;
 
 export const AddressField = styled.div`
@@ -50,8 +64,9 @@ export const FormAddress = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+  justify-self: center;
   gap: 2rem;
-  grid-template-areas: 
+  grid-template-areas:
     "cep bairro"
     "rua rua"
     "numero complemento"

@@ -7,6 +7,15 @@ interface User {
   email: string,
   password: string,
 }
+interface Address {
+  id_user: number,
+  cep: string,
+  district: string,
+  number: number,
+  complement: string,
+  street: string,
+  city: string,
+}
 
 export const authApi = createApi({ //
   reducerPath: 'authApi',
@@ -36,6 +45,13 @@ export const authApi = createApi({ //
         url: 'createUser',
         method: 'POST',
         body: user,
+      }),
+    }),
+    addAddress: builder.mutation({
+      query: (body: Address) => ({
+        url: 'addaddress',
+        method: 'POST',
+        body,
       }),
     }),
     getFlavors: builder.mutation({
@@ -77,6 +93,7 @@ export const {
   useGetAllUsersMutation,
   useLoginUserMutation,
   useNewUserMutation,
+  useAddAddressMutation,
   useGetFlavorsMutation,
   useGetFlavorsFilterMutation,
   useGetDataTableMutation,
