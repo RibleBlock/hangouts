@@ -54,6 +54,12 @@ export const authApi = createApi({ //
         body,
       }),
     }),
+    removeAddress: builder.mutation({
+      query: ({ id }: {id: number}) => ({
+        url: `removeaddress?id=${id}`,
+        method: 'DELETE',
+      }),
+    }),
     getFlavors: builder.mutation({
       query: ({ table }: { table: string }) => ({
         url: `flavors?table=${table}`,
@@ -94,6 +100,7 @@ export const {
   useLoginUserMutation,
   useNewUserMutation,
   useAddAddressMutation,
+  useRemoveAddressMutation,
   useGetFlavorsMutation,
   useGetFlavorsFilterMutation,
   useGetDataTableMutation,

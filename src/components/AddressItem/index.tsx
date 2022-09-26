@@ -2,15 +2,18 @@ import { MenuDropdown } from '../MenuDropdown';
 import { BoxItem } from './AddressItem.styles';
 
 interface AddressItemProps {
+  idAddress: number,
   title: string,
   subTitle?: string,
   config: {
     option: string,
-    action: (value?: string | number | boolean) => void;
+    action: (value: number) => void;
   }[],
 }
 
-export function AddressItem({ title, subTitle, config }: AddressItemProps) {
+export function AddressItem({
+  idAddress, title, subTitle, config,
+}: AddressItemProps) {
   return (
     <BoxItem>
       <div>
@@ -18,7 +21,7 @@ export function AddressItem({ title, subTitle, config }: AddressItemProps) {
         <span>{subTitle}</span>
       </div>
 
-      <MenuDropdown config={config} />
+      <MenuDropdown idAddress={idAddress} config={config} />
     </BoxItem>
   );
 }

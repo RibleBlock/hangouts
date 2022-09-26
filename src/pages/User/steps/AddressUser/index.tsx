@@ -4,11 +4,12 @@ import { Dialog } from '@headlessui/react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { Value } from 'sass';
 import { ButtonAction, ButtonBC } from '../../../../components';
 import { AddressItem } from '../../../../components/AddressItem';
 import { PlusIcon } from '../../../../components/adm/AdmLineFlavors/AdmLineFlavors.styles';
 import { DarkBG } from '../../../../components/Popover/Popover.styles';
-import { useAddAddressMutation, useGetAddressMutation } from '../../../../services/api/Auth';
+import { useAddAddressMutation, useGetAddressMutation, useRemoveAddressMutation } from '../../../../services/api/Auth';
 import { validationAddress } from '../../../../services/utils/validations/validationAddress';
 import { Div } from '../MyData/MyData.styles';
 import {
@@ -26,13 +27,19 @@ interface InputsAddress {
   district: string,
   complement: string,
 }
+interface PopoverAddress {
+  type: 'new' | 'edit' | 'delete' | null,
+  idAddress: number,
+}
 
 export function AddressUser({ user, setOption }: AddressUserProps) {
   const [getAddress] = useGetAddressMutation();
   const [address, setAddress] = useState<Address[] | null>(null);
-  const [dialogIsOpen, setDialogIsOpen] = useState<'new' | 'edit' | 'delete' | null>(null);
+  const [dialogIsOpen, setDialogIsOpen] = useState<PopoverAddress>({ type: null, idAddress: 0 });
   const { register, handleSubmit } = useForm<InputsAddress>();
   const [newAddress] = useAddAddressMutation();
+  const [excluirAddress] = useRemoveAddressMutation();
+  const [isLodingRemoveAddress, setIsLodingRemoveAddress] = useState<boolean>(false);
 
   useEffect(() => {
     async function searchAddress() {
@@ -41,6 +48,25 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
     }
     searchAddress();
   }, []);
+
+  const removeAddress = async () => {
+    setIsLodingRemoveAddress(true);
+    try {
+      await excluirAddress({ id: dialogIsOpen.idAddress }) as any;
+
+      setAddress(address!.filter((value) => value.id_address !== dialogIsOpen.idAddress));
+
+      return toast.success('Endereço apagado');
+    } catch (error: any) {
+      if (error?.data.error) {
+        return toast.error(error.data.error);
+      }
+      return toast.error(error);
+    } finally {
+      setDialogIsOpen({ type: null, idAddress: 0 });
+      setIsLodingRemoveAddress(false);
+    }
+  };
 
   const shemaThreeDots = [
     // {
@@ -51,8 +77,11 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
     // },
     {
       option: 'Excluir',
-      action: () => {
-        setDialogIsOpen('delete');
+      action: (idAddress: number) => {
+        setDialogIsOpen({
+          type: 'delete',
+          idAddress,
+        });
       },
     },
   ];
@@ -82,7 +111,7 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
         complement,
       }) as any;
 
-      setDialogIsOpen(null);
+      setDialogIsOpen({ type: null, idAddress: 0 });
       return toast.success('Endereço adicionado com sucesso');
     } catch (error: any) {
       if (error?.data.error) {
@@ -99,18 +128,19 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
         <p>Endereço</p>
       </Div>
       <Section>
-        <button type="button" onClick={() => setDialogIsOpen('edit')}>
+        <button type="button" onClick={() => setDialogIsOpen({ type: 'new', idAddress: 0 })}>
           <PlusIcon weight="bold" />
           <h3>Adicionar Endereço</h3>
         </button>
 
         { address && address.map(({
-          id_address, street, number, district, city, cep, id_user,
+          id_address, street, number, district, city, cep,
         }) => (
           <>
             <hr />
             <AddressItem
               key={id_address}
+              idAddress={id_address}
               title={`${street}, ${number} - ${district.toUpperCase()}`}
               subTitle={`Cep ${cep} - ${city}`}
               config={shemaThreeDots}
@@ -120,9 +150,9 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
       </Section>
 
       {/* POPOVER */}
-      <Dialog open={!!dialogIsOpen} onClose={() => setDialogIsOpen(null)} as="div">
+      <Dialog open={!!dialogIsOpen.type} onClose={() => setDialogIsOpen({ type: null, idAddress: 0 })} as="div">
         <DarkBG>
-          { dialogIsOpen !== 'delete' ? (
+          { dialogIsOpen.type !== 'delete' ? (
             <BoxPopOverAddress as="div">
               <DialogTitle>Adicionar Endereço</DialogTitle>
               <FormAddress onSubmit={handleSubmit(submit)}>
@@ -157,7 +187,7 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
                   noMargin
                   secundary
                   type="button"
-                  action={() => setDialogIsOpen(null)}
+                  action={() => setDialogIsOpen({ type: null, idAddress: 0 })}
                 >
                   Cancelar
                 </ButtonAction>
@@ -173,7 +203,8 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
                   noMargin
                   round
                   color="#970721"
-                  isLoading={!true}
+                  isLoading={isLodingRemoveAddress}
+                  action={removeAddress}
                 >
                   Remover
                 </ButtonAction>
@@ -182,7 +213,7 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
                   noMargin
                   round
                   secundary
-                  action={() => setDialogIsOpen(null)}
+                  action={() => setDialogIsOpen({ type: null, idAddress: 0 })}
                 >
                   Cancelar
                 </ButtonAction>
