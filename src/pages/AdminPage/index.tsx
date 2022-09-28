@@ -32,6 +32,8 @@ export function AdminPage() {
 
   function alterarTabela(): any {
     switch (tableSelected.table) {
+      case 'pedidos':
+        return (<h1>Pedidos</h1>);
       case 'pizza':
         return (<AdmFlavors />);
 
@@ -46,6 +48,14 @@ export function AdminPage() {
         <Link to="/">
           <Logo src={logo} alt="logo hangouts" />
         </Link>
+        <NavButton
+          type="button"
+          isSelected={tableSelected.table === 'pedidos'}
+          onClick={() => setTableSelected({ table: 'pedidos', title: 'Pedidos' })}
+        >
+          <Icon icon="akar-icons:person" className="icon" />
+          PEDIDOS
+        </NavButton>
         <NavButton
           type="button"
           isSelected={tableSelected.table === 'users'}
