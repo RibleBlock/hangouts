@@ -10,7 +10,11 @@ export function validationAddress({
   street: string,
 }) {
   if (!cep) return 'CEP é necessário';
-  if (cep && !validator.isLength(cep, { min: 8, max: 8 })) {
+  if (cep && !validator.isNumeric(cep.replace('-', ''))) {
+    console.log(cep);
+    return 'CEP inválido!';
+  }
+  if (cep && !validator.isLength(cep, { min: 8, max: 9 })) {
     return 'CEP deve ter 8 números!';
   }
 

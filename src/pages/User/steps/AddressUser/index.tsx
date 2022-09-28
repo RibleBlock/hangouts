@@ -34,6 +34,7 @@ interface PopoverAddress {
 
 export function AddressUser({ user, setOption }: AddressUserProps) {
   const [getAddress] = useGetAddressMutation();
+  const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
   const [address, setAddress] = useState<Address[] | null>(null);
   const [dialogIsOpen, setDialogIsOpen] = useState<PopoverAddress>({ type: null, idAddress: 0 });
   const { register, handleSubmit } = useForm<InputsAddress>();
@@ -91,15 +92,18 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
       cep, district, number, complement, street,
     } = data;
 
+    setLoadingSubmit(true);
     try {
       const inValid = validationAddress({
         cep, district, number, complement, street,
       });
       if (inValid) return toast.error(inValid);
 
-      const cepString = cep.replace(/\D/g, '')
-        .replace(/(\d{5})(\d)/, '$1-$2')
-        .replace(/(-\d{3})\d+?$/, '$1');
+      const cepString = cep.length === 8 
+        ? cep.replace(/\D/g, '')
+          .replace(/(\d{5})(\d)/, '$1-$2')
+          .replace(/(-\d{3})\d+?$/, '$1')
+        : cep;
 
       await newAddress({
         id_user: user.id_user,
@@ -118,6 +122,8 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
         return toast.error(error.data.error);
       }
       return toast.error(error);
+    } finally {
+    //  setLoadingSubmit(false);
     }
   }
 
@@ -179,7 +185,7 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
 
                 <ButtonAction
                   noMargin
-                  isLoading={!true}
+                  isLoading={loadingSubmit}
                 >
                   Salvar
                 </ButtonAction>
