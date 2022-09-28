@@ -6,12 +6,13 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import {
   ButtonAction, CartItem, InputText, Loading,
 } from '../../components';
 import { Cart as CartInterface } from '../../interfaces/module';
 import { Footer, Header, NavigationBar } from '../../layouts';
-import { useGetCartMutation } from '../../services/api/wish';
+import { useGetCartMutation, useDeleteItemMutation } from '../../services/api/wish';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken } from '../../store/Auth/reducer';
 import { Box } from './Cart.styles';
@@ -22,7 +23,41 @@ export function Cart() {
 
   const [isFetchingCart, setIsFetchingCart] = useState<boolean>(false);
   const [itemsCart, setItemsCart] = useState<CartInterface>();
+  const [deleteItem] = useDeleteItemMutation();
   const [getFuckingCart] = useGetCartMutation();
+
+  const handleDelete = async ({ id, table }: {id: number, table: 'pizza' | 'calzone' | ''}) => {
+    try {
+      const { data: message } = await deleteItem({ id, table }) as any;
+
+      if (table === 'pizza') {
+        setItemsCart({
+          pizza: itemsCart!.pizza.filter(({ id_pizza }) => id_pizza !== id),
+          calzone: itemsCart!.calzone,
+          drink_cart: itemsCart!.drink_cart,
+        });
+      } else if (table === 'calzone') {
+        setItemsCart({
+          pizza: itemsCart!.pizza,
+          calzone: itemsCart!.calzone.filter(({ id_calzone }) => id_calzone !== id),
+          drink_cart: itemsCart!.drink_cart,
+        });
+      } else {
+        setItemsCart({
+          pizza: itemsCart!.pizza,
+          calzone: itemsCart!.calzone,
+          drink_cart: itemsCart!.drink_cart.filter(({ id_drink_cart }) => id_drink_cart !== id),
+        });
+      }
+
+      return toast.success(message);
+    } catch (error: any) {
+      if (error?.data.error) {
+        return toast.error(error.data.error);
+      }
+      return toast.error(error);
+    }
+  };
 
   useEffect(() => {
     async function getCartUser() {
@@ -75,7 +110,7 @@ export function Cart() {
             }, i) => (
               <CartItem
                 key={`${id_pizza}${i}`}
-                idPedido={id_pizza}
+                deleteFunction={() => handleDelete({ id: id_pizza, table: 'pizza' })}
                 title={`PIZZA ${name_size}`}
                 border={name_border}
                 comment={comment}
@@ -88,7 +123,7 @@ export function Cart() {
             }, i) => (
               <CartItem
                 key={`${id_calzone}${i}`}
-                idPedido={id_calzone}
+                deleteFunction={() => handleDelete({ id: id_calzone, table: 'calzone' })}
                 title={`CALZONE DE ${name}`}
                 comment={comment}
                 sabores={name}
@@ -101,7 +136,7 @@ export function Cart() {
             }) => (
               <CartItem
                 key={id_drink_cart}
-                idPedido={id_drink_cart}
+                deleteFunction={() => handleDelete({ id: id_drink_cart, table: '' })}
                 title={`${name_drink} - ${name_drink_size}`}
                 sabores={name_drink}
                 value={price}

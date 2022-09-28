@@ -1,16 +1,14 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
-import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
-import { useDeleteItemMutation } from '../../services/api/wish';
 import { ArrowCart, Button } from './CartItem.styles';
 
 interface CartItemProps {
-  idPedido: number,
   title: string,
   border?: string,
   comment?: string,
+  deleteFunction: () => void,
   sabores: {
     flavor: {
       name: string,
@@ -23,32 +21,15 @@ interface CartItemProps {
   value: number,
 }
 export function CartItem({
-  title, border, sabores, comment, value, idPedido,
+  title, border, sabores, comment, value, deleteFunction,
 }: CartItemProps) {
-  const [deleteItem] = useDeleteItemMutation();
   const [buttonIsOpen, setButtonIsOpen] = useState<boolean>(false);
-  const [showItem, setShowItem] = useState<boolean>(true);
-
-  const handleDelete = async () => {
-    const table = title.split(' ')[0];
-    try {
-      const { data: message } = await deleteItem({ id: idPedido, table }) as any;
-      setShowItem(false);
-      return toast.success(message);
-    } catch (error: any) {
-      if (error?.data.error) {
-        return toast.error(error.data.error);
-      }
-      return toast.error(error);
-    }
-  };
 
   return (
     <Button
       type="button"
       onClick={() => setButtonIsOpen(!buttonIsOpen)}
       isOpen={buttonIsOpen}
-      show={showItem}
     >
       <div id="title">
         <ArrowCart
@@ -77,7 +58,7 @@ export function CartItem({
         id="trash"
         icon="akar-icons:trash-can"
         color="#ff0000"
-        onClick={handleDelete}
+        onClick={deleteFunction}
       />
     </Button>
   );

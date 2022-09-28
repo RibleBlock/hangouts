@@ -3,7 +3,6 @@ import { CaretRight } from 'phosphor-react';
 
 interface CartItemStyle {
   isOpen?: boolean,
-  show: boolean,
 }
 export const ArrowCart = styled(CaretRight)`
   width: 2rem;
@@ -25,7 +24,6 @@ export const Button = styled.button<CartItemStyle>`
   `}
 
   display: grid;
-  ${(props) => !props.show && css`display: none;`}
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
   grid-template-areas:
