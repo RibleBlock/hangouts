@@ -57,10 +57,10 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
 
       setAddress(address!.filter((value) => value.id_address !== dialogIsOpen.idAddress));
 
-      return toast.success('Endereço apagado');
+      return toast.success('Endereço apagado!');
     } catch (error: any) {
       if (error?.data.error) {
-        return toast.error(error.data.error);
+        return toast.error(error?.data.error);
       }
       return toast.error(error);
     } finally {
@@ -105,7 +105,7 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
           .replace(/(-\d{3})\d+?$/, '$1')
         : cep;
 
-      await newAddress({
+      const { data } = await newAddress({
         id_user: user.id_user,
         cep: cepString,
         street,
@@ -115,12 +115,10 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
         complement,
       }) as any;
 
+      setAddress((old) => [...old!, data[0]]);
       setDialogIsOpen({ type: null, idAddress: 0 });
       return toast.success('Endereço adicionado com sucesso');
     } catch (error: any) {
-      if (error?.data.error) {
-        return toast.error(error.data.error);
-      }
       return toast.error(error);
     } finally {
       setLoadingSubmit(false);
