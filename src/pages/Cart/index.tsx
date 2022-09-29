@@ -3,6 +3,7 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable camelcase */
 /* eslint-disable react/no-array-index-key */
+import { Dialog } from '@headlessui/react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -10,11 +11,13 @@ import { toast } from 'react-toastify';
 import {
   ButtonAction, CartItem, InputText, Loading,
 } from '../../components';
+import { DarkBG } from '../../components/Popover/Popover.styles';
 import { Cart as CartInterface } from '../../interfaces/module';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { useGetCartMutation, useDeleteItemMutation } from '../../services/api/wish';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken } from '../../store/Auth/reducer';
+import { BoxPopOverAddress, DialogTitle } from '../User/steps/AddressUser/AddressUser.styles';
 import { Box } from './Cart.styles';
 
 export function Cart() {
@@ -22,6 +25,7 @@ export function Cart() {
   const currentUser = decodeJWT<User>(token);
 
   const [isFetchingCart, setIsFetchingCart] = useState<boolean>(false);
+  const [addressIsOpen, setAddressIsOpen] = useState<boolean>(false);
   const [itemsCart, setItemsCart] = useState<CartInterface>();
   const [deleteItem] = useDeleteItemMutation();
   const [getFuckingCart] = useGetCartMutation();
@@ -85,10 +89,11 @@ export function Cart() {
   }) => ac += price, 0);
 
   const [troco, setTroco] = useState<any>(0);
+  const frete = 15;
   const valorCompra = {
     troco: Number(troco),
-    frete: 0,
-    total: valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! || 0, // MAIS O FRETE //
+    frete,
+    total: valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! + frete || 0,
   };
 
   return (
@@ -150,7 +155,12 @@ export function Cart() {
             <p>Endereço</p>
             <div>
               <p>Rua Pedro jose filia da massa</p>
-              <Link to="/">Alterar</Link>
+              <button
+                type="button"
+                onClick={() => setAddressIsOpen(!addressIsOpen)}
+              >
+                Alterar
+              </button>
             </div>
           </div>
           <div id="troco">
@@ -164,7 +174,11 @@ export function Cart() {
           </div>
           <div id="frete">
             <p>Frete:</p>
-            <p>R$ 0,00</p>
+            <p>
+              R$
+              {' '}
+              {frete.toFixed(2)}
+            </p>
           </div>
           <div id="total">
             <p>Total do pedido:</p>
@@ -193,6 +207,22 @@ export function Cart() {
       </Box>
 
       <Footer />
+
+      <Dialog open={addressIsOpen} onClose={() => setAddressIsOpen(false)} as="div">
+        <DarkBG>
+          <BoxPopOverAddress as="div">
+            <DialogTitle>Selecione o endereço para entrega</DialogTitle>
+            <hr />
+            <button
+              type="button"
+              onClick={() => setAddressIsOpen(false)}
+              style={{ padding: '1rem' }}
+            >
+              Fechar (Apenas para foco)
+            </button>
+          </BoxPopOverAddress>
+        </DarkBG>
+      </Dialog>
     </>
   );
 }

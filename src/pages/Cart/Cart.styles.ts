@@ -34,25 +34,12 @@ export const Box = styled.div`
       justify-content: space-between;
       align-items: center;
       gap: 2rem;
-
-      > div p:last-of-type {  // Alterar
-        color: #0085FF;
-        font-size: 1.3rem;
-        text-decoration: underline;
-      }
-      > p {
-
-        &:first-of-type {
-          text-align: left;
-          font-weight: bold;
-        }
+    }
+    @media screen and (max-width: 455px) {
+      > .botoes {
+        flex-direction: column;
       }
     }
-  @media screen and (max-width: 455px) {
-    > .botoes {
-      flex-direction: column;
-    }
-  }
   }
 
   > div.grid {
@@ -80,6 +67,17 @@ export const Box = styled.div`
     }
       #address {
         grid-area: address;
+        button { // Alterar
+          cursor: pointer;
+          color: #0085FF;
+          background-color: transparent;
+          letter-spacing: .1rem;
+          font-weight: bold;
+          font-size: 1.3rem;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
       #troco {
         grid-area: troco;
