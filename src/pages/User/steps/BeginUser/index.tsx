@@ -17,11 +17,11 @@ export function BeginUser({ currentUser, setOption } : BeginUserProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  function logOut() {
+  const logOut = () => {
     toast.info(`${currentUser.name} saiu`);
     dispatch(removeToken());
     navigate('/', { replace: true, state: { prevPath: location.pathname } });
-  }
+  };
 
   return (
     <>
@@ -47,6 +47,7 @@ export function BeginUser({ currentUser, setOption } : BeginUserProps) {
       <Section style={{ marginTop: '1.7rem', flexDirection: 'column' }}>
         {/*  */}
         <ChangeOption
+          tab="/user?tab=mydata"
           optionTitle="Meus dados"
           optionDescription="Altere seus dados pessoais"
           setOption={setOption}
@@ -56,6 +57,7 @@ export function BeginUser({ currentUser, setOption } : BeginUserProps) {
         <hr /** */ />
 
         <ChangeOption
+          tab="/user?tab=address"
           optionTitle="Endereço"
           optionDescription="Altere o endereco de entraga"
           setOption={setOption}
@@ -65,6 +67,7 @@ export function BeginUser({ currentUser, setOption } : BeginUserProps) {
         <hr /** */ />
 
         <ChangeOption
+          tab="/user?tab=historic"
           optionTitle="Histórico de compras"
           optionDescription="Acompanhar pedidos e ver historico"
           setOption={setOption}
@@ -76,6 +79,7 @@ export function BeginUser({ currentUser, setOption } : BeginUserProps) {
         <>
           <hr />
           <ChangeOption
+            tab="/admin"
             setOption={setOption}
             optionTitle="Admin"
             optionDescription="Administre os pedidos em andamento"

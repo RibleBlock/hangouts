@@ -4,7 +4,6 @@ import { Dialog } from '@headlessui/react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { Value } from 'sass';
 import { ButtonAction, ButtonBC } from '../../../../components';
 import { AddressItem } from '../../../../components/AddressItem';
 import { PlusIcon } from '../../../../components/adm/AdmLineFlavors/AdmLineFlavors.styles';
@@ -128,7 +127,7 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
   return (
     <>
       <Div>
-        <ButtonBC arrow action={setOption} />
+        <ButtonBC to="/user" arrow />
         <p>Endereço</p>
       </Div>
       <Section>

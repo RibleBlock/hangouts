@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ButtonBC, ChangeOption } from '../../../../components';
 import { Section } from '../BeginUser/BeginUser.styles';
-import { Div, TaillessArrow } from '../MyData/MyData.styles';
+import { Div } from '../MyData/MyData.styles';
 
 interface OrderHistoryProps {
   user: User;
@@ -12,7 +12,6 @@ interface TypeObjetoDeExemplo {
   name: string,
 }
 export function OrderHistory({ user, setOption }: OrderHistoryProps) {
-  // variavel de controle do popup
   const [popoverOrderIsOpen, setPopoverOrderIsOpen] = useState('');
 
   const objetoDeExemplo = [
@@ -78,7 +77,7 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
   return (
     <>
       <Div>
-        <ButtonBC arrow action={setOption} />
+        <ButtonBC to="/user" arrow />
         <p>Minhas Compras</p>
       </Div>
       <Section>
@@ -87,14 +86,13 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
           <>
             <ChangeOption
               key={id}
+              tab=""
               setOption={setPopoverOrderIsOpen}
               optionTitle={`Pedido N${id}`}
               optionDescription="Ver informacoes sobre este pedido"
               showArrow
             />
-            { indice + 1 < array.length && (
-              <hr />
-            ) }
+            { indice + 1 < array.length && (<hr />) }
           </>
         )) }
 

@@ -1,10 +1,17 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { ChangeOptionStyles } from '.';
 
-export const Button = styled.button<ChangeOptionStyles>`
+export const Button = styled(Link)<ChangeOptionStyles>`
   width: 100%;
   padding: 1rem 0;
   text-decoration: none !important;
+  color: #000;
+  display: flex;
+  gap: 1rem;
+  &:hover {
+    font-weight: bold;
+  }
   > svg {
     width: 4.5rem;
     height: 4.5rem;

@@ -28,9 +28,9 @@ export function User() {
 
   const [optionClicked, setOptionClicked] = useState<string>('');
 
-  function sowComponentsUsers(optionClicked: string) {
+  function sowComponentsUsers(optionClicked: string | null) {
     switch (optionClicked) {
-      case 'Meus dados':
+      case 'mydata':
         return (
           <MyData
             user={currentUser!}
@@ -38,14 +38,14 @@ export function User() {
             loadingToken={setloadingUserToken}
           />
         );
-      case 'Histórico de compras':
+      case 'historic':
         return (
           <OrderHistory
             user={currentUser!}
             setOption={setOptionClicked}
           />
         );
-      case 'Endereço':
+      case 'address':
         return (
           <AddressUser
             user={currentUser!}
@@ -65,6 +65,12 @@ export function User() {
     }
   }
 
+  const useQuery = () => new URLSearchParams(useLocation().search);
+
+  const query = useQuery();
+  const tab = query.get('tab');
+  console.log(tab);
+
   return (
     <>
       <NavigationBar />
@@ -72,7 +78,7 @@ export function User() {
 
       { !loadingUserToken ? (
         <Box>
-          { sowComponentsUsers(optionClicked) }
+          { sowComponentsUsers(tab) }
         </Box>
       ) : (
         <h2>CARREGANDO</h2>

@@ -6,19 +6,19 @@ export type ChangeOptionStyles = {
   showArrow?: boolean,
 }
 interface ChangeOptionProps extends ChangeOptionStyles {
+  tab: string,
   children?: ReactNode;
   optionTitle: string;
   optionDescription?: string;
   setOption: (value: string) => void;
 }
 export function ChangeOption({
-  showArrow, children, optionTitle, optionDescription, setOption,
+  tab, showArrow, children, optionTitle, optionDescription,
 }: ChangeOptionProps) {
   return (
     <Button
+      to={tab}
       className="logout"
-      type="button"
-      onClick={() => setOption(optionTitle)}
     >
       {children}
       <div className="option">

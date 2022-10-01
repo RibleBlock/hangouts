@@ -79,7 +79,7 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
   return (
     <>
       <Div>
-        <ButtonBC arrow action={setOption} />
+        <ButtonBC to="/user" arrow />
         <p>Meus dados</p>
       </Div>
       <Section>

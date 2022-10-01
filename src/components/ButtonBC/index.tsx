@@ -1,24 +1,34 @@
 import { ArrowLeft, X } from 'phosphor-react';
-import { Button } from './ButtonBC.styles';
+import { Button, Lincar } from './ButtonBC.styles';
 
 export interface IconChange {
   right?: boolean;
   arrow?: boolean;
   absolute?: boolean;
+  color?: string,
 }
 interface ButtonBCProps extends IconChange {
-  action: (value: any) => void;
+  to?: string,
+  action?: (value: any) => void;
 }
 export function ButtonBC({
-  action, right, arrow, absolute,
+  to, action, right, arrow, absolute,
 }: ButtonBCProps) {
+  if (to) {
+    return (
+      <Lincar to={to}>
+        { arrow ? <ArrowLeft weight="bold" /> : <X weight="bold" /> }
+      </Lincar>
+    );
+  }
+
   return (
     <Button
       type="button"
       right={right}
       arrow={arrow}
       absolute={absolute}
-      onClick={() => action(null)}
+      onClick={() => action && action(null)}
     >
       { arrow ? <ArrowLeft weight="bold" /> : <X weight="bold" /> }
     </Button>
