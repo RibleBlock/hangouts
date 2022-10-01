@@ -5,23 +5,32 @@ interface AddressItemProps {
   idAddress: number,
   title: string,
   subTitle?: string,
-  config: {
+  fStart?: boolean,
+  hover?: boolean,
+  action?: () => void,
+  config?: {
     option: string,
     action: (value: number) => void;
   }[],
 }
 
 export function AddressItem({
-  idAddress, title, subTitle, config,
+  idAddress, title, subTitle, action, config, fStart, hover,
 }: AddressItemProps) {
   return (
-    <BoxItem>
+    <BoxItem
+      onClick={action}
+      style={{ justifyContent: fStart ? 'flex-start' : '' }}
+      hover={hover}
+    >
       <div>
         <p>{title}</p>
         <span>{subTitle}</span>
       </div>
 
-      <MenuDropdown idAddress={idAddress} config={config} />
+      { config && (
+        <MenuDropdown idAddress={idAddress} config={config} />
+      ) }
     </BoxItem>
   );
 }

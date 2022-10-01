@@ -11,9 +11,11 @@ import { toast } from 'react-toastify';
 import {
   ButtonAction, CartItem, InputText, Loading,
 } from '../../components';
+import { AddressItem } from '../../components/AddressItem';
 import { DarkBG } from '../../components/Popover/Popover.styles';
 import { Cart as CartInterface } from '../../interfaces/module';
 import { Footer, Header, NavigationBar } from '../../layouts';
+import { useGetAddressMutation } from '../../services/api/Auth';
 import { useGetCartMutation, useDeleteItemMutation } from '../../services/api/wish';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken } from '../../store/Auth/reducer';
@@ -25,10 +27,22 @@ export function Cart() {
   const currentUser = decodeJWT<User>(token);
 
   const [isFetchingCart, setIsFetchingCart] = useState<boolean>(false);
-  const [addressIsOpen, setAddressIsOpen] = useState<boolean>(false);
   const [itemsCart, setItemsCart] = useState<CartInterface>();
   const [deleteItem] = useDeleteItemMutation();
   const [getFuckingCart] = useGetCartMutation();
+
+  const { id_user } = decodeJWT<User>(useSelector(getToken));
+  const [getAddress] = useGetAddressMutation();
+  const [addressIsOpen, setAddressIsOpen] = useState<boolean>(false);
+  const [address, setAddress] = useState<Address[] | null>(null);
+
+  useEffect(() => {
+    async function searchAddress() {
+      const { data } = await getAddress({ id: id_user }) as any;
+      setAddress(data);
+    }
+    searchAddress();
+  }, []);
 
   const handleDelete = async ({ id, table }: {id: number, table: 'pizza' | 'calzone' | ''}) => {
     try {
@@ -213,13 +227,43 @@ export function Cart() {
           <BoxPopOverAddress as="div">
             <DialogTitle>Selecione o endereço para entrega</DialogTitle>
             <hr />
-            <button
-              type="button"
-              onClick={() => setAddressIsOpen(false)}
-              style={{ padding: '1rem' }}
-            >
-              Fechar (Apenas para foco)
-            </button>
+
+            { address && address.map(({
+              id_address, street, number, district, city, cep,
+            }, i) => (
+              <>
+                <AddressItem
+                  key={id_address}
+                  idAddress={id_address}
+                  title={`${street}, ${number} - ${district.toUpperCase()}`}
+                  subTitle={`CEP ${cep} - ${city}`}
+                  action={() => alert(`Selecionandou o ${street}`)}
+                  fStart
+                  hover
+                />
+                { i + 1 === address.length || (<hr />) }
+              </>
+            )) }
+
+            {/* Botoes */}
+            <div>
+              <ButtonAction
+                link
+                to="/user?tab=address"
+                noMargin
+              >
+                Adicionar Endereço
+              </ButtonAction>
+              <ButtonAction
+                type="button"
+                action={() => setAddressIsOpen(false)}
+                secundary
+                noMargin
+              >
+                Fechar
+              </ButtonAction>
+            </div>
+
           </BoxPopOverAddress>
         </DarkBG>
       </Dialog>

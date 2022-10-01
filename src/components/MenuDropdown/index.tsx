@@ -3,11 +3,9 @@ import {
   DotsIcon, MenuButton, MenuItem, MenuItems,
 } from './MenuDropdown.styles';
 
-// options: string[],
-// action: (value: string | number | boolean) => void;
 interface MenuDropdownProps {
   idAddress: number,
-  config: {
+  config?: {
     option: string,
     action: (value: number) => void;
   }[],
@@ -20,7 +18,7 @@ export function MenuDropdown({ idAddress, config }: MenuDropdownProps) {
         <DotsIcon weight="bold" />
       </MenuButton>
       <MenuItems>
-        { config.map(({ option, action }) => (
+        { config?.map(({ option, action }) => (
           <MenuItem
             key={option}
             as="div"

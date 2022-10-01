@@ -1,10 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const BoxItem = styled.div`
+export const BoxItem = styled.div<{hover?: boolean}>`
   width: 100%;
   padding: 1rem 4rem;
   display: flex;
   justify-content: space-between;
+  ${({ hover }) => hover && css`
+    &:hover {background-color: #d9d9d9;}
+  `}
   > div {
     text-align: left;
     flex-direction: column;

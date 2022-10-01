@@ -24,10 +24,10 @@ export function ButtonAction({
     return (
       <Link
         to={to}
-        small={small}
         secundary={secundary}
         color={color}
         style={{
+          maxWidth: small ? '18rem' : '38rem',
           marginTop: !noMargin ? '2.5rem' : '0',
           borderRadius: round ? '5rem' : '.6rem',
         }}
