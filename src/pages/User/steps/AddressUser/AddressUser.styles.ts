@@ -23,12 +23,17 @@ export const BoxPopOverAddress = styled(BoxPopOver)<{hasWidth?: number}>`
     width: ${props.hasWidth}rem;
   `}
   padding: 0;
-  > div {
+  > div.botoes {
     padding: 1rem 3rem 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
+  }
+  > .address {
+    height: auto;
+    max-height: calc(100vh - 29rem);
+    overflow: scroll;
   }
 `;
 

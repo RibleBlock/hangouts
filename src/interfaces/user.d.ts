@@ -5,7 +5,6 @@ declare interface Address {
   number: number,
   district: string,
   city: string,
-  state: string,
   cep: string,
   id_user: number,
 }

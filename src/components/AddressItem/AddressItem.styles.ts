@@ -6,8 +6,14 @@ export const BoxItem = styled.div<{hover?: boolean}>`
   display: flex;
   justify-content: space-between;
   ${({ hover }) => hover && css`
-    &:hover {background-color: #d9d9d9;}
-  `}
+    &:hover {
+      font-weight: bold;
+      background-color: #f1f1f1;
+    }
+    `}
+    &:active {
+      background-color: #CAFFC9;
+  }
   > div {
     text-align: left;
     flex-direction: column;

@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { css } from 'styled-components';
 import {
   ButtonAction, CartItem, InputText, Loading,
 } from '../../components';
@@ -102,8 +103,9 @@ export function Cart() {
     drink_size: { price },
   }) => ac += price, 0);
 
+  const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
   const [troco, setTroco] = useState<any>(0);
-  const frete = 15;
+  const frete = selectedAddress ? 15 : 0;
   const valorCompra = {
     troco: Number(troco),
     frete,
@@ -168,7 +170,7 @@ export function Cart() {
           <div id="address">
             <p>Endereço</p>
             <div>
-              <p>Rua Pedro jose filia da massa</p>
+              <p>{selectedAddress?.street || 'Nenhum endereço selecionado'}</p>
               <button
                 type="button"
                 onClick={() => setAddressIsOpen(!addressIsOpen)}
@@ -191,7 +193,7 @@ export function Cart() {
             <p>
               R$
               {' '}
-              {frete.toFixed(2)}
+              { frete.toFixed(2)}
             </p>
           </div>
           <div id="total">
@@ -228,25 +230,33 @@ export function Cart() {
             <DialogTitle>Selecione o endereço para entrega</DialogTitle>
             <hr />
 
-            { address && address.map(({
-              id_address, street, number, district, city, cep,
-            }, i) => (
-              <>
-                <AddressItem
-                  key={id_address}
-                  idAddress={id_address}
-                  title={`${street}, ${number} - ${district.toUpperCase()}`}
-                  subTitle={`CEP ${cep} - ${city}`}
-                  action={() => alert(`Selecionandou o ${street}`)}
-                  fStart
-                  hover
-                />
-                { i + 1 === address.length || (<hr />) }
-              </>
-            )) }
+            <div className="address">
+              { address && address.map(({
+                id_address, street, number, district, city, cep, id_user,
+              }, i) => (
+                <>
+                  <AddressItem
+                    key={id_address}
+                    idAddress={id_address}
+                    title={`${street}, ${number} - ${district.toUpperCase()}`}
+                    subTitle={`CEP ${cep} - ${city}`}
+                    action={() => {
+                      setSelectedAddress({
+                        id_address, cep, street, number, district, city, id_user,
+                      });
+                      toast.success('Endereço alterado!');
+                      setAddressIsOpen(false);
+                    }}
+                    fStart
+                    hover
+                  />
+                  { i + 1 === address.length || (<hr />) }
+                </>
+              )) }
+            </div>
 
             {/* Botoes */}
-            <div>
+            <div className="botoes">
               <ButtonAction
                 link
                 to="/user?tab=address"
