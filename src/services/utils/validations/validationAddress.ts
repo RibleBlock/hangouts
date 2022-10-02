@@ -2,16 +2,9 @@ import validator from 'validator';
 
 export function validationAddress({
   cep, district, number, complement, street,
-}: {
-  cep: string,
-  district: string,
-  number: number,
-  complement: string,
-  street: string,
-}) {
+}: Address) {
   if (!cep) return 'CEP é necessário';
   if (cep && !validator.isNumeric(cep.replace('-', ''))) {
-    console.log(cep);
     return 'CEP inválido!';
   }
   if (cep && !validator.isLength(cep, { min: 8, max: 9 })) {

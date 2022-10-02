@@ -4,6 +4,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/no-array-index-key */
 import { Dialog } from '@headlessui/react';
+import { SelectionPlus } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -19,6 +20,8 @@ import { Footer, Header, NavigationBar } from '../../layouts';
 import { useGetAddressMutation } from '../../services/api/Auth';
 import { useGetCartMutation, useDeleteItemMutation } from '../../services/api/wish';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
+import { validationAddress } from '../../services/utils/validations/validationAddress';
+import validationCart from '../../services/utils/validations/validationCart';
 import { getToken } from '../../store/Auth/reducer';
 import { BoxPopOverAddress, DialogTitle } from '../User/steps/AddressUser/AddressUser.styles';
 import { Box } from './Cart.styles';
@@ -103,13 +106,29 @@ export function Cart() {
     drink_size: { price },
   }) => ac += price, 0);
 
-  const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
-  const [troco, setTroco] = useState<any>(0);
-  const frete = selectedAddress ? 15 : 0;
-  const valorCompra = {
-    troco: Number(troco),
-    frete,
-    total: valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! + frete || 0,
+  const [isloadingWish, setIsloadingWish] = useState<boolean>(false);
+  const [selectedAddress, setSelectedAddress] = useState<Address | 'retirar' | null>(null);
+  const [thing, setThing] = useState<any>(0);
+  const frete = selectedAddress && selectedAddress !== 'retirar' ? 15 : 0;
+  const total = valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! + frete || 0;
+
+  const submitCart = async () => {
+    try {
+      setIsloadingWish(true);
+      const isValid = validationCart({ address: selectedAddress, thing, total });
+      if (isValid) {
+        return toast.error(isValid);
+      }
+
+      return toast.success('Pedido enviado');
+    } catch (error: any) {
+      if (error?.data.error) {
+        return toast.error(error.data.error);
+      }
+      return toast.error(error);
+    } finally {
+      setIsloadingWish(false);
+    }
   };
 
   return (
@@ -170,7 +189,10 @@ export function Cart() {
           <div id="address">
             <p>Endereço</p>
             <div>
-              <p>{selectedAddress?.street || 'Nenhum endereço selecionado'}</p>
+              <p>
+                { selectedAddress === 'retirar' ? 'Retirar em mãos'
+                  : selectedAddress?.street || 'Nenhum endereço selecionado'}
+              </p>
               <button
                 type="button"
                 onClick={() => setAddressIsOpen(!addressIsOpen)}
@@ -184,7 +206,7 @@ export function Cart() {
             <InputText
               small
               title="Troco"
-              setText={setTroco}
+              setText={setThing}
               type="number"
             />
           </div>
@@ -201,7 +223,7 @@ export function Cart() {
             <p>
               R$
               {' '}
-              { valorCompra.total?.toFixed(2) }
+              { total?.toFixed(2) }
             </p>
           </div>
           <div className="botoes">
@@ -213,8 +235,10 @@ export function Cart() {
               Continuar comprando
             </ButtonAction>
             <ButtonAction
-              type="submit"
+              type="button"
               noMargin
+              isLoading={isloadingWish}
+              action={submitCart}
             >
               Finalizar compra
             </ButtonAction>
@@ -231,6 +255,21 @@ export function Cart() {
             <hr />
 
             <div className="address">
+              <AddressItem
+                idAddress={0}
+                title="RETIRAR EM MÃOS"
+                subTitle="Retirar no balcão"
+                fStart
+                hover
+                action={() => {
+                  setSelectedAddress('retirar');
+                  toast.success('Retirar no balcão!');
+                  setAddressIsOpen(false);
+                }}
+              />
+              <hr />
+              {/*  */}
+
               { address && address.map(({
                 id_address, street, number, district, city, cep, id_user,
               }, i) => (
@@ -240,6 +279,8 @@ export function Cart() {
                     idAddress={id_address}
                     title={`${street}, ${number} - ${district.toUpperCase()}`}
                     subTitle={`CEP ${cep} - ${city}`}
+                    fStart
+                    hover
                     action={() => {
                       setSelectedAddress({
                         id_address, cep, street, number, district, city, id_user,
@@ -247,8 +288,6 @@ export function Cart() {
                       toast.success('Endereço alterado!');
                       setAddressIsOpen(false);
                     }}
-                    fStart
-                    hover
                   />
                   { i + 1 === address.length || (<hr />) }
                 </>

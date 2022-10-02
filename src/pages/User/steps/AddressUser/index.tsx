@@ -24,7 +24,7 @@ interface InputsAddress {
   street: string,
   number: number,
   district: string,
-  complement: string,
+  complement?: string,
 }
 interface PopoverAddress {
   type: 'new' | 'edit' | 'delete' | null,
@@ -90,11 +90,12 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
     const {
       cep, district, number, complement, street,
     } = data;
+    const city = 'Curitiba';
 
     setLoadingSubmit(true);
     try {
       const inValid = validationAddress({
-        cep, district, number, complement, street,
+        id_address: 0, cep, district, number, complement, street, city,
       });
       if (inValid) return toast.error(inValid);
 
@@ -110,7 +111,7 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
         street,
         number,
         district,
-        city: 'Curitiba',
+        city,
         complement,
       }) as any;
 
@@ -200,7 +201,7 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
             <BoxPopOverAddress as="div" hasWidth={41}>
               <DialogTitle noBorder padding={2}>Remover Endereço?</DialogTitle>
 
-              <div>
+              <div className="botoes">
                 <ButtonAction
                   small
                   noMargin

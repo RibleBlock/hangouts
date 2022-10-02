@@ -45,7 +45,7 @@ export const DialogTitle = styled(Dialog.Title)<{noBorder?: boolean, padding?: n
   text-align: center;
   font-size: 1.8rem;
   ${(props) => !props.noBorder && css`
-    border-bottom: 1px solid #000;
+    border-bottom: none;
   `}
 `;
 

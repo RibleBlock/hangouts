@@ -10,10 +10,10 @@ export const BoxItem = styled.div<{hover?: boolean}>`
       font-weight: bold;
       background-color: #f1f1f1;
     }
-    `}
     &:active {
       background-color: #CAFFC9;
-  }
+    }
+  `}
   > div {
     text-align: left;
     flex-direction: column;

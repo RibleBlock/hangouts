@@ -12,7 +12,7 @@ interface Address {
   cep: string,
   district: string,
   number: number,
-  complement: string,
+  complement?: string,
   street: string,
   city: string,
 }

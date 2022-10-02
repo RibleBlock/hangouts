@@ -69,19 +69,16 @@ export function User() {
 
   const query = useQuery();
   const tab = query.get('tab');
-  console.log(tab);
 
   return (
     <>
       <NavigationBar />
       <Header title={optionClicked || 'Meu Perfil'} />
 
-      { !loadingUserToken ? (
+      { !loadingUserToken && (
         <Box>
           { sowComponentsUsers(tab) }
         </Box>
-      ) : (
-        <h2>CARREGANDO</h2>
       ) }
       <Footer />
     </>
