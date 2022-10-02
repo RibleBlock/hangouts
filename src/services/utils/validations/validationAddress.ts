@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
 import validator from 'validator';
 
 export function validationAddress({
-  cep, district, number, complement, street,
+  cep, district, number, complement, street, id_address, city, id_user,
 }: Address) {
   if (!cep) return 'CEP é necessário';
   if (cep && !validator.isNumeric(cep.replace('-', ''))) {

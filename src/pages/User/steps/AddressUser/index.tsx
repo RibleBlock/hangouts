@@ -199,7 +199,7 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
             </BoxPopOverAddress>
           ) : (
             <BoxPopOverAddress as="div" hasWidth={41}>
-              <DialogTitle noBorder padding={2}>Remover Endereço?</DialogTitle>
+              <DialogTitle padding={2}>Remover Endereço?</DialogTitle>
 
               <div className="botoes">
                 <ButtonAction
