@@ -81,8 +81,11 @@ export const Box = styled.div`
       }
       #troco {
         grid-area: troco;
-        input {
-          text-align: right;
+        > div {
+          display: flex;
+          input {
+            text-align: right;
+          }
         }
       }
       #frete {

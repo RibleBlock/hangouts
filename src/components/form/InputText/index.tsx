@@ -4,11 +4,12 @@ import { Box } from './InputText.styles';
 interface InputTextProps {
   title: string
   setText: (value: any) => void;
+  onFocus?: (value: any) => void,
   type?: 'text' | 'number',
   small?: boolean,
 }
 function InputTextComponent({
-  title, setText, type, small,
+  title, setText, type, small, onFocus,
 }: InputTextProps) {
   const [isValid, setIsvalid] = useState<boolean>(false);
 
@@ -29,6 +30,7 @@ function InputTextComponent({
           id="comment"
           name="observacoes"
           autoComplete="off"
+          onFocus={onFocus}
           onChange={(e) => validateInput(e.target.value)}
         />
         <p>{ title }</p>

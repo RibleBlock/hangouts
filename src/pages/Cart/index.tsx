@@ -4,23 +4,20 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/no-array-index-key */
 import { Dialog } from '@headlessui/react';
-import { SelectionPlus } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { css } from 'styled-components';
 import {
   ButtonAction, CartItem, InputText, Loading,
 } from '../../components';
 import { AddressItem } from '../../components/AddressItem';
+import { RadioButtonsGroup } from '../../components/form/RadioButtonsGroup';
 import { DarkBG } from '../../components/Popover/Popover.styles';
 import { Cart as CartInterface } from '../../interfaces/module';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { useGetAddressMutation } from '../../services/api/Auth';
 import { useGetCartMutation, useDeleteItemMutation } from '../../services/api/wish';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
-import { validationAddress } from '../../services/utils/validations/validationAddress';
 import validationCart from '../../services/utils/validations/validationCart';
 import { getToken } from '../../store/Auth/reducer';
 import { BoxPopOverAddress, DialogTitle } from '../User/steps/AddressUser/AddressUser.styles';
@@ -108,9 +105,11 @@ export function Cart() {
 
   const [isloadingWish, setIsloadingWish] = useState<boolean>(false);
   const [selectedAddress, setSelectedAddress] = useState<Address | 'retirar' | null>(null);
-  const [thing, setThing] = useState<any>(0);
+  const [radio, setRadio] = useState('');
+  const [thing, setThing] = useState<number>(0);
   const frete = selectedAddress && selectedAddress !== 'retirar' ? 15 : 0;
   const total = valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! + frete || 0;
+  const qtdItems = 0;
 
   const submitCart = async () => {
     try {
@@ -202,13 +201,17 @@ export function Cart() {
             </div>
           </div>
           <div id="troco">
-            <p>Troco para</p>
-            <InputText
-              small
-              title="Troco"
-              setText={setThing}
-              type="number"
-            />
+            <p>Precisa de troco</p>
+            <div>
+              <RadioButtonsGroup title="" checked={radio} fields={['Não']} setState={setRadio} />
+              <InputText
+                type="number"
+                title="Troco"
+                setText={setThing}
+                onFocus={() => setRadio('')}
+                small
+              />
+            </div>
           </div>
           <div id="frete">
             <p>Frete:</p>

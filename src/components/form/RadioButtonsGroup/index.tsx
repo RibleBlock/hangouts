@@ -1,24 +1,30 @@
 import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FormController, RadioLabel, RadioBox } from './RadioButtonsGroup.styles';
 
 interface RadioButtonsGroupProps {
+  setState?: (value: string) => void,
   title: string,
   checked?: string,
   fields: string[],
 }
-export function RadioButtonsGroup({ title, checked, fields }: RadioButtonsGroupProps) {
+export function RadioButtonsGroup({
+  title, checked, fields, setState,
+}: RadioButtonsGroupProps) {
   const [value, setValue] = useState('');
 
-  useEffect(() => {
-  }, [value]);
+  // useEffect(() => {
+  //   console.log(`Value: ${value}\nchecked: ${checked}`);
+  // }, [value]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
+    if (setState) {
+      setState((event.target as HTMLInputElement).value);
+    } else {
+      setValue((event.target as HTMLInputElement).value);
+    }
   };
-  console.log(checked);
 
   return (
     <FormController>
