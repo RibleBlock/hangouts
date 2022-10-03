@@ -68,6 +68,8 @@ export function Cart() {
           drink_cart: itemsCart!.drink_cart.filter(({ id_drink_cart }) => id_drink_cart !== id),
         });
       }
+      // allowPurchase = !!itemsCart?.pizza || !!itemsCart?.calzone || !!itemsCart?.drink_cart;
+      // console.log(allowPurchase);
 
       return toast.success(message);
     } catch (error: any) {
@@ -106,15 +108,19 @@ export function Cart() {
   const [isloadingWish, setIsloadingWish] = useState<boolean>(false);
   const [selectedAddress, setSelectedAddress] = useState<Address | 'retirar' | null>(null);
   const [radio, setRadio] = useState('');
-  const [thing, setThing] = useState<number>(0);
+  const [thing, setThing] = useState<number | 'Não' | null>(0);
   const frete = selectedAddress && selectedAddress !== 'retirar' ? 15 : 0;
   const total = valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! + frete || 0;
-  const qtdItems = 0;
+  const allowPurchase = valorTotalPizza! + valorTotalCalzone! + valorTotalBebida!;
+
+  useEffect(() => { console.log('THING: ', thing); }, [thing]); /// /////////////////////////
 
   const submitCart = async () => {
     try {
       setIsloadingWish(true);
-      const isValid = validationCart({ address: selectedAddress, thing, total });
+      const isValid = validationCart({
+        address: selectedAddress, thing, total, allowPurchase: !!allowPurchase,
+      });
       if (isValid) {
         return toast.error(isValid);
       }
@@ -203,12 +209,12 @@ export function Cart() {
           <div id="troco">
             <p>Precisa de troco</p>
             <div>
-              <RadioButtonsGroup title="" checked={radio} fields={['Não']} setState={setRadio} />
+              <RadioButtonsGroup title="" checked={thing!} fields={['Não']} setState={setThing} />
               <InputText
                 type="number"
                 title="Troco"
                 setText={setThing}
-                onFocus={() => setRadio('')}
+                onFocus={() => setThing(0)}
                 small
               />
             </div>

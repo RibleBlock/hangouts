@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { FormController, RadioLabel, RadioBox } from './RadioButtonsGroup.styles';
 
 interface RadioButtonsGroupProps {
-  setState?: (value: string) => void,
+  setState?: (value: any) => void,
   title: string,
-  checked?: string,
+  checked?: string | number,
   fields: string[],
 }
 export function RadioButtonsGroup({
