@@ -69,7 +69,7 @@ export function Register() {
             <ButtonAction
               type="submit"
               isLoading={isLoadindRegister}
-              small
+              small="18"
             >
               Criar Conta
             </ButtonAction>

@@ -10,6 +10,7 @@ export const TD = styled.td`
   > button {
     cursor: pointer;
     font-size: 1.5rem;
+    margin: 0;
     padding: .5rem .8rem;
     border-radius: .3rem;
     &:not(:hover) {

@@ -169,7 +169,7 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
               <ButtonAction
                 type="submit"
                 isLoading={loadingSubmit}
-                small
+                small="18"
               >
                 Salvar
               </ButtonAction>

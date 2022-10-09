@@ -203,17 +203,15 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
 
               <div className="botoes">
                 <ButtonAction
-                  small
                   noMargin
                   round
-                  color="#970721"
+                  bcolor="#970721"
                   isLoading={isLodingRemoveAddress}
                   action={removeAddress}
                 >
                   Remover
                 </ButtonAction>
                 <ButtonAction
-                  small
                   noMargin
                   round
                   secundary

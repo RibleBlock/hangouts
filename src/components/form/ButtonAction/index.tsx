@@ -3,9 +3,10 @@ import { Loading } from '../..';
 import { Button, MyLink as Link } from './ButtonAction.styles';
 
 export type ButtonActionStyles = {
-  small?: boolean,
+  small?: string,
   round?: boolean,
   color?: string,
+  bcolor?: string,
   noMargin?: boolean,
   secundary?: boolean,
 }
@@ -18,7 +19,7 @@ interface ButtonActionProps extends ButtonActionStyles {
   to?: string,
 }
 export function ButtonAction({
-  color, small, secundary, round, noMargin, isLoading, children, type, link, to, action,
+  bcolor, color, small, secundary, round, noMargin, isLoading, children, type, link, to, action,
 }: ButtonActionProps) {
   if (link && to) {
     return (
@@ -26,6 +27,7 @@ export function ButtonAction({
         to={to}
         secundary={secundary}
         color={color}
+        bcolor={bcolor}
         style={{
           maxWidth: small ? '18rem' : '38rem',
           marginTop: !noMargin ? '2.5rem' : '0',
@@ -45,10 +47,11 @@ export function ButtonAction({
       small={small}
       secundary={secundary}
       color={color}
+      bcolor={bcolor}
       onClick={action}
       disabled={isLoading}
     >
-      { isLoading ? <Loading color="white" /> : children }
+      { isLoading ? <Loading color={color!} /> : children }
     </Button>
   );
 }

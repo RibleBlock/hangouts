@@ -47,7 +47,7 @@ export function AdmTableUsers() {
             <AdmLineTable head fields={['ID', 'Criado em', 'Nome', 'E-mail', 'Telefone', 'isAdmin', 'isActive']} />
           </THead>
           <TBody>
-            <AdmLineTable fields={allUsers!} isAdmin={admin} />
+            <AdmLineTable setFields={setAllUsers} fields={allUsers!} isAdmin={admin} />
           </TBody>
         </Table>
       ) }

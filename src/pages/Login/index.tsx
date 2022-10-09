@@ -64,7 +64,7 @@ export function Login() {
             <ButtonAction
               type="submit"
               isLoading={isLoadindLogin}
-              small
+              small="18"
             >
               Entrar
             </ButtonAction>
