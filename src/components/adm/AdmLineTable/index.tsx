@@ -11,11 +11,13 @@ interface AdmLineTableProps {
   head?: boolean,
   isAdmin?: boolean,
 }
-export function AdmLineTable({ fields, setFields, head, isAdmin }: AdmLineTableProps) {
+export function AdmLineTable({
+  fields, setFields, head, isAdmin,
+}: AdmLineTableProps) {
   const [updateUser] = useUpdateDataUserMutation();
   const [isLoadingButton, setIsLoadingButton] = useState(false);
 
-  const updateFunction = useCallback( async ({
+  const updateFunction = useCallback(async ({
     id, field, value, isAdmin,
   }: {
     id: number, field: string, value: string | number | boolean, isAdmin?: boolean,
@@ -27,13 +29,13 @@ export function AdmLineTable({ fields, setFields, head, isAdmin }: AdmLineTableP
       }) as {data: User};
 
       // console.log();
-      setFields && setFields(fields.map((value) => value.id_user === id ? data : value))
-      console.log(fields);
-      toast.success(`sucesso`);
+      setFields!(fields.map((value) => (value.id_user === id ? data : value)));
+      return toast.success('sucesso');
     } catch (error: any) {
       if (error?.data.error) {
         return toast.error(error.data.error);
       }
+      return toast.error(error);
     } finally {
       setIsLoadingButton(false);
     }
@@ -61,7 +63,7 @@ export function AdmLineTable({ fields, setFields, head, isAdmin }: AdmLineTableP
               <TD className="onstart">
                 <ButtonAction
                   type="button"
-                  small='5'
+                  small="5"
                   color="#505050"
                   bcolor="#a9a9a9"
                   isLoading={isLoadingButton}
@@ -75,7 +77,7 @@ export function AdmLineTable({ fields, setFields, head, isAdmin }: AdmLineTableP
               <TD className="onstart">
                 <ButtonAction
                   type="button"
-                  small='5'
+                  small="5"
                   color="#505050"
                   bcolor="#a9a9a9"
                   isLoading={isLoadingButton}

@@ -1,8 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { InputFilter } from '../../../pages/Menu/Menu.styles';
 
+const inconStyle = css`
+  width: 2rem;
+  height: 2rem;
+`;
+
 export const BoxLoadind = styled.div`
-  width: 100%;
   height: 60vh;
   display: flex;
   justify-content: center;
@@ -21,6 +25,18 @@ export const Table = styled.table`
 export const MainUser = styled.main`
   width: calc(100% - 8rem);
   margin: 5rem auto;
+  > div:has(button) {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+      gap: 2rem;
+    button {
+      max-height: 3.5rem;
+      margin: 0;
+      display: flex;
+      gap: .7rem;
+    }
+  }
   > ${InputFilter} {
     border-radius: 1rem;
     margin-bottom: 1rem;
