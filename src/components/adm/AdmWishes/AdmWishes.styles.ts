@@ -3,8 +3,9 @@ import { Button } from '../../CartItem/CartItem.styles';
 
 export const ButtonWish = styled(Button)`
   width: 95%;
+  max-width: 50rem;
   padding: 2.6rem 1.5rem;
-  margin: 2rem 1rem;
+  margin: 2rem auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
