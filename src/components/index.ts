@@ -12,3 +12,4 @@ export { ButtonAction } from './form/ButtonAction';
 export { Graphic } from './adm/Graphic';
 export { AdmTableUsers } from './adm/AdmTableUsers';
 export { AdmFlavors } from './adm/AdmFlavors';
+export { AdmWishes } from './adm/AdmWishes';

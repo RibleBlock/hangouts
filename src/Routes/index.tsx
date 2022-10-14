@@ -4,7 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 import {
-  Home, Login, Register, ChooseTypePizza, User, Cart, Menu, AdminPage,
+  Home, Login, Register, ChooseTypePizza, User, Cart, Menu, AdminPage, PostPurchase,
 } from '../pages';
 import PrivateRoute from './PrivateRoute';
 
@@ -24,6 +24,10 @@ export function AppRoute() {
 
         <Route path="/cart" element={<PrivateRoute />}>
           <Route path="/cart" element={<Cart />} />
+        </Route>
+
+        <Route path="/cart/confirm" element={<PrivateRoute />}>
+          <Route path="/cart/confirm" element={<PostPurchase />} />
         </Route>
 
         <Route path="/admin" element={<PrivateRoute />}>

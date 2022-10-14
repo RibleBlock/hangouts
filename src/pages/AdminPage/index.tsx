@@ -12,7 +12,7 @@ import {
 import logo from '../../assets/images/logo.png';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import { getToken } from '../../store/Auth/reducer';
-import { AdmFlavors, AdmTableUsers } from '../../components';
+import { AdmFlavors, AdmTableUsers, AdmWishes } from '../../components';
 
 export function AdminPage() {
   const { admin } = decodeJWT<User>(useSelector(getToken));
@@ -20,7 +20,7 @@ export function AdminPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const [tableSelected, setTableSelected] = useState<{title: string, table: string}>({
-    table: 'users', title: 'Usuários',
+    table: 'pedidos', title: 'Pedidos',
   });
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export function AdminPage() {
   function alterarTabela(): any {
     switch (tableSelected.table) {
       case 'pedidos':
-        return (<h1>Pedidos</h1>);
+        return (<AdmWishes />);
       case 'pizza':
         return (<AdmFlavors />);
 
@@ -53,7 +53,7 @@ export function AdminPage() {
           isSelected={tableSelected.table === 'pedidos'}
           onClick={() => setTableSelected({ table: 'pedidos', title: 'Pedidos' })}
         >
-          <Icon icon="akar-icons:person" className="icon" />
+          <Icon icon="clarity:dollar-bill-line" className="icon" />
           PEDIDOS
         </NavButton>
         <NavButton

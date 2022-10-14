@@ -30,7 +30,7 @@ export function ButtonAction({
         bcolor={bcolor}
         style={{
           maxWidth: small ? '18rem' : '38rem',
-          marginTop: !noMargin ? '2.5rem' : '0',
+          margin: !noMargin ? '2.5rem' : '0',
           borderRadius: round ? '5rem' : '.6rem',
         }}
       >

@@ -74,8 +74,8 @@ export const NavButton = styled.button<{isSelected: boolean}>`
   align-items: center;
   gap: .6rem;
   > .icon {
-    width: 2rem;
-    height: 2rem;
+    width: 2.3rem;
+    height: 2.3rem;
   }
   &:hover {
     background-color: #525252;

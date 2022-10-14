@@ -1,5 +1,5 @@
 import { CheckSquare, Square } from 'phosphor-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { InputFilter } from '../../../pages/Menu/Menu.styles';
 import { useGetAllUsersMutation } from '../../../services/api/Auth';
@@ -45,44 +45,41 @@ export function AdmTableUsers() {
 
   return (
     <MainUser>
-
+      <div>
+        <InputFilter
+          type="text"
+          name="filtro"
+          placeholder="Procurar Usuário"
+          onChange={(e) => setFilterUsers(e.target.value)}
+          autoComplete="off"
+        />
+        <ButtonAction
+          action={deactivatingFilters}
+          isLoading={isloadingData}
+          type="button"
+          noMargin
+          color="#282727"
+          bcolor="#c9c9c9"
+          small="16"
+        >
+          Desativados
+          {' '}
+          { buttonDisable ? <CheckSquare size="2rem" weight="bold" /> : (<Square size="2rem" weight="bold" />) }
+        </ButtonAction>
+      </div>
       { isloadingData ? (
         <BoxLoadind>
           <Loading big color="grey" />
         </BoxLoadind>
       ) : (
-        <>
-          <div>
-            <InputFilter
-              type="text"
-              name="filtro"
-              placeholder="Procurar Usuário"
-              onChange={(e) => setFilterUsers(e.target.value)}
-              autoComplete="off"
-            />
-            <ButtonAction
-              action={deactivatingFilters}
-              isLoading={isloadingData}
-              type="button"
-              noMargin
-              color="#282727"
-              bcolor="#c9c9c9"
-              small="16"
-            >
-              Desativados
-              {' '}
-              { buttonDisable ? <CheckSquare size="2rem" weight="bold" /> : (<Square size="2rem" weight="bold" />) }
-            </ButtonAction>
-          </div>
-          <Table>
-            <THead>
-              <AdmLineTable head fields={['ID', 'Criado em', 'Nome', 'E-mail', 'Telefone', 'isAdmin', 'isActive']} />
-            </THead>
-            <TBody>
-              <AdmLineTable setFields={setAllUsers} fields={allUsers!} isAdmin={admin} />
-            </TBody>
-          </Table>
-        </>
+        <Table>
+          <THead>
+            <AdmLineTable head fields={['ID', 'Criado em', 'Nome', 'E-mail', 'Telefone', 'isAdmin', 'isActive']} />
+          </THead>
+          <TBody>
+            <AdmLineTable setFields={setAllUsers} fields={allUsers!} isAdmin={admin} />
+          </TBody>
+        </Table>
       ) }
     </MainUser>
   );
