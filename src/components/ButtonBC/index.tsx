@@ -1,4 +1,5 @@
 import { ArrowLeft, X } from 'phosphor-react';
+import { useLocation } from 'react-router-dom';
 import { Button, Lincar } from './ButtonBC.styles';
 
 export interface IconChange {
@@ -14,9 +15,11 @@ interface ButtonBCProps extends IconChange {
 export function ButtonBC({
   to, action, right, arrow, absolute,
 }: ButtonBCProps) {
+  const location = useLocation();
+
   if (to) {
     return (
-      <Lincar to={to}>
+      <Lincar to={to} replace state={{ prevPath: location.pathname }}>
         { arrow ? <ArrowLeft weight="bold" /> : <X weight="bold" /> }
       </Lincar>
     );

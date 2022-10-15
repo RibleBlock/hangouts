@@ -128,7 +128,7 @@ export function AddressUser({ user, setOption }: AddressUserProps) {
   return (
     <>
       <Div>
-        <ButtonBC to="/user" arrow />
+        <ButtonBC to=".." arrow />
         <p>Endereço</p>
       </Div>
       <Section>
