@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import { useEffect, useState } from 'react';
 import { Loading } from '../../..';
-import { BordersType } from '../../../../assets/Foods';
 import { BorderDB } from '../../../../interfaces/module';
 import { useGetDataTableMutation } from '../../../../services/api/Auth';
 import { PopoverListButton } from '../../PopoverListButton';

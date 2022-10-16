@@ -4,7 +4,6 @@ import {
   Form, CameraIcon, H2, Label, GridBox, InputEdit,
 } from './AdmEditData.styles';
 
-import imgteste from '../../../assets/images/logo.png';
 import { RadioButtonsGroup } from '../../form/RadioButtonsGroup';
 
 interface AdmEditDataProps {

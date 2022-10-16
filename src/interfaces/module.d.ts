@@ -13,7 +13,7 @@ declare interface Pedido {
   border: number,
   flavors: number[],
   comment?: string,
-  id_cart: number,
+  id_user: number,
 }
 
 declare interface CartPizza {

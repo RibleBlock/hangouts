@@ -10,18 +10,18 @@ export const wishApi = createApi({
   endpoints: (builder) => ({
     addToCart: builder.mutation({
       query: ({
-        size, border, flavors, comment, id_cart, table,
+        size, border, flavors, comment, id_user, table,
       }: Pedido & {table: string}) => ({
         url: 'makewish',
         method: 'POST',
         body: {
-          size, border, flavors, comment, id_cart, table,
+          size, border, flavors, comment, id_user, table,
         },
       }),
     }),
     getCart: builder.mutation({
-      query: ({ id_cart, status }: { id_cart: number, status: string }) => ({
-        url: `getcart/${id_cart}?status=${status}`,
+      query: ({ id_user, status }: { id_user: number, status: string }) => ({
+        url: `getcart/${id_user}?status=${status}`,
         method: 'GET',
       }),
     }),

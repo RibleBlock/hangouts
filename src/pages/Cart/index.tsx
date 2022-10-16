@@ -84,7 +84,7 @@ export function Cart() {
     async function getCartUser() {
       setIsFetchingCart(true);
       const { data } = await getFuckingCart({
-        id_cart: currentUser.cart[0].id_cart,
+        id_user: currentUser.id_user,
         status: 'creating',
       }) as any;
       setItemsCart(data.data[0]);

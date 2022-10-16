@@ -61,7 +61,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
         border,
         flavors: flavor,
         comment,
-        id_cart: currentUser.cart[0].id_cart,
+        id_user: currentUser.id_user,
         table,
       });
 
