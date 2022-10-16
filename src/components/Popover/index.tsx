@@ -31,12 +31,6 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
   const [value, setValue] = useState<number>(0);
   const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
 
-  /**
-  useEffect(() => {
-     console.log(selectedType, size, border, flavor, value, comment);
-  }, [selectedType, size, border, flavor, comment, value]);
-  */
-
   function currentTable(): string {
     switch (selectedType) {
       case 'BEBIDA':
@@ -62,7 +56,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
       }
       const table = currentTable();
 
-      const { data }: any = await addToCart({
+      await addToCart({
         size,
         border,
         flavors: flavor,
@@ -74,7 +68,7 @@ export function Popover({ selectedType, setSelectedType }: PopoverProps) {
       toast.success('Adicionado ao carrinho');
       return navigate('/cart', { replace: true, state: { prevPath: location.pathname } });
     } catch (error: any) {
-      if (error?.data.data.error) {
+      if (error?.data.error) {
         return toast.error(error.data.error);
       }
       return toast.error(error);
