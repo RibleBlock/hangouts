@@ -85,6 +85,7 @@ export function Cart() {
       setIsFetchingCart(true);
       const { data } = await getFuckingCart({
         id_cart: currentUser.cart[0].id_cart,
+        status: 'creating',
       }) as any;
       setItemsCart(data.data[0]);
       setIsFetchingCart(false);
@@ -107,13 +108,10 @@ export function Cart() {
 
   const [isloadingWish, setIsloadingWish] = useState<boolean>(false);
   const [selectedAddress, setSelectedAddress] = useState<Address | 'retirar' | null>(null);
-  const [radio, setRadio] = useState('');
   const [thing, setThing] = useState<number | 'Não' | null>(0);
   const frete = selectedAddress && selectedAddress !== 'retirar' ? 15 : 0;
   const total = valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! + frete || 0;
   const allowPurchase = valorTotalPizza! + valorTotalCalzone! + valorTotalBebida!;
-
-  useEffect(() => { console.log('THING: ', thing); }, [thing]); /// /////////////////////////
 
   const submitCart = async () => {
     try {
@@ -124,6 +122,8 @@ export function Cart() {
       if (isValid) {
         return toast.error(isValid);
       }
+
+      // await
 
       return toast.success('Pedido enviado');
     } catch (error: any) {
