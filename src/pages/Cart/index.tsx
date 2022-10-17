@@ -6,6 +6,7 @@
 import { Dialog } from '@headlessui/react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
   ButtonAction, CartItem, InputText, Loading,
@@ -16,7 +17,7 @@ import { DarkBG } from '../../components/Popover/Popover.styles';
 import { Cart as CartInterface } from '../../interfaces/module';
 import { Footer, Header, NavigationBar } from '../../layouts';
 import { useGetAddressMutation } from '../../services/api/Auth';
-import { useGetCartMutation, useDeleteItemMutation } from '../../services/api/wish';
+import { useGetCartMutation, useDeleteItemMutation, useSendCartMutation } from '../../services/api/wish';
 import { decodeJWT } from '../../services/utils/Decode/DecodeJWT';
 import validationCart from '../../services/utils/validations/validationCart';
 import { getToken } from '../../store/Auth/reducer';
@@ -26,6 +27,8 @@ import { Box } from './Cart.styles';
 export function Cart() {
   const token = useSelector(getToken);
   const currentUser = decodeJWT<User>(token);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const [isFetchingCart, setIsFetchingCart] = useState<boolean>(false);
   const [itemsCart, setItemsCart] = useState<CartInterface>();
@@ -34,6 +37,7 @@ export function Cart() {
 
   const { id_user } = decodeJWT<User>(useSelector(getToken));
   const [getAddress] = useGetAddressMutation();
+  const [sendCart] = useSendCartMutation();
   const [addressIsOpen, setAddressIsOpen] = useState<boolean>(false);
   const [address, setAddress] = useState<Address[] | null>(null);
 
@@ -123,8 +127,14 @@ export function Cart() {
         return toast.error(isValid);
       }
 
-      // await
+      const address = selectedAddress !== 'retirar' ? selectedAddress!.id_address : 0;
+      const troco = thing === 'Não' ? 0 : thing;
+      console.log(`${address} \n THING: ${thing}`);
+      await sendCart({
+        id_user: currentUser.id_user, idAddress: address, thing: troco!,
+      }) as any;
 
+      navigate('cart/confirm', { replace: true, state: { prevPath: location.pathname } });
       return toast.success('Pedido enviado');
     } catch (error: any) {
       if (error?.data.error) {

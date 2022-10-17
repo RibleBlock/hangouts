@@ -57,6 +57,8 @@ export const MainBox = styled.main`
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      row-gap: .3rem;
       font-size: 1.6rem;
       > ${H1} {
         color: #000;

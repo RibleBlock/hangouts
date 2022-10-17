@@ -8,6 +8,14 @@ export const wishApi = createApi({
   reducerPath: 'wishApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
+    sendCart: builder.mutation({
+      query: ({ id_user, idAddress, thing }: {
+        id_user: number, idAddress: number, thing: number
+      }) => ({
+        url: `sendcart/${id_user}?idAddress=${idAddress}&thing=${thing}`,
+        method: 'PATCH',
+      }),
+    }),
     addToCart: builder.mutation({
       query: ({
         size, border, flavors, comment, id_user, table,
@@ -25,6 +33,12 @@ export const wishApi = createApi({
         method: 'GET',
       }),
     }),
+    getCartADM: builder.mutation({ /// /////////////////////////////
+      query: ({ id_user, status }: { id_user: number, status: string }) => ({
+        url: `getcart/${id_user}?status=${status}`,
+        method: 'GET',
+      }),
+    }),
     deleteItem: builder.mutation({
       query: ({ id, table }: { id: number, table?: string }) => ({
         url: `cartitem?id_cart=${id}&table=${table}`,
@@ -35,7 +49,9 @@ export const wishApi = createApi({
 });
 
 export const {
+  useSendCartMutation,
   useAddToCartMutation,
   useGetCartMutation,
+  useGetCartADMMutation,
   useDeleteItemMutation,
 } = wishApi;
