@@ -1,18 +1,24 @@
+/* eslint-disable camelcase */
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useGetCartADMMutation } from '../../../services/api/wish';
 import {
   Box, ButtonWish, H1, MainBox,
 } from './AdmWishes.styles';
 
 export function AdmWishes() {
   const [loadingData, setLoadingData] = useState<boolean>(false);
+  const [cartList, setCartList] = useState<CartAdm[] | null>(null);
+  const [getWishes] = useGetCartADMMutation();
 
   useEffect(() => {
     setLoadingData(true);
     async function getAllWishes() {
       try {
-        // const {data} = await
-        return toast.success('');
+        const { data } = await getWishes('') as any;
+        setCartList([...data]);
+
+        return toast.success('sucesso');
       } catch (error: any) {
         if (error?.data.error) {
           return toast.error(error.data.error);
@@ -29,12 +35,17 @@ export function AdmWishes() {
     <MainBox>
       <section id="wishesList">
         <ul>
-          <li>
-            <ButtonWish type="button" onClick={() => alert('fefdwefwe')}>
-              <p>wishesList</p>
-              <p>18:00</p>
-            </ButtonWish>
-          </li>
+          { cartList?.map(({
+            id_cart, order_time,
+            users: { name, email },
+          }) => (
+            <li key={id_cart}>
+              <ButtonWish type="button" onClick={() => alert(`carrinho: ${id_cart}`)}>
+                <p>{name.split(' ')[0]}</p>
+                <p>{order_time}</p>
+              </ButtonWish>
+            </li>
+          )) }
         </ul>
       </section>
       <section id="selectedWish">

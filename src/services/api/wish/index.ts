@@ -33,9 +33,9 @@ export const wishApi = createApi({
         method: 'GET',
       }),
     }),
-    getCartADM: builder.mutation({ /// /////////////////////////////
-      query: ({ id_user, status }: { id_user: number, status: string }) => ({
-        url: `getcart/${id_user}?status=${status}`,
+    getCartADM: builder.mutation({
+      query: () => ({
+        url: 'getcartadm',
         method: 'GET',
       }),
     }),

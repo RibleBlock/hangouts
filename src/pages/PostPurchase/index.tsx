@@ -1,10 +1,11 @@
 import { ButtonAction } from '../../components';
-import { Footer, Header } from '../../layouts';
+import { Footer, Header, NavigationBar } from '../../layouts';
 import { MainBox } from './PostPurchase.styled';
 
 export function PostPurchase() {
   return (
     <>
+      <NavigationBar />
       <Header title="Compra finalizada" />
 
       <MainBox>

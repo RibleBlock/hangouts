@@ -127,14 +127,13 @@ export function Cart() {
         return toast.error(isValid);
       }
 
-      const address = selectedAddress !== 'retirar' ? selectedAddress!.id_address : 0;
+      const address = selectedAddress !== 'retirar' ? selectedAddress!.id_address : 37;
       const troco = thing === 'Não' ? 0 : thing;
-      console.log(`${address} \n THING: ${thing}`);
       await sendCart({
         id_user: currentUser.id_user, idAddress: address, thing: troco!,
       }) as any;
 
-      navigate('cart/confirm', { replace: true, state: { prevPath: location.pathname } });
+      navigate('confirm', { replace: true, state: { prevPath: location.pathname } });
       return toast.success('Pedido enviado');
     } catch (error: any) {
       if (error?.data.error) {
