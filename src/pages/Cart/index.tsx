@@ -127,10 +127,16 @@ export function Cart() {
         return toast.error(isValid);
       }
 
+      const date = new Date();
+      const hora = date.getHours();
+      const min = date.getMinutes();
       const address = selectedAddress !== 'retirar' ? selectedAddress!.id_address : 39;
       const troco = thing === 'Não' ? 0 : thing;
       await sendCart({
-        id_user: currentUser.id_user, idAddress: address, thing: troco!,
+        id_user: currentUser.id_user,
+        idAddress: address,
+        thing: troco!,
+        order_time: `${hora}:${min}`,
       }) as any;
 
       navigate('confirm', { replace: true, state: { prevPath: location.pathname } });

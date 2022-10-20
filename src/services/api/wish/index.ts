@@ -9,10 +9,12 @@ export const wishApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     sendCart: builder.mutation({
-      query: ({ id_user, idAddress, thing }: {
-        id_user: number, idAddress: number, thing: number
+      query: ({
+        id_user, idAddress, thing, order_time,
+      }: {
+        id_user: number, idAddress: number, thing: number, order_time: string,
       }) => ({
-        url: `sendcart/${id_user}?idAddress=${idAddress}&thing=${thing}`,
+        url: `sendcart/${id_user}?idAddress=${idAddress}&thing=${thing}&ordertime=${order_time}`,
         method: 'PATCH',
       }),
     }),
