@@ -73,7 +73,7 @@ export function AdmWishes() {
             <div>
               <H1>
                 {selectedWish?.users.name[0].toUpperCase()}
-                { selectedWish?.users.name.substring(1)}
+                {selectedWish?.users.name.substring(1)}
               </H1>
 
               <p>
@@ -93,8 +93,7 @@ export function AdmWishes() {
                   <p>
                     {selectedWish?.address.street[0].toUpperCase()}
                     { selectedWish?.address.street.substring(1)}
-                    {' '}
-                    -
+                    ,
                     {' '}
                     {selectedWish?.address.number}
                     {' '}
