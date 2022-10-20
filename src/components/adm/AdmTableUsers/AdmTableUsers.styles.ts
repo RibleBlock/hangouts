@@ -1,11 +1,6 @@
 import styled, { css } from 'styled-components';
 import { InputFilter } from '../../../pages/Menu/Menu.styles';
 
-const inconStyle = css`
-  width: 2rem;
-  height: 2rem;
-`;
-
 export const BoxLoadind = styled.div`
   height: 60vh;
   display: flex;

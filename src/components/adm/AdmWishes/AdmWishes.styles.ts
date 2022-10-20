@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '../../CartItem/CartItem.styles';
 import { H1 as Title } from '../../../pages/AdminPage/AdminPage.styles';
+import { BoxLoadind } from '../AdmTableUsers/AdmTableUsers.styles';
 
 export const ButtonWish = styled(Button)`
   width: 95%;
@@ -34,7 +35,7 @@ export const MainBox = styled.main`
   display: grid;
   grid-template: 1fr / 1fr 62%;
   grid-template-areas:
-    'wishesList selectedWish';
+  'wishesList selectedWish';
 
   #wishesList {
     grid-area: wishesList;
@@ -84,5 +85,14 @@ export const MainBox = styled.main`
         white-space: nowrap;
       }
     }
+  }
+`;
+
+export const Boxx = styled(BoxLoadind)`
+  flex-direction: column;
+  justify-content: center !important;
+  color: #4e4e4e;
+  > ${H1} {
+    color: #4e4e4e !important;
   }
 `;
