@@ -127,7 +127,7 @@ export function Cart() {
         return toast.error(isValid);
       }
 
-      const address = selectedAddress !== 'retirar' ? selectedAddress!.id_address : 37;
+      const address = selectedAddress !== 'retirar' ? selectedAddress!.id_address : 39;
       const troco = thing === 'Não' ? 0 : thing;
       await sendCart({
         id_user: currentUser.id_user, idAddress: address, thing: troco!,

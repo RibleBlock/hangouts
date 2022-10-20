@@ -48,7 +48,11 @@ export function AdmWishes() {
               users: { name },
             }, i, a) => (
               <li key={id_cart}>
-                <ButtonWish type="button" onClick={() => setSelectedWish(a[i])}>
+                <ButtonWish
+                  type="button"
+                  onClick={() => setSelectedWish(a[i])}
+                  isSelected={id_cart === selectedWish?.id_cart}
+                >
                   <p>{name.split(' ')[0]}</p>
                   <p>{order_time}</p>
                 </ButtonWish>
@@ -60,13 +64,10 @@ export function AdmWishes() {
       <section id="selectedWish">
 
         { !selectedWish ? (
-          <>
-            <Boxx>
-              <Pizza size={120} weight="light" />
-              <H1>Selecione um Carrinho a esquerda</H1>
-            </Boxx>
-            {/*  */}
-          </>
+          <Boxx>
+            <Pizza size={120} weight="light" />
+            <H1>Selecione um Pedido a esquerda</H1>
+          </Boxx>
         ) : (
           <>
             <div>

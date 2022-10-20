@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Button } from '../../CartItem/CartItem.styles';
 import { H1 as Title } from '../../../pages/AdminPage/AdminPage.styles';
 import { BoxLoadind } from '../AdmTableUsers/AdmTableUsers.styles';
 
-export const ButtonWish = styled(Button)`
-  width: 95%;
+export const ButtonWish = styled(Button)<{isSelected: boolean}>`
+  width: 90%;
   max-width: 50rem;
   padding: 2.6rem 1.5rem;
   margin: 2rem auto;
@@ -15,8 +15,11 @@ export const ButtonWish = styled(Button)`
   font-size: 1.7rem;
   transition: 200ms;
   z-index: -1;
+  ${({ isSelected }) => isSelected && css`
+    transform: scale(1.05);
+  `}
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
   }
 `;
 
@@ -33,7 +36,7 @@ export const MainBox = styled.main`
   max-width: 100%;
   height: 100%;
   display: grid;
-  grid-template: 1fr / 1fr 62%;
+  grid-template: 1fr / 1fr 60%;
   grid-template-areas:
   'wishesList selectedWish';
 
