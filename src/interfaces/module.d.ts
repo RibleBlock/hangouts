@@ -40,6 +40,10 @@ declare interface CartPizza {
         id_flavor_type: number,
         id_flavor_category: number,
         id_image: number | null
+        flavor_category: {
+          name: string,
+          price: number,
+        }
       }
     },
     {

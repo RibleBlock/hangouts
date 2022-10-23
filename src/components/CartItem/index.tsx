@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
 import { Icon } from '@iconify/react';
@@ -53,7 +55,12 @@ export function CartItem({
 
         { comment && (<p>{`• OBS: ${comment}`}</p>) }
       </div>
-      <p id="value">{`R$ ${value.toFixed(2)}`}</p>
+      <p id="value">
+        {'R$ '}
+        { sabores && sabores.reduce((ac: number, {
+          flavor: { flavor_category: { price } },
+        }: any) => ac = value + price, 0).toFixed(2) }
+      </p>
       <Icon
         id="trash"
         icon="akar-icons:trash-can"

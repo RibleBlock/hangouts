@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
 /* eslint-disable camelcase */
 import { Pizza } from 'phosphor-react';
 import { useEffect, useState } from 'react';
@@ -35,6 +37,28 @@ export function AdmWishes() {
     }
     getAllWishes();
   }, []);
+
+  const valorTotalPizza = selectedWish?.pizza.reduce((ac, {
+    pizza_border: { price: price_border },
+    pizza_size: { price: price_size },
+    pizza_flavor,
+  }) => {
+    const flavorEspecial = pizza_flavor.reduce((ac2, {
+      flavor: { flavor_category: { price } },
+    }) => ac2 += price, 0);
+    return ac += price_border + price_size + flavorEspecial;
+  }, 0);
+
+  const valorTotalCalzone = selectedWish?.calzone.reduce((ac, {
+    calzone_flavor: { price },
+  }) => ac += price, 0);
+
+  const valorTotalBebida = selectedWish?.drink_cart.reduce((ac, {
+    drink_size: { price },
+  }) => ac += price, 0);
+
+  const frete = selectedWish?.address.street !== 'RETIRAR' ? 15 : 0;
+  const total = valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! + frete;
 
   return (
     <MainBox>
@@ -114,21 +138,31 @@ export function AdmWishes() {
 
             <h3>Pedido</h3>
 
+            {/* ADICIONAR OS VALORES DOS SABORES ESPECIAIS */}
             { selectedWish.pizza && selectedWish.pizza.map(({
               id_pizza, pizza_flavor, comment,
               pizza_size: { name: size, price },
               pizza_border: { name: border, price: prise_border },
             }, i) => (
               <BoxItem key={id_pizza}>
-                <div>
+                <div className="flex">
                   <p>{`${i + 1}  Pizza ${size}`}</p>
-                  <p>{`R$: ${(price + prise_border).toFixed(2)}`}</p>
+                  <p>
+                    {'R$: '}
+                    <span>
+                      { pizza_flavor.reduce((ac, {
+                        flavor: { flavor_category: { price: price_flavor } },
+                      }) => ac = price + prise_border + price_flavor, 0).toFixed(2) }
+                    </span>
+                  </p>
                 </div>
                 <hr />
                 <p>
                   Sabores -
                   {' '}
-                  { pizza_flavor.map(({ flavor: { id_flavor, name } }) => (
+                  { pizza_flavor.map(({
+                    flavor: { id_flavor, name },
+                  }) => (
                     <span key={id_flavor}>{`${name}, `}</span>
                   )) }
                 </p>
@@ -148,10 +182,13 @@ export function AdmWishes() {
             )) }
 
             { selectedWish.calzone && selectedWish.calzone.map(({
-              id_calzone, comment, calzone_flavor: { name },
+              id_calzone, comment, calzone_flavor: { name, price },
             }, i) => (
               <BoxItem key={id_calzone}>
-                <p>{`${i + 1}  Calzone`}</p>
+                <div className="flex">
+                  <p>{`${i + 1}  Calzone`}</p>
+                  <p>{`R$: ${(price).toFixed(2)}`}</p>
+                </div>
                 <hr />
                 <p>
                   Sabores -
@@ -172,12 +209,37 @@ export function AdmWishes() {
             )) }
 
             { selectedWish.drink_cart && selectedWish.drink_cart.map(({
-              id_drink_cart, drink: { name_drink }, drink_size: { name_drink_size },
+              id_drink_cart, drink: { name_drink }, drink_size: { name_drink_size, price },
             }, i) => (
               <BoxItem key={id_drink_cart}>
                 <p>{`${i + 1}  ${name_drink} ${name_drink_size}`}</p>
+                <p>{`R$: ${(price).toFixed(2)}`}</p>
               </BoxItem>
             )) }
+
+            <BoxItem>
+              <H1>Pagamento/Entrega</H1>
+              <hr />
+              <p>
+                Entrega Domiciliar -
+                {' '}
+                {selectedWish?.address.street[0].toUpperCase()}
+                { selectedWish?.address.street.substring(1)}
+                ,
+                {' '}
+                {selectedWish?.address.number}
+              </p>
+              <hr />
+              <p className="flex">
+                <span>Frete</span>
+                <span>{`R$: ${frete.toFixed(2)}`}</span>
+              </p>
+              <hr />
+              <p className="flex">
+                <span>Total do pedido</span>
+                <span>{`R$: ${(total).toFixed(2)}`}</span>
+              </p>
+            </BoxItem>
 
             <div className="botoes">
               <ButtonAction
@@ -188,7 +250,6 @@ export function AdmWishes() {
                 action={() => alert('Cancelar')}
               >
                 Cancelar pedido
-
               </ButtonAction>
               <ButtonAction
                 type="button"
@@ -197,7 +258,6 @@ export function AdmWishes() {
                 action={() => alert('Preparar')}
               >
                 Começar preparo
-
               </ButtonAction>
             </div>
           </>

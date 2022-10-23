@@ -96,7 +96,10 @@ export const MainBox = styled.main`
       }
     }
     > ${BoxItem} {
-      > div:first-of-type {
+      > ${H1} {
+        font-size: 1.6rem;
+      }
+      > .flex {
         width: 100%;
         display: flex;
         justify-content: space-between;

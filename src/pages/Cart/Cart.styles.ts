@@ -126,11 +126,6 @@ export const Box = styled.div`
         font-weight: bold;
       }
     }
-  @media screen and (max-width: 455px) {
-    > .botoes {
-      flex-direction: column;
-    }
-  }
   }
 
   > div.order_list {

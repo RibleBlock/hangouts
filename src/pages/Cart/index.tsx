@@ -97,10 +97,18 @@ export function Cart() {
     getCartUser();
   }, []);
 
+  console.log(itemsCart);
+
   const valorTotalPizza = itemsCart?.pizza.reduce((ac, {
     pizza_border: { price: price_border },
     pizza_size: { price: price_size },
-  }) => ac += price_border + price_size, 0);
+    pizza_flavor,
+  }) => {
+    const flavorEspecial = pizza_flavor.reduce((ac2, {
+      flavor: { flavor_category: { price } },
+    }) => ac2 = price, 0);
+    return ac += price_border + price_size + flavorEspecial;
+  }, 0);
 
   const valorTotalCalzone = itemsCart?.calzone.reduce((ac, {
     calzone_flavor: { price },
