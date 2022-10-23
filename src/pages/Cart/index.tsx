@@ -130,13 +130,14 @@ export function Cart() {
       const date = new Date();
       const hora = date.getHours();
       const min = date.getMinutes();
+      const order_time = `${(`0${hora}`).slice(-2)}:${(`0${min}`).slice(-2)}`;
       const address = selectedAddress !== 'retirar' ? selectedAddress!.id_address : 39;
       const troco = thing === 'Não' ? 0 : thing;
       await sendCart({
         id_user: currentUser.id_user,
         idAddress: address,
         thing: troco!,
-        order_time: `${hora}:${min}`,
+        order_time,
       }) as any;
 
       navigate('confirm', { replace: true, state: { prevPath: location.pathname } });

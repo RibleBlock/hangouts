@@ -2,10 +2,12 @@
 import { Pizza } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { CartAdm } from '../../../interfaces/module';
 import { useGetCartADMMutation } from '../../../services/api/wish';
+import { ButtonAction } from '../../form/ButtonAction';
 import { Loading } from '../../Loading';
 import {
-  Box, ButtonWish, H1, MainBox, Boxx,
+  Box, ButtonWish, H1, MainBox, Boxx, BoxItem,
 } from './AdmWishes.styles';
 
 export function AdmWishes() {
@@ -65,8 +67,8 @@ export function AdmWishes() {
 
         { !selectedWish ? (
           <Boxx>
-            <Pizza size={120} weight="light" />
-            <H1>Selecione um Pedido a esquerda</H1>
+            <Pizza size={100} weight="light" />
+            <H1>Selecione um Pedido</H1>
           </Boxx>
         ) : (
           <>
@@ -109,6 +111,95 @@ export function AdmWishes() {
                 </>
               ) }
             </Box>
+
+            <h3>Pedido</h3>
+
+            { selectedWish.pizza && selectedWish.pizza.map(({
+              id_pizza, pizza_flavor, comment,
+              pizza_size: { name: size, price },
+              pizza_border: { name: border, price: prise_border },
+            }, i) => (
+              <BoxItem key={id_pizza}>
+                <div>
+                  <p>{`${i + 1}  Pizza ${size}`}</p>
+                  <p>{`R$: ${(price + prise_border).toFixed(2)}`}</p>
+                </div>
+                <hr />
+                <p>
+                  Sabores -
+                  {' '}
+                  { pizza_flavor.map(({ flavor: { id_flavor, name } }) => (
+                    <span key={id_flavor}>{`${name}, `}</span>
+                  )) }
+                </p>
+                { border !== 'Sem Borda' && (
+                  <>
+                    <hr />
+                    <p>{`Borda recheada - ${border}`}</p>
+                  </>
+                ) }
+                { comment && (
+                  <>
+                    <hr />
+                    <p>{`Observações - ${comment}`}</p>
+                  </>
+                ) }
+              </BoxItem>
+            )) }
+
+            { selectedWish.calzone && selectedWish.calzone.map(({
+              id_calzone, comment, calzone_flavor: { name },
+            }, i) => (
+              <BoxItem key={id_calzone}>
+                <p>{`${i + 1}  Calzone`}</p>
+                <hr />
+                <p>
+                  Sabores -
+                  {' '}
+                  {name}
+                </p>
+                { comment && (
+                  <>
+                    <hr />
+                    <p>
+                      Observações -
+                      {' '}
+                      {comment}
+                    </p>
+                  </>
+                ) }
+              </BoxItem>
+            )) }
+
+            { selectedWish.drink_cart && selectedWish.drink_cart.map(({
+              id_drink_cart, drink: { name_drink }, drink_size: { name_drink_size },
+            }, i) => (
+              <BoxItem key={id_drink_cart}>
+                <p>{`${i + 1}  ${name_drink} ${name_drink_size}`}</p>
+              </BoxItem>
+            )) }
+
+            <div className="botoes">
+              <ButtonAction
+                type="button"
+                secundary
+                noMargin
+                small="19"
+                action={() => alert('Cancelar')}
+              >
+                Cancelar pedido
+
+              </ButtonAction>
+              <ButtonAction
+                type="button"
+                small="19"
+                noMargin
+                action={() => alert('Preparar')}
+              >
+                Começar preparo
+
+              </ButtonAction>
+            </div>
           </>
         ) }
       </section>

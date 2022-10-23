@@ -25,26 +25,3 @@ declare interface User {
     }
   ],
 }
-
-declare interface CartAdm {
-  id_cart: number,
-  created_at: string,
-  status: string,
-  order_time: string,
-  troco: number,
-  pizza: CartPizza[],
-  calzone: CartCalzone[],
-  drink_cart: CartDrink[],
-  address: {
-    id_address: number,
-    street: string,
-    number: number,
-    district: string,
-    city: string,
-    id_user: number,
-    cep: string,
-    complement: string,
-    is_active: boolean,
-  },
-  users: Pick<User, 'name' | 'email' | 'id_user'>
-}

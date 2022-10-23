@@ -20,7 +20,7 @@ export function PostPurchase() {
           <Info weight="fill" color="#0021de" size={90} />
           <Info weight="duotone" color="#0021de" size={90} />
         </div>
-        <p>Estamos confirmando o seu pedido, por favor aguarde</p>
+        <p>Estamos confirmando o seu pedido, Por favor aguarde.</p>
         <div>
           <ButtonAction link to="/" noMargin>
             Voltar para a página principal

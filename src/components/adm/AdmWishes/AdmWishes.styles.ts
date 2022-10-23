@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { Button } from '../../CartItem/CartItem.styles';
 import { H1 as Title } from '../../../pages/AdminPage/AdminPage.styles';
 import { BoxLoadind } from '../AdmTableUsers/AdmTableUsers.styles';
+import { Section } from '../../../pages/User/steps/MyData/MyData.styles';
 
 export const ButtonWish = styled(Button)<{isSelected: boolean}>`
   width: 90%;
@@ -29,6 +30,16 @@ export const H1 = styled(Title)`
 export const Box = styled.div`
   width: 100%;
   border-radius: .5rem;
+  `;
+
+export const BoxItem = styled(Section)`
+  background-color: #fff;
+  max-width: 100%;
+  flex-direction: row;
+  padding: 0;
+  margin-top: 1.5rem;
+  box-shadow: none;
+  border: .1rem solid #b3b3b3; // 1px ou 2px
 `;
 
 export const MainBox = styled.main`
@@ -57,6 +68,20 @@ export const MainBox = styled.main`
     background-color: #d9d9d9;
     width: 100%;
     padding: 4.5rem 4rem;
+    overflow-y: scroll;
+    > h3 {
+      margin-top: 1.5rem;
+      font-size: 2rem;
+      text-align: left;
+    }
+    > .botoes {
+      width: 40rem;
+      float: right;
+      margin-top: 2rem;
+      > button {
+        margin: 0;
+      }
+    }
     > div {
       display: flex;
       justify-content: space-between;
@@ -68,6 +93,20 @@ export const MainBox = styled.main`
         color: #000;
         text-align: left;
         font-size: 2rem;
+      }
+    }
+    > ${BoxItem} {
+      > div:first-of-type {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+      > *:not(hr) {
+        padding: 1.5rem 0;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        letter-spacing: .1rem;
       }
     }
     > ${Box} {
