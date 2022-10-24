@@ -97,8 +97,6 @@ export function Cart() {
     getCartUser();
   }, []);
 
-  console.log(itemsCart);
-
   const valorTotalPizza = itemsCart?.pizza.reduce((ac, {
     pizza_border: { price: price_border },
     pizza_size: { price: price_size },
@@ -138,6 +136,8 @@ export function Cart() {
       const date = new Date();
       const hora = date.getHours();
       const min = date.getMinutes();
+      const mes = date.getMonth() + 1;
+      const dateWish = `${date.getFullYear()}-${(`0${mes}`).slice(-2)}`;
       const order_time = `${(`0${hora}`).slice(-2)}:${(`0${min}`).slice(-2)}`;
       const address = selectedAddress !== 'retirar' ? selectedAddress!.id_address : 39;
       const troco = thing === 'Não' ? 0 : thing;
@@ -146,6 +146,7 @@ export function Cart() {
         idAddress: address,
         thing: troco!,
         order_time,
+        date: dateWish,
       }) as any;
 
       navigate('confirm', { replace: true, state: { prevPath: location.pathname } });

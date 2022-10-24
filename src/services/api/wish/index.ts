@@ -10,11 +10,11 @@ export const wishApi = createApi({
   endpoints: (builder) => ({
     sendCart: builder.mutation({
       query: ({
-        id_user, idAddress, thing, order_time,
+        id_user, idAddress, thing, order_time, date,
       }: {
-        id_user: number, idAddress: number, thing: number, order_time: string,
+        id_user: number, idAddress: number, thing: number, order_time: string, date: string
       }) => ({
-        url: `sendcart/${id_user}?idAddress=${idAddress}&thing=${thing}&ordertime=${order_time}`,
+        url: `sendcart/${id_user}?idAddress=${idAddress}&thing=${thing}&ordertime=${order_time}&date=${date}`,
         method: 'PATCH',
       }),
     }),
