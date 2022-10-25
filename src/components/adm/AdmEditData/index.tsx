@@ -32,6 +32,18 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
     setImage(imageLink || '');
   }, [selectedFlavor]);
 
+  const [name, setName] = useState<string>('');
+  const [ingredients, setIngredients] = useState<string[]>([]);
+  const [type, setType] = useState<string>('');
+  const [category, setCategory] = useState<string>('');
+
+  useEffect(() => {
+    setName(selectedFlavor?.name!);
+    setIngredients(selectedFlavor?.ingredients!);
+    setType(selectedFlavor?.flavor_type.name!);
+    setCategory(selectedFlavor?.flavor_category.name!);
+  }, [selectedFlavor]);
+
   return (
     <Form>
       <H2>{selectedFlavor?.name || title}</H2>
@@ -48,15 +60,18 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
           <p>Nome</p>
           <InputEdit
             type="text"
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder={selectedFlavor?.name || 'Nome'}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              setName(e.target.value);
+            }}
+            value={name}
             autoComplete="off"
           />
         </div>
         <div>
           <RadioButtonsGroup
             title="Tipo"
-            checked={selectedFlavor?.flavor_type.name}
+            checked={type}
             fields={['Salgada', 'Doce']}
           />
         </div>
@@ -64,15 +79,15 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
           <p>Ingredientes</p>
           <InputEdit
             type="text"
-            // value={selectedFlavor?.ingredients || ''} // nao funciona
-            placeholder="Ingredientes"
+            value={ingredients}
+            onChange={(e) => setIngredients((e.target.value).split(','))}
             autoComplete="off"
           />
         </div>
         <div>
           <RadioButtonsGroup
             title="Categoria"
-            checked={selectedFlavor?.flavor_category.name}
+            checked={category}
             fields={['Tradicional', 'Especial']}
           />
         </div>

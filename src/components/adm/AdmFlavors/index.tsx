@@ -77,7 +77,11 @@ export function AdmFlavors() {
         </BoxList>
       </Infos>
       <EditSecti>
-        <AdmEditData selectedFlavor={flavorSelected} />
+        { !flavorSelected ? (
+          <AdmEditData selectedFlavor={null} />
+        ) : (
+          <AdmEditData selectedFlavor={flavorSelected} />
+        ) }
       </EditSecti>
     </MainBox>
   );
