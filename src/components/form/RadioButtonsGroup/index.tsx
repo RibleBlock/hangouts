@@ -12,17 +12,17 @@ interface RadioButtonsGroupProps {
 export function RadioButtonsGroup({
   title, checked, fields, setState,
 }: RadioButtonsGroupProps) {
-  const [value, setValue] = useState('');
-
-  // useEffect(() => {
-  //   console.log(`Value: ${value}\nchecked: ${checked}`);
-  // }, [value]);
+  const [value, setValue] = useState<{id: any, name: any}>({ id: 0, name: '' });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (setState) {
-      setState((event.target as HTMLInputElement).value);
+      setState((prevState: any) => ({
+        ...prevState, name: (event.target as HTMLInputElement).value,
+      }));
     } else {
-      setValue((event.target as HTMLInputElement).value);
+      setValue((prevState: any) => ({
+        ...prevState, name: (event.target as HTMLInputElement).value,
+      }));
     }
   };
 
@@ -32,7 +32,7 @@ export function RadioButtonsGroup({
       <RadioBox
         row
         defaultValue={fields[0]}
-        value={value || checked}
+        value={checked} // value || checked
         onChange={handleChange}
       >
         { fields.map((field) => (

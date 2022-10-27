@@ -124,6 +124,7 @@ declare interface Flavor {
     name: string,
   },
   flavor_category: {
+    id_flavor_category: number,
     name: string,
     price: number,
   },

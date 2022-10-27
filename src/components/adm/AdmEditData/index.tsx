@@ -1,48 +1,69 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { Flavor } from '../../../interfaces/module';
 import {
   Form, CameraIcon, H2, Label, GridBox, InputEdit,
 } from './AdmEditData.styles';
 
 import { RadioButtonsGroup } from '../../form/RadioButtonsGroup';
+import { ButtonAction } from '../../form/ButtonAction';
 
 interface AdmEditDataProps {
   selectedFlavor: Flavor | null,
+  image: string,
+  setImage: (value: string) => void,
 }
-export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
+export function AdmEditData({ selectedFlavor, image, setImage }: AdmEditDataProps) {
   const [title, setTitle] = useState<string>('Novo Item');
-  const [image, setImage] = useState<string>('');
 
-  function getImage(e: any) {
+  const [name, setName] = useState<string>('');
+  const [ingredients, setIngredients] = useState<string[]>([]);
+  const [type, setType] = useState<{name: string, id: number}>({ id: 0, name: '' });
+  const [category, setCategory] = useState<{name: string, id: number}>({ id: 0, name: '' });
+
+  const getImage = (e: any) => {
+    console.log('FUNCAO');
     const inputTarget = e.target;
     const file = inputTarget.files[0];
 
     if (file) {
-      // URL.revokeObjectURL(image);
       const url = URL.createObjectURL(file);
+
       setImage(url);
     } else {
       // undefined
       setImage('');
     }
-  }
+  };
 
   useEffect(() => {
+    setName(selectedFlavor?.name! || '');
+    setIngredients(selectedFlavor?.ingredients! || []);
+    setType({ id: selectedFlavor?.id_flavor_type!, name: selectedFlavor?.flavor_type.name! || '' });
+    setCategory({ id: selectedFlavor?.flavor_category.id_flavor_category!, name: selectedFlavor?.flavor_category.name! || '' });
     const imageLink = selectedFlavor?.image?.url_image;
     setImage(imageLink || '');
+    console.log('222', image, '2222');
   }, [selectedFlavor]);
 
-  const [name, setName] = useState<string>('');
-  const [ingredients, setIngredients] = useState<string[]>([]);
-  const [type, setType] = useState<string>('');
-  const [category, setCategory] = useState<string>('');
-
-  useEffect(() => {
-    setName(selectedFlavor?.name!);
-    setIngredients(selectedFlavor?.ingredients!);
-    setType(selectedFlavor?.flavor_type.name!);
-    setCategory(selectedFlavor?.flavor_category.name!);
-  }, [selectedFlavor]);
+  const updateFlavor = async () => {
+    try {
+      console.log({
+        id_flavor: selectedFlavor?.id_flavor,
+        name,
+        ingredients,
+        type,
+        category,
+        image,
+      });
+      return toast.success('Dados atualizados');
+    } catch (error: any) {
+      if (error?.data.error) {
+        return toast.error(error.data.error);
+      }
+      return toast.error(error);
+    }
+  };
 
   return (
     <Form>
@@ -65,33 +86,53 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
               setName(e.target.value);
             }}
             value={name}
+            placeholder="Nome"
             autoComplete="off"
           />
         </div>
         <div>
           <RadioButtonsGroup
             title="Tipo"
-            checked={type}
+            checked={type.name}
             fields={['Salgada', 'Doce']}
+            setState={setType}
           />
         </div>
         <div>
           <p>Ingredientes</p>
           <InputEdit
             type="text"
-            value={ingredients}
             onChange={(e) => setIngredients((e.target.value).split(','))}
+            value={ingredients}
+            placeholder="ingredientes"
             autoComplete="off"
           />
         </div>
         <div>
           <RadioButtonsGroup
             title="Categoria"
-            checked={category}
+            checked={category.name}
             fields={['Tradicional', 'Especial']}
+            setState={setCategory}
           />
         </div>
       </GridBox>
+      <div style={{ display: 'flex', gap: '5rem' }}>
+        <ButtonAction
+          type="button"
+          secundary
+          action={() => alert('CANCELAR')}
+        >
+          Cancelar
+        </ButtonAction>
+        <ButtonAction
+          type="button"
+          bcolor="#053C00"
+          action={updateFlavor}
+        >
+          Salvar
+        </ButtonAction>
+      </div>
     </Form>
   );
 }

@@ -5,7 +5,7 @@ import {
 
 interface AdmLineFlavorsProps {
   currentFlavor: Flavor | null,
-  action: (value?: any) => void
+  action: () => void,
 }
 export function AdmLineFlavors({ currentFlavor, action }: AdmLineFlavorsProps) {
   if (!currentFlavor) {
@@ -20,7 +20,7 @@ export function AdmLineFlavors({ currentFlavor, action }: AdmLineFlavorsProps) {
   }
 
   return (
-    <TR onClick={() => action(currentFlavor)}>
+    <TR onClick={() => action()}>
       <TD>
         <p>{currentFlavor.name}</p>
         <ArrowRight weight="bold" />

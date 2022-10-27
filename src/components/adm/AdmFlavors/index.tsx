@@ -20,6 +20,7 @@ export function AdmFlavors() {
   const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
 
   const [flavorSelected, setFlavorSelected] = useState<Flavor | null>(null);
+  const [image, setImage] = useState<string>(''); /// ///////
 
   useEffect(() => {
     setIsLoadingData(true);
@@ -62,12 +63,23 @@ export function AdmFlavors() {
             ) : (
               <Table>
                 <tbody>
-                  <AdmLineFlavors currentFlavor={null} action={action} />
+                  <AdmLineFlavors
+                    currentFlavor={null}
+                    action={() => {
+                      if (!image) {
+                        action();
+                      }
+                    }}
+                  />
                   { flavors.map((sabor) => (
                     <AdmLineFlavors
                       key={sabor.id_flavor}
                       currentFlavor={sabor}
-                      action={setFlavorSelected}
+                      action={() => {
+                        if (!image) {
+                          setFlavorSelected(sabor);
+                        }
+                      }}
                     />
                   )) }
                 </tbody>
@@ -78,9 +90,17 @@ export function AdmFlavors() {
       </Infos>
       <EditSecti>
         { !flavorSelected ? (
-          <AdmEditData selectedFlavor={null} />
+          <AdmEditData
+            selectedFlavor={null}
+            image={image}
+            setImage={setImage}
+          />
         ) : (
-          <AdmEditData selectedFlavor={flavorSelected} />
+          <AdmEditData
+            selectedFlavor={flavorSelected}
+            image={image}
+            setImage={setImage}
+          />
         ) }
       </EditSecti>
     </MainBox>
