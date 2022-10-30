@@ -2,14 +2,14 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable camelcase */
 import { Pizza } from 'phosphor-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { CartAdm } from '../../../interfaces/module';
 import { useGetCartADMMutation } from '../../../services/api/wish';
 import { ButtonAction } from '../../form/ButtonAction';
 import { Loading } from '../../Loading';
 import {
-  Box, ButtonWish, H1, MainBox, Boxx, BoxItem,
+  Box, ButtonWish, H1, MainBox, Boxx, BoxItem, TextArea,
 } from './AdmWishes.styles';
 
 export function AdmWishes() {
@@ -59,6 +59,15 @@ export function AdmWishes() {
 
   const frete = selectedWish?.address.street !== 'RETIRAR' ? 15 : 0;
   const total = valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! + frete;
+
+  const [isCancel, setIsCancel] = useState<boolean>(false);
+  useMemo(() => setIsCancel(false), [selectedWish]);
+
+  const cancelWish = () => {
+    /// /////
+    setIsCancel(!isCancel);
+    /// /////
+  };
 
   return (
     <MainBox>
@@ -136,130 +145,159 @@ export function AdmWishes() {
               ) }
             </Box>
 
-            <h3>Pedido</h3>
+            { !isCancel ? (
+              <>
+                <h3>Pedido</h3>
 
-            {/* ADICIONAR OS VALORES DOS SABORES ESPECIAIS */}
-            { selectedWish.pizza && selectedWish.pizza.map(({
-              id_pizza, pizza_flavor, comment,
-              pizza_size: { name: size, price },
-              pizza_border: { name: border, price: prise_border },
-            }, i) => (
-              <BoxItem key={id_pizza}>
-                <div className="flex">
-                  <p>{`${i + 1}  Pizza ${size}`}</p>
-                  <p>
-                    {'R$: '}
-                    <span>
-                      { pizza_flavor.reduce((ac, {
-                        flavor: { flavor_category: { price: price_flavor } },
-                      }) => ac = price + prise_border + price_flavor, 0).toFixed(2) }
-                    </span>
-                  </p>
-                </div>
-                <hr />
-                <p>
-                  Sabores -
-                  {' '}
-                  { pizza_flavor.map(({
-                    flavor: { id_flavor, name },
-                  }) => (
-                    <span key={id_flavor}>{`${name}, `}</span>
-                  )) }
-                </p>
-                { border !== 'Sem Borda' && (
-                  <>
-                    <hr />
-                    <p>{`Borda recheada - ${border}`}</p>
-                  </>
-                ) }
-                { comment && (
-                  <>
-                    <hr />
-                    <p>{`Observações - ${comment}`}</p>
-                  </>
-                ) }
-              </BoxItem>
-            )) }
-
-            { selectedWish.calzone && selectedWish.calzone.map(({
-              id_calzone, comment, calzone_flavor: { name, price },
-            }, i) => (
-              <BoxItem key={id_calzone}>
-                <div className="flex">
-                  <p>{`${i + 1}  Calzone`}</p>
-                  <p>{`R$: ${(price).toFixed(2)}`}</p>
-                </div>
-                <hr />
-                <p>
-                  Sabores -
-                  {' '}
-                  {name}
-                </p>
-                { comment && (
-                  <>
+                {/* ADICIONAR OS VALORES DOS SABORES ESPECIAIS */}
+                { selectedWish.pizza && selectedWish.pizza.map(({
+                  id_pizza, pizza_flavor, comment,
+                  pizza_size: { name: size, price },
+                  pizza_border: { name: border, price: prise_border },
+                }, i) => (
+                  <BoxItem key={id_pizza}>
+                    <div className="flex">
+                      <p>{`${i + 1}  Pizza ${size}`}</p>
+                      <p>
+                        {'R$: '}
+                        <span>
+                          { pizza_flavor.reduce((ac, {
+                            flavor: { flavor_category: { price: price_flavor } },
+                          }) => ac = price + prise_border + price_flavor, 0).toFixed(2) }
+                        </span>
+                      </p>
+                    </div>
                     <hr />
                     <p>
-                      Observações -
+                      Sabores -
                       {' '}
-                      {comment}
+                      { pizza_flavor.map(({
+                        flavor: { id_flavor, name },
+                      }) => (
+                        <span key={id_flavor}>{`${name}, `}</span>
+                      )) }
                     </p>
-                  </>
-                ) }
-              </BoxItem>
-            )) }
+                    { border !== 'Sem Borda' && (
+                    <>
+                      <hr />
+                      <p>{`Borda recheada - ${border}`}</p>
+                    </>
+                    ) }
+                    { comment && (
+                    <>
+                      <hr />
+                      <p>{`Observações - ${comment}`}</p>
+                    </>
+                    ) }
+                  </BoxItem>
+                )) }
 
-            { selectedWish.drink_cart && selectedWish.drink_cart.map(({
-              id_drink_cart, drink: { name_drink }, drink_size: { name_drink_size, price },
-            }, i) => (
-              <BoxItem key={id_drink_cart}>
-                <p>{`${i + 1}  ${name_drink} ${name_drink_size}`}</p>
-                <p>{`R$: ${(price).toFixed(2)}`}</p>
-              </BoxItem>
-            )) }
+                { selectedWish.calzone && selectedWish.calzone.map(({
+                  id_calzone, comment, calzone_flavor: { name, price },
+                }, i) => (
+                  <BoxItem key={id_calzone}>
+                    <div className="flex">
+                      <p>{`${i + 1}  Calzone`}</p>
+                      <p>{`R$: ${(price).toFixed(2)}`}</p>
+                    </div>
+                    <hr />
+                    <p>
+                      Sabores -
+                      {' '}
+                      {name}
+                    </p>
+                    { comment && (
+                    <>
+                      <hr />
+                      <p>
+                        Observações -
+                        {' '}
+                        {comment}
+                      </p>
+                    </>
+                    ) }
+                  </BoxItem>
+                )) }
 
-            <BoxItem>
-              <H1>Pagamento/Entrega</H1>
-              <hr />
-              <p>
-                Entrega Domiciliar -
-                {' '}
-                {selectedWish?.address.street[0].toUpperCase()}
-                { selectedWish?.address.street.substring(1)}
-                ,
-                {' '}
-                {selectedWish?.address.number}
-              </p>
-              <hr />
-              <p className="flex">
-                <span>Frete</span>
-                <span>{`R$: ${frete.toFixed(2)}`}</span>
-              </p>
-              <hr />
-              <p className="flex">
-                <span>Total do pedido</span>
-                <span>{`R$: ${(total).toFixed(2)}`}</span>
-              </p>
-            </BoxItem>
+                { selectedWish.drink_cart && selectedWish.drink_cart.map(({
+                  id_drink_cart, drink: { name_drink }, drink_size: { name_drink_size, price },
+                }, i) => (
+                  <BoxItem key={id_drink_cart}>
+                    <p>{`${i + 1}  ${name_drink} ${name_drink_size}`}</p>
+                    <p>{`R$: ${(price).toFixed(2)}`}</p>
+                  </BoxItem>
+                )) }
 
-            <div className="botoes">
-              <ButtonAction
-                type="button"
-                secundary
-                noMargin
-                small="19"
-                action={() => alert('Cancelar')}
-              >
-                Cancelar pedido
-              </ButtonAction>
-              <ButtonAction
-                type="button"
-                small="19"
-                noMargin
-                action={() => alert('Preparar')}
-              >
-                Começar preparo
-              </ButtonAction>
-            </div>
+                <BoxItem>
+                  <H1>Pagamento/Entrega</H1>
+                  <hr />
+                  <p>
+                    Entrega Domiciliar -
+                    {' '}
+                    {selectedWish?.address.street[0].toUpperCase()}
+                    { selectedWish?.address.street.substring(1)}
+                    ,
+                    {' '}
+                    {selectedWish?.address.number}
+                  </p>
+                  <hr />
+                  <p className="flex">
+                    <span>Frete</span>
+                    <span>{`R$: ${frete.toFixed(2)}`}</span>
+                  </p>
+                  <hr />
+                  <p className="flex">
+                    <span>Total do pedido</span>
+                    <span>{`R$: ${(total).toFixed(2)}`}</span>
+                  </p>
+                </BoxItem>
+
+                <div className="botoes">
+                  <ButtonAction
+                    type="button"
+                    secundary
+                    noMargin
+                    small="19"
+                    action={cancelWish}
+                  >
+                    Cancelar pedido
+                  </ButtonAction>
+                  <ButtonAction
+                    type="button"
+                    small="19"
+                    noMargin
+                    action={() => alert('Preparar')}
+                  >
+                    Começar preparo
+                  </ButtonAction>
+                </div>
+              </>
+            ) : (
+              <>
+                <p>Digite aqui o motivo para informar o cliente</p>
+                <TextArea placeholder="motivo aqui...." />
+
+                <div className="botoes">
+                  <ButtonAction
+                    type="button"
+                    secundary
+                    noMargin
+                    small="19"
+                    action={cancelWish}
+                  >
+                    Retomar pedido
+                  </ButtonAction>
+                  <ButtonAction
+                    type="button"
+                    small="19"
+                    noMargin
+                    action={() => alert('Enviar')}
+                  >
+                    Enviar Mensagem
+                  </ButtonAction>
+                </div>
+              </>
+            ) }
           </>
         ) }
       </section>

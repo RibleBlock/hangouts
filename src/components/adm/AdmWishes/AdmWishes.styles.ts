@@ -69,10 +69,18 @@ export const MainBox = styled.main`
     width: 100%;
     padding: 4.5rem 4rem;
     overflow-y: scroll;
+    > p {
+      margin-top: 1rem;
+      font-size: 1.6rem;
+    }
     > h3 {
       margin-top: 1.5rem;
       font-size: 2rem;
       text-align: left;
+    }
+    > textarea {
+      margin-top: 2rem;
+      height: calc(100% - 20rem);
     }
     > .botoes {
       width: 40rem;
@@ -131,6 +139,15 @@ export const MainBox = styled.main`
       }
     }
   }
+`;
+
+export const TextArea = styled.textarea`
+  background-color: #fff;
+  resize: none;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.8rem;
+  border-radius: .5rem;
 `;
 
 export const Boxx = styled(BoxLoadind)`

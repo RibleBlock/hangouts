@@ -9,7 +9,7 @@ export default createGlobalStyle`
     border: none;
   }
 
-  body, input, button, :root {
+  body, input, textarea, button, :root {
     font-size: 62.5%;
     font-family: 'Open Sans', sans-serif;
   }
