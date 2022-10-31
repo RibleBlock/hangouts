@@ -5,7 +5,7 @@ import { Pizza } from 'phosphor-react';
 import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { CartAdm } from '../../../interfaces/module';
-import { useGetCartADMMutation } from '../../../services/api/wish';
+import { useGetCartADMMutation, useUpdateCartMutation } from '../../../services/api/wish';
 import { ButtonAction } from '../../form/ButtonAction';
 import { Loading } from '../../Loading';
 import {
@@ -17,6 +17,7 @@ export function AdmWishes() {
   const [cartList, setCartList] = useState<CartAdm[] | null>(null);
   const [selectedWish, setSelectedWish] = useState<CartAdm | null>(null);
   const [getWishes] = useGetCartADMMutation();
+  const [updateCart] = useUpdateCartMutation();
 
   useEffect(() => {
     setIsLoadingData(true);
@@ -59,14 +60,31 @@ export function AdmWishes() {
 
   const frete = selectedWish?.address.street !== 'RETIRAR' ? 15 : 0;
   const total = valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! + frete;
+  /// ///
 
+  const [reason, setReason] = useState<string>('');
   const [isCancel, setIsCancel] = useState<boolean>(false);
   useMemo(() => setIsCancel(false), [selectedWish]);
 
-  const cancelWish = () => {
-    /// /////
-    setIsCancel(!isCancel);
-    /// /////
+  const cancelWish = async () => {
+    try {
+      await updateCart({
+        id_cart: selectedWish?.id_cart!,
+        status: 'cancel',
+        reason,
+      }) as any;
+      setIsCancel(!isCancel);
+      setCartList(
+        cartList?.filter((value) => value.id_cart !== selectedWish?.id_cart!)!,
+      );
+
+      return toast.success('Canceldo com sucesso!');
+    } catch (error: any) {
+      if (error?.data.error) {
+        return toast.error(error.data.error);
+      }
+      return toast.error(error);
+    }
   };
 
   return (
@@ -258,7 +276,7 @@ export function AdmWishes() {
                     secundary
                     noMargin
                     small="19"
-                    action={cancelWish}
+                    action={() => setIsCancel(!isCancel)}
                   >
                     Cancelar pedido
                   </ButtonAction>
@@ -275,7 +293,7 @@ export function AdmWishes() {
             ) : (
               <>
                 <p>Digite aqui o motivo para informar o cliente</p>
-                <TextArea placeholder="motivo aqui...." />
+                <TextArea placeholder="motivo aqui...." onChange={(e) => setReason(e.target.value)} />
 
                 <div className="botoes">
                   <ButtonAction
@@ -283,7 +301,7 @@ export function AdmWishes() {
                     secundary
                     noMargin
                     small="19"
-                    action={cancelWish}
+                    action={() => setIsCancel(!isCancel)}
                   >
                     Retomar pedido
                   </ButtonAction>
@@ -291,7 +309,7 @@ export function AdmWishes() {
                     type="button"
                     small="19"
                     noMargin
-                    action={() => alert('Enviar')}
+                    action={cancelWish}
                   >
                     Enviar Mensagem
                   </ButtonAction>

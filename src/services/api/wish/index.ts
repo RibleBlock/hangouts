@@ -18,6 +18,13 @@ export const wishApi = createApi({
         method: 'PATCH',
       }),
     }),
+    updateCart: builder.mutation({
+      query: ({ id_cart, status, reason }: { id_cart: number, status: string, reason: string}) => ({
+        url: `updateCartAdm/${id_cart}`,
+        body: { status, reason },
+        method: 'PATCH',
+      }),
+    }),
     addToCart: builder.mutation({
       query: ({
         size, border, flavors, comment, id_user, table,
@@ -52,6 +59,7 @@ export const wishApi = createApi({
 
 export const {
   useSendCartMutation,
+  useUpdateCartMutation,
   useAddToCartMutation,
   useGetCartMutation,
   useGetCartADMMutation,
