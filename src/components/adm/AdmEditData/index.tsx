@@ -10,19 +10,18 @@ import { ButtonAction } from '../../form/ButtonAction';
 
 interface AdmEditDataProps {
   selectedFlavor: Flavor | null,
-  image: string,
-  setImage: (value: string) => void,
 }
-export function AdmEditData({ selectedFlavor, image, setImage }: AdmEditDataProps) {
+export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
   const [title, setTitle] = useState<string>('Novo Item');
 
   const [name, setName] = useState<string>('');
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [type, setType] = useState<{name: string, id: number}>({ id: 0, name: '' });
   const [category, setCategory] = useState<{name: string, id: number}>({ id: 0, name: '' });
+  const [image, setImage] = useState<string>(''); /// ///////
 
   const getImage = (e: any) => {
-    console.log('FUNCAO');
+    console.log('FUNCAO Chamada');
     const inputTarget = e.target;
     const file = inputTarget.files[0];
 
@@ -42,8 +41,8 @@ export function AdmEditData({ selectedFlavor, image, setImage }: AdmEditDataProp
     setType({ id: selectedFlavor?.id_flavor_type!, name: selectedFlavor?.flavor_type.name! || '' });
     setCategory({ id: selectedFlavor?.flavor_category.id_flavor_category!, name: selectedFlavor?.flavor_category.name! || '' });
     const imageLink = selectedFlavor?.image?.url_image;
+    setImage('');
     setImage(imageLink || '');
-    console.log('222', image, '2222');
   }, [selectedFlavor]);
 
   const updateFlavor = async () => {

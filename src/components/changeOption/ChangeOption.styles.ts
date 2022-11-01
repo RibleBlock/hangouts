@@ -2,6 +2,16 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ChangeOptionStyles } from '.';
 
+export const Status = styled.p<{status: string}>`
+  text-decoration: underline;
+  color: ${({ status }) => {
+    if (status === 'cancel') return '#D00000';
+    if (status === 'pending') return '#A5A800';
+    if (status === 'preparation') return '#0000ff';
+    return '#ff00ff';
+  }}
+`;
+
 export const Button = styled(Link)<ChangeOptionStyles>`
   width: 100%;
   padding: 1rem 0;
@@ -38,5 +48,9 @@ export const Button = styled(Link)<ChangeOptionStyles>`
     > .optionDescription {
       font-size: 1.4rem;
     }
+  }
+  > ${Status} {
+    position: absolute;
+    right: 2.2rem;
   }
 `;
