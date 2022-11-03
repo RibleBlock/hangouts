@@ -234,7 +234,7 @@ export function Cart() {
           <div id="troco">
             <p>Precisa de troco</p>
             <div>
-              <RadioButtonsGroup title="" checked={thing!} fields={['Não']} setState={setThing} />
+              <RadioButtonsGroup simple title="" checked={thing!} fields={['Não']} setState={setThing} />
               <InputText
                 type="number"
                 title="Troco"

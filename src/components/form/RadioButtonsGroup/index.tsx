@@ -4,23 +4,20 @@ import { useState } from 'react';
 import { FormController, RadioLabel, RadioBox } from './RadioButtonsGroup.styles';
 
 interface RadioButtonsGroupProps {
-  setState?: (value: any) => void,
+  setState: (value: any) => void,
   title: string,
   checked?: string | number,
   fields: string[],
+  simple?: boolean,
 }
 export function RadioButtonsGroup({
-  title, checked, fields, setState,
+  title, checked, fields, setState, simple,
 }: RadioButtonsGroupProps) {
-  const [value, setValue] = useState<{id: any, name: any}>({ id: 0, name: '' });
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (setState) {
-      setState((prevState: any) => ({
-        ...prevState, name: (event.target as HTMLInputElement).value,
-      }));
+    if (simple) {
+      setState((event.target as HTMLInputElement).value);
     } else {
-      setValue((prevState: any) => ({
+      setState((prevState: any) => ({
         ...prevState, name: (event.target as HTMLInputElement).value,
       }));
     }
