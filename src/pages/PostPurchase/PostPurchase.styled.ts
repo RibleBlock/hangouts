@@ -1,4 +1,12 @@
 import styled from 'styled-components';
+import { CheckCircle } from 'phosphor-react';
+
+export const CheckIcon = styled(CheckCircle)`
+  min-width: 9rem;
+  min-height: 9rem;
+  width: 12rem;
+  height: 12rem;
+`;
 
 export const MainBox = styled.main`
   height: calc(100vh - 21rem);
@@ -9,7 +17,7 @@ export const MainBox = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5rem;
+  gap: 4rem;
   font-size: 2rem;
   > p {
     font-weight: bold;

@@ -18,16 +18,17 @@ export function AdmWishes() {
   const [selectedWish, setSelectedWish] = useState<CartAdm | null>(null);
   const [getWishes] = useGetCartADMMutation();
   const [updateCart] = useUpdateCartMutation();
-  const [submitText, setSubmitText] = useState<string>();
+  const [submitText, setSubmitText] = useState<{button: string, status: string}>();
 
   const returnStatus = (statusAtual: string) => {
     if (statusAtual === 'pending') {
-      setSubmitText('Começar Pedido');
+      setSubmitText({ status: 'Pendente', button: 'Começar Pedido' });
       return 'preparation';
     } if (statusAtual === 'preparation') {
-      setSubmitText('Finanizar Pedido');
+      setSubmitText({ status: 'Em preparo', button: 'Finanizar Pedido' });
       return 'concluded';
     }
+    setSubmitText({ status: 'Concluído', button: '' });
     return 'concluded';
   };
 
@@ -121,7 +122,6 @@ export function AdmWishes() {
           );
           setSelectedWish(null);
         } else {
-          console.log('chega');
           setCartList(
             cartList?.map((value) => (value.id_cart === selectedWish!.id_cart
               ? { ...value, status }
@@ -129,7 +129,7 @@ export function AdmWishes() {
           );
           setSelectedWish({ ...selectedWish!, status });
         }
-        return toast.success('Sucesso');
+        return toast.success(`Pedido ${submitText?.status}!`);
       }
       return '';
     } catch (error: any) {
@@ -222,7 +222,7 @@ export function AdmWishes() {
               <>
                 <div>
                   <h3>Pedido</h3>
-                  <StatusWish status={selectedWish.status}>{selectedWish.status}</StatusWish>
+                  <StatusWish status={selectedWish.status}>{submitText?.status}</StatusWish>
                 </div>
 
                 {/* ADICIONAR OS VALORES DOS SABORES ESPECIAIS */}
@@ -316,6 +316,13 @@ export function AdmWishes() {
                     {' '}
                     {selectedWish?.address.number}
                   </p>
+                  {selectedWish.address.complement && (
+                    <>
+                      <hr />
+                      <p>{selectedWish.address.complement}</p>
+                    </>
+                  )}
+
                   <hr />
                   <p className="flex">
                     <span>Frete</span>
@@ -326,6 +333,15 @@ export function AdmWishes() {
                     <span>Total do pedido</span>
                     <span>{`R$: ${(total).toFixed(2)}`}</span>
                   </p>
+                  {selectedWish.troco && (
+                    <>
+                      <hr />
+                      <p className="flex">
+                        <span>Troco para</span>
+                        <span>{`R$: ${(selectedWish.troco).toFixed(2)}`}</span>
+                      </p>
+                    </>
+                  )}
                 </BoxItem>
 
                 <div className="botoes">
@@ -345,7 +361,7 @@ export function AdmWishes() {
                     isLoading={isLoadingSubmit}
                     action={() => updateStatus(selectedWish.status)}
                   >
-                    {submitText}
+                    {submitText?.button}
                   </ButtonAction>
                 </div>
               </>

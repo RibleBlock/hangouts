@@ -1,7 +1,6 @@
-import { CheckCircle, Info } from 'phosphor-react';
 import { ButtonAction } from '../../components';
 import { Footer, Header, NavigationBar } from '../../layouts';
-import { MainBox } from './PostPurchase.styled';
+import { CheckIcon, MainBox } from './PostPurchase.styled';
 
 export function PostPurchase() {
   return (
@@ -11,15 +10,7 @@ export function PostPurchase() {
 
       <MainBox>
         <span>Compra realizada com com sucesso</span>
-        <div style={{ display: 'flex', margin: 0 }}>
-          <CheckCircle weight="thin" color="#00ff11" size={90} />
-          <CheckCircle weight="light" color="#00ff11" size={90} />
-          <CheckCircle weight="fill" color="#00ff11" size={90} />
-          <CheckCircle weight="duotone" color="#00ff11" size={90} />
-          <Info weight="thin" color="#0021de" size={90} />
-          <Info weight="fill" color="#0021de" size={90} />
-          <Info weight="duotone" color="#0021de" size={90} />
-        </div>
+        <CheckIcon weight="light" color="#00ff11" />
         <p>Estamos confirmando o seu pedido, Por favor aguarde.</p>
         <div>
           <ButtonAction link to="/" noMargin>
@@ -30,8 +21,6 @@ export function PostPurchase() {
           </ButtonAction>
         </div>
       </MainBox>
-
-      <Footer />
     </>
   );
 }
