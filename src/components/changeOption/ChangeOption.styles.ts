@@ -8,6 +8,7 @@ export const Status = styled.p<{status: string}>`
     if (status === 'cancel') return '#D00000';
     if (status === 'pending') return '#A5A800';
     if (status === 'preparation') return '#0000ff';
+    if (status === 'concluded') return '#03A800';
     return '#ff00ff';
   }}
 `;

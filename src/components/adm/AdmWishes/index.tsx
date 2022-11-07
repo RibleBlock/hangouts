@@ -9,7 +9,7 @@ import { useGetCartADMMutation, useUpdateCartMutation } from '../../../services/
 import { ButtonAction } from '../../form/ButtonAction';
 import { Loading } from '../../Loading';
 import {
-  Box, ButtonWish, H1, MainBox, Boxx, BoxItem, TextArea,
+  Box, ButtonWish, H1, MainBox, Boxx, BoxItem, TextArea, StatusWish,
 } from './AdmWishes.styles';
 
 export function AdmWishes() {
@@ -18,9 +18,22 @@ export function AdmWishes() {
   const [selectedWish, setSelectedWish] = useState<CartAdm | null>(null);
   const [getWishes] = useGetCartADMMutation();
   const [updateCart] = useUpdateCartMutation();
+  const [submitText, setSubmitText] = useState<string>();
+
+  const returnStatus = (statusAtual: string) => {
+    if (statusAtual === 'pending') {
+      setSubmitText('Começar Pedido');
+      return 'preparation';
+    } if (statusAtual === 'preparation') {
+      setSubmitText('Finanizar Pedido');
+      return 'concluded';
+    }
+    return 'concluded';
+  };
 
   useEffect(() => {
     setIsLoadingData(true);
+    returnStatus(selectedWish?.status!);
     async function getAllWishes() {
       try {
         const { data } = await getWishes('') as any;
@@ -64,7 +77,12 @@ export function AdmWishes() {
 
   const [reason, setReason] = useState<string>('');
   const [isCancel, setIsCancel] = useState<boolean>(false);
-  useMemo(() => setIsCancel(false), [selectedWish]);
+  const [isLoadingSubmit, setIsLoadingSubmit] = useState<boolean>(false);
+  useMemo(() => {
+    setIsCancel(false);
+    returnStatus(selectedWish?.status!);
+    // setSubmitText(selectedWish?.status);
+  }, [selectedWish]);
 
   const cancelWish = async () => {
     try {
@@ -84,6 +102,43 @@ export function AdmWishes() {
         return toast.error(error.data.error);
       }
       return toast.error(error);
+    }
+  };
+
+  const updateStatus = async (statusAtual: string) => {
+    const status = returnStatus(statusAtual);
+
+    setIsLoadingSubmit(true);
+    try {
+      if (selectedWish?.status !== 'concluded') {
+        await updateCart({
+          id_cart: selectedWish?.id_cart!,
+          status,
+        }) as any;
+        if (status === 'concluded') {
+          setCartList(
+            cartList?.filter((value) => value.id_cart !== selectedWish?.id_cart!)!,
+          );
+          setSelectedWish(null);
+        } else {
+          console.log('chega');
+          setCartList(
+            cartList?.map((value) => (value.id_cart === selectedWish!.id_cart
+              ? { ...value, status }
+              : value))!,
+          );
+          setSelectedWish({ ...selectedWish!, status });
+        }
+        return toast.success('Sucesso');
+      }
+      return '';
+    } catch (error: any) {
+      if (error?.data.error) {
+        return toast.error(error.data.error);
+      }
+      return toast.error(error);
+    } finally {
+      setIsLoadingSubmit(false);
     }
   };
 
@@ -165,7 +220,10 @@ export function AdmWishes() {
 
             { !isCancel ? (
               <>
-                <h3>Pedido</h3>
+                <div>
+                  <h3>Pedido</h3>
+                  <StatusWish status={selectedWish.status}>{selectedWish.status}</StatusWish>
+                </div>
 
                 {/* ADICIONAR OS VALORES DOS SABORES ESPECIAIS */}
                 { selectedWish.pizza && selectedWish.pizza.map(({
@@ -284,9 +342,10 @@ export function AdmWishes() {
                     type="button"
                     small="19"
                     noMargin
-                    action={() => alert('Preparar')}
+                    isLoading={isLoadingSubmit}
+                    action={() => updateStatus(selectedWish.status)}
                   >
-                    Começar preparo
+                    {submitText}
                   </ButtonAction>
                 </div>
               </>
@@ -309,6 +368,7 @@ export function AdmWishes() {
                     type="button"
                     small="19"
                     noMargin
+                    isLoading={isLoadingSubmit}
                     action={cancelWish}
                   >
                     Enviar Mensagem

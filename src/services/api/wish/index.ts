@@ -19,7 +19,9 @@ export const wishApi = createApi({
       }),
     }),
     updateCart: builder.mutation({
-      query: ({ id_cart, status, reason }: { id_cart: number, status: string, reason: string}) => ({
+      query: ({ id_cart, status, reason }: {
+        id_cart: number, status: string, reason?: string
+      }) => ({
         url: `updateCartAdm/${id_cart}`,
         body: { status, reason },
         method: 'PATCH',

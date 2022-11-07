@@ -3,7 +3,9 @@ import { Button } from '../../CartItem/CartItem.styles';
 import { H1 as Title } from '../../../pages/AdminPage/AdminPage.styles';
 import { BoxLoadind } from '../AdmTableUsers/AdmTableUsers.styles';
 import { Section } from '../../../pages/User/steps/MyData/MyData.styles';
+import { Status } from '../../changeOption/ChangeOption.styles';
 
+export const StatusWish = styled(Status)``;
 export const ButtonWish = styled(Button)<{isSelected: boolean}>`
   width: 90%;
   max-width: 50rem;
@@ -73,10 +75,15 @@ export const MainBox = styled.main`
       margin-top: 1rem;
       font-size: 1.6rem;
     }
-    > h3 {
+    > div {
       margin-top: 1.5rem;
-      font-size: 2rem;
-      text-align: left;
+      > h3 {
+        font-size: 2rem;
+        text-align: left;
+      }
+      > ${StatusWish} {
+        font-weight: bold;
+      }
     }
     > textarea {
       margin-top: 2rem;
