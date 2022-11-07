@@ -50,5 +50,8 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "typescript": "^4.6.3",
     "vite": "^2.9.13"
+  },
+  "solutions": {
+    "got": "^12.1.0"
   }
 }
