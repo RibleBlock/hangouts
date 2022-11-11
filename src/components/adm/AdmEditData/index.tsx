@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import {
+  useEffect, useState, useRef, useCallback,
+} from 'react';
 import { toast } from 'react-toastify';
 import { Flavor } from '../../../interfaces/module';
 import {
@@ -19,21 +21,22 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
   const [type, setType] = useState<{name: string, id: number}>({ id: 0, name: '' });
   const [category, setCategory] = useState<{name: string, id: number}>({ id: 0, name: '' });
   const [image, setImage] = useState<string>(''); /// ///////
+  const imageRef = useRef<HTMLInputElement>(null);
 
-  const getImage = (e: any) => {
+  const getImage = useCallback(() => {
     console.log('FUNCAO Chamada');
-    const inputTarget = e.target;
-    const file = inputTarget.files[0];
+    const file = imageRef.current?.files![0];
 
+    console.log(file);
+    console.log(imageRef);
     if (file) {
       const url = URL.createObjectURL(file);
-
       setImage(url);
     } else {
       // undefined
       setImage('');
     }
-  };
+  }, [image]);
 
   useEffect(() => {
     setName(selectedFlavor?.name! || '');
@@ -70,7 +73,8 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
       <Label style={{ backgroundImage: `url(${image})` }}>
         <input
           type="file"
-          onChange={(e) => getImage(e)}
+          ref={imageRef}
+          onChange={getImage}
           accept="image/png, image/jpeg"
         />
         <CameraIcon weight="light" style={{ color: image && '#fff' }} />

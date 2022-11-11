@@ -82,7 +82,6 @@ export function AdmWishes() {
   useMemo(() => {
     setIsCancel(false);
     returnStatus(selectedWish?.status!);
-    // setSubmitText(selectedWish?.status);
   }, [selectedWish]);
 
   const cancelWish = async () => {
