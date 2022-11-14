@@ -20,15 +20,12 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [type, setType] = useState<{name: string, id: number}>({ id: 0, name: '' });
   const [category, setCategory] = useState<{name: string, id: number}>({ id: 0, name: '' });
-  const [image, setImage] = useState<string>(''); /// ///////
+  const [image, setImage] = useState<string>('');
   const imageRef = useRef<HTMLInputElement>(null);
 
-  const getImage = useCallback(() => {
-    console.log('FUNCAO Chamada');
-    const file = imageRef.current?.files![0];
+  const getImage = (e: any) => {
+    const file = e.target.files[0];
 
-    console.log(file);
-    console.log(imageRef);
     if (file) {
       const url = URL.createObjectURL(file);
       setImage(url);
@@ -36,15 +33,24 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
       // undefined
       setImage('');
     }
-  }, [image]);
+  };
+
+  const reset = () => {
+    URL.revokeObjectURL(image);
+    if (imageRef.current) {
+      imageRef.current.value = '';
+    }
+    setImage('');
+  };
 
   useEffect(() => {
+    reset();
+
     setName(selectedFlavor?.name! || '');
     setIngredients(selectedFlavor?.ingredients! || []);
     setType({ id: selectedFlavor?.id_flavor_type!, name: selectedFlavor?.flavor_type.name! || '' });
     setCategory({ id: selectedFlavor?.flavor_category.id_flavor_category!, name: selectedFlavor?.flavor_category.name! || '' });
     const imageLink = selectedFlavor?.image?.url_image;
-    setImage('');
     setImage(imageLink || '');
   }, [selectedFlavor]);
 
