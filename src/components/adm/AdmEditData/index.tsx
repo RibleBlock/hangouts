@@ -9,12 +9,15 @@ import {
 
 import { RadioButtonsGroup } from '../../form/RadioButtonsGroup';
 import { ButtonAction } from '../../form/ButtonAction';
+import { useUpdateFlavorMutation } from '../../../services/api/Flavor';
 
 interface AdmEditDataProps {
   selectedFlavor: Flavor | null,
 }
 export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
+  const [isloadingUpdateFlavor, setIsloadingUpdateFlavor] = useState<boolean>(false);
   const [title, setTitle] = useState<string>('Novo Item');
+  const [updateFlavor] = useUpdateFlavorMutation();
 
   const [name, setName] = useState<string>('');
   const [ingredients, setIngredients] = useState<string[]>([]);
@@ -54,22 +57,26 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
     setImage(imageLink || '');
   }, [selectedFlavor]);
 
-  const updateFlavor = async () => {
+  const updateFlavorAction = async () => {
+    setIsloadingUpdateFlavor(true);
     try {
-      console.log({
-        id_flavor: selectedFlavor?.id_flavor,
+      if (!selectedFlavor) return toast.error('O sabor não foi selecionado!');
+      await updateFlavor({
+        id_flavor: selectedFlavor?.id_flavor!,
         name,
         ingredients,
-        type,
-        category,
+        type: type.id,
+        category: category.id,
         image,
-      });
+      }) as any;
       return toast.success('Dados atualizados');
     } catch (error: any) {
       if (error?.data.error) {
         return toast.error(error.data.error);
       }
       return toast.error(error);
+    } finally {
+      setIsloadingUpdateFlavor(false);
     }
   };
 
@@ -81,7 +88,7 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
           type="file"
           ref={imageRef}
           onChange={getImage}
-          accept="image/png, image/jpeg"
+          accept="image/*"
         />
         <CameraIcon weight="light" style={{ color: image && '#fff' }} />
       </Label>
@@ -137,7 +144,8 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
         <ButtonAction
           type="button"
           bcolor="#053C00"
-          action={updateFlavor}
+          isLoading={isloadingUpdateFlavor}
+          action={updateFlavorAction}
         >
           Salvar
         </ButtonAction>

@@ -332,7 +332,7 @@ export function AdmWishes() {
                     <span>Total do pedido</span>
                     <span>{`R$: ${(total).toFixed(2)}`}</span>
                   </p>
-                  {selectedWish.troco && (
+                  {selectedWish.troco !== 0 && (
                     <>
                       <hr />
                       <p className="flex">
