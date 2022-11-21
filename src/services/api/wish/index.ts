@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { Pedido } from '../../../interfaces/module';
+import { CartAdm, Pedido } from '../../../interfaces/module';
 
 const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3333';
 
@@ -44,7 +44,7 @@ export const wishApi = createApi({
         method: 'GET',
       }),
     }),
-    getCartADM: builder.mutation({
+    getCartADM: builder.query<CartAdm[], string>({
       query: () => ({
         url: 'getcartadm',
         method: 'GET',
@@ -64,6 +64,6 @@ export const {
   useUpdateCartMutation,
   useAddToCartMutation,
   useGetCartMutation,
-  useGetCartADMMutation,
+  useGetCartADMQuery,
   useDeleteItemMutation,
 } = wishApi;

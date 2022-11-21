@@ -1,11 +1,14 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
+import {
+  persistStore, persistReducer, REGISTER, PERSIST,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import tokenState from './Auth/reducer';
 
 import { authApi } from '../services/api/Auth';
 import { wishApi } from '../services/api/wish';
+import { flavorApi } from '../services/api/Flavor';
 
 // aqui vai os reducers/estados que vao percistir //
 const reducersToPersist = combineReducers({
@@ -25,6 +28,7 @@ const reducer = {
   reducer: persistedReducer,
   [authApi.reducerPath]: authApi.reducer,
   [wishApi.reducerPath]: wishApi.reducer,
+  [flavorApi.reducerPath]: flavorApi.reducer,
 };
 // //
 
@@ -32,7 +36,9 @@ const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: false,
-  }),
+  })
+    .concat(authApi.middleware)
+    .concat(wishApi.middleware),
 });
 
 const persistor = persistStore(store);

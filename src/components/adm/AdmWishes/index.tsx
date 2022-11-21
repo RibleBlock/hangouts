@@ -5,7 +5,7 @@ import { Pizza } from 'phosphor-react';
 import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { CartAdm } from '../../../interfaces/module';
-import { useGetCartADMMutation, useUpdateCartMutation } from '../../../services/api/wish';
+import { useGetCartADMQuery, useUpdateCartMutation } from '../../../services/api/wish';
 import { ButtonAction } from '../../form/ButtonAction';
 import { Loading } from '../../Loading';
 import {
@@ -13,10 +13,11 @@ import {
 } from './AdmWishes.styles';
 
 export function AdmWishes() {
-  const [isloadingData, setIsLoadingData] = useState<boolean>(false);
   const [cartList, setCartList] = useState<CartAdm[] | null>(null);
   const [selectedWish, setSelectedWish] = useState<CartAdm | null>(null);
-  const [getWishes] = useGetCartADMMutation();
+  const {
+    data, isLoading, isFetching, isSuccess, error, refetch,
+  } = useGetCartADMQuery('');
   const [updateCart] = useUpdateCartMutation();
   const [submitText, setSubmitText] = useState<{button: string, status: string}>();
 
@@ -33,25 +34,14 @@ export function AdmWishes() {
   };
 
   useEffect(() => {
-    setIsLoadingData(true);
     returnStatus(selectedWish?.status!);
-    async function getAllWishes() {
-      try {
-        const { data } = await getWishes('') as any;
-        setCartList([...data]);
-
-        return {};
-      } catch (error: any) {
-        if (error?.data.error) {
-          return toast.error(error.data.error);
-        }
-        return toast.error(error);
-      } finally {
-        setIsLoadingData(false);
-      }
+    console.log({
+      data, isLoading, isFetching, isSuccess, error, refetch,
+    });
+    if (isSuccess) {
+      setCartList(data);
     }
-    getAllWishes();
-  }, []);
+  }, [data]);
 
   const valorTotalPizza = selectedWish?.pizza.reduce((ac, {
     pizza_border: { price: price_border },
@@ -144,7 +134,7 @@ export function AdmWishes() {
   return (
     <MainBox>
       <section id="wishesList">
-        { isloadingData ? (
+        { isSuccess ? (
           <Boxx style={{ height: '43rem' }}>
             <Loading big color="#8e8e8e" />
           </Boxx>
