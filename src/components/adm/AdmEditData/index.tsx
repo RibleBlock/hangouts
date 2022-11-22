@@ -9,7 +9,8 @@ import {
 
 import { RadioButtonsGroup } from '../../form/RadioButtonsGroup';
 import { ButtonAction } from '../../form/ButtonAction';
-import { useUpdateFlavorMutation } from '../../../services/api/Flavor';
+import { useCreateFlavorMutation, useUpdateFlavorMutation } from '../../../services/api/Flavor';
+import { admFlavorsEdit } from '../../../services/utils/validations/admFlavorEdit';
 
 interface AdmEditDataProps {
   selectedFlavor: Flavor | null,
@@ -17,6 +18,7 @@ interface AdmEditDataProps {
 export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
   const [isloadingUpdateFlavor, setIsloadingUpdateFlavor] = useState<boolean>(false);
   const [title, setTitle] = useState<string>('Novo Item');
+  const [createFlavor] = useCreateFlavorMutation();
   const [updateFlavor] = useUpdateFlavorMutation();
 
   const [name, setName] = useState<string>('');
@@ -57,23 +59,41 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
     setImage(imageLink || '');
   }, [selectedFlavor]);
 
-  const updateFlavorAction = async () => {
+  const updateAndCreateFlavorAction = async () => {
     setIsloadingUpdateFlavor(true);
     try {
-      if (!selectedFlavor) return toast.error('O sabor não foi selecionado!');
+      const isValid = admFlavorsEdit({
+        name,
+        ingredients,
+        type: type.name,
+        category: category.name,
+        image,
+      });
+      if (!isValid.isValid) {
+        return toast.error(isValid.message);
+      }
+      if (selectedFlavor === null) {
+        await createFlavor({
+          name,
+          ingredients,
+          type: type.name,
+          category: category.name,
+          image,
+        });
+
+        // success
+        return toast.success(isValid.message);
+      }
       await updateFlavor({
         id_flavor: selectedFlavor?.id_flavor!,
         name,
         ingredients,
-        type: type.id,
-        category: category.id,
+        type: type.name,
+        category: category.name,
         image,
       }) as any;
       return toast.success('Dados atualizados');
     } catch (error: any) {
-      if (error?.data.error) {
-        return toast.error(error.data.error);
-      }
       return toast.error(error);
     } finally {
       setIsloadingUpdateFlavor(false);
@@ -134,18 +154,20 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
         </div>
       </GridBox>
       <div style={{ display: 'flex', gap: '5rem' }}>
-        <ButtonAction
-          type="button"
-          secundary
-          action={() => alert('CANCELAR')}
-        >
-          Cancelar
-        </ButtonAction>
+        { selectedFlavor && (
+          <ButtonAction
+            type="button"
+            secundary
+            action={() => alert('CANCELAR')}
+          >
+            Cancelar
+          </ButtonAction>
+        ) }
         <ButtonAction
           type="button"
           bcolor="#053C00"
           isLoading={isloadingUpdateFlavor}
-          action={updateFlavorAction}
+          action={updateAndCreateFlavorAction}
         >
           Salvar
         </ButtonAction>

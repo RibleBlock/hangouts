@@ -1,5 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { Flavor } from '../../../interfaces/module';
+
+interface FlavorData {
+  id_flavor?: number,
+  name: string,
+  ingredients: string[],
+  type: string,
+  category: string,
+  image: string,
+}
 
 const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3333';
 
@@ -13,15 +21,15 @@ export const flavorApi = createApi({
         method: 'POST',
       }),
     }),
+    createFlavor: builder.mutation({
+      query: (body: FlavorData) => ({
+        url: 'createflavor',
+        body,
+        method: 'POST',
+      }),
+    }),
     updateFlavor: builder.mutation({
-      query: (body: {
-        id_flavor: number,
-        name: string,
-        ingredients: string[],
-        type: number,
-        category: number,
-        image: string,
-      }) => ({
+      query: (body: FlavorData) => ({
         url: `updateflavor/${body.id_flavor}`,
         body,
         method: 'PATCH',
@@ -30,4 +38,4 @@ export const flavorApi = createApi({
   }),
 });
 
-export const { useSendCartMutation, useUpdateFlavorMutation } = flavorApi;
+export const { useSendCartMutation, useCreateFlavorMutation, useUpdateFlavorMutation } = flavorApi;

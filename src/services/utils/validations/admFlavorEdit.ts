@@ -1,32 +1,20 @@
-import validator from 'validator';
+// import validator from 'validator';
 import { Flavor } from '../../../interfaces/module';
 
-export default function admFlavorsEdit({
+export function admFlavorsEdit({
   image, name, ingredients, type, category, selected,
 }: {
   image: string,
-   name: string,
+  name: string,
   ingredients: string[],
-  type: number,
-   category: number,
-   selected?: Flavor,
+  type: string,
+  category: string,
+  selected?: Flavor,
 }) {
-  if (image) {
-    return {
-      isValid: false,
-      message: 'selecione um endereço para entrega ou retirada!',
-    };
-  }
-
-  // if (!false) {
-  //   return {
-  //     isValid: false,
-  //     message: 'Troco não é númerico!',
-  //   };
-  // }
-
-  return {
-    isValid: true,
-    message: 'Tudo certo!',
-  };
+  if (!name) return { message: 'Nome inválido!', isValid: false };
+  if (ingredients.length === 0) return { message: 'Minimo de um ingrediente', isValid: false };
+  if (!type) return { message: 'tipo inválido!', isValid: false };
+  if (!category) return { message: 'categoria inválida!', isValid: false };
+  // if (!image) return false;
+  return { message: 'success', isValid: true };
 }

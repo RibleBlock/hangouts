@@ -42,9 +42,6 @@ export function AdmWishes() {
 
         return {};
       } catch (error: any) {
-        if (error?.data.error) {
-          return toast.error(error.data.error);
-        }
         return toast.error(error);
       } finally {
         setIsLoadingData(false);
