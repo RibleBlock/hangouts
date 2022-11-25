@@ -25,8 +25,9 @@ export const BoxPopOver = styled(Dialog.Panel)`
     margin-bottom: .9rem;
   }
 
-  form {
+  section {
     position: relative;
+
     > button:first-child {
       position: absolute;
       right: 1.3rem;

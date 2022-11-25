@@ -1,4 +1,6 @@
-import { FormEvent, MouseEvent, useState } from 'react';
+import {
+  FormEvent, MouseEvent, useRef, useState,
+} from 'react';
 import { Dialog } from '@headlessui/react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
@@ -27,14 +29,19 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
   const [visible, setVisible] = useState<boolean>(false);
   const dispatch = useDispatch();
 
+  const closeModal = () => {
+    setPopoverEditData(false);
+    // setField('');
+    // setPasswordField('');
+  };
+
   function openPopoverChangerData(e: MouseEvent) {
     const el = e.target as EventType & EventTarget;
     setDataChenger(el!.firstChild.innerText);
     setPopoverEditData(true);
   }
 
-  async function chengeDataForm(e: FormEvent) {
-    e.preventDefault();
+  const chengeDataForm = async () => {
     setLoadingSubmit(true);
 
     try {
@@ -74,7 +81,7 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
       setPopoverEditData(false);
       setVisible(false);
     }
-  }
+  };
 
   return (
     <>
@@ -124,12 +131,12 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
         </button>
       </Section>
 
-      <Dialog open={popoverEditData !== false} onClose={() => setPopoverEditData(false)} as="div">
+      <Dialog open={popoverEditData} onClose={closeModal} as="div">
         <DarkBG>
           <BoxPopOver>
             <header>
               <ButtonBC
-                action={() => setPopoverEditData(false)}
+                action={closeModal}
                 absolute
                 arrow
               />
@@ -140,7 +147,7 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
               </h2>
             </header>
             <p>Atualizar dados pessoais</p>
-            <form onSubmit={(e) => chengeDataForm(e)}>
+            <section>
               { dataChenger === 'Senha' ? (
                 <>
                   <button type="button" onClick={() => setVisible(!visible)}>
@@ -150,6 +157,7 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
                     type={!visible ? 'text' : 'password'}
                     placeholder={dataChenger}
                     onChange={(e) => setField(e.target.value)}
+                    value={fieldValue}
                     autoComplete="off"
                   />
                 </>
@@ -158,6 +166,8 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
                   type={!visible ? 'text' : 'password'}
                   placeholder={dataChenger}
                   onChange={(e) => setField(e.target.value)}
+                  value={fieldValue}
+                  autoComplete="off"
                 />
               ) }
 
@@ -165,15 +175,18 @@ export function MyData({ user, setOption, loadingToken }: MyDataProps) {
                 type="password"
                 placeholder="Confirme sua senha atual"
                 onChange={(e) => setPasswordField(e.target.value)}
+                value={passwordField}
               />
               <ButtonAction
-                type="submit"
+                type="button"
+                action={chengeDataForm}
                 isLoading={loadingSubmit}
                 small="18"
+                noMargin
               >
                 Salvar
               </ButtonAction>
-            </form>
+            </section>
           </BoxPopOver>
         </DarkBG>
       </Dialog>
