@@ -7,7 +7,10 @@ export interface FooterProps {
 export function Footer({ relative }: FooterProps) {
   return (
     <FooterBox relative={relative}>
-      <p>© 2022 Copyright - Riquelme, George e Victor</p>
+      <div>
+        <p>© 2022 Copyright - Riquelme, George e Victor</p>
+        <p>Av. Rep. Argentina, 2376 - Aberto todos os dias das 18:00 até 23:30</p>
+      </div>
       <div>
         <a href="https://twitter.com/Hangouts_pizza" target="_blank" rel="noopener noreferrer">
           <TwitterLogo />

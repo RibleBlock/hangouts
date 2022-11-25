@@ -13,8 +13,13 @@ export const FooterBox = styled.footer<FooterProps>`
   align-items: center;
   gap: 1.5rem;
 
-  > p {
+  > div p {
+    text-align: center;
     font-size: 1.2rem;
+    &:last-of-type {
+      margin-top: .5rem;
+      font-size: 1.1rem;
+    }
   }
   svg {
     width: 4rem;

@@ -292,7 +292,7 @@ export function Cart() {
               <AddressItem
                 idAddress={0}
                 title="RETIRAR EM MÃOS"
-                subTitle="Retirar no balcão"
+                subTitle="Av. Rep. Argentina, 2376"
                 fStart
                 hover
                 action={() => {

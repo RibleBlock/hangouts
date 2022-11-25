@@ -102,6 +102,13 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
             </StatusWish>
           </Title>
 
+          { selectedWish.status === 'cancel' && (
+          <InnerBox style={{ borderColor: '#ff0000' }}>
+            <p className="flex">Motivo do Cancelamento.</p>
+            <p>{selectedWish.reason}</p>
+          </InnerBox>
+          ) }
+
           <InnerBox style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
             { selectedWish?.address.street !== 'RETIRAR' ? (
               <>
@@ -119,16 +126,12 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
                 </p>
               </>
             ) : (
-              <p>Retirar em mãos</p>
+              <>
+                <p>Retirar no endereço</p>
+                <p className="righttext">Av. Rep. Argentina, 2376</p>
+              </>
             ) }
           </InnerBox>
-
-          { selectedWish.status === 'cancel' && (
-          <InnerBox style={{ borderColor: '#ff0000' }}>
-            <p className="flex">Motivo do Cancelamento.</p>
-            <p>{selectedWish.reason}</p>
-          </InnerBox>
-          ) }
 
           { selectedWish.pizza && selectedWish.pizza.map(({
             id_pizza, pizza_flavor, comment,
