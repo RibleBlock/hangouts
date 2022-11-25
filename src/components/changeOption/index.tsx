@@ -1,23 +1,43 @@
 import { ReactNode } from 'react';
-import { TaillessArrow } from '../../pages/User/steps/MyData/MyData.styles';
-import { Button, Status } from './ChangeOption.styles';
+import { ButtonLink, Button, Status } from './ChangeOption.styles';
 
-export type ChangeOptionStyles = {
-  showArrow?: boolean,
-}
-interface ChangeOptionProps extends ChangeOptionStyles {
-  tab: string,
+interface ChangeOptionProps {
+  tab?: string,
   children?: ReactNode;
   optionTitle: string;
   status?: string;
   optionDescription?: string;
-  setOption: (value: string) => void;
+  setOption: (value: any) => void;
 }
 export function ChangeOption({
-  tab, showArrow, children, optionTitle, optionDescription, status,
+  tab, children, optionTitle, optionDescription, status, setOption,
 }: ChangeOptionProps) {
+  if (!tab) {
+    return (
+      <Button
+        type="button"
+        onClick={setOption}
+      >
+        {children}
+        <div className="option">
+          <p className="optionTitle">
+            {optionTitle}
+          </p>
+          <p className="optionDescription">
+            {optionDescription}
+          </p>
+        </div>
+        { status && (
+        <Status status={status}>
+          {status}
+        </Status>
+        ) }
+      </Button>
+    );
+  }
+
   return (
-    <Button
+    <ButtonLink
       to={tab}
     >
       {children}
@@ -34,6 +54,6 @@ export function ChangeOption({
           {status}
         </Status>
       ) }
-    </Button>
+    </ButtonLink>
   );
 }

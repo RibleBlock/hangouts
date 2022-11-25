@@ -219,6 +219,7 @@ declare interface CartAdm extends CartPizza, CartCalzone, CartDrink {
   status: string,
   order_time: string,
   troco: number,
+  reason: string,
   pizza: CartPizza[],
   calzone: CartCalzone[],
   drink_cart: CartDrink[],

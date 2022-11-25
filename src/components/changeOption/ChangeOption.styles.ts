@@ -1,19 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ChangeOptionStyles } from '.';
 
 export const Status = styled.p<{status: string}>`
   text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: bold;
   color: ${({ status }) => {
     if (status === 'cancel') return '#D00000';
     if (status === 'pending') return '#A5A800';
     if (status === 'preparation') return '#0000ff';
+    if (status === 'fetching') return '#FF9F46';
     if (status === 'concluded') return '#03A800';
     return '#ff00ff';
   }}
 `;
 
-export const Button = styled(Link)<ChangeOptionStyles>`
+const buttonStyles = css`
   width: 100%;
   padding: 1rem 0;
   text-decoration: none !important;
@@ -55,3 +57,6 @@ export const Button = styled(Link)<ChangeOptionStyles>`
     right: 2.2rem;
   }
 `;
+
+export const Button = styled.button`${buttonStyles}`;
+export const ButtonLink = styled(Link)`${buttonStyles}`;

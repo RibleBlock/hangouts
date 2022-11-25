@@ -1,11 +1,17 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
 /* eslint-disable camelcase */
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
-import { ButtonBC, ChangeOption, Loading } from '../../../../components';
+import {
+  ButtonBC, ChangeOption, Loading,
+} from '../../../../components';
 import { CartAdm } from '../../../../interfaces/module';
 import { useGetCartMutation } from '../../../../services/api/wish';
 import { Section } from '../BeginUser/BeginUser.styles';
+import { InnerBox, SectionWish, Title } from './OrderHistory.styles';
 import { Div } from '../MyData/MyData.styles';
+import { StatusWish } from '../../../../components/adm/AdmWishes/AdmWishes.styles';
 
 interface OrderHistoryProps {
   user: User;
@@ -14,7 +20,26 @@ interface OrderHistoryProps {
 export function OrderHistory({ user, setOption }: OrderHistoryProps) {
   const [getCart] = useGetCartMutation();
   const [myWishes, setMyWishes] = useState<CartAdm[] | null>(null);
-  const [popoverOrderIsOpen, setPopoverOrderIsOpen] = useState('');
+  const [selectedWish, setSelectedWish] = useState<CartAdm | null>(null);
+  const [submitText, setSubmitText] = useState('Pedido');
+
+  const returnStatus = (statusAtual: string) => {
+    if (statusAtual === 'cancel') {
+      setSubmitText('Pedido cancelado');
+      return '';
+    } if (statusAtual === 'pending') {
+      setSubmitText('Pedido pendente');
+      return '';
+    } if (statusAtual === 'preparation') {
+      setSubmitText('Em preparo');
+      return '';
+    } if (statusAtual === 'delivering') {
+      setSubmitText('Pedido a caminho');
+      return '';
+    }
+    setSubmitText('Pedido pronto para ser retirado');
+    return '';
+  };
 
   useEffect(() => {
     async function getmyWishes() {
@@ -32,34 +57,187 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
     getmyWishes();
   }, []);
 
+  useMemo(() => {
+    switch (selectedWish?.status) {
+      case 'cancel':
+        setSubmitText('Pedido cancelado');
+        break;
+      case 'pending':
+        setSubmitText('Pedido pendente');
+        break;
+      case 'preparation':
+        setSubmitText('Em preparo');
+        break;
+      case 'delivering':
+        setSubmitText('Pedido a caminho');
+        break;
+      case 'fetching':
+        setSubmitText('Pedido pronto para ser retirado');
+        break;
+
+      default:
+        setSubmitText('Pedido concluido');
+        break;
+    }
+  }, [selectedWish]);
+
   return (
     <>
-      <Div>
-        <ButtonBC to="/user" arrow />
-        <p>Minhas Compras</p>
-      </Div>
-      <Section>
+      {/**/}
+      { selectedWish ? (
+        <SectionWish>
+          <Title id="title">
+            <div>
+              <ButtonBC arrow action={() => setSelectedWish(null)} color="#000" />
+              <h2>{submitText}</h2>
+            </div>
 
-        { myWishes ? myWishes.map(({
-          id_cart, status,
-        }, indice, array) => (
-          <>
-            <ChangeOption
-              key={id_cart}
-              tab=""
-              status={status}
-              setOption={setPopoverOrderIsOpen}
-              optionTitle={`Pedido N${id_cart}`}
-              optionDescription="Ver informacoes sobre este pedido"
-              showArrow
-            />
-            { indice + 1 < array.length && (<hr />) }
-          </>
-        )) : (
-          <Loading color="#5c5c5c" big />
-        ) }
+            <StatusWish status={selectedWish.status}>
+              Pedido #
+              {selectedWish?.id_cart}
+              {' '}
+              • Pedido feito as
+              {' '}
+              {selectedWish?.order_time}
+            </StatusWish>
+          </Title>
 
-      </Section>
+          <InnerBox style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
+            { selectedWish?.address.street !== 'RETIRAR' ? (
+              <>
+                <p style={{ width: '15rem' }}>Entregar em</p>
+                <p className="righttext">
+                  {selectedWish?.address.street[0].toUpperCase()}
+                  { selectedWish?.address.street.substring(1)}
+                  ,
+                  {' '}
+                  {selectedWish?.address.number}
+                  {' '}
+                  • CEP
+                  {' '}
+                  {selectedWish?.address.cep}
+                </p>
+              </>
+            ) : (
+              <p>Retirar em mãos</p>
+            ) }
+          </InnerBox>
+
+          { selectedWish.status === 'cancel' && (
+          <InnerBox style={{ borderColor: '#ff0000' }}>
+            <p className="flex">Motivo do Cancelamento.</p>
+            <p>{selectedWish.reason}</p>
+          </InnerBox>
+          ) }
+
+          { selectedWish.pizza && selectedWish.pizza.map(({
+            id_pizza, pizza_flavor, comment,
+            pizza_size: { name: size, price },
+            pizza_border: { name: border, price: prise_border },
+          }, i) => (
+            <InnerBox key={id_pizza}>
+              <div className="flex">
+                <p>{`${i + 1}  Pizza ${size}`}</p>
+                <p className="righttext">
+                  {'R$: '}
+                  <span>
+                    { pizza_flavor.reduce((ac, {
+                      flavor: { flavor_category: { price: price_flavor } },
+                    }) => ac = price + prise_border + price_flavor, 0).toFixed(2) }
+                  </span>
+                </p>
+              </div>
+              <hr />
+              <p>
+                Sabores -
+                {' '}
+                { pizza_flavor.map(({
+                  flavor: { id_flavor, name },
+                }) => (
+                  <span key={id_flavor}>{`${name}, `}</span>
+                )) }
+              </p>
+              { border !== 'Sem Borda' && (
+              <>
+                <hr />
+                <p>{`Borda recheada - ${border}`}</p>
+              </>
+              ) }
+              { comment && (
+              <>
+                <hr />
+                <p>{`Observações - ${comment}`}</p>
+              </>
+              ) }
+            </InnerBox>
+          )) }
+
+          { selectedWish.calzone && selectedWish.calzone.map(({
+            id_calzone, comment, calzone_flavor: { name, price },
+          }, i) => (
+            <InnerBox key={id_calzone}>
+              <div className="flex">
+                <p>{`${i + 1}  Calzone`}</p>
+                <p className="righttext">{`R$: ${(price).toFixed(2)}`}</p>
+              </div>
+              <hr />
+              <p>
+                Sabores -
+                {' '}
+                {name}
+              </p>
+              { comment && (
+              <>
+                <hr />
+                <p>
+                  Observações -
+                  {' '}
+                  {comment}
+                </p>
+              </>
+              ) }
+            </InnerBox>
+          )) }
+
+          { selectedWish.drink_cart && selectedWish.drink_cart.map(({
+            id_drink_cart, drink: { name_drink }, drink_size: { name_drink_size, price },
+          }, i) => (
+            <InnerBox key={id_drink_cart}>
+              <div className="flex">
+                <p>{`${i + 1}  ${name_drink} ${name_drink_size}`}</p>
+                <p className="righttext">{`R$: ${(price).toFixed(2)}`}</p>
+              </div>
+            </InnerBox>
+          )) }
+        </SectionWish>
+      ) : (
+        <>
+          <Div>
+            <ButtonBC to="/user" arrow />
+            <p>Minhas Compras</p>
+          </Div>
+          <Section>
+            <>
+              {/* Botoes do pedido */}
+              { myWishes ? myWishes.map((item, indice, array) => (
+                <>
+                  <ChangeOption
+                    key={item.id_cart}
+                    status={item.status}
+                    setOption={() => setSelectedWish(item)}
+                    optionTitle={`Pedido N${item.id_cart}`}
+                    optionDescription="Ver informacoes sobre este pedido"
+                  />
+                  { indice + 1 < array.length && (<hr />) }
+                </>
+              )) : (
+                <Loading color="#5c5c5c" big />
+              ) }
+            </>
+          </Section>
+        </>
+      ) }
+
     </>
   );
 }

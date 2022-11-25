@@ -25,7 +25,14 @@ export function AdmWishes() {
       setSubmitText({ status: 'Pendente', button: 'Começar Pedido' });
       return 'preparation';
     } if (statusAtual === 'preparation') {
-      setSubmitText({ status: 'Em preparo', button: 'Finanizar Pedido' });
+      if (selectedWish?.address.street === 'RETIRAR') {
+        setSubmitText({ status: 'Em preparo', button: 'Notificar o cliente' });
+        return 'fetching';
+      }
+      setSubmitText({ status: 'Em preparo', button: 'Concluir Pedido' });
+      return 'fetching';
+    } if (statusAtual === 'fetching') {
+      setSubmitText({ status: 'Aguardando cliente', button: 'Concluir Pedido' });
       return 'concluded';
     }
     setSubmitText({ status: 'Concluído', button: '' });
