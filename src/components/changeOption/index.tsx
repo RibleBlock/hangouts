@@ -12,6 +12,21 @@ interface ChangeOptionProps {
 export function ChangeOption({
   tab, children, optionTitle, optionDescription, status, setOption,
 }: ChangeOptionProps) {
+  const returnStatus = (statusAtual: string) => {
+    if (statusAtual === 'cancel') {
+      return 'Cancelado';
+    } if (statusAtual === 'pending') {
+      return 'Pedido pendente';
+    } if (statusAtual === 'preparation') {
+      return 'Em preparo';
+    } if (statusAtual === 'delivering') {
+      return 'Pedido a caminho';
+    } if (statusAtual === 'fetching') {
+      return 'Retirar pedido';
+    }
+    return 'Finalizado';
+  };
+
   if (!tab) {
     return (
       <Button
@@ -29,7 +44,7 @@ export function ChangeOption({
         </div>
         { status && (
         <Status status={status}>
-          {status}
+          {returnStatus(status)}
         </Status>
         ) }
       </Button>
@@ -51,7 +66,7 @@ export function ChangeOption({
       </div>
       { status && (
         <Status status={status}>
-          {status}
+          {returnStatus(status)}
         </Status>
       ) }
     </ButtonLink>

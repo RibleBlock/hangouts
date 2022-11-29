@@ -3,13 +3,16 @@
 /* eslint-disable camelcase */
 import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
+import { Trash } from 'phosphor-react';
 import {
   ButtonBC, ChangeOption, Loading,
 } from '../../../../components';
 import { CartAdm } from '../../../../interfaces/module';
 import { useGetCartMutation } from '../../../../services/api/wish';
 import { Section } from '../BeginUser/BeginUser.styles';
-import { InnerBox, SectionWish, Title } from './OrderHistory.styles';
+import {
+  ButtonTrash, InnerBox, SectionWish, Title,
+} from './OrderHistory.styles';
 import { Div } from '../MyData/MyData.styles';
 import { StatusWish } from '../../../../components/adm/AdmWishes/AdmWishes.styles';
 
@@ -22,24 +25,6 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
   const [myWishes, setMyWishes] = useState<CartAdm[] | null>(null);
   const [selectedWish, setSelectedWish] = useState<CartAdm | null>(null);
   const [submitText, setSubmitText] = useState('Pedido');
-
-  const returnStatus = (statusAtual: string) => {
-    if (statusAtual === 'cancel') {
-      setSubmitText('Pedido cancelado');
-      return '';
-    } if (statusAtual === 'pending') {
-      setSubmitText('Pedido pendente');
-      return '';
-    } if (statusAtual === 'preparation') {
-      setSubmitText('Em preparo');
-      return '';
-    } if (statusAtual === 'delivering') {
-      setSubmitText('Pedido a caminho');
-      return '';
-    }
-    setSubmitText('Pedido pronto para ser retirado');
-    return '';
-  };
 
   useEffect(() => {
     async function getmyWishes() {
@@ -81,6 +66,10 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
     }
   }, [selectedWish]);
 
+  const inactivateOrder = async () => {
+    alert('inativando...');
+  };
+
   return (
     <>
       {/**/}
@@ -90,6 +79,12 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
             <div>
               <ButtonBC arrow action={() => setSelectedWish(null)} color="#000" />
               <h2>{submitText}</h2>
+
+              { (selectedWish.status === 'concluded' || selectedWish.status === 'cancel') && (
+                <ButtonTrash type="button" title="Remover este pedido." onClick={inactivateOrder}>
+                  <Trash weight="bold" color="#ff0000" size={21} />
+                </ButtonTrash>
+              ) }
             </div>
 
             <StatusWish status={selectedWish.status}>
@@ -126,7 +121,15 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
           { selectedWish.status === 'fetching' && (
           <InnerBox style={{ borderColor: '#FF9F46' }}>
             <p className="flex">Seu pedido está pronto.</p>
-            <p>Venha buscar seu pedido.</p>
+            <p>
+              Venha buscar seu pedido.
+              <br />
+              E não se esqueça de dizer número do pedido
+              {' #'}
+              {selectedWish.id_cart}
+              {' '}
+              para o atendente.
+            </p>
           </InnerBox>
           ) }
 
@@ -161,7 +164,7 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
               </>
             ) : (
               <>
-                <p>Retirar no endereço</p>
+                <p>Retirar no endereço:</p>
                 <p className="righttext">Av. Rep. Argentina, 2376</p>
               </>
             ) }

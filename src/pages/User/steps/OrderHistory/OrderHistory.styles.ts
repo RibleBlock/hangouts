@@ -9,14 +9,36 @@ export const SectionWish = styled(Section)`
 
   > #title {
     grid-area: title;
-    > div h2 {
-      display: inline-block;
-      margin-left: 1rem;
-      font-size: 2rem;
+    > div {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+
+      > h2 {
+        display: inline-block;
+        font-size: 2rem;
+      }
+      > svg {
+        margin: auto 0;
+      }
     }
     > p {
       max-width: none;
     }
+  }
+`;
+
+export const ButtonTrash = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 3rem;
+  &:not(:hover) {
+    background-color: transparent;
   }
 `;
 
