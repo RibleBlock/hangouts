@@ -50,6 +50,13 @@ export const wishApi = createApi({
         method: 'GET',
       }),
     }),
+    inactivewish: builder.mutation({
+      query: ({ id, value }: { id: number, value: boolean }) => ({
+        url: `cartitem?id_cart=${id}`,
+        body: { value },
+        method: 'DELETE',
+      }),
+    }),
     deleteItem: builder.mutation({
       query: ({ id, table }: { id: number, table?: string }) => ({
         url: `cartitem?id_cart=${id}&table=${table}`,
@@ -65,5 +72,6 @@ export const {
   useAddToCartMutation,
   useGetCartMutation,
   useGetCartADMMutation,
+  useInactivewishMutation,
   useDeleteItemMutation,
 } = wishApi;

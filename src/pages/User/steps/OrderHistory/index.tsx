@@ -8,7 +8,7 @@ import {
   ButtonBC, ChangeOption, Loading,
 } from '../../../../components';
 import { CartAdm } from '../../../../interfaces/module';
-import { useGetCartMutation } from '../../../../services/api/wish';
+import { useGetCartMutation, useInactivewishMutation } from '../../../../services/api/wish';
 import { Section } from '../BeginUser/BeginUser.styles';
 import {
   ButtonTrash, InnerBox, SectionWish, Title,
@@ -22,9 +22,11 @@ interface OrderHistoryProps {
 }
 export function OrderHistory({ user, setOption }: OrderHistoryProps) {
   const [getCart] = useGetCartMutation();
+  const [inactiveWish] = useInactivewishMutation();
   const [myWishes, setMyWishes] = useState<CartAdm[] | null>(null);
   const [selectedWish, setSelectedWish] = useState<CartAdm | null>(null);
   const [submitText, setSubmitText] = useState('Pedido');
+  const [loadingTrash, setLoadingTrash] = useState(false);
 
   useEffect(() => {
     async function getmyWishes() {
@@ -67,7 +69,24 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
   }, [selectedWish]);
 
   const inactivateOrder = async () => {
-    alert('inativando...');
+    setLoadingTrash(true);
+    try {
+      const { data } = await inactiveWish({ id: selectedWish?.id_cart!, value: false }) as any;
+
+      setMyWishes(myWishes?.filter(
+        (value) => value.id_cart !== selectedWish?.id_cart,
+      )!);
+      setSelectedWish(null);
+
+      return toast.success(data);
+    } catch (error: any) {
+      if (error?.data.error) {
+        return toast.error(error.data.error);
+      }
+      return toast.error(error);
+    } finally {
+      setLoadingTrash(false);
+    }
   };
 
   return (

@@ -217,6 +217,7 @@ declare interface CartAdm extends CartPizza, CartCalzone, CartDrink {
   id_cart: number,
   created_at: string,
   status: 'preparation' | 'cancel' | 'concluded' | 'pending' | 'fetching' | 'delivering',
+  is_active: boolean,
   order_time: string,
   troco: number,
   reason: string,
