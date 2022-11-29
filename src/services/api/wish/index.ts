@@ -52,7 +52,7 @@ export const wishApi = createApi({
     }),
     inactivewish: builder.mutation({
       query: ({ id, value }: { id: number, value: boolean }) => ({
-        url: `cartitem?id_cart=${id}`,
+        url: `inactivewish/${id}`,
         body: { value },
         method: 'DELETE',
       }),
