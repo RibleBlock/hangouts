@@ -105,7 +105,41 @@ export function OrderHistory({ user, setOption }: OrderHistoryProps) {
           { selectedWish.status === 'cancel' && (
           <InnerBox style={{ borderColor: '#ff0000' }}>
             <p className="flex">Motivo do Cancelamento.</p>
-            <p>{selectedWish.reason}</p>
+            <p>{selectedWish.reason || '"Motivo não informado."'}</p>
+          </InnerBox>
+          ) }
+
+          { selectedWish.status === 'pending' && (
+          <InnerBox style={{ borderColor: '#A5A800' }}>
+            <p className="flex">Vamos verificar seu pedido.</p>
+            <p>Continue aguardando...</p>
+          </InnerBox>
+          ) }
+
+          { selectedWish.status === 'preparation' && (
+          <InnerBox style={{ borderColor: '#0000ff' }}>
+            <p className="flex">Estamos preparando seu pedido.</p>
+            <p>Continue aguardando...</p>
+          </InnerBox>
+          ) }
+
+          { selectedWish.status === 'fetching' && (
+          <InnerBox style={{ borderColor: '#FF9F46' }}>
+            <p className="flex">Seu pedido está pronto.</p>
+            <p>Venha buscar seu pedido.</p>
+          </InnerBox>
+          ) }
+
+          { selectedWish.status === 'delivering' && (
+          <InnerBox style={{ borderColor: '#8146FF' }}>
+            <p className="flex">Seu pedido está a caminho.</p>
+            <p>Aguarde mais pouco...</p>
+          </InnerBox>
+          ) }
+
+          { selectedWish.status === 'concluded' && (
+          <InnerBox style={{ borderColor: '#03A800' }}>
+            <p className="flex">Este pedido já foi concluído.</p>
           </InnerBox>
           ) }
 

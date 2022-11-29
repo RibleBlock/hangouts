@@ -216,7 +216,7 @@ declare interface BorderDB {
 declare interface CartAdm extends CartPizza, CartCalzone, CartDrink {
   id_cart: number,
   created_at: string,
-  status: string,
+  status: 'preparation' | 'cancel' | 'concluded' | 'pending' | 'fetching' | 'delivering',
   order_time: string,
   troco: number,
   reason: string,

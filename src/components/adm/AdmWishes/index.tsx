@@ -29,10 +29,13 @@ export function AdmWishes() {
         setSubmitText({ status: 'Em preparo', button: 'Notificar o cliente' });
         return 'fetching';
       }
-      setSubmitText({ status: 'Em preparo', button: 'Concluir Pedido' });
-      return 'fetching';
+      setSubmitText({ status: 'Em preparo', button: 'Iniciar entrega' });
+      return 'delivering';
     } if (statusAtual === 'fetching') {
       setSubmitText({ status: 'Aguardando cliente', button: 'Concluir Pedido' });
+      return 'concluded';
+    } if (statusAtual === 'delivering') {
+      setSubmitText({ status: 'Entregando', button: 'Concluir Pedido' });
       return 'concluded';
     }
     setSubmitText({ status: 'Concluído', button: '' });

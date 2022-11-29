@@ -10,6 +10,7 @@ export const Status = styled.p<{status: string}>`
     if (status === 'pending') return '#A5A800';
     if (status === 'preparation') return '#0000ff';
     if (status === 'fetching') return '#FF9F46';
+    if (status === 'delivering') return '#8146FF';
     if (status === 'concluded') return '#03A800';
     return '#ff00ff';
   }}
