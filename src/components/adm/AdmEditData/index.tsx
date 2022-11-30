@@ -41,7 +41,7 @@ export function AdmEditData({ selectedFlavor }: AdmEditDataProps) {
   };
 
   const reset = () => {
-    URL.revokeObjectURL(image);
+    // URL.revokeObjectURL(image);
     if (imageRef.current) {
       imageRef.current.value = '';
     }
