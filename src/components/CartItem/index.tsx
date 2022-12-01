@@ -60,7 +60,7 @@ export function CartItem({
         { Array.isArray(sabores)
           ? sabores.reduce((ac: number, {
             flavor: { flavor_category: { price } },
-          }: any) => ac = value + price, 0).toFixed(2)
+          }: any) => ac += price, value).toFixed(2)
           : (value).toFixed(2)}
       </p>
       <Icon

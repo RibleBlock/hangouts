@@ -80,7 +80,7 @@ export function AdmWishes() {
   }) => ac += price, 0);
 
   const frete = selectedWish?.address.street !== 'RETIRAR' ? 15 : 0;
-  const total = valorTotalPizza! + valorTotalCalzone! + valorTotalBebida! + frete;
+  const total = valorTotalPizza! + valorTotalCalzone! + valorTotalBebida!;
   /// ///
 
   const [reason, setReason] = useState<string>('');

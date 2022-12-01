@@ -104,7 +104,7 @@ export function Cart() {
   }) => {
     const flavorEspecial = pizza_flavor.reduce((ac2, {
       flavor: { flavor_category: { price } },
-    }) => ac2 = price, 0);
+    }) => ac2 += price, 0);
     return ac += price_border + price_size + flavorEspecial;
   }, 0);
 
