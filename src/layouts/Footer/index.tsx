@@ -5,10 +5,12 @@ export interface FooterProps {
   relative?: boolean,
 }
 export function Footer({ relative }: FooterProps) {
+  const date = new Date();
+
   return (
     <FooterBox relative={relative}>
       <div>
-        <p>© 2022 Copyright - Riquelme, George e Victor</p>
+        <p>© {date.getFullYear()} Copyright - Riquelme, George e Victor</p>
         <p>Av. Rep. Argentina, 2376 - Aberto todos os dias das 18:00 até 23:30</p>
       </div>
       <div>

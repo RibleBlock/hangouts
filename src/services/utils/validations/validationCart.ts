@@ -14,7 +14,7 @@ export default function validationCart({
   if (!thing) {
     return 'Selecione se vai precisar de troco!';
   }
-  if ((thing && total && total >= thing) && thing !== 'Não') {
+  if ((thing && total && total >= <number>thing) && thing !== 'Não') {
     return `Troco precisa ser maior que R$${total.toFixed(2)}!`;
   }
   if (!allowPurchase) {

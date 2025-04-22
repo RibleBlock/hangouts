@@ -13,9 +13,11 @@ interface SectionProps extends DarkSection {
 export function Section({
   background, children, subtitle, title,
 }: SectionProps) {
+  const date = new Date();
+
   return (
     <SectionBox background={background}>
-      <span>{subtitle || '2022'}</span>
+      <span>{subtitle || date.getFullYear()}</span>
       <h1>{title}</h1>
       <svg width="130" height="22" viewBox="0 0 130 22" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line y1="10.5" x2="130" y2="10.5" stroke="#A67E3D" strokeWidth="3" />

@@ -34,6 +34,7 @@ export function Home() {
       <Element name={ElementsNames[1]}>
         <Section // 2
           background
+          subtitle=" "
           title="Valores"
         >
           <p>
